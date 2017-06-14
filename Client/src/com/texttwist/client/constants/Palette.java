@@ -15,7 +15,7 @@ public class Palette {
     public static Color registerLblBtn_color = new Color(95,0,0);
     public static Color registerLblBtn_onmouseover_color = new Color(95,0,0, 127);
     public static Color registerLblBtn_onmouseclick_color = new Color(53,66,32);
-
+    public static Color scrollPanel_backgroundColor = new Color(220,229,207);
 
     public static Font button_font = new Font("DK Trained Monkey", Font.BOLD, 30);
 

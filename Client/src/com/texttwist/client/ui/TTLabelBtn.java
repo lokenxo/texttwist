@@ -15,7 +15,7 @@ import java.util.concurrent.Callable;
  */
 public class TTLabelBtn extends TTLabel{
 
-    public TTLabelBtn(Point position, Dimension dimension, String caption, Font font, Color fontColor, Callable<Page> clickHandler, JPanel parent) {
+    public TTLabelBtn(Point position, Dimension dimension, String caption, Font font, Color fontColor, Callable<Object> clickHandler, JPanel parent) {
         super(position, dimension, caption, font, fontColor, parent);
 
         setForeground(Palette.registerLblBtn_color);

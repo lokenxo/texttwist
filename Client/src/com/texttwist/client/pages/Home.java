@@ -20,7 +20,6 @@ public class Home extends Page {
     @Override
     public void createUIComponents(){
         addLogo(root);
-
         loginDataContainer = new TTContainer(
                null,
                 new Dimension(1150,250),
@@ -33,15 +32,25 @@ public class Home extends Page {
                 new Dimension(210,50),
                 "Username",
                 loginDataContainer);
+
         TTPasswordField passwordField = new TTPasswordField(
                 new Point(290,60),
                 new Dimension(210,50),
                 loginDataContainer);
+
         TTButton loginBtn = new TTButton(
                 new Point(70,120),
                 new Dimension(430,50),
                 "Go!",
+                new Callable<Object>() {
+                    @Override
+                    public Object call() throws Exception {
+                        //TODO CHIAMA API PER LOGIN E SE TUTTO OKEY MANDA A PAGINA DEL MENU
+                        return new Menu(Page.window);
+                    }
+                },
                 loginDataContainer);
+
         TTLabel registerText = new TTLabel(
                 new Point(70,200),
                 new Dimension(350,50),
@@ -49,18 +58,20 @@ public class Home extends Page {
                 new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 24),
                 null,
                 loginDataContainer);
+
         TTLabelBtn registerField = new TTLabelBtn(
                 new Point(360, 200),
                 new Dimension(210, 50),
                 "Register!",
                 new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 34),
                 null,
-                new Callable<Page>() {
+                new Callable<Object>() {
                     @Override
-                    public Page call() throws Exception {
+                    public Object call() throws Exception {
                         return new Register(Page.window);
                     }
                 },
                 loginDataContainer);
+
     }
 }

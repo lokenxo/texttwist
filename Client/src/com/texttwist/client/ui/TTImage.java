@@ -14,11 +14,8 @@ import java.io.IOException;
  */
 public class TTImage extends JLabel{
 
-    public TTImage(Point position, Dimension dimension, ImageIcon image , JPanel parent) throws IOException {
+    public TTImage(Point position, Dimension dimension, ImageIcon image, JPanel parent) throws IOException {
         super();
-
-        //setBackground(Palette.inputBox_backgroundColor);
-        //setFont(Palette.inputBox_font);
         setBounds(position.x,position.y,dimension.width, dimension.height);
         setPreferredSize(dimension);
         setIcon(image);
