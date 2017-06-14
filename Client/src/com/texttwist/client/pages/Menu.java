@@ -84,7 +84,9 @@ public class Menu extends Page{
                     }
                 },
                 menuBar);
-        addBack(root,
+
+        addFooter(root);
+        addBack(footer,
                 new Callable<Object>() {
                 @Override
                 public Object call() throws Exception {

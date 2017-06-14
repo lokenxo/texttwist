@@ -57,7 +57,8 @@ public class Register extends Page {
                     }
                 },
                 registerDataContainer);
-        addBack(root,
+        addFooter(root);
+        addBack(footer,
             new Callable<Object>() {
                 @Override
                 public Object call() throws Exception {

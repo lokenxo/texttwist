@@ -28,19 +28,19 @@ public class Home extends Page {
                 root);
 
         TTInputField usernameField = new TTInputField(
-                new Point(70,60),
-                new Dimension(210,50),
+                new Point(50,60),
+                new Dimension(220,50),
                 "Username",
                 loginDataContainer);
 
         TTPasswordField passwordField = new TTPasswordField(
-                new Point(290,60),
-                new Dimension(210,50),
+                new Point(280,60),
+                new Dimension(220,50),
                 loginDataContainer);
 
         TTButton loginBtn = new TTButton(
-                new Point(70,120),
-                new Dimension(430,50),
+                new Point(50,120),
+                new Dimension(450,50),
                 "Go!",
                 new Callable<Object>() {
                     @Override

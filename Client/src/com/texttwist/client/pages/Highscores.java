@@ -23,26 +23,23 @@ public class Highscores extends Page{
 
     private DefaultListModel fetchHighscores(){
         DefaultListModel<String> highscoreList = new DefaultListModel<String>();
-        highscoreList.addElement("USA");
-        highscoreList.addElement("India");
-        highscoreList.addElement("Vietnam");
-        highscoreList.addElement("Canada");
-        highscoreList.addElement("Denmark");
-        highscoreList.addElement("France");
-
-        highscoreList.addElement("France");
-        highscoreList.addElement("Great Britain");
-        highscoreList.addElement("Japan");
-
-        highscoreList.addElement("France");
-        highscoreList.addElement("Great Britain");
-        highscoreList.addElement("Japan");
-
-        highscoreList.addElement("France");
-        highscoreList.addElement("Great Britain");
-        highscoreList.addElement("Japan");
-        highscoreList.addElement("Great Britain");
-        highscoreList.addElement("Japan");
+        highscoreList.addElement("Pippo 41");
+        highscoreList.addElement("Paperino 37");
+        highscoreList.addElement("Gaia 34");
+        highscoreList.addElement("Luigi 32");
+        highscoreList.addElement("Marco 31");
+        highscoreList.addElement("Minnie 30");
+        highscoreList.addElement("Franco 30");
+        highscoreList.addElement("Qua 29");
+        highscoreList.addElement("Luca 27");
+        highscoreList.addElement("Qui 26");
+        highscoreList.addElement("Jorge 25");
+        highscoreList.addElement("David 22");
+        highscoreList.addElement("Quo 21");
+        highscoreList.addElement("Raphael 21");
+        highscoreList.addElement("Miguel 16");
+        highscoreList.addElement("Carmen 14");
+        highscoreList.addElement("Beatriz 12");
         return highscoreList;
     }
     @Override
@@ -64,11 +61,13 @@ public class Highscores extends Page{
                 highscoreContainer);
 
         TTScrollList highscoreList = new TTScrollList(
-                new Point(0, 60),
-                new Dimension(575, 142),
+                new Point(20, 60),
+                new Dimension(515, 142),
                 fetchHighscores(),
                 highscoreContainer);
-        addBack(root,
+        addFooter(root);
+
+        addBack(footer,
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {

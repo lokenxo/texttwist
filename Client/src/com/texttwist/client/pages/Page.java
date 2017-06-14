@@ -1,10 +1,7 @@
 package com.texttwist.client.pages;
 
 import com.texttwist.client.constants.Palette;
-import com.texttwist.client.ui.TTContainer;
-import com.texttwist.client.ui.TTImage;
-import com.texttwist.client.ui.TTImageBtn;
-import com.texttwist.client.ui.TTLabel;
+import com.texttwist.client.ui.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +15,7 @@ import java.util.concurrent.Callable;
 public class Page {
 
     public TTContainer root;
+    public TTContainer footer;
     public static JFrame window;
 
     public Page(JFrame window){
@@ -60,21 +58,46 @@ public class Page {
     public void addBack(TTContainer parent, Callable<Object> clickHandler) {
         try {
             TTImageBtn back = new TTImageBtn(
-                    new Point(0, 800),
-                    new Dimension(0, 0),
+                    new Point(0, 0),
+                    new Dimension(50, 50),
                     new ImageIcon(new File("./Client/resources/images/back.png").getCanonicalPath()),
                     clickHandler,
-                    parent);
-            TTLabel registerText = new TTLabel(
-                    new Point(55,775),
-                    new Dimension(350,0),
-                    "Back",
-                    new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 24),
-                    null,
                     parent);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void addFooter(TTContainer root) {
+        footer = new TTContainer(
+                null,
+                new Dimension(1150, 60),
+                Palette.root_backgroundColor,
+                -1,
+                root);
+    }
+
+    public void addNext(TTContainer parent, Font font, Color fontColor, String caption, Callable<Object> clickHandler) {
+        TTLabelBtn next = new TTLabelBtn(
+                new Point(500, 0),
+                new Dimension(150, 50),
+                caption,
+                null,
+                null,
+                clickHandler,
+                parent);
+    }
+
+    public void addTimer(TTContainer parent, Font font, Color fontColor, String caption) {
+        TTLabel next = new TTLabel(
+                new Point(0, 0),
+                new Dimension(150, 50),
+                caption,
+                font,
+                fontColor,
+                parent);
+    }
+
+
 
 }
