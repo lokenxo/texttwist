@@ -81,7 +81,6 @@ public class Game extends Page {
     private Point getRandomPosition(){
         if(letterSpawningPoint.size()>1) {
             int index = ThreadLocalRandom.current().nextInt(0, letterSpawningPoint.size() - 1);
-            System.out.println(index);
             Point placeholder = letterSpawningPoint.get(index);
             letterSpawningPoint.remove(index);
             return placeholder;

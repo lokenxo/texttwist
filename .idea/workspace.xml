@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb36c2e9-c6c6-48da-b007-cd41eccd9e5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTGameBox.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTLetter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTSearchBar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Highscores$1.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Highscores$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Highscores.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Highscores.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Home.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Home.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchRequests.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchRequests.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchSetup.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchSetup.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu$5.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Page.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Page.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Register$2.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Register$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Register.class" afterPath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Register.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Highscores.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Highscores.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Home.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Home.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchRequests.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchRequests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetup.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Menu.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Register.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Register.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/TextTwist/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,8 +47,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="108" column="45" lean-forward="true" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+            <state relative-caret-position="263">
+              <caret line="87" column="30" lean-forward="true" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#456#464#0" expanded="true" />
@@ -171,6 +149,11 @@
       <find>System</find>
       <find>System.</find>
       <find>getRandomPo</find>
+      <find>s</find>
+      <find>system.</find>
+      <find>system.o</find>
+      <find>system.ou</find>
+      <find>system.out</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -926,12 +909,12 @@
       <workItem from="1497277840504" duration="21181000" />
       <workItem from="1497343606634" duration="28876000" />
       <workItem from="1497387626373" duration="13500000" />
-      <workItem from="1497426956018" duration="14628000" />
+      <workItem from="1497426956018" duration="14700000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78185000" />
+    <option name="totallyTimeSpent" value="78257000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1709" y="-107" width="1718" height="928" extended-state="6" />
@@ -1409,8 +1392,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="108" column="45" lean-forward="true" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+        <state relative-caret-position="263">
+          <caret line="87" column="30" lean-forward="true" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#456#464#0" expanded="true" />
