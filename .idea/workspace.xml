@@ -5,96 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb36c2e9-c6c6-48da-b007-cd41eccd9e5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_github_cliftonlabs_json_simple_2_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/constants/Config.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/HomeManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Commons/src/interfaces/ITTAuth.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Commons/src/models/TTResponse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Commons/src/utilities/TTLogger.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/TTServer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/auth/TTAuth.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/AbstractLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/DimensionInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/GridConstraints.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/GridLayoutManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/HorizontalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/LayoutState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/Spacer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/SupportCode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/intellij/uiDesigner/core/VerticalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/constants/Palette.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Entrypoint.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Game$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Game.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Highscores$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Highscores.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Home$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Home$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Home.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchRequests$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchRequests.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchSetup$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchSetup$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/MatchSetup.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Page.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Register$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Register$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/pages/Register.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTButton$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTCircleCounter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTContainer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTGameBox$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTGameBox.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTImage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTImageBtn$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTImageBtn.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTInputBox.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTInputField.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTLabel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTLabelBtn$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTLabelBtn.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTLetter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTPasswordField$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTPasswordField.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTScrollList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTSearchBar$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/com/texttwist/client/ui/TTSearchBar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/fonts/DK Trained Monkey.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/images/back.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/images/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/images/logout.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Client/images/scores.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Server/com/texttwist/server/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/description.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/project-template.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TextTwist/TextTwist.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Client.iml" afterPath="$PROJECT_DIR$/Client/Client.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Entrypoint.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Entrypoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Home.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Home.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTPasswordField.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTPasswordField.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Server.iml" afterPath="$PROJECT_DIR$/Server/Server.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/Main.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TextTwist.iml" afterPath="$PROJECT_DIR$/TextTwist.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -208,7 +120,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="21">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <caret line="1" column="4" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -641,7 +553,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Compound.RunAll">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="com.texttwist.server.Main" />
@@ -1078,12 +990,12 @@
       <workItem from="1497387626373" duration="13500000" />
       <workItem from="1497426956018" duration="15512000" />
       <workItem from="1497543392984" duration="8897000" />
-      <workItem from="1497552318772" duration="2840000" />
+      <workItem from="1497552318772" duration="3034000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90806000" />
+    <option name="totallyTimeSpent" value="91000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1529,7 +1441,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="1" column="4" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
           <folding />
         </state>
       </provider>
