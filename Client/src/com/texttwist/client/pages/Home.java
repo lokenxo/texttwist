@@ -1,6 +1,8 @@
 package com.texttwist.client.pages;
 import com.texttwist.client.constants.Palette;
 import com.texttwist.client.ui.*;
+import models.TTResponse;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.Callable;
@@ -8,13 +10,14 @@ import java.util.concurrent.Callable;
 public class Home extends Page {
 
     private TTContainer loginDataContainer;
+    private HomeManager homeManager;
     private TTContainer logoContainer;
 
     public Home(JFrame window) {
         super(window);
+        homeManager = new HomeManager();
         createUIComponents();
         window.setVisible(true);
-
     }
 
     @Override
@@ -46,7 +49,14 @@ public class Home extends Page {
                     @Override
                     public Object call() throws Exception {
                         //TODO CHIAMA API PER LOGIN E SE TUTTO OKEY MANDA A PAGINA DEL MENU
-                        return new Menu(Page.window);
+                        TTResponse res = homeManager.login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+                        if (res.code == 200){
+                            //OK, go to next page and show popup
+                            return new Menu(window);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Login Failes");
+                            return null;
+                        }
                     }
                 },
                 loginDataContainer);

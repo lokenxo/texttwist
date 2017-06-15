@@ -109,7 +109,6 @@ public class Game extends Page {
                 -1,
                 root);
 
-
         TTGameBox searchUserBar = new TTGameBox(
                 new Point(150, 90),
                 new Dimension(250, 40),
@@ -134,8 +133,6 @@ public class Game extends Page {
                 new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 40),
                 null,
                 "00:00");
-
     }
-
 
 }

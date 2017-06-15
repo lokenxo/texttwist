@@ -1,14 +1,9 @@
 package com.texttwist.client.pages;
 
-import com.texttwist.client.constants.Palette;
 import com.texttwist.client.ui.TTContainer;
-import com.texttwist.client.ui.TTImage;
-import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by loke on 13/06/2017.
