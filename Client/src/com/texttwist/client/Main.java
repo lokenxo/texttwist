@@ -20,6 +20,6 @@ public class Main {
             System.out.println("Font non caricato correttamente");
         }
 
-        Entrypoint entrypoint = new Entrypoint();
+        App entrypoint = new App();
     }
 }

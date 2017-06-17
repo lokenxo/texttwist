@@ -9,5 +9,7 @@ import java.rmi.RemoteException;
  */
 public interface ITTAuth extends Remote {
     TTResponse login(String userName, String password) throws RemoteException;
+    TTResponse register(String userName, String password) throws RemoteException;
     TTResponse logout(String userName, String token) throws RemoteException;
+
 }

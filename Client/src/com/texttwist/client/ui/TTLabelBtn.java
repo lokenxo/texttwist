@@ -1,8 +1,6 @@
 package com.texttwist.client.ui;
 
 import com.texttwist.client.constants.Palette;
-import com.texttwist.client.pages.Entrypoint;
-import com.texttwist.client.pages.Page;
 
 import javax.swing.*;
 import java.awt.*;

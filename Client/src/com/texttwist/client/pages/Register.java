@@ -2,6 +2,7 @@ package com.texttwist.client.pages;
 
 import com.texttwist.client.constants.Palette;
 import com.texttwist.client.ui.*;
+import models.TTResponse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,9 +14,11 @@ import java.util.concurrent.Callable;
 public class Register extends Page {
 
     private TTContainer registerDataContainer;
+    private RegisterController registerController;
     public Register(JFrame window) {
         super(window);
         createUIComponents();
+        registerController = new RegisterController();
         window.setVisible(true);
     }
 
@@ -51,9 +54,25 @@ public class Register extends Page {
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
-
-                        //TODO CHIAMA API PER REGISTRAZIONE E SE TUTTO OKEY MANDA A PAGINA LOGIN
-                        return new Home(window);
+                        //TODO CHIAMA API PER LOGIN E SE TUTTO OKEY MANDA A PAGINA DEL MENU
+                        TTResponse res = registerController.register(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+                        if (res.code == 200){
+                            return new TTDialog("success", res.message,
+                            new Callable() {
+                                @Override
+                                public Object call() throws Exception {
+                                    return new Home(window);
+                                }
+                            },null);
+                        } else {
+                            return new TTDialog("alert", res.message,
+                                new Callable() {
+                                @Override
+                                public Object call() throws Exception {
+                                    return null;
+                                }
+                            },null);
+                        }
                     }
                 },
                 registerDataContainer);
