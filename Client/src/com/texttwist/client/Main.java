@@ -1,5 +1,4 @@
 package com.texttwist.client;
-import com.texttwist.client.pages.*;
 
 import java.awt.*;
 import java.io.File;

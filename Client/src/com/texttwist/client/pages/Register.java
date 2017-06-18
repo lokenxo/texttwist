@@ -2,7 +2,7 @@ package com.texttwist.client.pages;
 
 import com.texttwist.client.constants.Palette;
 import com.texttwist.client.ui.*;
-import models.TTResponse;
+import models.Response;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +55,7 @@ public class Register extends Page {
                     @Override
                     public Object call() throws Exception {
                         //TODO CHIAMA API PER LOGIN E SE TUTTO OKEY MANDA A PAGINA DEL MENU
-                        TTResponse res = registerController.register(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+                        Response res = registerController.register(usernameField.getText(), String.valueOf(passwordField.getPassword()));
                         if (res.code == 200){
                             return new TTDialog("success", res.message,
                             new Callable() {

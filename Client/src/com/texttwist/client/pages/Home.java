@@ -2,7 +2,7 @@ package com.texttwist.client.pages;
 import com.texttwist.client.constants.Palette;
 import com.texttwist.client.ui.*;
 import com.texttwist.client.ui.TTDialog;
-import models.TTResponse;
+import models.Response;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,7 +50,7 @@ public class Home extends Page {
                     @Override
                     public Object call() throws Exception {
                         //TODO CHIAMA API PER LOGIN E SE TUTTO OKEY MANDA A PAGINA DEL MENU
-                        TTResponse res = homeController.login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+                        Response res = homeController.login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
                         if (res.code == 200){
                             //OK, go to next page and show popup
                             return new Menu(window);

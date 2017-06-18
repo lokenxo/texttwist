@@ -10,29 +10,28 @@ import java.util.Date;
 /**
  * Created by loke on 15/06/2017.
  */
-public class TTLogger {
+public class Logger {
 
 
     private static File logFile;
+    private static String name;
     private static PrintWriter out;
     private static BufferedWriter bw;
     private static FileWriter fw;
 
-    public TTLogger(File logFile) throws IOException {
+    public Logger(File logFile, String name) throws IOException {
         this.logFile = logFile;
-
+        this.name = name;
     }
-    public static void write(String msg){
+
+    public synchronized static void write(String msg){
         try {
             fw = new FileWriter(logFile, true);
             bw = new BufferedWriter(fw);
             out = new PrintWriter(bw);
             System.out.println(msg);
             Date d = new Date();
-            out.append(d.toString());
-            out.append(" - ");
-            out.append(msg);
-            out.append("\n");
+            out.append("LOGGER ("+name+"): " + d.toString() + " - " + msg + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,6 +48,5 @@ public class TTLogger {
                 e.printStackTrace();
             }
         }
-
     }
 }

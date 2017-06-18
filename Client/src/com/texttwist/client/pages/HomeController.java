@@ -1,14 +1,10 @@
 package com.texttwist.client.pages;
-import com.texttwist.client.constants.Config;
-import interfaces.ITTAuth;
-import models.TTResponse;
+import com.texttwist.client.App;
+import models.Response;
 
 import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by loke on 15/06/2017.
@@ -18,10 +14,10 @@ public class HomeController {
     public HomeController(){
     }
 
-    public TTResponse login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
-        TTResponse res = App.authService.login(userName,password);
+    public Response login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
+        Response res = App.authService.login(userName,password);
         if (res.code == 200){
-            App.sessionService.create(userName, password);
+            App.sessionService.create(userName, res.data.get("token").toString());
         }
         return res;
     }

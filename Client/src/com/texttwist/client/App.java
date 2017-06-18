@@ -1,6 +1,8 @@
-package com.texttwist.client.pages;
+package com.texttwist.client;
 
-import com.texttwist.client.ui.TTContainer;
+import com.texttwist.client.pages.AuthService;
+import com.texttwist.client.pages.Home;
+import com.texttwist.client.pages.SessionService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +12,6 @@ import java.awt.*;
  */
 public class App extends JFrame {
 
-    protected TTContainer root;
     public static AuthService authService;
     public static SessionService sessionService;
 

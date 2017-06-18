@@ -1,4 +1,5 @@
 package com.texttwist.client.pages;
+import com.texttwist.client.App;
 import com.texttwist.client.constants.Palette;
 import com.texttwist.client.ui.*;
 
@@ -91,7 +92,7 @@ public class Menu extends Page{
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
-                        menuController.logout("","");
+                        menuController.logout(App.sessionService.account.userName,App.sessionService.account.token);
                         return new Home(Page.window);
                     }
                 },

@@ -1,6 +1,7 @@
 package com.texttwist.client.pages;
 
 import com.texttwist.client.constants.Palette;
+import com.texttwist.client.pages.*;
 import com.texttwist.client.ui.*;
 
 import javax.swing.*;
@@ -125,7 +126,7 @@ public class Game extends Page {
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
-                        return new Menu(Page.window);
+                        return new com.texttwist.client.pages.Menu(Page.window);
                     }
                 });
 
