@@ -34,7 +34,7 @@ public class Page {
         window.add(root);
     }
 
-    public void createUIComponents() throws IOException {}
+    public void createUIComponents() throws Exception {}
 
     public void addLogo(TTContainer parent) {
         TTContainer container = new TTContainer(

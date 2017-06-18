@@ -768,3 +768,63 @@ LOGGER (Server): Sun Jun 18 14:12:33 CEST 2017 - Server starting ...
 LOGGER (Server): Sun Jun 18 14:12:33 CEST 2017 - Auth Service running at 9999 port...
 LOGGER (Server): Sun Jun 18 14:12:33 CEST 2017 - Server started
 LOGGER (Server): Sun Jun 18 14:12:33 CEST 2017 - Game Service is running at 10000 port...
+LOGGER (Server): Sun Jun 18 20:14:59 CEST 2017 - Server starting ...
+LOGGER (Server): Sun Jun 18 20:14:59 CEST 2017 - Auth Service running at 9999 port...
+LOGGER (Server): Sun Jun 18 20:14:59 CEST 2017 - Server started
+LOGGER (Server): Sun Jun 18 20:14:59 CEST 2017 - Game Service is running at 10000 port...
+LOGGER (Server): Sun Jun 18 20:16:35 CEST 2017 - Server starting ...
+LOGGER (Server): Sun Jun 18 20:16:35 CEST 2017 - Auth Service running at 9999 port...
+LOGGER (Server): Sun Jun 18 20:16:35 CEST 2017 - Server started
+LOGGER (Server): Sun Jun 18 20:16:35 CEST 2017 - Game Service is running at 10000 port...
+LOGGER (Server): Sun Jun 18 20:16:46 CEST 2017 - Invoked register with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:16:46 CEST 2017 - Registration successfull
+LOGGER (Server): Sun Jun 18 20:16:48 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:16:48 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:21:13 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:21:13 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:24:50 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:24:50 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:25:42 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:25:43 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:30:07 CEST 2017 - Server starting ...
+LOGGER (Server): Sun Jun 18 20:30:07 CEST 2017 - Auth Service running at 9999 port...
+LOGGER (Server): Sun Jun 18 20:30:07 CEST 2017 - Server started
+LOGGER (Server): Sun Jun 18 20:30:07 CEST 2017 - Game Service is running at 10000 port...
+LOGGER (Server): Sun Jun 18 20:30:10 CEST 2017 - Invoked register with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:30:10 CEST 2017 - Registration successfull
+LOGGER (Server): Sun Jun 18 20:30:13 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:30:13 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:33:00 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:33:00 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:35:20 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:35:20 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:48:47 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:48:47 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:50:42 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:50:42 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:52:12 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:52:12 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:52:51 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:52:51 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:53:05 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:53:05 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:54:02 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:54:02 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:54:57 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:54:57 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:56:00 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:56:00 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 20:59:49 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 20:59:49 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 21:00:12 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 21:00:12 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 21:03:01 CEST 2017 - Server starting ...
+LOGGER (Server): Sun Jun 18 21:03:01 CEST 2017 - Auth Service running at 9999 port...
+LOGGER (Server): Sun Jun 18 21:03:01 CEST 2017 - Server started
+LOGGER (Server): Sun Jun 18 21:03:01 CEST 2017 - Game Service is running at 10000 port...
+LOGGER (Server): Sun Jun 18 21:03:07 CEST 2017 - Invoked register with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 21:03:07 CEST 2017 - Registration successfull
+LOGGER (Server): Sun Jun 18 21:03:09 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 21:03:09 CEST 2017 - Login successfull
+LOGGER (Server): Sun Jun 18 21:13:00 CEST 2017 - Invoked login with username=asd AND  password=asd
+LOGGER (Server): Sun Jun 18 21:13:00 CEST 2017 - Login successfull

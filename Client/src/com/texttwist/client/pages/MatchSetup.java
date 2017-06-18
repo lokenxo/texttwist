@@ -2,6 +2,7 @@ package com.texttwist.client.pages;
 
 import com.texttwist.client.constants.Palette;
 import com.texttwist.client.ui.*;
+import models.Response;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,14 +15,13 @@ import java.util.concurrent.Callable;
 public class MatchSetup extends Page{
 
     public TTContainer matchSetupContainer;
-    MatchSetup(JFrame window) throws IOException {
+    public MatchSetupController matchSetupController;
+
+    MatchSetup(JFrame window) throws Exception {
         super(window);
+        matchSetupController = new MatchSetupController();
         createUIComponents();
         window.setVisible(true);
-    }
-
-    private Callable addUserToInvitationList(){
-        return null;
     }
 
     //TODO Spostare i metodi di fetches nella classe MatchSetupService per separare MVC
@@ -48,7 +48,7 @@ public class MatchSetup extends Page{
     }
 
     @Override
-    public void createUIComponents() throws IOException {
+    public void createUIComponents() throws Exception {
         addLogo(root);
 
         matchSetupContainer = new TTContainer(
@@ -66,35 +66,11 @@ public class MatchSetup extends Page{
                 null,
                 matchSetupContainer);
 
-        TTLabel playerFinder_flavourText = new TTLabel(
-                new Point(20,40),
-                new Dimension(350,50),
-                "<html>Search players to invite...</html>",
-                new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 18),
-                null,
-                matchSetupContainer);
-
        TTSearchBar searchUserBar = new TTSearchBar(
                new Point(20, 80),
                new Dimension(250, 40),
                "Username",
-               new DefaultListModel(),
-               addUserToInvitationList(),
                matchSetupContainer);
-
-        TTLabel playerToSendInvite_flavourText = new TTLabel(
-                new Point(305,40),
-                new Dimension(350,50),
-                "Click on user for remove it",
-                new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 18),
-                null,
-                matchSetupContainer);
-
-        TTScrollList playerToSendInvite = new TTScrollList(
-                new Point(305, 80),
-                new Dimension(232, 135),
-                new DefaultListModel(),
-                matchSetupContainer);
 
         addFooter(root);
         addNext(footer,
@@ -104,7 +80,20 @@ public class MatchSetup extends Page{
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
-                        return new Game(Page.window);
+                        //If server response ok, start play, else error
+                        Response res = matchSetupController.play(searchUserBar.list);
+                        if (res.code == 200){
+                            //OK, go to next page and show popup
+                            return new Game(Page.window);
+                        } else {
+                            return new TTDialog("alert", res.message,
+                                new Callable() {
+                                    @Override
+                                    public Object call() throws Exception {
+                                        return new MatchSetup(Page.window);
+                                    }
+                                },null);
+                        }
                     }
                 });
 
