@@ -9,12 +9,14 @@ import java.util.regex.Pattern;
  * Created by loke on 18/06/2017.
  */
 public class Message implements Serializable {
+    public String sender;
     public String message;
     public DefaultListModel<String> data;
     public String token;
 
-    public Message(String message, String token, DefaultListModel<String> data) {
+    public Message(String message, String sender, String token, DefaultListModel<String> data) {
         this.message = message;
+        this.sender = sender;
         this.data = data;
         this.token = token;
     }
@@ -25,13 +27,18 @@ public class Message implements Serializable {
         for(int i = 0; i< data.size(); i++){
             dataToString+=data.get(i)+"|";
         }
-        return "MESSAGE?token="+token+"&message="+message+"&"+dataToString;
+        return "MESSAGE?sender="+sender+"&token="+token+"&message="+message+"&"+dataToString;
     }
 
     public static Message toMessage(String data){
 
         int divisorType = data.indexOf("=");
         data = data.substring(divisorType+1, data.length());
+
+        int divisorSender= data.indexOf("&");
+        String sender = data.substring(0,divisorSender);
+        int divisorSender_end = data.indexOf("=");
+        data = data.substring(divisorSender_end+1, data.length());
 
         int divisorToken= data.indexOf("&");
         String token = data.substring(0,divisorToken);
@@ -51,6 +58,6 @@ public class Message implements Serializable {
             dataList.addElement(dataArray[i]);
         }
 
-        return new Message(message,token,dataList);
+        return new Message(message,sender,token,dataList);
     }
 }

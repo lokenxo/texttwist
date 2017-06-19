@@ -30,10 +30,17 @@ public class SessionsManager {
     }
 
     public boolean remove(String userName){
-            return sessions.remove(exists(userName));
+        if(exists(userName)) {
+            Session s = getSession(userName);
+            if(s != null) {
+                sessions.remove(s);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public Session exists(String userName) {
+    public Session getSession(String userName) {
         synchronized(sessions) {
             Iterator<Session> i = sessions.iterator();
             while (i.hasNext()) {
@@ -43,6 +50,19 @@ public class SessionsManager {
                 }
             }
             return null;
+        }
+    }
+
+    public boolean exists(String userName) {
+        synchronized(sessions) {
+            Iterator<Session> i = sessions.iterator();
+            while (i.hasNext()) {
+                Session elem = i.next();
+                if (elem.userName.equals(userName)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -60,6 +80,11 @@ public class SessionsManager {
     }
 
 
+    public void printSessions() {
+        for(int i = 0; i<sessions.size(); i++){
+            System.out.println(sessions.get(i).toString());
+        }
+    }
     public int size(){
         return sessions.size();
     }

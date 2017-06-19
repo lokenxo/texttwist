@@ -1,13 +1,9 @@
 package com.texttwist.client.ui;
 
-import com.texttwist.client.constants.Palette;
+import constants.Palette;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by loke on 13/06/2017.

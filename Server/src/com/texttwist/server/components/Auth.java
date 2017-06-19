@@ -62,10 +62,11 @@ public class Auth extends UnicastRemoteObject implements IAuth {
     public Response logout(String userName, String token) throws RemoteException {
         Logger.write("Invoked logout with username=" + userName + " AND " + " token=" + token);
         if ((userName != null && !userName.isEmpty()) && (token != null && !token.isEmpty())) {
-            SessionsManager.getInstance().remove(userName);
-            Logger.write("Logout successfull");
+            boolean res = SessionsManager.getInstance().remove(userName);
+            if(res) {
+                Logger.write("Logout successfull");
 
-            return new Response("Logout successfull", 200, null);
+            }
         }
 
         SessionsManager.getInstance().remove(userName);

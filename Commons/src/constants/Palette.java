@@ -1,4 +1,4 @@
-package com.texttwist.client.constants;
+package constants;
 
 import java.awt.*;
 

@@ -1,8 +1,7 @@
 package com.texttwist.client.pages;
 
 import com.texttwist.client.App;
-import com.texttwist.client.constants.Config;
-import interfaces.IAuth;
+import constants.Config;
 import models.Message;
 import models.Response;
 import org.json.simple.JsonObject;
@@ -10,13 +9,8 @@ import org.json.simple.JsonObject;
 import javax.swing.*;
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 
 /**
  * Created by loke on 18/06/2017.
@@ -33,7 +27,7 @@ public class MatchService {
         SocketChannel clientSocket = SocketChannel.open(socketAddress);
 
 
-        Message message = new Message("START_GAME", App.sessionService.account.token, userNames);
+        Message message = new Message("START_GAME", App.sessionService.account.userName, App.sessionService.account.token, userNames);
 
         byte[] byteMessage = new String(message.toString()).getBytes();
         ByteBuffer buffer = ByteBuffer.wrap(byteMessage);

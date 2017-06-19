@@ -1,12 +1,7 @@
 package com.texttwist.client.ui;
 
-import com.texttwist.client.constants.Palette;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
 
 /**

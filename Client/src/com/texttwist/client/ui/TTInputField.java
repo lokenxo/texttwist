@@ -1,10 +1,9 @@
 package com.texttwist.client.ui;
 
-import com.texttwist.client.constants.Palette;
+import constants.Palette;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 /**
  * Created by loke on 13/06/2017.

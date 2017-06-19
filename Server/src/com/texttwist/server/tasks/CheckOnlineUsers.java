@@ -1,4 +1,6 @@
-package com.texttwist.server.components;
+package com.texttwist.server.tasks;
+
+import com.texttwist.server.components.SessionsManager;
 
 import javax.swing.*;
 import java.util.concurrent.Callable;
@@ -16,9 +18,10 @@ public class CheckOnlineUsers implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         System.out.print("Check If users are online!");
-        System.out.println(users);
-        for(int i = 0; i < 1; i++){
-            Thread.sleep(2000);
+        for(int i = 0; i < users.size(); i++){
+            if(!(SessionsManager.getInstance().exists(users.get(i)))){
+                return false;
+            }
         }
         return true;
     }

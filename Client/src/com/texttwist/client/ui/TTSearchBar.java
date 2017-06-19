@@ -1,6 +1,6 @@
 package com.texttwist.client.ui;
-import com.texttwist.client.constants.Palette;
-import com.texttwist.client.pages.MatchSetup;
+import com.texttwist.client.App;
+import constants.Palette;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class TTSearchBar extends TTContainer{
             @Override
             public Object call() throws Exception {
                 String username = ctx.getText();
-                if(!username.equals("")) {
+                if(!username.equals("") && !username.equals(App.sessionService.account.userName)) {
                     ctx.setText("");
                     list.addElement(username);
                 }

@@ -1,13 +1,9 @@
 package com.texttwist.server.components;
 
+import com.texttwist.server.tasks.CheckOnlineUsers;
+import com.texttwist.server.tasks.SendInvitations;
 import models.Message;
 
-import javax.swing.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.concurrent.*;
 
 /**
@@ -28,20 +24,41 @@ public class ThreadProxy implements Runnable {
     public void run() {
         System.out.println("Selecting right task for new thread");
 
+        System.out.println(request.token);
+        System.out.println(request.sender);
+        System.out.println(request.message);
+        System.out.println(request.data);
+
+
+
         if(isValidToken(request.token)){
             switch(request.message){
                 case "START_GAME":
-                    Future<Boolean> newTask = threadPool.submit(new CheckOnlineUsers(request.data));
-                    Boolean returnedValue = null;
+                    Future<Boolean> onlineUsers = threadPool.submit(new CheckOnlineUsers(request.data));
+                    Boolean res = null;
                     try {
-                        returnedValue = newTask.get();
-                        System.out.println(returnedValue);
+                        res = onlineUsers.get();
+                        SessionsManager.getInstance().printSessions();
+                        if(res){
+                            Future<Boolean> sendInvitations = threadPool.submit(new SendInvitations(request.sender, request.data));
+                            try {
+                                res = sendInvitations.get();
+                                System.out.println(res);
+                                if (res) {
+                                    System.out.println("SJSJSJSJSJ");
+
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(returnedValue);
 
                 default:
                     break;

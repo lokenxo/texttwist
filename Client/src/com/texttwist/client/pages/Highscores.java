@@ -1,10 +1,9 @@
 package com.texttwist.client.pages;
 
-import com.texttwist.client.constants.Palette;
+import constants.Palette;
 import com.texttwist.client.ui.*;
 
 import javax.swing.*;
-import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.Callable;

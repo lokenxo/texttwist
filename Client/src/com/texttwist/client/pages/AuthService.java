@@ -1,7 +1,7 @@
 package com.texttwist.client.pages;
 
 import com.texttwist.client.App;
-import com.texttwist.client.constants.Config;
+import constants.Config;
 import interfaces.IAuth;
 import models.Response;
 

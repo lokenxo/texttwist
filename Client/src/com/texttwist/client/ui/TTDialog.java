@@ -1,14 +1,10 @@
 package com.texttwist.client.ui;
 
-import com.texttwist.client.constants.Palette;
-import com.texttwist.client.pages.Home;
-import com.texttwist.client.ui.TTContainer;
-import com.texttwist.client.ui.TTLabel;
+import constants.Palette;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**

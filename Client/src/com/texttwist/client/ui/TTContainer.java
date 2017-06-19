@@ -1,6 +1,6 @@
 package com.texttwist.client.ui;
 
-import com.texttwist.client.constants.Palette;
+import constants.Palette;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

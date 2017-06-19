@@ -1,12 +1,11 @@
 package com.texttwist.client.pages;
 
-import com.texttwist.client.constants.Palette;
+import constants.Palette;
 import com.texttwist.client.ui.*;
 import models.Response;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**

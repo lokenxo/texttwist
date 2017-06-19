@@ -1,6 +1,6 @@
 package com.texttwist.client.pages;
 import com.texttwist.client.App;
-import com.texttwist.client.constants.Palette;
+import constants.Palette;
 import com.texttwist.client.ui.*;
 
 import javax.swing.*;

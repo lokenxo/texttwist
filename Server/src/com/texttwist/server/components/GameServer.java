@@ -18,7 +18,6 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
-import java.util.concurrent.*;
 
 import static java.nio.channels.SelectionKey.OP_ACCEPT;
 import static java.nio.channels.SelectionKey.OP_READ;
@@ -29,7 +28,6 @@ public class GameServer implements Runnable{
     protected ServerSocketChannel serverSocketChannel = null;
     protected ThreadProxy proxy;
     protected Selector selector = null;
-    protected JsonObject msg = null;
 
     public GameServer(int port){
         this.serverPort = port;

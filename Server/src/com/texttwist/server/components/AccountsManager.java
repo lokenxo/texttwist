@@ -46,7 +46,6 @@ public class AccountsManager {
         }
     }
 
-
     public boolean checkPassword(String userName, String password) {
         synchronized(accounts) {
             Iterator<Account> i = accounts.iterator();
