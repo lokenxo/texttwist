@@ -15,8 +15,8 @@ public class MenuController {
     public MenuController(){
     }
 
-    public Response logout(String userName, String token) throws RemoteException, NotBoundException, MalformedURLException {
-        Response res =  App.authService.logout(userName,token);
+    public Response logout(String userName) throws RemoteException, NotBoundException, MalformedURLException {
+        Response res =  App.authService.logout(userName);
         if (res.code == 200){
             App.sessionService.remove();
         }

@@ -45,7 +45,7 @@ public class Auth extends UnicastRemoteObject implements IAuth {
     public Response login(String userName, String password) throws RemoteException {
         Logger.write("Invoked login with username=" + userName + " AND " + " password=" + password);
         if ((userName != null && !userName.isEmpty()) && (password != null && !password.equals(""))) {
-            if(AccountsManager.getInstance().exists(userName)) {
+            if(AccountsManager.getInstance().exists(userName) && AccountsManager.getInstance().checkPassword(userName, password)) {
                 JsonObject data = new JsonObject();
                 String token = nextSessionId();
                 data.put("token", token);

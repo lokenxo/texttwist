@@ -2,6 +2,7 @@ package com.texttwist.client;
 
 import com.texttwist.client.pages.AuthService;
 import com.texttwist.client.pages.Home;
+import com.texttwist.client.pages.MatchService;
 import com.texttwist.client.pages.SessionService;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class App extends JFrame {
 
     public static AuthService authService;
     public static SessionService sessionService;
+    public static MatchService matchService;
 
     public App(){
         setPreferredSize( new Dimension( 640, 480 ));
@@ -25,6 +27,7 @@ public class App extends JFrame {
         //Init services
         authService = new AuthService();
         sessionService = new SessionService();
+        matchService = new MatchService();
 
         Home home = new Home(this);
     }

@@ -90,7 +90,7 @@ public class MatchSetup extends Page{
                                 new Callable() {
                                     @Override
                                     public Object call() throws Exception {
-                                        return new MatchSetup(Page.window);
+                                        return null;
                                     }
                                 },null);
                         }

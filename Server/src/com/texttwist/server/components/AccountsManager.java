@@ -45,6 +45,21 @@ public class AccountsManager {
             return false;
         }
     }
+
+
+    public boolean checkPassword(String userName, String password) {
+        synchronized(accounts) {
+            Iterator<Account> i = accounts.iterator();
+            while (i.hasNext()) {
+                Account account = i.next();
+                if (account.userName.equals(userName) && account.password.equals(password)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     public int size(){
         return accounts.size();
     }

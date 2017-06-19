@@ -92,7 +92,7 @@ public class Menu extends Page{
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
-                        menuController.logout(App.sessionService.account.userName,App.sessionService.account.token);
+                        menuController.logout(App.sessionService.account.userName);
                         return new Home(Page.window);
                     }
                 },

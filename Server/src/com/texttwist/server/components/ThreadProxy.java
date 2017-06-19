@@ -1,7 +1,11 @@
 package com.texttwist.server.components;
 
+import models.Message;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.*;
@@ -11,50 +15,41 @@ import java.util.concurrent.*;
  */
 public class ThreadProxy implements Runnable {
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
-    private String request;
-    ThreadProxy(String request){
+    private Message request;
+    ThreadProxy(Message request){
         this.request = request;
     }
 
-    private Callable<Boolean> checkIfUsersAreOnline = new Callable<Boolean>(){
-        String message = "Check If users are online!";
-        @Override
-        public Boolean call() throws Exception {
-            for(int i = 0; i < 1; i++){
-                Thread.sleep(2000);
-            }
-            return true;
-        }
-    };
+
+    private Boolean isValidToken(String token){
+        return SessionsManager.getInstance().isValidToken(token);
+    }
 
     public void run() {
         System.out.println("Selecting right task for new thread");
-       /* byte[] buffer = new byte[100];
-        try {
-            InputStream clientInputStream = clientSocket.getInputStream();
-            while (clientInputStream.read(buffer) != -1) {
-                request += buffer;
+
+        if(isValidToken(request.token)){
+            switch(request.message){
+                case "START_GAME":
+                    Future<Boolean> newTask = threadPool.submit(new CheckOnlineUsers(request.data));
+                    Boolean returnedValue = null;
+                    try {
+                        returnedValue = newTask.get();
+                        System.out.println(returnedValue);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(returnedValue);
+
+                default:
+                    break;
             }
-            System.out.println(request);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
-        //Assegna un threadWorker al task in arrivo
-        System.out.print(request);
-        Future<Boolean> callableFuture = threadPool.submit(checkIfUsersAreOnline);
-
-        try {
-            // get() waits for the task to finish and then gets the result
-            Boolean returnedValue = callableFuture.get();
-            System.out.println(returnedValue);
-        } catch (InterruptedException e) {
-            // thrown if task was interrupted before completion
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            // thrown if the task threw an execption while executing
-            e.printStackTrace();
+        } else {
+            System.out.print("TOKEN NON VALIDO");
+            //RISPONDI ERRORE TOKEN NON VALIDO
         }
     }
 }

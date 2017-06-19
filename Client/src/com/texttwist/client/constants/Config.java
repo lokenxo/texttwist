@@ -5,11 +5,19 @@ package com.texttwist.client.constants;
  */
 public class Config {
 
-    private static String RMIServerURI = "localhost";
-    private static Integer RMIServerPort = 9999;
+    private static String AuthServerURI = "localhost";
+    private static Integer AuthServerPort = 9999;
+
+    public static String GameServerURI = "localhost";
+    public static Integer GameServerPort = 10000;
 
 
-    public static String getRMIServerAddress(){
-        return "rmi://".concat(RMIServerURI).concat(":").concat(RMIServerPort.toString());
+    public static String getAuthServerURI(){
+        return "rmi://".concat(AuthServerURI).concat(":").concat(AuthServerPort.toString());
     }
+
+    public static String getGameServerURI(){
+        return "tcp://".concat(GameServerURI).concat(":").concat(GameServerPort.toString());
+    }
+
 }

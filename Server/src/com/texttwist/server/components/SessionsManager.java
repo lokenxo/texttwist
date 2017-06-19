@@ -46,6 +46,20 @@ public class SessionsManager {
         }
     }
 
+
+    public boolean isValidToken(String token) {
+        synchronized(sessions) {
+            Iterator<Session> i = sessions.iterator();
+            while (i.hasNext()) {
+                if (i.next().token.equals(token)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+
     public int size(){
         return sessions.size();
     }

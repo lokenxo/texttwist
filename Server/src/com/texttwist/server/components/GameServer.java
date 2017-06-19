@@ -2,10 +2,12 @@
 package com.texttwist.server.components;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import jdk.nashorn.internal.parser.JSONParser;
+import models.Message;
 import org.json.simple.JsonObject;
 import utilities.Logger;
 
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -75,9 +77,12 @@ public class GameServer implements Runnable{
                                 buffer.flip();
                                 String line = new String(buffer.array(), buffer.position(), buffer.remaining());
 
-                                proxy = new ThreadProxy(JSONParser.quote(line));
-                                Thread t = new Thread(proxy);
-                                t.start();
+                                if (line.startsWith("MESSAGE")) {
+                                    Message msg = Message.toMessage(line);
+                                    proxy = new ThreadProxy(msg);
+                                    Thread t = new Thread(proxy);
+                                    t.start();
+                                }
 
                                 if (line.startsWith("CLOSE")) {
                                     client.close();

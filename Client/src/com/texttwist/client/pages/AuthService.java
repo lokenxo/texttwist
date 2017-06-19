@@ -1,5 +1,6 @@
 package com.texttwist.client.pages;
 
+import com.texttwist.client.App;
 import com.texttwist.client.constants.Config;
 import interfaces.IAuth;
 import models.Response;
@@ -14,7 +15,7 @@ import java.rmi.RemoteException;
  */
 public class AuthService {
 
-    protected String baseUrl = Config.getRMIServerAddress().concat("/auth");
+    protected String baseUrl = Config.getAuthServerURI().concat("/auth");
 
     public AuthService(){
     }
@@ -29,8 +30,8 @@ public class AuthService {
         return auth.register(userName, password);
     }
 
-    public Response logout(String userName, String token) throws RemoteException, NotBoundException, MalformedURLException {
+    public Response logout(String userName) throws RemoteException, NotBoundException, MalformedURLException {
         IAuth auth = (IAuth) Naming.lookup(baseUrl);
-        return auth.logout(userName, token);
+        return auth.logout(userName, App.sessionService.account.token);
     }
 }

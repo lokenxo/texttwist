@@ -4,6 +4,7 @@ import com.texttwist.client.App;
 import models.Response;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -15,13 +16,11 @@ public class MatchSetupController {
 
     public MatchSetupController(){}
     public Response play(DefaultListModel<String> userNames) throws RemoteException, NotBoundException, MalformedURLException {
-
-        System.out.print(userNames.toString());
-      /*  Response res = App.authService.login(userName,password);
-        if (res.code == 200){
-            App.sessionService.create(userName, res.data.get("token").toString());
-        }*/
+        try {
+            return App.matchService.play(userNames);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
-
 }

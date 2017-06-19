@@ -24,8 +24,10 @@ public class TTSearchBar extends TTContainer{
             @Override
             public Object call() throws Exception {
                 String username = ctx.getText();
-                ctx.setText("");
-                list.addElement(username);
+                if(!username.equals("")) {
+                    ctx.setText("");
+                    list.addElement(username);
+                }
                 return null;
             }
         };
@@ -34,7 +36,7 @@ public class TTSearchBar extends TTContainer{
 
     public TTSearchBar(Point position,
                        Dimension dimension,
-                       String placeholer,
+                       String placeholder,
                        TTContainer parent) throws Exception {
 
         super(position, dimension, Palette.inputBox_backgroundColor, -1, parent);
@@ -47,7 +49,7 @@ public class TTSearchBar extends TTContainer{
         TTLabel playerFinder_flavourText = new TTLabel(
                 new Point(20,40),
                 new Dimension(350,50),
-                "<html>Player to invite</html>",
+                "<html>Add player</html>",
                 new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 18),
                 null,
                 parent);
@@ -55,9 +57,10 @@ public class TTSearchBar extends TTContainer{
         TTInputField usernameField = new TTInputField(
                 new Point(20,80),
                 new Dimension(250,45),
-                "Username",
+                placeholder,
                 parent);
-    /*    TTScrollList userList = new TTScrollList(
+
+        /*TTScrollList userList = new TTScrollList(
                 new Point(20,120),
                 new Dimension(250,95),
                 matchedUsers,
@@ -75,7 +78,7 @@ public class TTSearchBar extends TTContainer{
         TTLabel playerToSendInvite_flavourText = new TTLabel(
                 new Point(305,40),
                 new Dimension(350,50),
-                "Double-Click on user for remove",
+                "Double-Click on item for remove",
                 new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 18),
                 null,
                 parent);
@@ -93,6 +96,7 @@ public class TTSearchBar extends TTContainer{
                 super.mouseClicked(evt);
                 JList thisList = (JList)evt.getSource();
                 if (evt.getClickCount() == 2) {
+
                     // Double-click detected
                     int index = thisList.locationToIndex(evt.getPoint());
                     list.remove(index);
@@ -111,7 +115,6 @@ public class TTSearchBar extends TTContainer{
                         e1.printStackTrace();
                     }
                 }
-                //Every time i press a key, execute a search of users
             }
         });
 
