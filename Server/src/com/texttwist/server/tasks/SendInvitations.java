@@ -18,7 +18,7 @@ public class SendInvitations implements Callable<Boolean> {
     private final DefaultListModel<String> users;
     private String sender;
 
-    public SendInvitations( String sender, DefaultListModel<String> users) {
+    public SendInvitations(String sender, DefaultListModel<String> users) {
         this.users = users;
         this.sender = sender;
     }
@@ -27,7 +27,7 @@ public class SendInvitations implements Callable<Boolean> {
     public Boolean call() throws Exception {
         System.out.print("SendInvitations!");
         try {
-            Server.notificationServer.update(sender, users);
+            Server.notificationServer.sendInvitations(sender, users);
 
         } catch (Exception e) {
             System.out.println("Eccezione" + e);

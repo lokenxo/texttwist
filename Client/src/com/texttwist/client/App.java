@@ -4,13 +4,14 @@ import com.texttwist.client.pages.AuthService;
 import com.texttwist.client.pages.Home;
 import com.texttwist.client.pages.MatchService;
 import com.texttwist.client.pages.SessionService;
-import com.texttwist.client.services.ClientNotification;
+import com.texttwist.client.services.NotificationClient;
 import constants.Config;
 import interfaces.INotificationClient;
 import interfaces.INotificationServer;
 import utilities.Logger;
 
 import javax.swing.*;
+import javax.swing.text.Position;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class App extends JFrame {
     public static AuthService authService;
     public static SessionService sessionService;
     public static MatchService matchService;
+    public static JFrame app;
 
     public App() throws IOException {
         setPreferredSize( new Dimension( 640, 480 ));
@@ -47,7 +49,7 @@ public class App extends JFrame {
 
             /* si registra per la callback */
             System.out.println("Registering for callback");
-            INotificationClient callbackObj = new ClientNotification();
+            INotificationClient callbackObj = new NotificationClient();
             INotificationClient stub = (INotificationClient) UnicastRemoteObject.exportObject(callbackObj, 0);
 
             server.registerForCallback(stub);
@@ -61,7 +63,12 @@ public class App extends JFrame {
         authService = new AuthService();
         sessionService = new SessionService();
         matchService = new MatchService();
-
+        app = this;
         Home home = new Home(this);
     }
+
+    public static Point getWindowsPosition(){
+        return new Point(app.getX(), app.getY());
+    }
+
 }

@@ -80,19 +80,7 @@ public class MatchSetup extends Page{
                     @Override
                     public Object call() throws Exception {
                         //If server response ok, start play, else error
-                        Response res = matchSetupController.play(searchUserBar.list);
-                        if (res.code == 200){
-                            //OK, go to next page and show popup
-                            return new Game(Page.window);
-                        } else {
-                            return new TTDialog("alert", res.message,
-                                new Callable() {
-                                    @Override
-                                    public Object call() throws Exception {
-                                        return null;
-                                    }
-                                },null);
-                        }
+                       return matchSetupController.play(searchUserBar.list);
                     }
                 });
 

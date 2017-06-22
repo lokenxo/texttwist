@@ -15,7 +15,7 @@ import java.rmi.RemoteException;
 public class MatchSetupController {
 
     public MatchSetupController(){}
-    public Response play(DefaultListModel<String> userNames) throws RemoteException, NotBoundException, MalformedURLException {
+    public Object play(DefaultListModel<String> userNames) {
         try {
             return App.matchService.play(userNames);
         } catch (IOException e) {

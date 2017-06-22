@@ -1,5 +1,6 @@
 package com.texttwist.client.ui;
 
+import com.texttwist.client.App;
 import constants.Palette;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ public class TTDialog extends JFrame {
     public TTDialog(String type, String message, Callable okHandler, Callable cancelHandler) {
         setPreferredSize( new Dimension( 450, 200 ));
         setSize(new Dimension(450,200));
-        setLocation(200,300);
+        setLocation(App.getWindowsPosition().x+100,App.getWindowsPosition().y+150);
         setResizable(false);
         setAlwaysOnTop(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

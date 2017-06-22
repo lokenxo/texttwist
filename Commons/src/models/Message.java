@@ -25,7 +25,7 @@ public class Message implements Serializable {
     public String toString(){
         String dataToString = "";
         for(int i = 0; i< data.size(); i++){
-            dataToString+=data.get(i)+"|";
+            dataToString += data.get(i)+"|";
         }
         return "MESSAGE?sender="+sender+"&token="+token+"&message="+message+"&"+dataToString;
     }

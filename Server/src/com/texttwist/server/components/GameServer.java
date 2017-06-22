@@ -1,6 +1,7 @@
 
 package com.texttwist.server.components;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.texttwist.server.tasks.SendInvitations;
 import jdk.nashorn.internal.parser.JSONParser;
 import models.Message;
 import org.json.simple.JsonObject;
@@ -13,11 +14,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Iterator;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static java.nio.channels.SelectionKey.OP_ACCEPT;
 import static java.nio.channels.SelectionKey.OP_READ;
@@ -28,6 +30,7 @@ public class GameServer implements Runnable{
     protected ServerSocketChannel serverSocketChannel = null;
     protected ThreadProxy proxy;
     protected Selector selector = null;
+    protected ExecutorService threadPool = Executors.newCachedThreadPool();
 
     public GameServer(int port){
         this.serverPort = port;
@@ -77,9 +80,9 @@ public class GameServer implements Runnable{
 
                                 if (line.startsWith("MESSAGE")) {
                                     Message msg = Message.toMessage(line);
-                                    proxy = new ThreadProxy(msg);
-                                    Thread t = new Thread(proxy);
-                                    t.start();
+                                    proxy = new ThreadProxy(msg, client);
+                                    Future<Boolean> identifyMessage = threadPool.submit(proxy);
+                                    identifyMessage.get();
                                 }
 
                                 if (line.startsWith("CLOSE")) {
@@ -102,9 +105,13 @@ public class GameServer implements Runnable{
                             break;
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
      /*   try {
             this.serverSocket = new ServerSocket(this.serverPort);
             Logger.write("Game Service is running at "+this.serverPort+" port...");

@@ -4,16 +4,22 @@ import com.texttwist.server.tasks.CheckOnlineUsers;
 import com.texttwist.server.tasks.SendInvitations;
 import models.Message;
 
+import javax.swing.*;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 import java.util.concurrent.*;
 
 /**
  * Created by loke on 18/06/2017.
  */
-public class ThreadProxy implements Runnable {
+public class ThreadProxy implements Callable<Boolean> {
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
     private Message request;
-    ThreadProxy(Message request){
+    private SocketChannel socketChannel;
+    ThreadProxy(Message request, SocketChannel socketChannel){
         this.request = request;
+        this.socketChannel = socketChannel;
     }
 
 
@@ -21,52 +27,65 @@ public class ThreadProxy implements Runnable {
         return SessionsManager.getInstance().isValidToken(token);
     }
 
-    public void run() {
+    @Override
+    public Boolean call() {
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+
         System.out.println("Selecting right task for new thread");
-
-        System.out.println(request.token);
-        System.out.println(request.sender);
-        System.out.println(request.message);
-        System.out.println(request.data);
-
-
-
         if(isValidToken(request.token)){
             switch(request.message){
                 case "START_GAME":
                     Future<Boolean> onlineUsers = threadPool.submit(new CheckOnlineUsers(request.data));
-                    Boolean res = null;
                     try {
-                        res = onlineUsers.get();
-                        SessionsManager.getInstance().printSessions();
-                        if(res){
+                        Boolean usersOnline = onlineUsers.get();
+                        if(usersOnline){
                             Future<Boolean> sendInvitations = threadPool.submit(new SendInvitations(request.sender, request.data));
                             try {
-                                res = sendInvitations.get();
-                                System.out.println(res);
-                                if (res) {
-                                    System.out.println("SJSJSJSJSJ");
+                                Boolean invitationSended = sendInvitations.get();
+                                if (invitationSended) {
 
+                                    Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<String>());
+                                    byte[] byteMessage = new String(message.toString()).getBytes();
+                                    buffer = ByteBuffer.wrap(byteMessage);
+                                    socketChannel.write(buffer);
+                                    socketChannel.close();
+                                    return true;
+                                } else {
+
+                                    return false;
                                 }
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             } catch (ExecutionException e) {
                                 e.printStackTrace();
                             }
+                        } else {
+
+                            Message message = new Message("USER_NOT_ONLINE", "", "", new DefaultListModel<String>());
+                            byte[] byteMessage = new String(message.toString()).getBytes();
+                            buffer = ByteBuffer.wrap(byteMessage);
+                            socketChannel.write(buffer);
+                            socketChannel.close();
+                            return false;
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
                         e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
                 default:
+
                     break;
             }
 
         } else {
             System.out.print("TOKEN NON VALIDO");
-            //RISPONDI ERRORE TOKEN NON VALIDO
+            return false;
         }
+
+        return false;
     }
 }

@@ -36,18 +36,13 @@ public class NotificationServer implements INotificationServer {
         }
     }
 
-    public void update(String username, DefaultListModel<String> users) throws RemoteException {
-        doCallbacks(username, users);
-    }
-
-    private synchronized void doCallbacks(String username, DefaultListModel<String> users) throws RemoteException{
+    public synchronized void sendInvitations(String username, DefaultListModel<String> users) throws RemoteException {
         System.out.print("Starting callbacks");
         Iterator i = clients.iterator();
         while(i.hasNext()){
             INotificationClient client = (INotificationClient) i.next();
-
-            //Calcola i valori da inviare e inviali
             client.sendInvite(username, users);
         }
     }
+
 }

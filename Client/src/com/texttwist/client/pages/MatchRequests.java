@@ -1,10 +1,13 @@
 package com.texttwist.client.pages;
 
+import com.texttwist.client.App;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
@@ -20,18 +23,6 @@ public class MatchRequests extends Page{
         window.setVisible(true);
     }
 
-    //TODO Spostare i metodi di fetches nella classe MatchRequestService per separare MVC
-    private DefaultListModel fetchMatches(){
-        DefaultListModel<String> matchsList = new DefaultListModel<String>();
-        matchsList.addElement("Pippo ti ha sfidato  -------  Accetta/Declina");
-        matchsList.addElement("Paperino ti ha sfidato  -------  Accetta/Declina");
-        matchsList.addElement("Minnie ti ha sfidato  -------  Accetta/Declina");
-        matchsList.addElement("Luca ti ha sfidato  -------  Accetta/Declina");
-        matchsList.addElement("Gino ti ha sfidato  -------  Accetta/Declina");
-        matchsList.addElement("Filippo ti ha sfidato  -------  Accetta/Declina");
-        matchsList.addElement("Yuri ti ha sfidato  -------  Accetta/Declina");
-        return matchsList;
-    }
 
     @Override
     public void createUIComponents() throws IOException {
@@ -51,11 +42,24 @@ public class MatchRequests extends Page{
                 null,
                 matchsContainer);
 
-        TTScrollList highscoreList = new TTScrollList(
+        TTScrollList pendingMatches = new TTScrollList(
                 new Point(20, 60),
                 new Dimension(520, 142),
-                fetchMatches(),
+                App.matchService.pendingList,
                 matchsContainer);
+
+        pendingMatches.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                super.mouseClicked(evt);
+                JList thisList = (JList)evt.getSource();
+                if (evt.getClickCount() == 2) {
+                    // Double-click detected
+                    int index = thisList.locationToIndex(evt.getPoint());
+                    App.matchService.joinMatch(App.matchService.pendingList.get(index));
+                }
+            }
+        });
         addFooter(root);
 
         addBack(footer,
