@@ -21,7 +21,17 @@ public class MatchService {
 
     public DefaultListModel<String> pendingList = new DefaultListModel<String>();
     ByteBuffer buffer = ByteBuffer.allocate(1024);
+    SocketChannel clientSocket = null;
+
     public MatchService(){
+        InetSocketAddress socketAddress = new InetSocketAddress(Config.GameServerURI, Config.GameServerPort);
+        try {
+            clientSocket = SocketChannel.open(socketAddress);
+            clientSocket.configureBlocking(false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -50,12 +60,20 @@ public class MatchService {
     }
 
 
-    public void joinMatch(String userName) {
+    public void joinMatch(String matchName) {
         //Svuota la lista dei match pendenti e joina il match selezionato
         this.pendingList.clear();
         try {
             //Invia tcp req a server per dirgli che sto joinando
+            DefaultListModel<String> matchNames = new DefaultListModel<String>();
+            matchNames.addElement(matchName);
+            Message message = new Message("JOIN_GAME", App.sessionService.account.userName, App.sessionService.account.token, matchNames);
+
+            byte[] byteMessage = new String(message.toString()).getBytes();
+            buffer = ByteBuffer.wrap(byteMessage);
+            clientSocket.write(buffer);
             new Game(Page.window);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,10 +81,6 @@ public class MatchService {
 
 
     public Object play(DefaultListModel<String> userNames) throws IOException {
-
-        InetSocketAddress socketAddress = new InetSocketAddress(Config.GameServerURI, Config.GameServerPort);
-        SocketChannel clientSocket = SocketChannel.open(socketAddress);
-        clientSocket.configureBlocking(false);
 
         Message message = new Message("START_GAME", App.sessionService.account.userName, App.sessionService.account.token, userNames);
 
@@ -79,12 +93,10 @@ public class MatchService {
                 buffer.clear();
 
                 String line = new String(buffer.array(), buffer.position(), buffer.remaining());
-                System.out.println(line);
                 if (line.startsWith("MESSAGE")) {
-                    Message msg = Message.toMessage(line);
 
+                    Message msg = Message.toMessage(line);
                     if (msg.message.equals("USER_NOT_ONLINE")) {
-                        clientSocket.close();
                         new TTDialog("alert", "Users not online!",
                                 new Callable() {
                                     @Override
@@ -96,7 +108,7 @@ public class MatchService {
                     }
 
                     if (msg.message.equals("INVITES_ALL_SENDED")) {
-                        clientSocket.close();
+                       // clientSocket.close();
                         new TTDialog("success", "Invite all sended!",
                                 new Callable() {
                                     @Override
@@ -107,6 +119,19 @@ public class MatchService {
                                 }, null);
                         return null;
 
+                    }
+
+                    if (msg.message.equals("TIMEOUT")) {
+                        clientSocket.close();
+                        new TTDialog("alert", "TIMEOUT!",
+                                new Callable() {
+                                    @Override
+                                    public Object call() throws Exception {
+                                        return new Menu(Page.window);
+
+                                    }
+                                }, null);
+                        return null;
                     }
                 }
 

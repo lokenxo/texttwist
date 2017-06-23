@@ -23,29 +23,6 @@ public class MatchSetup extends Page{
         window.setVisible(true);
     }
 
-    //TODO Spostare i metodi di fetches nella classe MatchSetupService per separare MVC
-    private DefaultListModel fetchUsers(){
-        DefaultListModel<String> usersList = new DefaultListModel<String>();
-        usersList.addElement("Pippo");
-        usersList.addElement("Paperino");
-        usersList.addElement("Gaia");
-        usersList.addElement("Luigi");
-        usersList.addElement("Marco");
-        usersList.addElement("Minnie");
-        usersList.addElement("Franco");
-        usersList.addElement("Qua");
-        usersList.addElement("Luca");
-        usersList.addElement("Qui");
-        usersList.addElement("Jorge");
-        usersList.addElement("David");
-        usersList.addElement("Quo");
-        usersList.addElement("Raphael");
-        usersList.addElement("Miguel");
-        usersList.addElement("Carmen");
-        usersList.addElement("Beatriz");
-        return usersList;
-    }
-
     @Override
     public void createUIComponents() throws Exception {
         addLogo(root);

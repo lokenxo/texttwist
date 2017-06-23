@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.github.cliftonlabs:json-simple:2.1.2" level="project" />
     <orderEntry type="module" module-name="Commons" />
+    <orderEntry type="module" module-name="Client" />
   </component>
 </module>

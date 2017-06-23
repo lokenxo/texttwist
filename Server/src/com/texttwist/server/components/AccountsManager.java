@@ -24,7 +24,11 @@ public class AccountsManager {
         return AccountsManager.Holder.INSTANCE;
     }
 
-    private AccountsManager(){}
+    private AccountsManager(){
+        accounts.add(new Account("a","a"));
+        accounts.add(new Account("b","b"));
+        accounts.add(new Account("c","c"));
+    }
 
     public boolean register(String userName, String password) {
        if(!exists(userName)){

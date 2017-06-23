@@ -1,5 +1,6 @@
 package com.texttwist.client.pages;
 
+import com.texttwist.client.App;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 
@@ -24,7 +25,11 @@ public class Game extends Page {
         createUIComponents();
         letters = fetchLetters();
         letterSpawningPoint = setLetterSpawningPoint();
-        showLetters();
+        if(letters.size() > 0) {
+            showLetters();
+        } else {
+            joiningPhase();
+        }
         window.setVisible(true);
     }
 
@@ -51,12 +56,11 @@ public class Game extends Page {
         l.addElement(new Point(350,145));
         l.addElement(new Point(450,140));
         l.addElement(new Point(550,130));
-
-        return l;
+      return l;
     }
 
     private DefaultListModel<String> fetchLetters(){
-        DefaultListModel l = new DefaultListModel<String>();
+        DefaultListModel l = new DefaultListModel<String>();/*
         l.addElement("C");
         l.addElement("A");
         l.addElement("E");
@@ -64,7 +68,7 @@ public class Game extends Page {
         l.addElement("C");
         l.addElement("I");
         l.addElement("L");
-        l.addElement("S");
+        l.addElement("S");*/
 
         return l;
     }
@@ -99,6 +103,13 @@ public class Game extends Page {
         window.revalidate();
     }
 
+    public void joiningPhase(){
+        //Visualizza popup
+        new TTDialog("success", "Waiting for users joins",null,null);
+        window.repaint();
+        window.revalidate();
+    }
+
     @Override
     public void createUIComponents() throws IOException {
         addLogo(root);
@@ -109,7 +120,7 @@ public class Game extends Page {
                 -1,
                 root);
 
-        TTGameBox searchUserBar = new TTGameBox(
+        TTGameBox gameBox = new TTGameBox(
                 new Point(150, 90),
                 new Dimension(250, 40),
                 "Word!",

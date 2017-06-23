@@ -1,7 +1,7 @@
 package com.texttwist.server.components;
 
-import com.texttwist.server.tasks.CheckOnlineUsers;
-import com.texttwist.server.tasks.SendInvitations;
+import com.texttwist.server.models.Match;
+import com.texttwist.server.tasks.*;
 import models.Message;
 
 import javax.swing.*;
@@ -10,6 +10,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.*;
 
+import static com.texttwist.server.components.GameServer.activeMatches;
+
 /**
  * Created by loke on 18/06/2017.
  */
@@ -17,6 +19,7 @@ public class ThreadProxy implements Callable<Boolean> {
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
     private Message request;
     private SocketChannel socketChannel;
+
     ThreadProxy(Message request, SocketChannel socketChannel){
         this.request = request;
         this.socketChannel = socketChannel;
@@ -44,14 +47,41 @@ public class ThreadProxy implements Callable<Boolean> {
                                 Boolean invitationSended = sendInvitations.get();
                                 if (invitationSended) {
 
-                                    Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<String>());
-                                    byte[] byteMessage = new String(message.toString()).getBytes();
-                                    buffer = ByteBuffer.wrap(byteMessage);
-                                    socketChannel.write(buffer);
-                                    socketChannel.close();
-                                    return true;
-                                } else {
+                                    //Crea nuova partita e attendi i giocatori
+                                    request.data.addElement(request.sender);
+                                    Match match = new Match(request.sender, request.data);
+                                    activeMatches.addElement(match);
 
+                                    DefaultListModel<String> matchName = new DefaultListModel<>();
+                                    matchName.addElement(request.sender);
+                                    Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, matchName, socketChannel));
+                                    Boolean joinMatchRes = joinMatch.get();
+
+                                    if(!joinMatchRes){
+                                        //NON FARE NULLA, ASPETTA GLI ALTRI
+                                        Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<String>());
+                                        byte[] byteMessage = new String(message.toString()).getBytes();
+                                        buffer = ByteBuffer.wrap(byteMessage);
+                                        socketChannel.write(buffer);
+
+
+
+                                        Future<Boolean> matchTimeout = threadPool.submit(new MatchTimeout(match));
+                                        Boolean matchTimeoutRes = matchTimeout.get();
+                                        if(matchTimeoutRes){
+                                            System.out.println("TUTTO OKEY, INIZIA GIOCO");
+
+                                        } else {
+                                            System.out.println("MESSAGGIO ERRORE A TUTTI");
+                                            //socketChannel.close();
+
+
+                                        }
+
+                                        return matchTimeoutRes;
+                                    }
+
+                                } else {
                                     return false;
                                 }
                             } catch (InterruptedException e) {
@@ -65,7 +95,7 @@ public class ThreadProxy implements Callable<Boolean> {
                             byte[] byteMessage = new String(message.toString()).getBytes();
                             buffer = ByteBuffer.wrap(byteMessage);
                             socketChannel.write(buffer);
-                            socketChannel.close();
+                            //socketChannel.close();
                             return false;
                         }
                     } catch (InterruptedException e) {
@@ -76,6 +106,24 @@ public class ThreadProxy implements Callable<Boolean> {
                         e.printStackTrace();
                     }
 
+                case "JOIN_GAME":
+                    Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, request.data, socketChannel));
+                    try {
+                        Boolean joinMatchRes = joinMatch.get();
+                        if(joinMatchRes){
+                            System.out.print("START THE FUCKING GAME!!!!");
+                            //ULTIMO A JOINARE! INIZIA GIOCO
+                        } else {
+                            System.out.print("WAIT FRIENDS");
+                            //NON FARE NULLA, ASPETA GLI ALTRI
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } {
+
+                }
                 default:
 
                     break;

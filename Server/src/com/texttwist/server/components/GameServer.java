@@ -1,12 +1,15 @@
 
 package com.texttwist.server.components;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.SendInvitations;
+import com.texttwist.server.tasks.WaitForPlayers;
 import jdk.nashorn.internal.parser.JSONParser;
 import models.Message;
 import org.json.simple.JsonObject;
 import utilities.Logger;
 
+import javax.swing.*;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.InetSocketAddress;
@@ -31,6 +34,8 @@ public class GameServer implements Runnable{
     protected ThreadProxy proxy;
     protected Selector selector = null;
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
+
+    public static DefaultListModel<Match> activeMatches = new DefaultListModel<Match>();
 
     public GameServer(int port){
         this.serverPort = port;
@@ -59,7 +64,7 @@ public class GameServer implements Runnable{
 
             Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
             while (iter.hasNext()) {
-                SocketChannel client;
+                SocketChannel client = null;
                 SelectionKey key = iter.next();
                 iter.remove();
 
@@ -82,8 +87,9 @@ public class GameServer implements Runnable{
                                     Message msg = Message.toMessage(line);
                                     proxy = new ThreadProxy(msg, client);
                                     Future<Boolean> identifyMessage = threadPool.submit(proxy);
-                                    identifyMessage.get();
+                                    key.cancel();
                                 }
+
 
                                 if (line.startsWith("CLOSE")) {
                                     client.close();
@@ -105,35 +111,15 @@ public class GameServer implements Runnable{
                             break;
                     }
                 } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
+                    try {
+                        client.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                        System.out.println("DDD");
                         e.printStackTrace();
                     }
                 }
-     /*   try {
-            this.serverSocket = new ServerSocket(this.serverPort);
-            Logger.write("Game Service is running at "+this.serverPort+" port...");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        while(true){
-            Socket clientSocket = null;
-            try {
-                clientSocket = this.serverSocket.accept();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            proxy = new ThreadProxy(clientSocket);
-            Thread t = new Thread(proxy);
-            t.start();
-
-*/
-
-            // threadPool.shutdown(); // shutdown the pool.
-            //this.threadPool.execute(new ThreadWorker(clientSocket, "TASK DI PROVA"));
         }
     }
 }

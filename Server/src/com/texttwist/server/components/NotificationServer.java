@@ -30,14 +30,14 @@ public class NotificationServer implements INotificationServer {
 
     public synchronized void unregisterForCallback(INotificationClient client) throws RemoteException {
         if(clients.remove(client)) {
-            System.out.print("Client unregistered");
+            System.out.println("Client unregistered");
         } else {
-            System.out.print("Unable to unregister client");
+            System.out.println("Unable to unregister client");
         }
     }
 
     public synchronized void sendInvitations(String username, DefaultListModel<String> users) throws RemoteException {
-        System.out.print("Starting callbacks");
+        System.out.println("Starting callbacks");
         Iterator i = clients.iterator();
         while(i.hasNext()){
             INotificationClient client = (INotificationClient) i.next();
