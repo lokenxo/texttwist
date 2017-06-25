@@ -5,8 +5,13 @@ import com.texttwist.client.ui.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.Callable;
 
 /**
@@ -88,16 +93,32 @@ public class Page {
                 parent);
     }
 
-    public void addTimer(TTContainer parent, Font font, Color fontColor, String caption) {
-        TTLabel next = new TTLabel(
+    public Timer addTimer(TTContainer parent, Font font, Color fontColor, String caption, Integer value) {
+        TTLabel lblTimer = new TTLabel(
                 new Point(0, 0),
                 new Dimension(150, 50),
                 caption,
                 font,
                 fontColor,
                 parent);
+
+        Timer timer = new Timer(1000, new ActionListener() {
+            private int count = value;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (count <= 0) {
+                    lblTimer.setText("00:00");
+                    ((Timer)e.getSource()).stop();
+               } else {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss:S");
+
+                    lblTimer.setText(dateFormat.format(count));
+                    count--;
+
+                }
+            }
+        });
+        return timer;
     }
-
-
 
 }

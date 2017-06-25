@@ -31,7 +31,7 @@ public class Message implements Serializable {
     }
 
     public static Message toMessage(String data){
-
+        System.out.println(data);
         int divisorType = data.indexOf("=");
         data = data.substring(divisorType+1, data.length());
 

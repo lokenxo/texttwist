@@ -1,35 +1,61 @@
 package com.texttwist.client.pages;
 
-import com.texttwist.client.App;
+import com.texttwist.client.tasks.StartGame;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.*;
 
 /**
  * Created by loke on 14/06/2017.
  */
 public class Game extends Page {
 
-    private TTContainer gamecontainer;
-    private DefaultListModel<String> letters = new DefaultListModel<String>();
-    private DefaultListModel<String> words = new DefaultListModel<String>();
-    private DefaultListModel<Point> letterSpawningPoint = new DefaultListModel<Point>();
+    private TTContainer gameContainer;
+    public GameController gameController;
+    public DefaultListModel<Point> letterSpawningPoint = new DefaultListModel<Point>();
+
+    public Timer timer = null;
+
+    public Point getRandomPosition(){
+        if(letterSpawningPoint.size()>1) {
+            int index = ThreadLocalRandom.current().nextInt(0, letterSpawningPoint.size() - 1);
+            Point placeholder = letterSpawningPoint.get(index);
+            letterSpawningPoint.remove(index);
+            return placeholder;
+        }
+        return new Point(0,0);
+    }
+
+    public Thread startGame(){
+        Thread t = new Thread(new StartGame(this));
+        t.start();
+        return t;
+    }
+
+
+    public void showLetters(){
+        for(int i = 0; i< this.gameController.letters.size(); i++){
+            TTLetter letter = new TTLetter(
+                    getRandomPosition(),
+                    this.gameController.letters.get(i),
+                    gameContainer);
+        }
+
+        window.repaint();
+        window.revalidate();
+    }
 
     public Game(JFrame window) throws IOException {
         super(window);
         createUIComponents();
-        letters = fetchLetters();
+        gameController = new GameController();
         letterSpawningPoint = setLetterSpawningPoint();
-        if(letters.size() > 0) {
-            showLetters();
-        } else {
-            joiningPhase();
-        }
+        this.gameController.waitForPlayers();
+        startGame();
         window.setVisible(true);
     }
 
@@ -59,61 +85,15 @@ public class Game extends Page {
       return l;
     }
 
-    private DefaultListModel<String> fetchLetters(){
-        DefaultListModel l = new DefaultListModel<String>();/*
-        l.addElement("C");
-        l.addElement("A");
-        l.addElement("E");
-        l.addElement("P");
-        l.addElement("C");
-        l.addElement("I");
-        l.addElement("L");
-        l.addElement("S");*/
-
-        return l;
-    }
-
     private Callable<Object> getWords(){
         return null;
     }
 
-    public boolean addWordToWordsList(String word) {
-        words.addElement(word);
-        return true;
-    }
-
-    private Point getRandomPosition(){
-        if(letterSpawningPoint.size()>1) {
-            int index = ThreadLocalRandom.current().nextInt(0, letterSpawningPoint.size() - 1);
-            Point placeholder = letterSpawningPoint.get(index);
-            letterSpawningPoint.remove(index);
-            return placeholder;
-        }
-        return new Point(0,0);
-    }
-
-    public void showLetters(){
-        for(int i = 0; i< letters.size(); i++){
-            TTLetter letter = new TTLetter(
-                    getRandomPosition(),
-                    letters.get(i),
-                    gamecontainer);
-        }
-        window.repaint();
-        window.revalidate();
-    }
-
-    public void joiningPhase(){
-        //Visualizza popup
-        new TTDialog("success", "Waiting for users joins",null,null);
-        window.repaint();
-        window.revalidate();
-    }
 
     @Override
     public void createUIComponents() throws IOException {
         addLogo(root);
-        gamecontainer = new TTContainer(
+        gameContainer = new TTContainer(
                 null,
                 new Dimension(1150,220),
                 Palette.root_backgroundColor,
@@ -126,7 +106,7 @@ public class Game extends Page {
                 "Word!",
                 new DefaultListModel(),
                 getWords(),
-                gamecontainer);
+                gameContainer);
 
         addFooter(root);
         addNext(footer,
@@ -140,10 +120,11 @@ public class Game extends Page {
                     }
                 });
 
-        addTimer(footer,
+        timer = addTimer(footer,
                 new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 40),
                 null,
-                "00:00");
+                "00:00",
+                120);
     }
 
 }

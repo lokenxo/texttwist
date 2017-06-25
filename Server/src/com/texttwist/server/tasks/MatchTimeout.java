@@ -27,19 +27,10 @@ public class MatchTimeout implements Callable<Boolean> {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
 
         try {
-            Thread.currentThread().sleep(700000);
+            Thread.currentThread().sleep(7*60*1000);
 
             System.out.println("TIMEOUT - MANDA MESSAGGIO ERRORE A TUTTI GLI UTENTI DEL MATCH");
-            for (int i =0; i< match.playersSocket.size(); i++) {
-                SocketChannel clientSocket = match.playersSocket.get(i).getValue();
-
-                Message message = new Message("TIMEOUT", "", "", new DefaultListModel<>());
-                byte[] byteMessage = new String(message.toString()).getBytes();
-                buffer = ByteBuffer.wrap(byteMessage);
-                clientSocket.write(buffer);
-                clientSocket.close();
-
-            }
+          return false;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

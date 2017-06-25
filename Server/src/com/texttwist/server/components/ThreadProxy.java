@@ -20,6 +20,7 @@ public class ThreadProxy implements Callable<Boolean> {
     private Message request;
     private SocketChannel socketChannel;
 
+
     ThreadProxy(Message request, SocketChannel socketChannel){
         this.request = request;
         this.socketChannel = socketChannel;
@@ -33,7 +34,7 @@ public class ThreadProxy implements Callable<Boolean> {
     @Override
     public Boolean call() {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-
+        byte[] byteMessage = null;
         System.out.println("Selecting right task for new thread");
         if(isValidToken(request.token)){
             switch(request.message){
@@ -60,22 +61,33 @@ public class ThreadProxy implements Callable<Boolean> {
                                     if(!joinMatchRes){
                                         //NON FARE NULLA, ASPETTA GLI ALTRI
                                         Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<String>());
-                                        byte[] byteMessage = new String(message.toString()).getBytes();
+                                        byteMessage = new String(message.toString()).getBytes();
                                         buffer = ByteBuffer.wrap(byteMessage);
                                         socketChannel.write(buffer);
-
 
 
                                         Future<Boolean> matchTimeout = threadPool.submit(new MatchTimeout(match));
                                         Boolean matchTimeoutRes = matchTimeout.get();
                                         if(matchTimeoutRes){
-                                            System.out.println("TUTTO OKEY, INIZIA GIOCO");
 
                                         } else {
-                                            System.out.println("MESSAGGIO ERRORE A TUTTI");
-                                            //socketChannel.close();
 
+                                            //TODO If game is started not send this message
+                                            if(!match.isStarted()) {
+                                                for (int i = 0; i < match.playersSocket.size(); i++) {
+                                                    socketChannel = match.playersSocket.get(i).getValue();
+                                                    if (socketChannel != null) {
+                                                        buffer.clear();
+                                                        message = new Message("TIMEOUT", "", "", new DefaultListModel<>());
+                                                        byteMessage = new String(message.toString()).getBytes();
+                                                        buffer = ByteBuffer.wrap(byteMessage);
+                                                        socketChannel.write(buffer);
 
+                                                        //clientSocket.close();
+                                                    }
+
+                                                }
+                                            }
                                         }
 
                                         return matchTimeoutRes;
@@ -92,9 +104,10 @@ public class ThreadProxy implements Callable<Boolean> {
                         } else {
 
                             Message message = new Message("USER_NOT_ONLINE", "", "", new DefaultListModel<String>());
-                            byte[] byteMessage = new String(message.toString()).getBytes();
+                            byteMessage = new String(message.toString()).getBytes();
+                            buffer.clear();
                             buffer = ByteBuffer.wrap(byteMessage);
-                            socketChannel.write(buffer);
+                            this.socketChannel.write(buffer);
                             //socketChannel.close();
                             return false;
                         }
@@ -112,6 +125,33 @@ public class ThreadProxy implements Callable<Boolean> {
                         Boolean joinMatchRes = joinMatch.get();
                         if(joinMatchRes){
                             System.out.print("START THE FUCKING GAME!!!!");
+                            //Find the game, send broadcast communication
+//                            buffer.flip();
+
+
+                            Match match = Match.findMatch(request.data.get(0));
+                            for (int i =0; i< match.playersSocket.size(); i++) {
+                                System.out.println("INVIO");
+                                socketChannel = match.playersSocket.get(i).getValue();
+                                if(socketChannel!=null) {
+                                    buffer.clear();
+
+                                    Future<DefaultListModel<String>> generateWords = threadPool.submit(new GenerateWords());
+
+                                    Message message = new Message("GAME_STARTED", "", "", generateWords.get());
+                                    match.startGame();
+                                    byteMessage  = new String(message.toString()).getBytes();
+
+                                    buffer = ByteBuffer.wrap(byteMessage);
+                                    try {
+                                        socketChannel.write(buffer);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    //clientSocket.close();
+                                }
+
+                            }
                             //ULTIMO A JOINARE! INIZIA GIOCO
                         } else {
                             System.out.print("WAIT FRIENDS");

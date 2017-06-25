@@ -9,6 +9,7 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
 
 import static com.texttwist.server.components.GameServer.activeMatches;
+import static com.texttwist.server.models.Match.findMatch;
 
 /**
  * Created by loke on 23/06/2017.
@@ -24,14 +25,6 @@ public class JoinMatch implements Callable<Boolean> {
         this.socketChannel = socketChannel;
     }
 
-    private Match findMatch(String matchName){
-        for(int i = 0; i<activeMatches.size(); i++) {
-            if (activeMatches.get(i).matchCreator.equals(matchName)) {
-                return activeMatches.get(i);
-            }
-        }
-        return null;
-    }
 
     @Override
     public Boolean call() throws Exception {
@@ -40,14 +33,11 @@ public class JoinMatch implements Callable<Boolean> {
             for(int j = 0; j<thisMatch.playersStatus.size(); j++){
                 String name = thisMatch.playersStatus.get(j).getKey();
                 if (name.equals(playerName)){
-                    printAll(thisMatch);
-
                     thisMatch.playersStatus.remove(j);
                     thisMatch.playersStatus.addElement(new Pair<>(name,1));
                     thisMatch.playersSocket.remove(j);
                     thisMatch.playersSocket.addElement(new Pair<>(name,socketChannel));
                     System.out.println(playerName + ": JOINED");
-                    printAll(thisMatch);
                     return allJoined(thisMatch);
                 }
             }
@@ -61,6 +51,8 @@ public class JoinMatch implements Callable<Boolean> {
 
             System.out.println(match.playersStatus.get(i).getKey());
             System.out.println(match.playersStatus.get(i).getValue());
+            System.out.println(match.playersSocket.get(i).getKey());
+            System.out.println(match.playersSocket.get(i).getValue());
 
         }
     }
