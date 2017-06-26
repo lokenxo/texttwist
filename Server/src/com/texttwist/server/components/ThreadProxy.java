@@ -125,20 +125,22 @@ public class ThreadProxy implements Callable<Boolean> {
                         Boolean joinMatchRes = joinMatch.get();
                         if(joinMatchRes){
                             System.out.print("START THE FUCKING GAME!!!!");
+
                             //Find the game, send broadcast communication
 //                            buffer.flip();
 
 
                             Match match = Match.findMatch(request.data.get(0));
+
+                            Future<DefaultListModel<String>> generateWords = threadPool.submit(new GenerateWords());
+                            match.setLetters(generateWords.get());
+
                             for (int i =0; i< match.playersSocket.size(); i++) {
                                 System.out.println("INVIO");
                                 socketChannel = match.playersSocket.get(i).getValue();
                                 if(socketChannel!=null) {
                                     buffer.clear();
-
-                                    Future<DefaultListModel<String>> generateWords = threadPool.submit(new GenerateWords());
-
-                                    Message message = new Message("GAME_STARTED", "", "", generateWords.get());
+                                    Message message = new Message("GAME_STARTED", "", "", match.letters);
                                     match.startGame();
                                     byteMessage  = new String(message.toString()).getBytes();
 

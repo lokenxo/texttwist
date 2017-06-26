@@ -21,12 +21,12 @@ public class StartGame implements Runnable {
     @Override
     public void run(){
 
+        //Letters are ready? Polling
         while(!(this.game.gameController.letters.size() > 0)) {
-            System.out.println(this.game.gameController.letters.size());
             this.game.gameController.letters = App.matchService.words;
         }
-        System.out.println(this.game.gameController.letters);
         game.showLetters();
+
         if(this.game.gameController.letters.size()>0){
             this.game.timer.start();
         }

@@ -110,9 +110,10 @@ public class Page {
                     lblTimer.setText("00:00");
                     ((Timer)e.getSource()).stop();
                } else {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss:S");
-
-                    lblTimer.setText(dateFormat.format(count));
+                    int minutes = count / 60;
+                    int seconds = count % 60;
+                    String str = String.format("%d:%02d", minutes, seconds);
+                    lblTimer.setText(str);
                     count--;
 
                 }

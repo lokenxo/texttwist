@@ -79,15 +79,4 @@ public class SessionsManager {
         }
     }
 
-
-    public void printSessions() {
-        for(int i = 0; i<sessions.size(); i++){
-            System.out.println(sessions.get(i).toString());
-        }
-    }
-    public int size(){
-        return sessions.size();
-    }
-
-
 }

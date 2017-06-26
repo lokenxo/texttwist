@@ -17,7 +17,6 @@ public class TTGameBox extends TTInputField{
                        Dimension dimension,
                        String placeholer,
                        DefaultListModel listModel,
-                       Callable<Object> clickHandler,
                        TTContainer parent){
 
         super(position, dimension, placeholer, parent);
@@ -31,6 +30,15 @@ public class TTGameBox extends TTInputField{
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
+                if(e.getKeyCode() == 10){
+                    try {
+                        System.out.println(getText());
+                        setText("");
+                        listModel.addElement(getText());
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                }
                 //Every time i press a key, execute a search of users
             }
         });

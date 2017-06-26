@@ -1,6 +1,7 @@
 
 package com.texttwist.server.components;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.SendInvitations;
 import com.texttwist.server.tasks.WaitForPlayers;
@@ -18,6 +19,8 @@ import java.net.Socket;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -34,6 +37,9 @@ public class GameServer implements Runnable{
     protected ThreadProxy proxy;
     protected Selector selector = null;
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
+    private String dictionaryPath = "./Server/resources/dictionary";
+    public static Dictionary dict;
+
 
     public static DefaultListModel<Match> activeMatches = new DefaultListModel<Match>();
 
@@ -43,6 +49,7 @@ public class GameServer implements Runnable{
 
     public void run(){
 
+        dict = new Dictionary(dictionaryPath);
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         try {
             selector = Selector.open();
@@ -116,7 +123,6 @@ public class GameServer implements Runnable{
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                        System.out.println("DDD");
                         e.printStackTrace();
                     }
                 }

@@ -17,6 +17,7 @@ public class Match {
     public DefaultListModel<Pair<String,SocketChannel>> playersSocket = new DefaultListModel<Pair<String, SocketChannel>>();
     private boolean started = false;
     public String matchCreator;
+    public DefaultListModel<String> letters;
     public DefaultListModel<Pair<String,Integer>> playersScore = new DefaultListModel<Pair<String, Integer>>();
 
     public Match(String matchCreator, DefaultListModel<String> players){
@@ -47,4 +48,7 @@ public class Match {
 
     }
 
+    public void setLetters(DefaultListModel<String> letters){
+        this.letters = letters;
+    }
 }

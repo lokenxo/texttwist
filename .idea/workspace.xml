@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb36c2e9-c6c6-48da-b007-cd41eccd9e5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/GameController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/InvitePlayers.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/StartGame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/WaitForPlayers.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/resources/dictionary" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/models/Dictionary.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchService.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetupController.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetupController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/InvitePlayers.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/InvitePlayers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/StartGame.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/StartGame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/WaitForPlayers.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/WaitForPlayers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTGameBox.java" afterPath="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTGameBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commons/Commons.iml" afterPath="$PROJECT_DIR$/Commons/Commons.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Commons/src/models/Message.java" afterPath="$PROJECT_DIR$/Commons/src/models/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Server.iml" afterPath="$PROJECT_DIR$/Server/Server.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/GameServer.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/GameServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/SessionsManager.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/SessionsManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadProxy.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadProxy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/models/Match.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/models/Match.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/JoinMatch.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/JoinMatch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchTimeout.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchTimeout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java" afterPath="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client_1.log" afterPath="$PROJECT_DIR$/client_1.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.log" afterPath="$PROJECT_DIR$/server.log" />
     </list>
@@ -32,7 +34,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/TextTwist$Client.coverage" NAME="Client Coverage Results" MODIFIED="1498403095213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/TextTwist$Client.coverage" NAME="Client Coverage Results" MODIFIED="1498480407971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.texttwist.client.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/TextTwist$Main__1_.coverage" NAME="Main (1) Coverage Results" MODIFIED="1497438042403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -45,33 +47,12 @@
       <file leaf-file-name="WaitForPlayers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/WaitForPlayers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
+            <state relative-caret-position="168">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2646#2647#0" expanded="true" />
-                <element signature="e#2690#2691#0" expanded="true" />
+                <element signature="e#2554#2555#0" expanded="true" />
+                <element signature="e#2596#2597#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatchTimeout.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchTimeout.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InvitePlayers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/InvitePlayers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="48" column="54" lean-forward="false" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -79,30 +60,30 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+            <state relative-caret-position="579">
+              <caret line="124" column="18" lean-forward="true" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#495#503#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/App.java">
+      <file leaf-file-name="JoinMatch.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/JoinMatch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="42" column="40" lean-forward="true" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+            <state relative-caret-position="619">
+              <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Page.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java">
+      <file leaf-file-name="ThreadProxy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="98" column="35" lean-forward="false" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
+            <state relative-caret-position="157">
+              <caret line="141" column="51" lean-forward="true" selection-start-line="141" selection-start-column="51" selection-end-line="141" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -111,41 +92,66 @@
       <file leaf-file-name="TTGameBox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTGameBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="315">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Highscores.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Highscores.java">
+      <file leaf-file-name="Page.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="430">
+              <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StartGame.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/StartGame.java">
+      <file leaf-file-name="TTSearchBar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTSearchBar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+            <state relative-caret-position="230">
+              <caret line="95" column="40" lean-forward="true" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GenerateWords.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#561#569#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatchSetup.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetup.java">
+      <file leaf-file-name="Match.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/models/Match.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="819">
-              <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="73">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding>
+                <element signature="e#1568#1569#0" expanded="true" />
+                <element signature="e#1606#1607#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dictionary.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/models/Dictionary.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,36 +167,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>GAME_STARTED</find>
-      <find>G</find>
-      <find>GAME:</find>
-      <find>GAME</find>
-      <find>GAME_ST</find>
-      <find>GAME_STA</find>
+      <find>System</find>
+      <find>System.</find>
+      <find>System.o</find>
+      <find>System.out</find>
+      <find>System.out.p</find>
+      <find>System.out.println</find>
+      <find>System.out.printl</find>
+      <find>System.out.print</find>
+      <find>0</find>
+      <find>0+&quot;</find>
+      <find>0+</find>
+      <find>Log</find>
+      <find>Logger.</find>
+      <find>Logger.wri</find>
+      <find>Logger.writ</find>
+      <find>Logger.write</find>
+      <find>J</find>
+      <find>JOINE</find>
+      <find>JOINED</find>
+      <find>S</find>
+      <find>START</find>
+      <find>START THE</find>
       <find>W</find>
-      <find>Wa</find>
-      <find>Wai</find>
-      <find>Wait</find>
-      <find>WaitF</find>
-      <find>WaitFor</find>
-      <find>HE</find>
-      <find>HEY</find>
-      <find>F</find>
-      <find>Futur</find>
-      <find>Future</find>
-      <find>f</find>
-      <find>future</find>
-      <find>a</find>
-      <find>addT</find>
-      <find>addTi</find>
-      <find>addTim</find>
-      <find>addTime</find>
-      <find>addTimer</find>
-      <find>TIME</find>
-      <find>TIMEO</find>
-      <find>TIMEOU</find>
-      <find>TIMEOUT</find>
-      <find>fetc</find>
+      <find>Word</find>
+      <find>Word!</find>
+      <find>T</find>
+      <find>TTGA</find>
+      <find>TTGAM</find>
+      <find>TTGAME</find>
+      <find>getWo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -204,9 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTButton.java" />
-        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MenuController.java" />
-        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Menu.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/AuthService.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/CheckOnlineUsers.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/SendInvitations.java" />
@@ -220,9 +223,7 @@
         <option value="$PROJECT_DIR$/Commons/src/interfaces/INotificationServer.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/ServerNotification.java" />
         <option value="$PROJECT_DIR$/Commons/src/constants/Config.java" />
-        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/SessionsManager.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/Auth.java" />
-        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/Server.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/services/ClientNotification.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/SendInvitations.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/ConfirmInvitationSent.java" />
@@ -235,26 +236,31 @@
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/AccountsManager.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchJoinTimeout.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchHandler.java" />
-        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/GameServer.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/CheckOnlineUsers.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/NotificationServer.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetup.java" />
-        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/models/Match.java" />
-        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/JoinMatch.java" />
-        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadProxy.java" />
-        <option value="$PROJECT_DIR$/Commons/src/models/Message.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetupController.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/GameController.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/GameService.java" />
-        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/WaitForPlayers.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchService.java" />
-        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java" />
         <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchTimeout.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/FetchLetters.java" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/dictionary" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/Server.java" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/SessionsManager.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/InvitePlayers.java" />
+        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/WaitForPlayers.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/StartGame.java" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/GameServer.java" />
+        <option value="$PROJECT_DIR$/Commons/src/models/Message.java" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/models/Match.java" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadProxy.java" />
         <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java" />
+        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTGameBox.java" />
+        <option value="$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java" />
+        <option value="$PROJECT_DIR$/Server/src/com/texttwist/server/models/Dictionary.java" />
       </list>
     </option>
   </component>
@@ -385,8 +391,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -523,95 +527,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Commons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
+              <option name="myItemId" value="Server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Commons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utilities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Commons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Commons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interfaces" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TextTwist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Commons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="constants" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -757,6 +677,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -773,22 +695,23 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.texttwist.server" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\loke\TextTwist\Server\resources" />
+      <recent name="C:\Users\loke\TextTwist\Commons\src" />
+      <recent name="C:\Users\loke\TextTwist\Commons" />
+      <recent name="C:\Users\loke\TextTwist\Client\resources\images" />
+      <recent name="C:\Users\loke\TextTwist\Client\resources" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\loke\TextTwist\Commons" />
       <recent name="C:\Users\loke\TextTwist\Client\resources\images" />
       <recent name="C:\Users\loke\TextTwist\Client\img" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\loke\TextTwist\Commons\src" />
-      <recent name="C:\Users\loke\TextTwist\Commons" />
-      <recent name="C:\Users\loke\TextTwist\Client\resources\images" />
-      <recent name="C:\Users\loke\TextTwist\Client\resources" />
-      <recent name="C:\Users\loke\TextTwist\Client\resources\fonts" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.texttwist.server" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1255,12 +1178,13 @@
       <workItem from="1498160173135" duration="13022000" />
       <workItem from="1498206474909" duration="17511000" />
       <workItem from="1498372581050" duration="20849000" />
-      <workItem from="1498402027965" duration="10316000" />
+      <workItem from="1498402027965" duration="10726000" />
+      <workItem from="1498478810726" duration="5746000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217830000" />
+    <option name="totallyTimeSpent" value="223986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1284,7 +1208,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.4215148" sideWeight="0.6982353" order="2" side_tool="false" content_ui="tabs" x="579" y="373" width="1079" height="423" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.4215148" sideWeight="0.6982353" order="2" side_tool="false" content_ui="tabs" x="683" y="400" width="1079" height="423" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2203125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1306,7 +1230,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="62" />
+      <option name="time" value="65" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1315,35 +1239,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/ConfirmInvitationSent.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="1966" column="0" lean-forward="false" selection-start-line="1966" selection-start-column="0" selection-end-line="1966" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/nio/channels/SocketChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="466" column="24" lean-forward="false" selection-start-line="466" selection-start-column="24" selection-end-line="466" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTLabelBtn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Home.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1355,27 +1254,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTSearchBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1911">
-          <caret line="100" column="20" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadWorker.java" />
     <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/Auth.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1396,31 +1279,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="47" column="43" lean-forward="true" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchJoinTimeout.java" />
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/SessionsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="53" column="52" lean-forward="false" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/AccountsManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-420">
@@ -1461,14 +1320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/services/NotificationClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1485,14 +1336,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/AuthService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchRequests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="67">
@@ -1505,7 +1348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="600" column="19" lean-forward="false" selection-start-line="600" selection-start-column="19" selection-end-line="600" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1525,28 +1367,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/JoinMatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="38" column="43" lean-forward="false" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/CheckOnlineUsers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="19" column="55" lean-forward="true" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1559,38 +1383,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/models/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Commons/src/models/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="42" column="44" lean-forward="true" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/GameService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/GameService.java" />
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetupController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1599,35 +1392,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="52" column="51" lean-forward="false" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2167#2168#0" expanded="true" />
-            <element signature="e#2201#2202#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#588#589#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#588#589#0" expanded="false" />
+            <element signature="e#644#645#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/GameServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-32">
-          <caret line="85" column="65" lean-forward="true" selection-start-line="85" selection-start-column="65" selection-end-line="85" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1642,31 +1415,7 @@
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchSetup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="819">
-          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTGameBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="42" column="40" lean-forward="true" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="98" column="35" lean-forward="false" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
+          <caret line="45" column="33" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1674,45 +1423,222 @@
     <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/MatchTimeout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/AuthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Home.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-273">
+          <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="42" column="40" lean-forward="false" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/resources/dictionary">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="58109" column="5" lean-forward="false" selection-start-line="58109" selection-start-column="0" selection-end-line="58109" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="32" column="61" lean-forward="true" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/SessionsManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="79" column="5" lean-forward="false" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Commons/src/utilities/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="31" column="12" lean-forward="false" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Commons/src/models/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/InvitePlayers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1316">
+          <caret line="85" column="32" lean-forward="false" selection-start-line="85" selection-start-column="32" selection-end-line="85" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/StartGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/services/NotificationClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/MatchService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/GameServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="109" column="33" lean-forward="true" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
+          <folding>
+            <element signature="e#1554#1555#0" expanded="true" />
+            <element signature="e#1592#1593#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/JoinMatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/WaitForPlayers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
+        <state relative-caret-position="168">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2646#2647#0" expanded="true" />
-            <element signature="e#2690#2691#0" expanded="true" />
+            <element signature="e#2554#2555#0" expanded="true" />
+            <element signature="e#2596#2597#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/InvitePlayers.java">
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/models/Match.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="48" column="54" lean-forward="false" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+        <state relative-caret-position="73">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#1568#1569#0" expanded="true" />
+            <element signature="e#1606#1607#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/components/ThreadProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="141" column="51" lean-forward="true" selection-start-line="141" selection-start-column="51" selection-end-line="141" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTSearchBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="95" column="40" lean-forward="true" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/ui/TTGameBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+        <state relative-caret-position="579">
+          <caret line="124" column="18" lean-forward="true" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#495#503#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/tasks/StartGame.java">
+    <entry file="file://$PROJECT_DIR$/Client/src/com/texttwist/client/pages/Page.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        <state relative-caret-position="430">
+          <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/tasks/GenerateWords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+          <folding>
+            <element signature="e#561#569#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/com/texttwist/server/models/Dictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

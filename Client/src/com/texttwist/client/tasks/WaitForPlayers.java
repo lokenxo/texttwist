@@ -43,8 +43,6 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                     buffer.clear();
 
                     Message msg = Message.toMessage(line);
-                    System.out.println("HEY");
-                    System.out.println(msg);
                     if (msg.message.equals("TIMEOUT")) {
                         socketChannel.close();
                         loading.dispose();
@@ -75,6 +73,6 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
     }
 
     public void done(){
-        System.out.println("DONEEE");
+        System.out.println("Done");
     }
 }

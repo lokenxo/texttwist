@@ -1,6 +1,12 @@
 package com.texttwist.server.tasks;
 
+import com.texttwist.server.components.GameServer;
+
 import javax.swing.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.file.*;
 import java.util.concurrent.Callable;
 
 /**
@@ -15,13 +21,13 @@ public class GenerateWords implements Callable<DefaultListModel<String>> {
 
     @Override
     public DefaultListModel<String> call() throws Exception {
-        DefaultListModel l = new DefaultListModel<String>();
-        l.addElement("D");
-        l.addElement("S");
-        l.addElement("Q");
-        l.addElement("A");
+        DefaultListModel<String> l = new DefaultListModel<String>();
 
-
+        String word = GameServer.dict.getRandomWord(6, 7);
+        System.out.println(word);
+        for (int i = 0;i < word.length(); i++){
+            l.addElement(String.valueOf(word.charAt(i)));
+        }
 
         return l;
     }

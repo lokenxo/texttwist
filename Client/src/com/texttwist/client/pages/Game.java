@@ -16,6 +16,8 @@ public class Game extends Page {
 
     private TTContainer gameContainer;
     public GameController gameController;
+    public TTGameBox gameBox;
+    public DefaultListModel<String> words = new DefaultListModel<String>();
     public DefaultListModel<Point> letterSpawningPoint = new DefaultListModel<Point>();
 
     public Timer timer = null;
@@ -85,7 +87,8 @@ public class Game extends Page {
       return l;
     }
 
-    private Callable<Object> getWords(){
+    private Callable<Object> sendWords(String word){
+        System.out.println("SENDDDD" + word);
         return null;
     }
 
@@ -100,12 +103,11 @@ public class Game extends Page {
                 -1,
                 root);
 
-        TTGameBox gameBox = new TTGameBox(
+        gameBox = new TTGameBox(
                 new Point(150, 90),
                 new Dimension(250, 40),
-                "Word!",
-                new DefaultListModel(),
-                getWords(),
+                "Insert word and Press ENTER!",
+                words,
                 gameContainer);
 
         addFooter(root);
