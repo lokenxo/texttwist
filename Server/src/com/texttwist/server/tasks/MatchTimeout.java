@@ -1,39 +1,36 @@
 package com.texttwist.server.tasks;
 
-import com.texttwist.client.App;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.texttwist.server.models.Match;
-import models.Message;
 
-import javax.swing.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
 
 /**
- * Created by loke on 23/06/2017.
+ * Created by loke on 27/06/2017.
  */
 public class MatchTimeout implements Callable<Boolean> {
 
-    public Match match;
+    Boolean receiveWords;
 
-    public MatchTimeout(Match match) {
-        this.match = match;
-        System.out.println("Math started, countdown for join!");
+    public MatchTimeout(Boolean receiveWords) {
+        this.receiveWords = receiveWords;
+        System.out.println("Match started, countdown for end words!");
 
     }
 
     @Override
     public Boolean call() throws Exception {
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
-
         try {
-            Thread.currentThread().sleep(7*60*1000);
-
-            System.out.println("TIMEOUT - MANDA MESSAGGIO ERRORE A TUTTI GLI UTENTI DEL MATCH");
-          return false;
+            Thread.currentThread().sleep(3*60*1000); //TODO 5*60*1000
+            System.out.println("timer scaduto");
+            receiveWords = false;
+            System.out.println("TIMEOUT - SETTA A 0 il punteggio degli utenti che non hanno inviato le parole");
+            return false;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return false;
+        return true;
     }
+
 }
+

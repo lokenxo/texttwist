@@ -12,7 +12,6 @@ import java.util.concurrent.Callable;
  */
 public class TTGameBox extends TTInputField{
 
-    private DefaultListModel words = new DefaultListModel();
     public TTGameBox(Point position,
                        Dimension dimension,
                        String placeholer,
@@ -33,8 +32,8 @@ public class TTGameBox extends TTInputField{
                 if(e.getKeyCode() == 10){
                     try {
                         System.out.println(getText());
-                        setText("");
                         listModel.addElement(getText());
+                        setText("");
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

@@ -43,7 +43,7 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                     buffer.clear();
 
                     Message msg = Message.toMessage(line);
-                    if (msg.message.equals("TIMEOUT")) {
+                    if (msg.message.equals("JOIN_TIMEOUT")) {
                         socketChannel.close();
                         loading.dispose();
                         new TTDialog("alert", "TIMEOUT!",
@@ -59,7 +59,15 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
                     if (msg.message.equals("GAME_STARTED")) {
                         loading.dispose();
+                        DefaultListModel<String> data = msg.data;
+
+                        System.out.println("HERE");
+                        System.out.println(msg.data);
+                        Integer multicastId = Integer.valueOf(data.remove(data.size()-2));
+                        System.out.println(multicastId);
+                        App.matchService.setMulticastId(multicastId);
                         words = msg.data;
+
                         //socketChannel.close();
                         App.matchService.setWords(words);
                         return words;

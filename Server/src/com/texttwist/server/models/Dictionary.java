@@ -16,7 +16,7 @@ import java.util.stream.Stream;
  */
 public class Dictionary {
 
-    DefaultListModel<String> wordList = new DefaultListModel<>();
+    static DefaultListModel<String> wordList = new DefaultListModel<>();
     private Random randomGenerator;
 
     public Dictionary(String dictionaryPath) {
@@ -53,6 +53,15 @@ public class Dictionary {
             }
             return "";
         }
+    }
+
+    public static Boolean isContainedInDictionary(String word){
+        for(int i = 0; i< wordList.size(); i++){
+            if(wordList.get(i).equals(word)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

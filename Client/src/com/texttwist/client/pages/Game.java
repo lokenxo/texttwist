@@ -32,12 +32,6 @@ public class Game extends Page {
         return new Point(0,0);
     }
 
-    public Thread startGame(){
-        Thread t = new Thread(new StartGame(this));
-        t.start();
-        return t;
-    }
-
 
     public void showLetters(){
         for(int i = 0; i< this.gameController.letters.size(); i++){
@@ -57,7 +51,7 @@ public class Game extends Page {
         gameController = new GameController();
         letterSpawningPoint = setLetterSpawningPoint();
         this.gameController.waitForPlayers();
-        startGame();
+        this.gameController.startGame(this);
         window.setVisible(true);
     }
 
@@ -87,12 +81,6 @@ public class Game extends Page {
       return l;
     }
 
-    private Callable<Object> sendWords(String word){
-        System.out.println("SENDDDD" + word);
-        return null;
-    }
-
-
     @Override
     public void createUIComponents() throws IOException {
         addLogo(root);
@@ -118,7 +106,7 @@ public class Game extends Page {
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
-                        return new com.texttwist.client.pages.Menu(Page.window);
+                        return null;
                     }
                 });
 
@@ -126,7 +114,13 @@ public class Game extends Page {
                 new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 40),
                 null,
                 "00:00",
-                120);
+                new Callable<Object>() {
+                    @Override
+                    public Object call() throws Exception {
+                        gameController.sendWords(words);
+                        return null;
+                    }},
+                15);
     }
 
 }

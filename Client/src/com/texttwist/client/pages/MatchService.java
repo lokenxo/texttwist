@@ -19,9 +19,9 @@ import java.util.concurrent.*;
  */
 public class MatchService {
 
+    public Integer multicastId = 0 ;
     public DefaultListModel<String> pendingList = new DefaultListModel<String>();
     ByteBuffer buffer = ByteBuffer.allocate(1024);
-
     public DefaultListModel<String> words = new DefaultListModel<String>();
 
     SocketChannel clientSocket = null;
@@ -45,6 +45,7 @@ public class MatchService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         //Visualizza popup
         new TTDialog("success", "New invitation from: " + userName + "!",
             new Callable() {
@@ -100,6 +101,10 @@ public class MatchService {
         SwingWorker worker = new InvitePlayers(userNames,clientSocket);
         worker.execute();
         return null;
+    }
+
+    public void setMulticastId(Integer multicastId){
+        this.multicastId = multicastId;
     }
 
     public void addToPendingList(String username) throws IOException {

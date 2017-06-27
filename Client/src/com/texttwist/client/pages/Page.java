@@ -93,7 +93,7 @@ public class Page {
                 parent);
     }
 
-    public Timer addTimer(TTContainer parent, Font font, Color fontColor, String caption, Integer value) {
+    public Timer addTimer(TTContainer parent, Font font, Color fontColor, String caption, Callable<Object> timerEndHandler, Integer value) {
         TTLabel lblTimer = new TTLabel(
                 new Point(0, 0),
                 new Dimension(150, 50),
@@ -108,6 +108,11 @@ public class Page {
             public void actionPerformed(ActionEvent e) {
                 if (count <= 0) {
                     lblTimer.setText("00:00");
+                    try {
+                        timerEndHandler.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                     ((Timer)e.getSource()).stop();
                } else {
                     int minutes = count / 60;
