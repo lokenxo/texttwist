@@ -1,31 +1,28 @@
 package com.texttwist.client.controllers;
-import com.texttwist.client.services.HighscoresService;
+import com.texttwist.client.App;
+import com.texttwist.client.pages.HighscoresPage;
+import com.texttwist.client.tasks.FetchHighscore;
+import javafx.util.Pair;
 
 import javax.swing.*;
-import java.util.concurrent.Callable;
 
 /**
- * Created by loke on 28/06/2017.
+ * Highscores Controller
  */
 public class HighscoresController {
 
-    HighscoresService highscoresService = new HighscoresService();
+    private HighscoresPage highscoresPage;
 
-    public HighscoresController(){
-
+    public HighscoresController(HighscoresPage highscoresPage){
+        this.highscoresPage = highscoresPage;
     }
 
+    public SwingWorker fetchHighscores () {
+        return new FetchHighscore(highscoresPage);
+    }
 
-    public void fetchHighscores(JFrame window){
-        highscoresService.fetchHighscores(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                window.revalidate();
-                window.repaint();
-                System.out.println("ASDDD");
-                return "";
-            }
-        });
+    public DefaultListModel<Pair<String,Integer>> getRanks(Boolean isPartialRank) {
+        return isPartialRank ? App.game.ranks : App.game.globalRanks;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.texttwist.client.tasks;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.texttwist.client.App;
 import constants.Config;
 import javafx.util.Pair;
@@ -12,8 +11,6 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.RunnableFuture;
 
 /**
  * Created by loke on 27/06/2017.
@@ -34,28 +31,23 @@ public class WaitForScore extends SwingWorker<Void,Void> {
         InetAddress group = null;
         try {
 
-            MulticastSocket ms = new MulticastSocket(App.match.multicastId);
-            InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-            ms.joinGroup(ia);
-            System.out.println("Join multicast group");
 
             byte[] buf = new byte[1024];
             DatagramPacket recv = new DatagramPacket(buf, buf.length);
-            ms.receive(recv);
+            App.game.multicastSocket.receive(recv);
             String s = new String(recv.getData());
             System.out.println("HSHSHSHS");
             System.out.println(s);
             Message msg = Message.toMessage(s);
-            System.out.println(msg.data);
-
-            for(int i = 0; i< msg.data.size()-1; i++){
-                String[] splitted = msg.data.get(i).split(":");
-                System.out.println(splitted.toString());
-                ranks.addElement(new Pair<String, Integer>(splitted[0],new Integer(splitted[1])));
+            if(msg.data != null) {
+                for (int i = 0; i < msg.data.size() - 1; i++) {
+                    String[] splitted = msg.data.get(i).split(":");
+                    System.out.println(splitted.toString());
+                    ranks.addElement(new Pair<String, Integer>(splitted[0], new Integer(splitted[1])));
+                }
             }
-
-            App.match.ranks = ranks;
-            System.out.println(App.match.ranks);
+            App.game.ranks = ranks;
+            System.out.println(App.game.ranks);
             System.out.println("ENDDDDd");
 
         } catch (UnknownHostException e) {
@@ -68,8 +60,11 @@ public class WaitForScore extends SwingWorker<Void,Void> {
 
     @Override
     public void done(){
-        System.out.println("Done");
-        App.match.ranks = ranks;
+        System.out.println("Done ranks");
+        App.game.ranks = ranks;
+            App.game.multicastSocket.close();
+            //App.game.clientSocket.close();
+
         try {
             this.callback.execute();
         } catch (Exception e) {

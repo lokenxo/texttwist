@@ -14,7 +14,7 @@ public class MatchTimeout implements Callable<Boolean> {
 
     public MatchTimeout(Boolean receiveWords) {
         this.receiveWords = receiveWords;
-        System.out.println("Match started, countdown for end words!");
+        System.out.println("GamePage started, countdown for end words!");
 
     }
 

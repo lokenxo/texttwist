@@ -23,14 +23,16 @@ public class AccountsManager {
     }
 
     private AccountsManager(){
-        users.add(new User("a","a"));
-        users.add(new User("b","b"));
-        users.add(new User("c","c"));
+        users.add(new User("a","a",0));
+        users.add(new User("b","b",0));
+        users.add(new User("c","c",0));
+        users.add(new User("d","d",0));
+
     }
 
     public boolean register(String userName, String password) {
        if(!exists(userName)){
-            return users.add(new User(userName, password));
+            return users.add(new User(userName, password,0));
         } else {
            return false;
        }

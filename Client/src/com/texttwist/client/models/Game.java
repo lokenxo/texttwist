@@ -1,11 +1,10 @@
-package com.texttwist.client.services;
+package com.texttwist.client.models;
 
 import com.texttwist.client.App;
-import com.texttwist.client.pages.Game;
-import com.texttwist.client.pages.Menu;
+import com.texttwist.client.pages.GamePage;
+import com.texttwist.client.pages.MenuPage;
 import com.texttwist.client.pages.Page;
 import com.texttwist.client.tasks.InvitePlayers;
-import com.texttwist.client.tasks.WaitForPlayers;
 import com.texttwist.client.ui.TTDialog;
 import constants.Config;
 import javafx.util.Pair;
@@ -13,7 +12,9 @@ import models.Message;
 
 import javax.swing.*;
 import java.io.*;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.MulticastSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.*;
@@ -21,23 +22,25 @@ import java.util.concurrent.*;
 /**
  * Created by loke on 18/06/2017.
  */
-public class MatchModel {
+public class Game {
 
     public Integer multicastId = 0 ;
     public DefaultListModel<String> pendingList = new DefaultListModel<String>();
-    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    private ByteBuffer buffer = ByteBuffer.allocate(1024);
     public DefaultListModel<String> words = new DefaultListModel<String>();
     public DefaultListModel<String> letters = new DefaultListModel<String>();
     public DefaultListModel<Pair<String,Integer>> ranks = new DefaultListModel<>();
     public DefaultListModel<Pair<String,Integer>> globalRanks = new DefaultListModel<>();
+    public MulticastSocket multicastSocket;
 
     public SocketChannel clientSocket = null;
 
-    public MatchModel(){
+    public Game(){
         InetSocketAddress socketAddress = new InetSocketAddress(Config.GameServerURI, Config.GameServerPort);
         try {
             clientSocket = SocketChannel.open(socketAddress);
             clientSocket.configureBlocking(false);
+            System.out.println("Join multicast group");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,14 +61,14 @@ public class MatchModel {
             new Callable() {
                 @Override
                 public Object call() throws Exception {
-                    App.match.joinMatch(userName);
+                    App.game.joinMatch(userName);
                     return null;
                 }
             },
             new Callable() {
                 @Override
                 public Object call() throws Exception {
-                    return new Menu(Page.window);
+                    return new MenuPage(Page.window);
                 }
             });
     }
@@ -82,19 +85,19 @@ public class MatchModel {
     }
 
     public void joinMatch(String matchName) {
-        //Svuota la lista dei match pendenti e joina il match selezionato
+        //Svuota la lista dei game pendenti e joina il game selezionato
         this.pendingList.clear();
         try {
             //Invia tcp req a server per dirgli che sto joinando
             DefaultListModel<String> matchNames = new DefaultListModel<String>();
             matchNames.addElement(matchName);
-            Message message = new Message("JOIN_GAME", App.sessionService.account.userName, App.sessionService.account.token, matchNames);
+            Message message = new Message("JOIN_GAME", App.session.account.userName, App.session.token, matchNames);
 
             byte[] byteMessage = new String(message.toString()).getBytes();
             buffer = ByteBuffer.wrap(byteMessage);
             clientSocket.write(buffer);
 
-            new Game(Page.window);
+            new GamePage(Page.window);
 
         } catch (IOException e) {
             e.printStackTrace();

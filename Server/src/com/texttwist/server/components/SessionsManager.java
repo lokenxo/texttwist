@@ -1,5 +1,6 @@
 package com.texttwist.server.components;
 import models.Session;
+import models.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,17 @@ public class SessionsManager {
 
     public boolean add(String userName, String token) {
         remove(userName);
-        return sessions.add(new Session(userName, token));
+        return sessions.add(new Session(new User(userName,"",0), token));
+    }
+
+    public void printAll(){
+        synchronized(sessions) {
+            Iterator<Session> i = sessions.iterator();
+            while (i.hasNext()) {
+                Session elem = i.next();
+                System.out.println(elem.account.userName + " | " + elem.token);
+            }
+        }
     }
 
     public boolean remove(String userName){
@@ -44,7 +55,7 @@ public class SessionsManager {
             Iterator<Session> i = sessions.iterator();
             while (i.hasNext()) {
                 Session elem = i.next();
-                if (elem.userName.equals(userName)) {
+                if (elem.account.userName.equals(userName)) {
                     return elem;
                 }
             }
@@ -57,7 +68,7 @@ public class SessionsManager {
             Iterator<Session> i = sessions.iterator();
             while (i.hasNext()) {
                 Session elem = i.next();
-                if (elem.userName.equals(userName)) {
+                if (elem.account.userName.equals(userName)) {
                     return true;
                 }
             }

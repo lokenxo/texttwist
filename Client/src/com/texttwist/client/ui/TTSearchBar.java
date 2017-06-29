@@ -24,7 +24,7 @@ public class TTSearchBar extends TTContainer{
             @Override
             public Object call() throws Exception {
                 String username = ctx.getText();
-                if(!username.equals("") && !username.equals(App.sessionService.account.userName)) {
+                if(!username.equals("") && !username.equals(App.session.account.userName)) {
                     ctx.setText("");
                     list.addElement(username);
                 }

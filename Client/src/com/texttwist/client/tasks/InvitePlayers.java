@@ -1,8 +1,7 @@
 package com.texttwist.client.tasks;
 
 import com.texttwist.client.App;
-import com.texttwist.client.pages.Game;
-import com.texttwist.client.pages.Menu;
+import com.texttwist.client.pages.GamePage;
 import com.texttwist.client.pages.Page;
 import com.texttwist.client.ui.TTDialog;
 import models.Message;
@@ -29,7 +28,7 @@ public class InvitePlayers extends SwingWorker<Boolean,Void> {
     }
     @Override
     public Boolean doInBackground() {
-        Message message = new Message("START_GAME", App.sessionService.account.userName, App.sessionService.account.token, userNames);
+        Message message = new Message("START_GAME", App.session.account.userName, App.session.token, userNames);
 
         byte[] byteMessage = new String(message.toString()).getBytes();
         buffer = ByteBuffer.wrap(byteMessage);
@@ -66,7 +65,7 @@ public class InvitePlayers extends SwingWorker<Boolean,Void> {
                                     @Override
                                     public Object call() throws Exception {
                                         //In attesa dei giocatori
-                                        new Game(Page.window);
+                                        new GamePage(Page.window);
                                         return null;
                                     }
                                 }, null);

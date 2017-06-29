@@ -35,10 +35,5 @@ public class HighscoresService {
         }
     }
 
-    public void fetchHighscores(Callable<String> callback){
-        SwingWorker worker = new FetchHighscore(callback, clientSocket);
-        worker.execute();
-    }
-
 }
 

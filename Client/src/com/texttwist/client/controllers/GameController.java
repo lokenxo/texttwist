@@ -1,33 +1,29 @@
 package com.texttwist.client.controllers;
 import com.texttwist.client.App;
-import com.texttwist.client.pages.Game;
+import com.texttwist.client.pages.GamePage;
 import com.texttwist.client.tasks.SendWords;
 import com.texttwist.client.tasks.StartGame;
 import com.texttwist.client.tasks.WaitForPlayers;
 import com.texttwist.client.tasks.WaitForScore;
 import javax.swing.*;
-import java.util.concurrent.Callable;
 
 /**
- * Game Controller
+ * GamePage Controller
  */
 public class GameController {
 
-    private Game game;
-    private Timer timer;
+    private GamePage game;
 
-    public GameController(Game game){
+    public GameController(GamePage game){
         this.game = game;
-        this.timer = game.timer;
-
     }
 
     public DefaultListModel<String> getLetters(){
-        return App.match.letters;
+        return App.game.letters;
     }
 
     public DefaultListModel<String> getWords() {
-        return App.match.words;
+        return App.game.words;
     }
 
     public SwingWorker waitForPlayers(SwingWorker callback) {
@@ -39,10 +35,10 @@ public class GameController {
     }
 
     public SwingWorker sendWords(SwingWorker callback){
-        return new SendWords(App.match.words, waitForScore(callback));
+        return new SendWords(App.game.words, waitForScore(callback));
     }
 
     public SwingWorker startGame() {
-        return new StartGame(App.match.letters, game);
+        return new StartGame(App.game.letters, game);
     }
 }

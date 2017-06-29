@@ -1,7 +1,6 @@
 package com.texttwist.client.tasks;
 
-import com.texttwist.client.App;
-import com.texttwist.client.pages.Game;
+import com.texttwist.client.pages.GamePage;
 import com.texttwist.client.ui.TTDialog;
 
 import javax.swing.*;
@@ -15,24 +14,24 @@ public class StartGame extends SwingWorker<Void,Void> {
 
     /*Words inserted from user*/
     private DefaultListModel<String> letters = new DefaultListModel<>();
-    private Game game;
+    private GamePage gamePage;
 
-    public StartGame(DefaultListModel<String> letters, Game game){
+    public StartGame(DefaultListModel<String> letters, GamePage game){
         this.letters = letters;
-        this.game = game;
+        this.gamePage = game;
     }
 
     @Override
     public Void doInBackground(){
 
         //Mostra pannello di conferma che le lettere sono tutte arrivate
-        new TTDialog("success", "Game is ready. Press OK to start!",
+        new TTDialog("success", "GamePage is ready. Press OK to start!",
             new Callable() {
                 @Override
                 public Object call() throws Exception {
-                    game.showLetters();
+                    gamePage.showLetters();
                     System.out.println(letters);
-                    game.timer.start();
+                    gamePage.timer.start();
                     return null;
                 }
             }, null);
@@ -41,6 +40,6 @@ public class StartGame extends SwingWorker<Void,Void> {
 
     @Override
     public void done(){
-        System.out.println("Done start game");
+        System.out.println("Done start gamePage");
     }
 }

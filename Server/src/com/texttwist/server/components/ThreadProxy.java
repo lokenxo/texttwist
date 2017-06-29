@@ -9,6 +9,7 @@ import models.Message;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.nio.ByteBuffer;
@@ -24,11 +25,13 @@ public class ThreadProxy implements Callable<Boolean> {
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
     private Message request;
     private SocketChannel socketChannel;
+    private DatagramSocket datagramSocket;
 
 
-    ThreadProxy(Message request, SocketChannel socketChannel){
+    ThreadProxy(Message request, SocketChannel socketChannel, DatagramSocket datagramSocket){
         this.request = request;
         this.socketChannel = socketChannel;
+        this.datagramSocket = datagramSocket;
     }
 
 
@@ -55,8 +58,9 @@ public class ThreadProxy implements Callable<Boolean> {
 
                                     //Crea nuova partita e attendi i giocatori
                                     request.data.addElement(request.sender);
+
                                     Match match = new Match(request.sender, request.data);
-                                    activeMatches.addElement(match);
+                                    activeMatches.add(match);
 
                                     DefaultListModel<String> matchName = new DefaultListModel<>();
                                     matchName.addElement(request.sender);
@@ -78,6 +82,7 @@ public class ThreadProxy implements Callable<Boolean> {
                                                     new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
                                             Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
                                             if(!sendMessageJoinTimeoutRes){
+                                                activeMatches.remove(Match.findMatchIndex(activeMatches,match.matchCreator));
                                                 return sendMessageJoinTimeoutRes;
                                             }
                                         }
@@ -98,8 +103,7 @@ public class ThreadProxy implements Callable<Boolean> {
                             buffer.clear();
                             buffer = ByteBuffer.wrap(byteMessage);
                             this.socketChannel.write(buffer);
-                            //socketChannel.close();
-                            return false;
+                            break;
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -112,7 +116,6 @@ public class ThreadProxy implements Callable<Boolean> {
                 case "FETCH_HIGHSCORES":
                     Future<DefaultListModel<String>> computeHighscores = threadPool.submit(new ComputeHighscores());
                     try {
-                        System.out.println("FETCHHH");
                         DefaultListModel<String> computeHighscoresRes = computeHighscores.get();
                         Message message = new Message("HIGHSCORES", "", "", computeHighscoresRes);
                         byteMessage  = message.toString().getBytes();
@@ -123,13 +126,12 @@ public class ThreadProxy implements Callable<Boolean> {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        break;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     }
-                    return true;
-
 
                 case "JOIN_GAME":
                     Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, request.data, socketChannel));
@@ -138,11 +140,10 @@ public class ThreadProxy implements Callable<Boolean> {
                         if(joinMatchRes){
                             System.out.print("START THE GAME!!!!");
 
+                            Match match = Match.findMatch(activeMatches, request.data.get(0));
 
-                            Match match = Match.findMatch(request.data.get(0));
-
-                            Future<DefaultListModel<String>> generateWords = threadPool.submit(new GenerateLetters());
-                            match.setLetters(generateWords.get());
+                            Future<DefaultListModel<String>> generateLetters = threadPool.submit(new GenerateLetters());
+                            match.setLetters(generateLetters.get());
                             match.letters.addElement(String.valueOf(match.multicastId));
 
                             for (int i =0; i< match.playersSocket.size(); i++) {
@@ -166,7 +167,7 @@ public class ThreadProxy implements Callable<Boolean> {
                             }
 
                             //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
-                            Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match));
+                            Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match, datagramSocket));
                             Boolean receiveWordsRes = receiveWords.get();
                             if(!receiveWordsRes){
                                 match.setUndefinedScorePlayersToZero();
@@ -174,19 +175,18 @@ public class ThreadProxy implements Callable<Boolean> {
                             } else {
                                 System.out.println("TUTTI I GIOCATORI HANNO CONSEGNATO IN TEMPO");
                             }
-                            System.out.println(match.playersScore);
 
                             Message msg = new Message("FINALSCORE","SERVER","", match.getMatchPlayersScoreAsStringList());
 
-                            MulticastSocket s = new MulticastSocket(4000);
+                            MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
                             InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                            DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(),
-                                    ia, 4000);
-                            s.send(hi);
+                            DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
+                            multicastSocket.send(hi);
+                            activeMatches.remove(Match.findMatchIndex(activeMatches,match.matchCreator));
+
 
                             //RISPONDI CON LA CLASSIFICA
-                            //TODO
-                            return receiveWordsRes;
+                            break;
                             //ULTIMO A JOINARE! INIZIA GIOCO
                         } else {
                             System.out.print("WAIT FRIENDS");

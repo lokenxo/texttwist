@@ -12,9 +12,6 @@ import java.rmi.RemoteException;
  */
 public class RegisterController {
 
-    public RegisterController(){
-    }
-
     public Response register(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
         return App.authService.register(userName,password);
     }

@@ -24,8 +24,10 @@ public class Message implements Serializable {
     @Override
     public String toString(){
         String dataToString = "";
-        for(int i = 0; i< data.size(); i++){
-            dataToString += data.get(i)+"|";
+        if(data!=null) {
+            for (int i = 0; i < data.size(); i++) {
+                dataToString += data.get(i) + "|";
+            }
         }
         return "MESSAGE?sender="+sender+"&token="+token+"&message="+message+"&"+dataToString;
     }
@@ -53,8 +55,15 @@ public class Message implements Serializable {
         String[] dataArray = dataString.split((Pattern.quote("|")));
 
         DefaultListModel<String> dataList = new DefaultListModel<String>();
+
         for (int i = 0; i<dataArray.length; i++){
-            dataList.addElement(dataArray[i]);
+            if(!dataArray[i].equals("")) {
+                dataList.addElement(dataArray[i]);
+            }
+        }
+
+        if(dataList.size() == 1 && dataList.firstElement().equals("")){
+            dataList = null;
         }
 
         return new Message(message,sender,token,dataList);

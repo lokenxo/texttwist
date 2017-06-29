@@ -27,6 +27,6 @@ public class AuthService {
 
     public Response logout(String userName) throws RemoteException, NotBoundException, MalformedURLException {
         IAuth auth = (IAuth) Naming.lookup(baseUrl);
-        return auth.logout(userName, App.sessionService.account.token);
+        return auth.logout(userName, App.session.token);
     }
 }

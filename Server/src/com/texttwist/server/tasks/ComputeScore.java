@@ -25,7 +25,11 @@ public class ComputeScore implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
+        System.out.println("INIT SET SCORE");
+        System.out.println(words.size());
+        System.out.println(words);
         System.out.println("SET SCORE");
+
         Integer score = 0;
         for(int i = 0; i< words.size(); i++){
             if(isValid(words.get(i), match.letters)){
@@ -39,7 +43,7 @@ public class ComputeScore implements Callable<Integer> {
     }
 
     private Boolean isValid(String word, DefaultListModel<String> letters) {
-        for ( int i =0 ; i< word.length(); i++){
+        for (int i =0 ; i< word.length(); i++){
             String c = Character.toString(word.charAt(i));
             Boolean isCharacterPresent = false;
             for(int j =0 ; j< letters.size(); j++){
@@ -47,6 +51,10 @@ public class ComputeScore implements Callable<Integer> {
                     isCharacterPresent = true;
                 }
             }
+            if(word.equals("")){
+                return true;
+            }
+
             if(!isCharacterPresent){
                 return false;
             }

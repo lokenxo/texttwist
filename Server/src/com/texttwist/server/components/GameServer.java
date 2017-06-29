@@ -5,14 +5,17 @@ import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.SendInvitations;
 import com.texttwist.server.tasks.WaitForPlayers;
+import constants.Config;
 import jdk.nashorn.internal.parser.JSONParser;
 import models.Message;
+import models.Session;
 import org.json.simple.JsonObject;
 import utilities.Logger;
 
 import javax.swing.*;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,7 +24,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -35,13 +41,15 @@ public class GameServer implements Runnable{
     protected int serverPort;
     protected ServerSocketChannel serverSocketChannel = null;
     protected ThreadProxy proxy;
+    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    DatagramSocket datagramSocket;
     protected Selector selector = null;
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
     private String dictionaryPath = "./Server/resources/dictionary";
     public static Dictionary dict;
 
 
-    public static DefaultListModel<Match> activeMatches = new DefaultListModel<Match>();
+    public static List<Match> activeMatches =  Collections.synchronizedList(new ArrayList<>());
 
     public GameServer(int port){
         this.serverPort = port;
@@ -50,14 +58,14 @@ public class GameServer implements Runnable{
     public void run(){
 
         dict = new Dictionary(dictionaryPath);
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
         try {
             selector = Selector.open();
             serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.socket().bind(new InetSocketAddress(serverPort));
             serverSocketChannel.register(selector, OP_ACCEPT);
-            Logger.write("Game Service is running at "+this.serverPort+" port...");
+            datagramSocket = new DatagramSocket(Config.WordsReceiverServerPort);
+            Logger.write("GamePage Service is running at "+this.serverPort+" port...");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,6 +79,7 @@ public class GameServer implements Runnable{
 
             Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
             while (iter.hasNext()) {
+                buffer = ByteBuffer.allocate(1024);
                 SocketChannel client = null;
                 SelectionKey key = iter.next();
                 iter.remove();
@@ -85,18 +94,17 @@ public class GameServer implements Runnable{
 
                         case OP_READ:
                             client = (SocketChannel) key.channel();
-                            buffer.clear();
+                            //buffer.clear();
                             if (client.read(buffer) != -1) {
                                 buffer.flip();
                                 String line = new String(buffer.array(), buffer.position(), buffer.remaining());
 
                                 if (line.startsWith("MESSAGE")) {
+                                    SessionsManager.getInstance().printAll();
                                     Message msg = Message.toMessage(line);
-                                    proxy = new ThreadProxy(msg, client);
+                                    proxy = new ThreadProxy(msg, client, datagramSocket);
                                     Future<Boolean> identifyMessage = threadPool.submit(proxy);
-                                    key.cancel();
                                 }
-
 
                                 if (line.startsWith("CLOSE")) {
                                     client.close();
@@ -114,7 +122,6 @@ public class GameServer implements Runnable{
                             break;
 
                         default:
-                            System.out.println("unhandled " + key.readyOps());
                             break;
                     }
                 } catch (IOException e) {

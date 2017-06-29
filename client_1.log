@@ -2604,3 +2604,792 @@ LOGGER (Client1): Thu Jun 29 15:08:31 CEST 2017 - Client starting ...
 LOGGER (Client1): Thu Jun 29 15:08:42 CEST 2017 - Invoked invitation with username=b|[a]
 LOGGER (Client1): Thu Jun 29 15:08:42 CEST 2017 - b ti ha sfidato!
 LOGGER (Client1): Thu Jun 29 15:08:42 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 15:31:11 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:31:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:31:49 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:33:49 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:35:23 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:35:42 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:37:27 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:37:31 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:38:06 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 15:38:06 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 15:38:06 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 15:40:13 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:40:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 15:40:25 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 15:40:25 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 15:40:25 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 16:03:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:03:24 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:03:57 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:17:16 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:17:18 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:17:26 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 16:17:26 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 16:17:26 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 16:20:05 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:20:08 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:21:23 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:23:47 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:36:02 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:44:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:46:04 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:48:20 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:49:06 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:52:15 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:52:41 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:53:47 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:55:28 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:57:37 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:58:12 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 16:58:51 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:01:07 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:05:28 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:06:25 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:07:05 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:07:56 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:08:05 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:08:53 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:08:56 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:09:05 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 17:09:05 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 17:09:05 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 17:11:41 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:12:37 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:15:05 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:15:07 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:16:31 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:16:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:18:01 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:19:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:21:18 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:24:18 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:25:01 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:25:03 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:25:17 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 17:25:17 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 17:25:17 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 17:27:33 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:32:05 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:33:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:34:26 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:35:56 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:38:46 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:38:58 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:39:54 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:40:15 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:41:05 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:41:39 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:42:02 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:42:29 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:42:51 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:43:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:43:55 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:45:01 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:45:34 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:47:00 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:47:39 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:48:08 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:48:31 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:49:49 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:49:53 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:50:55 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:51:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:52:59 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:53:12 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:53:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:53:27 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 17:53:27 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 17:53:27 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 17:57:37 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:57:39 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 17:57:47 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 17:57:47 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 17:57:47 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:03:36 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:03:38 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:03:51 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:03:51 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:03:51 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:04:19 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:04:19 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:04:19 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:05:51 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:05:53 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:06:01 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:06:01 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:06:01 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:06:55 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:06:55 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:06:55 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:08:19 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:08:21 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:08:29 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:08:29 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:08:29 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:09:23 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:09:23 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:09:23 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:13:22 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:13:23 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:13:33 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:13:33 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:13:33 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:14:01 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:14:01 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:14:01 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:14:28 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:14:28 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:14:28 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:14:34 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:14:34 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:14:34 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:14:49 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:14:49 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:14:49 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:32:56 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:32:58 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:33:06 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:33:06 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:33:06 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:34:29 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:34:30 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:34:39 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:34:39 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:34:39 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:36:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:36:38 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:36:46 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:36:46 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:36:46 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:38:29 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:38:31 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:38:38 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:38:38 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:38:38 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:40:30 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:40:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:40:41 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:40:41 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:40:41 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:41:08 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:41:08 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:41:08 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:42:07 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:42:08 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:42:16 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:42:16 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:42:16 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:42:48 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:42:48 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:42:48 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:43:19 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:43:19 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:43:19 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:44:07 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:44:09 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:44:42 CEST 2017 - Invoked invitation with username=d|[a, c]
+LOGGER (Client1): Thu Jun 29 18:44:42 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:44:42 CEST 2017 - Invoked invitation with username=d|[a, c]
+LOGGER (Client1): Thu Jun 29 18:44:42 CEST 2017 - Invoked invitation with username=d|[a, c]
+LOGGER (Client1): Thu Jun 29 18:44:42 CEST 2017 - Invoked invitation with username=d|[a, c]
+LOGGER (Client1): Thu Jun 29 18:44:42 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:44:51 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:45:21 CEST 2017 - Invoked invitation with username=f|[b]
+LOGGER (Client1): Thu Jun 29 18:45:21 CEST 2017 - Invoked invitation with username=f|[b]
+LOGGER (Client1): Thu Jun 29 18:45:21 CEST 2017 - f ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:45:21 CEST 2017 - Invoked invitation with username=f|[b]
+LOGGER (Client1): Thu Jun 29 18:45:21 CEST 2017 - Invoked invitation with username=f|[b]
+LOGGER (Client1): Thu Jun 29 18:45:21 CEST 2017 - Invoked invitation with username=f|[b]
+LOGGER (Client1): Thu Jun 29 18:45:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 18:45:45 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:45:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 18:45:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 18:45:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 18:45:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 18:51:51 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Thu Jun 29 18:51:52 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Thu Jun 29 18:52:31 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 18:53:23 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:53:25 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:53:32 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:53:32 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:53:32 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:53:56 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:53:56 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:53:56 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:54:25 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:54:25 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:54:25 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:54:53 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:54:53 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:54:53 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:55:19 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:55:19 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:55:19 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:57:25 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:57:25 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:57:25 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:57:52 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:57:52 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 18:57:52 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:58:31 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:58:31 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:58:31 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 18:58:40 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 18:59:09 CEST 2017 - Invoked invitation with username=q|[a]
+LOGGER (Client1): Thu Jun 29 18:59:09 CEST 2017 - q ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:59:09 CEST 2017 - Invoked invitation with username=q|[a]
+LOGGER (Client1): Thu Jun 29 18:59:09 CEST 2017 - Invoked invitation with username=q|[a]
+LOGGER (Client1): Thu Jun 29 18:59:40 CEST 2017 - Invoked invitation with username=b|[q, a]
+LOGGER (Client1): Thu Jun 29 18:59:40 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 18:59:40 CEST 2017 - Invoked invitation with username=b|[q, a]
+LOGGER (Client1): Thu Jun 29 18:59:40 CEST 2017 - Invoked invitation with username=b|[q, a]
+LOGGER (Client1): Thu Jun 29 18:59:40 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:00:50 CEST 2017 - Invoked invitation with username=q|[b]
+LOGGER (Client1): Thu Jun 29 19:00:50 CEST 2017 - Invoked invitation with username=q|[b]
+LOGGER (Client1): Thu Jun 29 19:00:50 CEST 2017 - q ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:00:50 CEST 2017 - Invoked invitation with username=q|[b]
+LOGGER (Client1): Thu Jun 29 19:00:59 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:00:59 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:00:59 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:00:59 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:01:34 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:01:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:01:37 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:01:54 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:01:54 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:01:54 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:01:54 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:02:01 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:02:01 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:02:01 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:02:01 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:03:42 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:03:42 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:03:56 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:04:11 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:04:11 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:05:01 CEST 2017 - Invoked invitation with username=b|[c, a]
+LOGGER (Client1): Thu Jun 29 19:05:01 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:07:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:08:00 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:10:29 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:10:33 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:11:53 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:11:53 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:11:53 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:11:58 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:11:59 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:12:00 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - Invoked invitation with username=a|[b, c, d, e]
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - Invoked invitation with username=a|[b, c, d, e]
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - Invoked invitation with username=a|[b, c, d, e]
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - Invoked invitation with username=a|[b, c, d, e]
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - Invoked invitation with username=a|[b, c, d, e]
+LOGGER (Client1): Thu Jun 29 19:12:50 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:13:30 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 19:13:30 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 19:13:30 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:13:30 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 19:13:30 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 19:13:30 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 19:13:38 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 19:13:38 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 19:13:38 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 19:13:38 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 19:13:38 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:13:38 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 19:13:52 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:13:52 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:13:52 CEST 2017 - e ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:13:52 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:13:52 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:13:52 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:14:35 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:14:35 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:14:35 CEST 2017 - e ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:14:35 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:14:35 CEST 2017 - Invoked invitation with username=e|[a]
+LOGGER (Client1): Thu Jun 29 19:15:41 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:15:41 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:15:41 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:15:41 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:15:41 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:16:07 CEST 2017 - Invoked invitation with username=e|[d]
+LOGGER (Client1): Thu Jun 29 19:16:07 CEST 2017 - Invoked invitation with username=e|[d]
+LOGGER (Client1): Thu Jun 29 19:16:07 CEST 2017 - Invoked invitation with username=e|[d]
+LOGGER (Client1): Thu Jun 29 19:16:07 CEST 2017 - Invoked invitation with username=e|[d]
+LOGGER (Client1): Thu Jun 29 19:19:53 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:19:55 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:19:58 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:20:17 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:20:17 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:20:17 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:20:17 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 19:25:20 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 19:25:20 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 19:25:20 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:25:20 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 19:25:29 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:27:33 CEST 2017 - Invoked invitation with username=a|[d, c]
+LOGGER (Client1): Thu Jun 29 19:27:33 CEST 2017 - Invoked invitation with username=a|[d, c]
+LOGGER (Client1): Thu Jun 29 19:27:33 CEST 2017 - Invoked invitation with username=a|[d, c]
+LOGGER (Client1): Thu Jun 29 19:27:33 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:27:33 CEST 2017 - Invoked invitation with username=a|[d, c]
+LOGGER (Client1): Thu Jun 29 19:27:33 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:28:09 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 19:28:09 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 19:28:09 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 19:28:09 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 19:28:09 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:28:41 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:28:42 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:31:13 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 19:35:01 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:35:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:35:50 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:35:52 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:37:00 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:37:20 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:41:30 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:41:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:41:41 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:50:08 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:50:10 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:50:21 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:50:21 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:50:21 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:52:46 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:52:46 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:52:46 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:56:24 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:56:24 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:56:24 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:58:13 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:58:13 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:58:13 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 19:58:23 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:58:52 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:58:52 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:58:52 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:58:52 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 19:59:09 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 19:59:50 CEST 2017 - Invoked invitation with username=d|[a, b, c]
+LOGGER (Client1): Thu Jun 29 19:59:50 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:59:50 CEST 2017 - Invoked invitation with username=d|[a, b, c]
+LOGGER (Client1): Thu Jun 29 19:59:50 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:59:50 CEST 2017 - Invoked invitation with username=d|[a, b, c]
+LOGGER (Client1): Thu Jun 29 19:59:50 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 19:59:50 CEST 2017 - Invoked invitation with username=d|[a, b, c]
+LOGGER (Client1): Thu Jun 29 20:00:45 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:00:45 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:00:45 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:00:45 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:00:45 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:00:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:00:46 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:00:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:00:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:00:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:10:37 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:10:38 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:10:39 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:10:41 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:10:46 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:10:48 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:11:55 CEST 2017 - Invoked invitation with username=b|[e]
+LOGGER (Client1): Thu Jun 29 20:11:55 CEST 2017 - Invoked invitation with username=b|[e]
+LOGGER (Client1): Thu Jun 29 20:11:55 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:11:55 CEST 2017 - Invoked invitation with username=b|[e]
+LOGGER (Client1): Thu Jun 29 20:11:55 CEST 2017 - Invoked invitation with username=b|[e]
+LOGGER (Client1): Thu Jun 29 20:11:55 CEST 2017 - Invoked invitation with username=b|[e]
+LOGGER (Client1): Thu Jun 29 20:11:55 CEST 2017 - Invoked invitation with username=b|[e]
+LOGGER (Client1): Thu Jun 29 20:11:56 CEST 2017 - Invoked invitation with username=c|[d]
+LOGGER (Client1): Thu Jun 29 20:11:56 CEST 2017 - Invoked invitation with username=c|[d]
+LOGGER (Client1): Thu Jun 29 20:11:56 CEST 2017 - Invoked invitation with username=c|[d]
+LOGGER (Client1): Thu Jun 29 20:11:56 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:11:56 CEST 2017 - Invoked invitation with username=c|[d]
+LOGGER (Client1): Thu Jun 29 20:11:56 CEST 2017 - Invoked invitation with username=c|[d]
+LOGGER (Client1): Thu Jun 29 20:11:56 CEST 2017 - Invoked invitation with username=c|[d]
+LOGGER (Client1): Thu Jun 29 20:11:57 CEST 2017 - Invoked invitation with username=f|[a]
+LOGGER (Client1): Thu Jun 29 20:11:57 CEST 2017 - Invoked invitation with username=f|[a]
+LOGGER (Client1): Thu Jun 29 20:11:57 CEST 2017 - Invoked invitation with username=f|[a]
+LOGGER (Client1): Thu Jun 29 20:11:57 CEST 2017 - Invoked invitation with username=f|[a]
+LOGGER (Client1): Thu Jun 29 20:11:57 CEST 2017 - f ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:11:57 CEST 2017 - Invoked invitation with username=f|[a]
+LOGGER (Client1): Thu Jun 29 20:11:57 CEST 2017 - Invoked invitation with username=f|[a]
+LOGGER (Client1): Thu Jun 29 20:13:47 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:13:49 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:13:57 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 20:13:57 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:13:57 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 20:14:27 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:14:28 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:14:51 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:14:51 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:14:51 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:14:51 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:14:51 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:14:52 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:14:52 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:14:52 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:14:52 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:14:52 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:17:16 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:17:18 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:17:19 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:17:21 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:17:54 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:17:54 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:17:54 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:17:54 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:17:54 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:17:55 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:17:55 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:17:55 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:17:55 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:17:55 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:26:08 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:26:09 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:26:11 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:26:12 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:26:39 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:26:39 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:26:39 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:26:39 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:26:39 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:26:43 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:26:43 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:26:43 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:26:43 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:26:43 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 20:27:27 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:27:29 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:27:36 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 20:27:36 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:27:37 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 20:29:54 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:29:55 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:29:57 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:29:58 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:30:27 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:30:27 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:30:27 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:30:27 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:30:27 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:30:28 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:30:28 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:30:28 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:30:28 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:30:28 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:36:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:36:45 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:36:49 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:36:52 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:37:20 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:37:20 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:37:20 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:37:20 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:37:20 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:37:21 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:37:21 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:37:21 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:37:21 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:37:21 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:39:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:39:16 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:39:17 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:39:19 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:39:45 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:39:45 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:39:45 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:39:46 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:39:46 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:39:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:39:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:39:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:39:46 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:39:46 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:42:34 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:42:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:42:36 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:42:44 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:43:09 CEST 2017 - Invoked invitation with username=d|[]
+LOGGER (Client1): Thu Jun 29 20:43:09 CEST 2017 - Invoked invitation with username=d|[]
+LOGGER (Client1): Thu Jun 29 20:43:09 CEST 2017 - Invoked invitation with username=d|[]
+LOGGER (Client1): Thu Jun 29 20:43:09 CEST 2017 - Invoked invitation with username=d|[]
+LOGGER (Client1): Thu Jun 29 20:43:13 CEST 2017 - Invoked invitation with username=c|[]
+LOGGER (Client1): Thu Jun 29 20:43:13 CEST 2017 - Invoked invitation with username=c|[]
+LOGGER (Client1): Thu Jun 29 20:43:13 CEST 2017 - Invoked invitation with username=c|[]
+LOGGER (Client1): Thu Jun 29 20:43:13 CEST 2017 - Invoked invitation with username=c|[]
+LOGGER (Client1): Thu Jun 29 20:44:00 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:44:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:44:15 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:44:17 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:44:18 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:44:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:44:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:44:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:44:45 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:44:45 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:44:49 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:44:49 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:44:49 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:44:49 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:44:49 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:46:59 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:47:00 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:47:01 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:47:03 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:47:30 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 20:47:30 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 20:47:30 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 20:47:30 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 20:47:30 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:47:31 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 20:47:31 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 20:47:31 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:47:31 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 20:47:31 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 20:48:42 CEST 2017 - Invoked invitation with username=a|[d, c]
+LOGGER (Client1): Thu Jun 29 20:48:42 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:48:43 CEST 2017 - Invoked invitation with username=a|[d, c]
+LOGGER (Client1): Thu Jun 29 20:48:43 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:48:43 CEST 2017 - Invoked invitation with username=a|[d, c]
+LOGGER (Client1): Thu Jun 29 20:49:11 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:49:12 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:49:46 CEST 2017 - Invoked invitation with username=aa|[a, c]
+LOGGER (Client1): Thu Jun 29 20:49:47 CEST 2017 - Invoked invitation with username=aa|[a, c]
+LOGGER (Client1): Thu Jun 29 20:49:47 CEST 2017 - aa ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:49:47 CEST 2017 - Invoked invitation with username=aa|[a, c]
+LOGGER (Client1): Thu Jun 29 20:49:47 CEST 2017 - aa ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:49:47 CEST 2017 - Invoked invitation with username=aa|[a, c]
+LOGGER (Client1): Thu Jun 29 20:49:47 CEST 2017 - Invoked invitation with username=aa|[a, c]
+LOGGER (Client1): Thu Jun 29 20:49:52 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 20:49:52 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:49:53 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 20:49:53 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 20:49:53 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 20:49:53 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 20:56:55 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:56:56 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:56:57 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:56:59 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 20:57:19 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:57:19 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:57:19 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:57:19 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 20:57:19 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:57:22 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:57:22 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:57:22 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 20:57:22 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 20:57:22 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:06:16 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:06:17 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:06:35 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 21:06:35 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 21:06:35 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:07:01 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:07:03 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:07:20 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:07:20 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:07:21 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:07:21 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:07:21 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:07:22 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:07:22 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:07:22 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:07:22 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:07:22 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:10:13 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:10:15 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:10:17 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:10:18 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:10:41 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:10:42 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:11:38 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 21:11:38 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:11:38 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 21:11:38 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 21:11:38 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 21:11:39 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:11:39 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:11:39 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:11:39 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:11:39 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:15:09 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:15:11 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:15:13 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:15:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:15:46 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:15:47 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:15:47 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:15:47 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:15:47 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:15:49 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:15:49 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:15:49 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:15:49 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:15:49 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:19:30 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:19:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:19:33 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:19:35 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:19:58 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:19:58 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:19:58 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:19:58 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:19:58 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 21:19:59 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:19:59 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:19:59 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:19:59 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:19:59 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 21:24:33 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:24:46 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:24:48 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:24:50 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:25:00 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:25:14 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 21:25:14 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 21:25:14 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 21:25:14 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:25:14 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Thu Jun 29 21:25:18 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:25:18 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:25:18 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:25:18 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:25:18 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:30:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:30:16 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:30:17 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:30:19 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 21:30:42 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:30:42 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 21:30:42 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:30:42 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:30:42 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Thu Jun 29 21:30:43 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:30:43 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:30:43 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:30:43 CEST 2017 - Invoked invitation with username=a|[c]
+LOGGER (Client1): Thu Jun 29 21:30:43 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:02:29 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:02:30 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:02:32 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:02:34 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:03:03 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 22:03:03 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 22:03:03 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:03:03 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 22:03:03 CEST 2017 - Invoked invitation with username=c|[b]
+LOGGER (Client1): Thu Jun 29 22:03:04 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:03:04 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:03:04 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:03:04 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:03:04 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:03:53 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:03:55 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:03:57 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - Invoked invitation with username=cc|[aa]
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - Invoked invitation with username=cc|[aa]
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - Invoked invitation with username=cc|[aa]
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - Invoked invitation with username=cc|[aa]
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - Invoked invitation with username=cc|[aa]
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - Invoked invitation with username=cc|[aa]
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - Invoked invitation with username=cc|[aa]
+LOGGER (Client1): Thu Jun 29 22:04:31 CEST 2017 - cc ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - Invoked invitation with username=bb|[c]
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - Invoked invitation with username=bb|[c]
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - Invoked invitation with username=bb|[c]
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - bb ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - Invoked invitation with username=bb|[c]
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - Invoked invitation with username=bb|[c]
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - Invoked invitation with username=bb|[c]
+LOGGER (Client1): Thu Jun 29 22:04:44 CEST 2017 - Invoked invitation with username=bb|[c]
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 22:04:49 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Thu Jun 29 22:05:00 CEST 2017 - Invoked invitation with username=a|[d, b]
+LOGGER (Client1): Thu Jun 29 22:05:00 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:05:01 CEST 2017 - Invoked invitation with username=a|[d, b]
+LOGGER (Client1): Thu Jun 29 22:05:01 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:05:01 CEST 2017 - Invoked invitation with username=a|[d, b]
+LOGGER (Client1): Thu Jun 29 22:05:01 CEST 2017 - Invoked invitation with username=a|[d, b]
+LOGGER (Client1): Thu Jun 29 22:05:01 CEST 2017 - Invoked invitation with username=a|[d, b]
+LOGGER (Client1): Thu Jun 29 22:05:01 CEST 2017 - Invoked invitation with username=a|[d, b]
+LOGGER (Client1): Thu Jun 29 22:05:01 CEST 2017 - Invoked invitation with username=a|[d, b]
+LOGGER (Client1): Thu Jun 29 22:11:49 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:11:51 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:11:52 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:11:54 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:12:14 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:12:14 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:12:14 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:12:14 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:12:14 CEST 2017 - Invoked invitation with username=a|[d]
+LOGGER (Client1): Thu Jun 29 22:12:17 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:12:17 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:12:17 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:12:17 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:12:17 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:14:12 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:14:14 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:14:15 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:14:17 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:14:37 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:14:37 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:14:37 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:14:37 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:14:38 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:14:45 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:14:45 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:14:45 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:14:46 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:14:46 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:15:10 CEST 2017 - Invoked invitation with username=b|[c]
+LOGGER (Client1): Thu Jun 29 22:18:58 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:19:01 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:19:10 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 22:19:10 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Thu Jun 29 22:19:10 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:19:21 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:19:23 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:19:38 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 22:19:38 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:19:38 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 22:19:38 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 22:19:38 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Thu Jun 29 22:19:46 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Thu Jun 29 22:19:46 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Thu Jun 29 22:19:46 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Thu Jun 29 22:19:47 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Thu Jun 29 22:19:47 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Thu Jun 29 22:22:50 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:22:51 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:22:52 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:22:54 CEST 2017 - Client starting ...
+LOGGER (Client1): Thu Jun 29 22:23:15 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:23:15 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:23:15 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:23:15 CEST 2017 - Invoked invitation with username=d|[a]
+LOGGER (Client1): Thu Jun 29 22:23:15 CEST 2017 - d ti ha sfidato!

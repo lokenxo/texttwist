@@ -1,42 +1,36 @@
 package com.texttwist.client.tasks;
 
 import com.texttwist.client.App;
-import constants.Config;
+import com.texttwist.client.pages.HighscoresPage;
 import javafx.util.Pair;
 import models.Message;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.util.concurrent.Callable;
 
 /**
- * Created by loke on 28/06/2017.
+ * Job: FetchHighscore
  */
 public class FetchHighscore extends SwingWorker<Void,Void> {
 
-    DefaultListModel<Pair<String,Integer>> globalRanks = new DefaultListModel<Pair<String,Integer>>();
-    Callable<String> callback;
-    SocketChannel socketChannel;
-    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    private DefaultListModel<Pair<String,Integer>> globalRanks = new DefaultListModel<>();
+    private SocketChannel socketChannel;
+    private ByteBuffer buffer = ByteBuffer.allocate(1024);
+    HighscoresPage highscoresPage;
 
-    //TODO PASSARE LA CALLBACK ALLO SWING WORKER ED ESEGUIRLA AL DONE
-    public FetchHighscore(Callable<String> callback, SocketChannel socketChannel){
-        this.socketChannel = socketChannel;
-        this.callback = callback;
+    public FetchHighscore(HighscoresPage highscoresPage){
+        this.socketChannel = App.game.clientSocket;
+        this.highscoresPage = highscoresPage;
     }
 
     @Override
     public Void doInBackground() {
-        Message message = new Message("FETCH_HIGHSCORES", App.sessionService.account.userName, App.sessionService.account.token, new DefaultListModel<>());
-        buffer.flip();
-        buffer.clear();
-        byte[] byteMessage = new String(message.toString()).getBytes();
+        Message message = new Message("FETCH_HIGHSCORES", App.session.account.userName, App.session.token, new DefaultListModel<>());
+        buffer = ByteBuffer.allocate(1024);
+        System.out.println("SENDDDDD MESSAGE");
+        byte[] byteMessage = message.toString().getBytes();
         buffer = ByteBuffer.wrap(byteMessage);
         try {
             socketChannel.write(buffer);
@@ -56,24 +50,13 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
                 if (line.startsWith("MESSAGE")) {
                     Message msg = Message.toMessage(line);
                     System.out.println(line);
-                    if (msg.message.equals("HIGHSCORES")) {
+                    if (msg.message.equals("HIGHSCORES") && msg.data != null) {
 
                         for(int i = 0; i< msg.data.size()-1; i++){
                             String[] splitted = msg.data.get(i).split(":");
-                            System.out.println(splitted.toString());
-                            globalRanks.addElement(new Pair<String, Integer>(splitted[0],new Integer(splitted[1])));
+                            globalRanks.addElement(new Pair<>(splitted[0],new Integer(splitted[1])));
                         }
 
-                        App.match.globalRanks = globalRanks;
-
-                        System.out.println(globalRanks);
-                        /*new TTDialog("alert", "Users not online!",
-                                new Callable() {
-                                    @Override
-                                    public Object call() throws Exception {
-                                        return null;
-                                    }
-                                }, null);*/
                         return null;
 
                     }
@@ -86,14 +69,10 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
     }
 
     public void done(){
-        System.out.println("Done");
-        App.match.globalRanks = globalRanks;
-        try {
-            this.callback.call();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("Done Highscores");
+        App.game.globalRanks = globalRanks;
+        this.highscoresPage.showHighscoreList();
+        System.out.println("DODODO");
     }
-
 }
 

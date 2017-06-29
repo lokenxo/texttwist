@@ -1,7 +1,6 @@
 package com.texttwist.client.tasks;
 
 import com.texttwist.client.App;
-import com.texttwist.client.pages.Highscores;
 import constants.Config;
 import javafx.util.Pair;
 import models.Message;
@@ -9,10 +8,6 @@ import models.Message;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.RunnableFuture;
-
-import static com.texttwist.client.pages.Page.window;
 
 /**
  * Created by loke on 29/06/2017.
@@ -39,12 +34,12 @@ public class SendWords extends SwingWorker<Void,Void> {
             InetAddress IPAddress = InetAddress.getByName(Config.WordsReceiverServerURI);
             byte[] sendData = new byte[1024];
             byte[] receiveData = new byte[1024];
-            Message msg = new Message("WORDS", App.sessionService.account.userName, "", words);
+            Message msg = new Message("WORDS", App.session.account.userName, "", words);
             String sentence = msg.toString();
             sendData = sentence.getBytes();
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, Config.WordsReceiverServerPort);
             clientSocket.send(sendPacket);
-            clientSocket.close();
+            //clientSocket.close();
 
             return null;
         } catch (UnknownHostException e) {

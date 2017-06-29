@@ -2,6 +2,7 @@ package com.texttwist.server.tasks;
 
 import com.texttwist.server.Server;
 import com.texttwist.server.components.NotificationServer;
+import com.texttwist.server.components.SessionsManager;
 import constants.Config;
 import interfaces.INotificationServer;
 

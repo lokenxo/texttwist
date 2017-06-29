@@ -1,13 +1,13 @@
 package com.texttwist.client;
 
 import com.texttwist.client.services.AuthService;
-import com.texttwist.client.pages.Home;
-import com.texttwist.client.services.MatchModel;
-import com.texttwist.client.services.SessionService;
+import com.texttwist.client.pages.HomePage;
+import com.texttwist.client.models.Game;
 import com.texttwist.client.services.NotificationClient;
 import constants.Config;
 import interfaces.INotificationClient;
 import interfaces.INotificationServer;
+import models.Session;
 import utilities.Logger;
 
 import javax.swing.*;
@@ -26,8 +26,8 @@ import java.rmi.server.UnicastRemoteObject;
 public class App extends JFrame {
 
     public static AuthService authService;
-    public static SessionService sessionService;
-    public static MatchModel match;
+    public static Session session;
+    public static Game game;
     public static JFrame app;
 
     public App() throws IOException {
@@ -58,12 +58,15 @@ public class App extends JFrame {
             e.printStackTrace();
         }
 
+        //Init models
+        game = new Game();
+
         //Init services
         authService = new AuthService();
-        sessionService = new SessionService();
-        match = new MatchModel();
+
         app = this;
-        Home home = new Home(this);
+
+        HomePage home = new HomePage(this);
     }
 
     public static Point getWindowsPosition(){

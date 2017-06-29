@@ -56,6 +56,9 @@ public class Dictionary {
     }
 
     public static Boolean isContainedInDictionary(String word){
+        if(word.equals("")){
+            return true;
+        }
         for(int i = 0; i< wordList.size(); i++){
             if(wordList.get(i).equals(word)) {
                 return true;

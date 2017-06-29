@@ -12,13 +12,10 @@ import java.rmi.RemoteException;
  */
 public class MenuController {
 
-    public MenuController(){
-    }
-
     public Response logout(String userName) throws RemoteException, NotBoundException, MalformedURLException {
         Response res =  App.authService.logout(userName);
         if (res.code == 200){
-            App.sessionService.remove();
+            App.session = null;
         }
         return res;
     }

@@ -28,15 +28,15 @@ public class JoinMatch implements Callable<Boolean> {
 
     @Override
     public Boolean call() throws Exception {
-        Match thisMatch= findMatch(this.matchName);
+        Match thisMatch = Match.findMatch(activeMatches, this.matchName);
         if(thisMatch!=null){
             for(int j = 0; j<thisMatch.playersStatus.size(); j++){
                 String name = thisMatch.playersStatus.get(j).getKey();
                 if (name.equals(playerName)){
                     thisMatch.playersStatus.remove(j);
-                    thisMatch.playersStatus.addElement(new Pair<>(name,1));
+                    thisMatch.playersStatus.add(new Pair<>(name,1));
                     thisMatch.playersSocket.remove(j);
-                    thisMatch.playersSocket.addElement(new Pair<>(name,socketChannel));
+                    thisMatch.playersSocket.add(new Pair<>(name,socketChannel));
                     System.out.println(playerName + ": JOINED");
                     return allJoined(thisMatch);
                 }
