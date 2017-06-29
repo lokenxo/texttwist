@@ -2,10 +2,7 @@ package com.texttwist.client.tasks;
 
 import com.texttwist.client.App;
 import com.texttwist.client.pages.Game;
-import com.texttwist.client.pages.GameController;
-import com.texttwist.client.pages.Page;
 import com.texttwist.client.ui.TTDialog;
-import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.util.concurrent.Callable;
@@ -13,21 +10,20 @@ import java.util.concurrent.Callable;
 /**
  * Created by loke on 25/06/2017.
  */
-public class StartGame implements Runnable {
+public class StartGame extends SwingWorker<Void,Void> {
 
-    public Game game;
-    public StartGame(Game game){
+
+    /*Words inserted from user*/
+    private DefaultListModel<String> letters = new DefaultListModel<>();
+    private Game game;
+
+    public StartGame(DefaultListModel<String> letters, Game game){
+        this.letters = letters;
         this.game = game;
-
     }
 
     @Override
-    public void run(){
-
-        //Letters are ready? Polling
-        while(!(this.game.gameController.letters.size() > 0)) {
-            this.game.gameController.letters = App.matchService.words;
-        }
+    public Void doInBackground(){
 
         //Mostra pannello di conferma che le lettere sono tutte arrivate
         new TTDialog("success", "Game is ready. Press OK to start!",
@@ -35,9 +31,16 @@ public class StartGame implements Runnable {
                 @Override
                 public Object call() throws Exception {
                     game.showLetters();
+                    System.out.println(letters);
                     game.timer.start();
                     return null;
                 }
             }, null);
+        return null;
+    }
+
+    @Override
+    public void done(){
+        System.out.println("Done start game");
     }
 }

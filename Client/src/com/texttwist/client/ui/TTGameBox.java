@@ -15,7 +15,7 @@ public class TTGameBox extends TTInputField{
     public TTGameBox(Point position,
                        Dimension dimension,
                        String placeholer,
-                       DefaultListModel listModel,
+                       DefaultListModel<String> list,
                        TTContainer parent){
 
         super(position, dimension, placeholer, parent);
@@ -31,8 +31,7 @@ public class TTGameBox extends TTInputField{
                 super.keyPressed(e);
                 if(e.getKeyCode() == 10){
                     try {
-                        System.out.println(getText());
-                        listModel.addElement(getText());
+                        list.addElement(getText());
                         setText("");
                     } catch (Exception e1) {
                         e1.printStackTrace();

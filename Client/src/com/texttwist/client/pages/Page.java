@@ -93,7 +93,7 @@ public class Page {
                 parent);
     }
 
-    public Timer addTimer(TTContainer parent, Font font, Color fontColor, String caption, Callable<Object> timerEndHandler, Integer value) {
+    public Timer addTimer(TTContainer parent, Font font, Color fontColor, String caption, SwingWorker timerEndHandler, Integer value) {
         TTLabel lblTimer = new TTLabel(
                 new Point(0, 0),
                 new Dimension(150, 50),
@@ -109,7 +109,7 @@ public class Page {
                 if (count <= 0) {
                     lblTimer.setText("00:00");
                     try {
-                        timerEndHandler.call();
+                        timerEndHandler.execute();
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

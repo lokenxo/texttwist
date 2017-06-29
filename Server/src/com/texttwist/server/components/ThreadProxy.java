@@ -109,6 +109,28 @@ public class ThreadProxy implements Callable<Boolean> {
                         e.printStackTrace();
                     }
 
+                case "FETCH_HIGHSCORES":
+                    Future<DefaultListModel<String>> computeHighscores = threadPool.submit(new ComputeHighscores());
+                    try {
+                        System.out.println("FETCHHH");
+                        DefaultListModel<String> computeHighscoresRes = computeHighscores.get();
+                        Message message = new Message("HIGHSCORES", "", "", computeHighscoresRes);
+                        byteMessage  = message.toString().getBytes();
+
+                        buffer = ByteBuffer.wrap(byteMessage);
+                        try {
+                            socketChannel.write(buffer);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+
+
                 case "JOIN_GAME":
                     Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, request.data, socketChannel));
                     try {
@@ -177,9 +199,7 @@ public class ThreadProxy implements Callable<Boolean> {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                {
 
-                }
                 default:
 
                     break;

@@ -1,6 +1,9 @@
 package com.texttwist.server.tasks;
+import com.texttwist.client.App;
+import com.texttwist.server.components.AccountsManager;
 import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
+import models.User;
 
 import javax.swing.*;
 import java.util.concurrent.Callable;
@@ -30,6 +33,8 @@ public class ComputeScore implements Callable<Integer> {
             }
         }
         match.setScore(sender, score);
+        User u = AccountsManager.getInstance().findUser(sender);
+        u.addScore(score);
         return score;
     }
 

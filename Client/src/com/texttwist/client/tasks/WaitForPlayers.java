@@ -14,6 +14,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
+import java.util.concurrent.RunnableFuture;
 
 /**
  * Created by loke on 25/06/2017.
@@ -22,11 +23,15 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
     public SocketChannel socketChannel;
     public DefaultListModel<String> words;
-    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    public DefaultListModel<String> letters;
 
-    public WaitForPlayers(SocketChannel socketChannel, DefaultListModel<String> words) {
-        this.socketChannel = socketChannel;
+    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    SwingWorker callback;
+
+    public WaitForPlayers(SwingWorker callback) {
+        this.callback = callback;
         this.words = words;
+        this.socketChannel = App.match.clientSocket;
     }
 
     @Override
@@ -65,11 +70,10 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                         System.out.println(msg.data);
                         Integer multicastId = Integer.valueOf(data.remove(data.size()-2));
                         System.out.println(multicastId);
-                        App.matchService.setMulticastId(multicastId);
-                        words = msg.data;
+                        App.match.setMulticastId(multicastId);
+                        letters = msg.data;
 
                         //socketChannel.close();
-                        App.matchService.setWords(words);
                         return words;
                     }
                 }
@@ -80,7 +84,16 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
         return new DefaultListModel<String>();
     }
 
+    @Override
     public void done(){
-        System.out.println("Done");
+        System.out.println("Done wait for players");
+        try {
+            System.out.println(letters);
+            App.match.setLetters(letters);
+            System.out.println("PAROLE IN INVIO");
+            this.callback.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

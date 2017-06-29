@@ -1,5 +1,4 @@
 package com.texttwist.server.components;
-import models.Account;
 import models.Session;
 
 import java.util.ArrayList;

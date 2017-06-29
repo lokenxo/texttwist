@@ -1,62 +1,66 @@
 package com.texttwist.client.pages;
-
-import com.texttwist.client.tasks.StartGame;
+import com.texttwist.client.controllers.GameController;
+import constants.Config;
 import constants.Palette;
 import com.texttwist.client.ui.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.*;
 
 /**
- * Created by loke on 14/06/2017.
+ * Game Page
  */
 public class Game extends Page {
 
     private TTContainer gameContainer;
-    public GameController gameController;
-    public TTGameBox gameBox;
-    public DefaultListModel<String> words = new DefaultListModel<String>();
-    public DefaultListModel<Point> letterSpawningPoint = new DefaultListModel<Point>();
+    private TTGameBox gameBox;
+    private GameController gameController;
+    public Timer timer;
 
-    public Timer timer = null;
+    /*Spawnig points, fixed and not modifiable*/
+    private final DefaultListModel<Point> letterSpawningPoints = setLetterSpawningPoint();
 
-    public Point getRandomPosition(){
-        if(letterSpawningPoint.size()>1) {
-            int index = ThreadLocalRandom.current().nextInt(0, letterSpawningPoint.size() - 1);
-            Point placeholder = letterSpawningPoint.get(index);
-            letterSpawningPoint.remove(index);
+    /*Available spawning points*/
+    private DefaultListModel<Point> availableLetterSpawningPoint = new DefaultListModel<>();
+
+    public Game(JFrame window) throws IOException {
+
+        super(window);
+        gameController = new GameController(this);
+        availableLetterSpawningPoint.clear();
+        availableLetterSpawningPoint = letterSpawningPoints;
+        gameController.waitForPlayers(gameController.startGame()).execute();
+        createUIComponents();
+        window.setVisible(true);
+    }
+
+    private Point occupyRandomPosition(){
+
+        if(availableLetterSpawningPoint.size() > 1) {
+            int index = ThreadLocalRandom.current().nextInt(0, letterSpawningPoints.size() - 1);
+            Point placeholder = letterSpawningPoints.get(index);
+            letterSpawningPoints.remove(index);
             return placeholder;
         }
+
         return new Point(0,0);
     }
 
 
-    public void showLetters(){
-        for(int i = 0; i< this.gameController.letters.size(); i++){
-            TTLetter letter = new TTLetter(
-                    getRandomPosition(),
-                    this.gameController.letters.get(i),
-                    gameContainer);
-        }
-
-        window.repaint();
-        window.revalidate();
-    }
-
-    public Game(JFrame window) throws IOException {
-        super(window);
-        createUIComponents();
-        gameController = new GameController();
-        letterSpawningPoint = setLetterSpawningPoint();
-        this.gameController.waitForPlayers();
-        this.gameController.startGame(this);
-        window.setVisible(true);
+    private SwingWorker timeIsOver() {
+        return gameController.sendWords(new SwingWorker() {
+            @Override
+            protected Object doInBackground() throws Exception {
+                new Highscores(window,true);
+                return null;
+            }
+        });
     }
 
     private DefaultListModel<Point> setLetterSpawningPoint(){
-        DefaultListModel l = new DefaultListModel<Point>();
+
+        DefaultListModel<Point> l = new DefaultListModel<>();
 
         //FirstRow
         l.addElement(new Point(100,30));
@@ -78,49 +82,55 @@ public class Game extends Page {
         l.addElement(new Point(350,145));
         l.addElement(new Point(450,140));
         l.addElement(new Point(550,130));
+
       return l;
+    }
+
+    public void showLetters(){
+
+        /* Place letters in a available random spawning point */
+        for(int i = 0; i < gameController.getLetters().size(); i++){
+            new TTLetter(
+                occupyRandomPosition(),
+                gameController.getLetters().get(i),
+                gameContainer
+            );
+        }
+
+        window.repaint();
+        window.revalidate();
     }
 
     @Override
     public void createUIComponents() throws IOException {
+
         addLogo(root);
+
         gameContainer = new TTContainer(
-                null,
-                new Dimension(1150,220),
-                Palette.root_backgroundColor,
-                -1,
-                root);
+            null,
+            new Dimension(1150,220),
+            Palette.root_backgroundColor,
+            -1,
+            root
+        );
 
         gameBox = new TTGameBox(
                 new Point(150, 90),
                 new Dimension(250, 40),
                 "Insert word and Press ENTER!",
-                words,
-                gameContainer);
+                gameController.getWords(),
+                gameContainer
+        );
 
         addFooter(root);
-        addNext(footer,
-                new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 70),
-                null,
-                "Done!",
-                new Callable<Object>() {
-                    @Override
-                    public Object call() throws Exception {
-                        return null;
-                    }
-                });
 
-        timer = addTimer(footer,
-                new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 40),
-                null,
-                "00:00",
-                new Callable<Object>() {
-                    @Override
-                    public Object call() throws Exception {
-                        gameController.sendWords(words);
-                        return null;
-                    }},
-                15);
+        timer = addTimer(
+            footer,
+            new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 40),
+            null,
+            "00:00",
+            timeIsOver(),
+            Config.timeoutGame
+        );
     }
-
 }

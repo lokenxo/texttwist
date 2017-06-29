@@ -29,7 +29,7 @@ public class NotificationClient implements INotificationClient {
 
         if(users.contains(App.sessionService.account.userName)){
             Logger.write(userName+" ti ha sfidato!");
-            App.matchService.newMatch(userName);
+            App.match.newMatch(userName);
         }
         return null;
     }

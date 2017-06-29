@@ -1,5 +1,6 @@
 package com.texttwist.client.pages;
 
+import com.texttwist.client.controllers.RegisterController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 import models.Response;

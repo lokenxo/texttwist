@@ -1,9 +1,9 @@
 package com.texttwist.client;
 
-import com.texttwist.client.pages.AuthService;
+import com.texttwist.client.services.AuthService;
 import com.texttwist.client.pages.Home;
-import com.texttwist.client.pages.MatchService;
-import com.texttwist.client.pages.SessionService;
+import com.texttwist.client.services.MatchModel;
+import com.texttwist.client.services.SessionService;
 import com.texttwist.client.services.NotificationClient;
 import constants.Config;
 import interfaces.INotificationClient;
@@ -11,7 +11,6 @@ import interfaces.INotificationServer;
 import utilities.Logger;
 
 import javax.swing.*;
-import javax.swing.text.Position;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class App extends JFrame {
 
     public static AuthService authService;
     public static SessionService sessionService;
-    public static MatchService matchService;
+    public static MatchModel match;
     public static JFrame app;
 
     public App() throws IOException {
@@ -62,7 +61,7 @@ public class App extends JFrame {
         //Init services
         authService = new AuthService();
         sessionService = new SessionService();
-        matchService = new MatchService();
+        match = new MatchModel();
         app = this;
         Home home = new Home(this);
     }

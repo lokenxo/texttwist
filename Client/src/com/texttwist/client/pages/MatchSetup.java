@@ -1,8 +1,8 @@
 package com.texttwist.client.pages;
 
+import com.texttwist.client.controllers.MatchSetupController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
-import models.Response;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,5 @@
 package com.texttwist.client.pages;
+import com.texttwist.client.controllers.HomeController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 import com.texttwist.client.ui.TTDialog;

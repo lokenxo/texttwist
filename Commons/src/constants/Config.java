@@ -23,6 +23,9 @@ public class Config {
     public static String NotificationServerName ="notification";
 
 
+    public static int timeoutGame = 15;
+
+
     public static String getNotificationServerURI(){
         return "rmi://".concat(NotificationServerURI).concat(":").concat(NotificationServerPort.toString());
     }

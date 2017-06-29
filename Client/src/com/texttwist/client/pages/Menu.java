@@ -1,5 +1,6 @@
 package com.texttwist.client.pages;
 import com.texttwist.client.App;
+import com.texttwist.client.controllers.MenuController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 
@@ -80,7 +81,7 @@ public class Menu extends Page{
                 new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
-                        return new Highscores(Page.window);
+                        return new Highscores(Page.window, false);
                     }
                 },
                 menuBar);

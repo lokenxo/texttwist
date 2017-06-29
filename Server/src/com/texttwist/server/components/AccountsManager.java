@@ -1,7 +1,5 @@
 package com.texttwist.server.components;
 
-import models.Account;
-import models.Session;
 import models.User;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.List;
  */
 public class AccountsManager {
 
-    private List<Account> accounts = Collections.synchronizedList(new ArrayList<Account>());
+    public List<User> users = Collections.synchronizedList(new ArrayList<User>());
 
     private static class Holder {
         static final AccountsManager INSTANCE = new AccountsManager();
@@ -25,22 +23,22 @@ public class AccountsManager {
     }
 
     private AccountsManager(){
-        accounts.add(new Account("a","a"));
-        accounts.add(new Account("b","b"));
-        accounts.add(new Account("c","c"));
+        users.add(new User("a","a"));
+        users.add(new User("b","b"));
+        users.add(new User("c","c"));
     }
 
     public boolean register(String userName, String password) {
        if(!exists(userName)){
-            return accounts.add(new Account(userName, password));
+            return users.add(new User(userName, password));
         } else {
            return false;
        }
     }
 
     public boolean exists(String userName) {
-        synchronized(accounts) {
-            Iterator<Account> i = accounts.iterator();
+        synchronized(users) {
+            Iterator<User> i = users.iterator();
             while (i.hasNext()) {
                 if (i.next().userName.equals(userName)) {
                     return true;
@@ -51,10 +49,10 @@ public class AccountsManager {
     }
 
     public boolean checkPassword(String userName, String password) {
-        synchronized(accounts) {
-            Iterator<Account> i = accounts.iterator();
+        synchronized(users) {
+            Iterator<User> i = users.iterator();
             while (i.hasNext()) {
-                Account account = i.next();
+                User account = i.next();
                 if (account.userName.equals(userName) && account.password.equals(password)) {
                     return true;
                 }
@@ -63,8 +61,21 @@ public class AccountsManager {
         }
     }
 
+    public User findUser(String userName){
+        synchronized(users) {
+            Iterator<User> i = users.iterator();
+            while (i.hasNext()) {
+                User u = i.next();
+                if (u.userName.equals(userName)) {
+                    return u;
+                }
+            }
+            return null;
+        }
+    }
+
     public int size(){
-        return accounts.size();
+        return users.size();
     }
 
 }

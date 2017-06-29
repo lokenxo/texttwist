@@ -1,14 +1,11 @@
 package com.texttwist.server.components;
 import interfaces.IAuth;
-import models.Account;
 import models.Response;
 import org.json.simple.JsonObject;
 import utilities.Logger;
 
 import java.math.BigInteger;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.SecureRandom;
 

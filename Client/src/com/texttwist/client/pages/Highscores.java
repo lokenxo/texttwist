@@ -1,7 +1,10 @@
 package com.texttwist.client.pages;
 
+import com.texttwist.client.App;
+import com.texttwist.client.controllers.HighscoresController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
+import javafx.util.Pair;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,33 +17,33 @@ import java.util.concurrent.Callable;
 public class Highscores extends Page{
 
     public TTContainer highscoreContainer;
-    Highscores(JFrame window) throws IOException {
+    public Boolean isPartialScore;
+    public HighscoresController highscoreController;
+    public DefaultListModel<Pair<String, Integer>> ranks = new DefaultListModel<>();
+
+    public Highscores(JFrame window, Boolean isPartialScore) throws IOException {
         super(window);
+        this.isPartialScore = isPartialScore;
+
+        highscoreController = new HighscoresController();
+        System.out.println("SHSHSHSHs");
+        System.out.println(App.match.ranks);
+        System.out.println(App.match.globalRanks);
+
+        System.out.println(ranks);
+        System.out.println("SHSHSHSssssssHs");
+
+        if(this.isPartialScore){
+            this.ranks = App.match.ranks;
+        } else {
+            this.highscoreController.fetchHighscores(window);
+            this.ranks = App.match.globalRanks;
+        }
         createUIComponents();
+
         window.setVisible(true);
     }
 
-    private DefaultListModel fetchHighscores(){
-        DefaultListModel<String> highscoreList = new DefaultListModel<String>();
-        highscoreList.addElement("Pippo 41");
-        highscoreList.addElement("Paperino 37");
-        highscoreList.addElement("Gaia 34");
-        highscoreList.addElement("Luigi 32");
-        highscoreList.addElement("Marco 31");
-        highscoreList.addElement("Minnie 30");
-        highscoreList.addElement("Franco 30");
-        highscoreList.addElement("Qua 29");
-        highscoreList.addElement("Luca 27");
-        highscoreList.addElement("Qui 26");
-        highscoreList.addElement("Jorge 25");
-        highscoreList.addElement("David 22");
-        highscoreList.addElement("Quo 21");
-        highscoreList.addElement("Raphael 21");
-        highscoreList.addElement("Miguel 16");
-        highscoreList.addElement("Carmen 14");
-        highscoreList.addElement("Beatriz 12");
-        return highscoreList;
-    }
     @Override
     public void createUIComponents() throws IOException {
         addLogo(root);
@@ -54,7 +57,7 @@ public class Highscores extends Page{
         TTLabel title = new TTLabel(
                 new Point(200,0),
                 new Dimension(350,50),
-                "Highscores",
+                this.isPartialScore ? "Scores of the match" : "Highscores",
                 new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 38),
                 null,
                 highscoreContainer);
@@ -62,7 +65,7 @@ public class Highscores extends Page{
         TTScrollList highscoreList = new TTScrollList(
                 new Point(20, 60),
                 new Dimension(515, 142),
-                fetchHighscores(),
+                this.ranks,
                 highscoreContainer);
         addFooter(root);
 

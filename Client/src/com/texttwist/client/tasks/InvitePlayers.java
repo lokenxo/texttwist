@@ -83,7 +83,7 @@ public class InvitePlayers extends SwingWorker<Boolean,Void> {
 
     @Override
     public void done() {
-        System.out.println("Done");
+        System.out.println("Done invite players");
 
     }
 }

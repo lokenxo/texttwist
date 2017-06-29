@@ -45,7 +45,7 @@ public class MatchRequests extends Page{
         TTScrollList pendingMatches = new TTScrollList(
                 new Point(20, 60),
                 new Dimension(520, 142),
-                App.matchService.pendingList,
+                App.match.pendingList,
                 matchsContainer);
 
         pendingMatches.addMouseListener(new MouseAdapter() {
@@ -56,7 +56,7 @@ public class MatchRequests extends Page{
                 if (evt.getClickCount() == 2) {
                     // Double-click detected
                     int index = thisList.locationToIndex(evt.getPoint());
-                    App.matchService.joinMatch(App.matchService.pendingList.get(index));
+                    App.match.joinMatch(App.match.pendingList.get(index));
                 }
             }
         });
