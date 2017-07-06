@@ -12,6 +12,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.*;
 
@@ -24,13 +25,15 @@ public class ThreadProxy implements Callable<Boolean> {
     protected final ExecutorService threadPool = Executors.newCachedThreadPool();
     private final Message request;
     private final SocketChannel socketChannel;
-    private final DatagramSocket datagramSocket;
+    private final DatagramChannel datagramChannel;
+    private ByteBuffer buffer;
 
 
-    ThreadProxy(Message request, SocketChannel socketChannel, DatagramSocket datagramSocket){
+    ThreadProxy(Message request, SocketChannel socketChannel, DatagramChannel datagramChannel, ByteBuffer buffer){
         this.request = request;
         this.socketChannel = socketChannel;
-        this.datagramSocket = datagramSocket;
+        this.datagramChannel = datagramChannel;
+        this.buffer = buffer;
     }
 
 
@@ -168,7 +171,7 @@ public class ThreadProxy implements Callable<Boolean> {
                             }
 
                             //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
-                            Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match, datagramSocket));
+                            Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match, datagramChannel, buffer));
                             Boolean receiveWordsRes = receiveWords.get();
 
                             if(receiveWordsRes){
@@ -189,6 +192,8 @@ public class ThreadProxy implements Callable<Boolean> {
                                 DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
                                 System.out.println(msg.toString());
                                 multicastSocket.send(hi);
+
+                                System.out.println(Match.findMatchIndex(activeMatches, match.matchCreator));
 
                                 activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
                                 //multicastSocket.disconnect();

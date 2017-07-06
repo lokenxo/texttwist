@@ -15,10 +15,7 @@ import utilities.Logger;
 import javax.swing.*;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.net.DatagramSocket;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
@@ -42,7 +39,9 @@ public class GameServer implements Runnable{
     protected ServerSocketChannel serverSocketChannel = null;
     protected ThreadProxy proxy;
     ByteBuffer buffer = ByteBuffer.allocate(1024);
-    DatagramSocket datagramSocket;
+    ByteBuffer buffer2 = ByteBuffer.allocate(1024);
+
+    DatagramChannel datagramChannel;
     protected Selector selector = null;
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
     private String dictionaryPath = "./Server/resources/dictionary";
@@ -65,7 +64,12 @@ public class GameServer implements Runnable{
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.socket().bind(new InetSocketAddress(serverPort));
             serverSocketChannel.register(selector, OP_ACCEPT);
-            datagramSocket = new DatagramSocket(Config.WordsReceiverServerPort);
+           // datagramSocket = new DatagramSocket(Config.WordsReceiverServerPort);
+            InetSocketAddress address = new InetSocketAddress(Config.WordsReceiverServerPort);
+            datagramChannel = DatagramChannel.open();
+            DatagramSocket datagramSocket = datagramChannel.socket();
+            datagramSocket.bind(address);
+
             Logger.write("GamePage Service is running at "+this.serverPort+" port...");
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,7 +107,7 @@ public class GameServer implements Runnable{
                                 if (line.startsWith("MESSAGE")) {
                                     SessionsManager.getInstance().printAll();
                                     Message msg = Message.toMessage(line);
-                                    proxy = new ThreadProxy(msg, client, datagramSocket);
+                                    proxy = new ThreadProxy(msg, client, datagramChannel, buffer2);
                                     Future<Boolean> identifyMessage = threadPool.submit(proxy);
                                     System.out.println(line);
                                 }

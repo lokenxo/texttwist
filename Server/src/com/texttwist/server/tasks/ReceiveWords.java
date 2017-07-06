@@ -11,6 +11,9 @@ import javax.xml.crypto.Data;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
+import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,44 +26,61 @@ public class ReceiveWords implements Callable<Boolean>{
 
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
 
-    public final DatagramSocket datagramSocket;
+    public DatagramChannel DatagramChannel;
     public final Match match;
+    byte[] receiveData = new byte[1024];
+    ByteBuffer buffer;
 
-    public ReceiveWords(Match match, DatagramSocket datagramSocket) {
+
+    public ReceiveWords(Match match, DatagramChannel DatagramChannel, ByteBuffer buffer) {
         this.match = match;
-        this.datagramSocket = datagramSocket;
+        this.buffer = buffer;
+        this.DatagramChannel = DatagramChannel;
     }
 
     @Override
     public Boolean call() throws Exception {
         System.out.print("READY TO Receive words !!!!");
 
-        byte[] receiveData = new byte[1024];
-
         Future<Boolean> matchTimeout = threadPool.submit(new MatchTimeout());
 
-
-        receiveData = new byte[1024];
         DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-        datagramSocket.receive(receivePacket);
-        String rcv = new String( receivePacket.getData());
-        System.out.println("RECEIVED: " + rcv);
-        Message msg = Message.toMessage(rcv);
+        Message msg;
+        while(true) {
+            DatagramChannel.receive(buffer);
+            buffer.flip();
+            System.out.println(buffer.limit());
+            int limits = buffer.limit();
+            byte bytes[] = new byte[limits];
+            buffer.get(bytes, 0, limits);
+            String rcv = new String(bytes);
+
+
+            System.out.println("RECEIVED: " + rcv);
+            buffer.rewind();
+            msg = Message.toMessage(rcv);
+            if(msg.message.equals("WORDS")){
+                break;
+            }
+        }
         Future<Integer> computeScore = threadPool.submit(new ComputeScore(msg.sender, match, msg.data));
 
         //Se tutti hanno inviato le parole, blocca il timer e restituisci true
         computeScore.get();
         System.out.println(match.matchCreator);
         System.out.println(match.allPlayersSendedHisScore());
+
+
         if(match.allPlayersSendedHisScore()){
             System.out.println("TIMEOUT BLOCCATO, OK");
            // match.setUndefinedScorePlayersToZero();
 
             matchTimeout.cancel(true);
-            // datagramSocket.close();
+            DatagramChannel.close();
             return true;
         }
         return false;
+
     }
 
 }

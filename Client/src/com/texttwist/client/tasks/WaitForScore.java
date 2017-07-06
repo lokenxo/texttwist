@@ -43,7 +43,7 @@ public class WaitForScore extends SwingWorker<Void,Void> {
                 System.out.println("HSHSHSHS");
                 System.out.println(s);
                 msg = Message.toMessage(s);
-                if(msg.message.equals("ASD")){
+                if(msg.message.equals("FINALSCORE")){
                     break;
                 }
             }
