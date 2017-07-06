@@ -1,6 +1,5 @@
 package com.texttwist.server.components;
 
-import com.texttwist.client.App;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
 import constants.Config;
@@ -22,10 +21,10 @@ import static com.texttwist.server.components.GameServer.activeMatches;
  * Created by loke on 18/06/2017.
  */
 public class ThreadProxy implements Callable<Boolean> {
-    protected ExecutorService threadPool = Executors.newCachedThreadPool();
-    private Message request;
-    private SocketChannel socketChannel;
-    private DatagramSocket datagramSocket;
+    protected final ExecutorService threadPool = Executors.newCachedThreadPool();
+    private final Message request;
+    private final SocketChannel socketChannel;
+    private final DatagramSocket datagramSocket;
 
 
     ThreadProxy(Message request, SocketChannel socketChannel, DatagramSocket datagramSocket){
@@ -58,12 +57,14 @@ public class ThreadProxy implements Callable<Boolean> {
 
                                     //Crea nuova partita e attendi i giocatori
                                     request.data.addElement(request.sender);
+                                    final Match match = new Match(request.sender, request.data);
+                                    match.printAll();
 
-                                    Match match = new Match(request.sender, request.data);
                                     activeMatches.add(match);
 
                                     DefaultListModel<String> matchName = new DefaultListModel<>();
                                     matchName.addElement(request.sender);
+
                                     Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, matchName, socketChannel));
                                     Boolean joinMatchRes = joinMatch.get();
 
@@ -140,7 +141,7 @@ public class ThreadProxy implements Callable<Boolean> {
                         if(joinMatchRes){
                             System.out.print("START THE GAME!!!!");
 
-                            Match match = Match.findMatch(activeMatches, request.data.get(0));
+                            final Match match = Match.findMatch(activeMatches, request.data.get(0));
 
                             Future<DefaultListModel<String>> generateLetters = threadPool.submit(new GenerateLetters());
                             match.setLetters(generateLetters.get());
@@ -148,8 +149,8 @@ public class ThreadProxy implements Callable<Boolean> {
 
                             for (int i =0; i< match.playersSocket.size(); i++) {
                                 System.out.println("INVIO");
-                                socketChannel = match.playersSocket.get(i).getValue();
-                                if(socketChannel != null) {
+                                SocketChannel socketClient = match.playersSocket.get(i).getValue();
+                                if(socketClient != null) {
                                     buffer.clear();
                                     Message message = new Message("GAME_STARTED", "", "", match.letters);
                                     match.startGame();
@@ -157,7 +158,7 @@ public class ThreadProxy implements Callable<Boolean> {
 
                                     buffer = ByteBuffer.wrap(byteMessage);
                                     try {
-                                        socketChannel.write(buffer);
+                                        socketClient.write(buffer);
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
@@ -169,21 +170,27 @@ public class ThreadProxy implements Callable<Boolean> {
                             //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
                             Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match, datagramSocket));
                             Boolean receiveWordsRes = receiveWords.get();
-                            if(!receiveWordsRes){
-                                match.setUndefinedScorePlayersToZero();
+
+                            if(receiveWordsRes){
                                 System.out.println("ZERO PUNTI a chi non ha ancora inviato le lettere, TIMER SCADUTO");
                             } else {
                                 System.out.println("TUTTI I GIOCATORI HANNO CONSEGNATO IN TEMPO");
                             }
 
+                            //match.setUndefinedScorePlayersToZero();
+
                             Message msg = new Message("FINALSCORE","SERVER","", match.getMatchPlayersScoreAsStringList());
 
                             MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
+                            System.out.println(multicastSocket);
+                            System.out.println(match.multicastId);
                             InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
                             DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
+                            System.out.println(msg.toString());
                             multicastSocket.send(hi);
-                            activeMatches.remove(Match.findMatchIndex(activeMatches,match.matchCreator));
-
+                            activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
+                            multicastSocket.disconnect();
+                            multicastSocket.close();
 
                             //RISPONDI CON LA CLASSIFICA
                             break;

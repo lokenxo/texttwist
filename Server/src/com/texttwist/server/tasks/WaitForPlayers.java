@@ -16,7 +16,7 @@ import java.util.concurrent.Callable;
  * Created by loke on 19/06/2017.
  */
 public class WaitForPlayers implements Callable<Boolean> {
-    private Match match;
+    private final Match match;
     private String sender;
 
     public WaitForPlayers(Match match) {

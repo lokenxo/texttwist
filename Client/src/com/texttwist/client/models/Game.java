@@ -91,6 +91,7 @@ public class Game {
             //Invia tcp req a server per dirgli che sto joinando
             DefaultListModel<String> matchNames = new DefaultListModel<String>();
             matchNames.addElement(matchName);
+            System.out.println("STO JOINANDO");
             Message message = new Message("JOIN_GAME", App.session.account.userName, App.session.token, matchNames);
 
             byte[] byteMessage = new String(message.toString()).getBytes();

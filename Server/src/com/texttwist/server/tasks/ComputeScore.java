@@ -14,8 +14,8 @@ import java.util.concurrent.Callable;
 public class ComputeScore implements Callable<Integer> {
 
     public DefaultListModel<String> words;
-    public String sender;
-    public Match match;
+    public final String sender;
+    public final Match match;
 
     public ComputeScore(String sender, Match match, DefaultListModel<String> words){
         this.words = words;
@@ -25,21 +25,16 @@ public class ComputeScore implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println("INIT SET SCORE");
-        System.out.println(words.size());
-        System.out.println(words);
-        System.out.println("SET SCORE");
-
-        Integer score = 0;
-        for(int i = 0; i< words.size(); i++){
-            if(isValid(words.get(i), match.letters)){
-                score += words.get(i).length();
+            Integer score = 0;
+            for (int i = 0; i < words.size(); i++) {
+                if (isValid(words.get(i), match.letters)) {
+                    score += words.get(i).length();
+                }
             }
-        }
-        match.setScore(sender, score);
-        User u = AccountsManager.getInstance().findUser(sender);
-        u.addScore(score);
-        return score;
+            match.setScore(sender, score);
+            User u = AccountsManager.getInstance().findUser(sender);
+            u.addScore(score);
+            return score;
     }
 
     private Boolean isValid(String word, DefaultListModel<String> letters) {

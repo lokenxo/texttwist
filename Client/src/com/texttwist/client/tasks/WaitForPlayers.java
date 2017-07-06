@@ -74,9 +74,11 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                             App.game.setMulticastId(multicastId);
 
                             App.game.multicastSocket = new MulticastSocket(App.game.multicastId);
+                            System.out.println(App.game.multicastSocket);
                             InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
                             App.game.multicastSocket.joinGroup(ia);
                             letters = msg.data;
+
 
                             //socketChannel.close();
                             return words;

@@ -14,8 +14,8 @@ import java.util.concurrent.Callable;
 public class SendMessageToAllPlayers  implements Callable<Boolean> {
 
 
-    public Match match;
-    public Message message;
+    public final Match match;
+    public final Message message;
     public SocketChannel socketChannel;
     public SendMessageToAllPlayers(Match match, Message message, SocketChannel socketChannel){
         this.match = match;

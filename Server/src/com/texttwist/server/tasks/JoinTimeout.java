@@ -14,7 +14,7 @@ import java.util.concurrent.*;
  */
 public class JoinTimeout implements Callable<Boolean> {
 
-    public Match match;
+    public final Match match;
 
     public JoinTimeout(Match match) {
         this.match = match;

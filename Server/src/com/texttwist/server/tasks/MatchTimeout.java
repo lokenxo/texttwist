@@ -10,10 +10,8 @@ import java.util.concurrent.Callable;
  */
 public class MatchTimeout implements Callable<Boolean> {
 
-    Boolean receiveWords;
 
-    public MatchTimeout(Boolean receiveWords) {
-        this.receiveWords = receiveWords;
+    public MatchTimeout() {
         System.out.println("GamePage started, countdown for end words!");
 
     }
@@ -23,13 +21,12 @@ public class MatchTimeout implements Callable<Boolean> {
         try {
             Thread.currentThread().sleep(3*60*1000); //TODO 5*60*1000
             System.out.println("timer scaduto");
-            receiveWords = false;
             System.out.println("TIMEOUT - SETTA A 0 il punteggio degli utenti che non hanno inviato le parole");
             return false;
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("TIMER BLOCATO PRIMA");
+            return true;
         }
-        return true;
     }
 
 }

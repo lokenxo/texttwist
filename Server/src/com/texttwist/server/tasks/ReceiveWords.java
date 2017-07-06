@@ -23,9 +23,9 @@ public class ReceiveWords implements Callable<Boolean>{
 
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
 
-    public Boolean receiveWords = true;
-    public DatagramSocket datagramSocket;
-    public Match match;
+    public final DatagramSocket datagramSocket;
+    public final Match match;
+
     public ReceiveWords(Match match, DatagramSocket datagramSocket) {
         this.match = match;
         this.datagramSocket = datagramSocket;
@@ -35,32 +35,30 @@ public class ReceiveWords implements Callable<Boolean>{
     public Boolean call() throws Exception {
         System.out.print("READY TO Receive words !!!!");
 
-
         byte[] receiveData = new byte[1024];
 
-        Future<Boolean> matchTimeout = threadPool.submit(new MatchTimeout(receiveWords));
+        Future<Boolean> matchTimeout = threadPool.submit(new MatchTimeout());
 
-        while(receiveWords)
-        {
-            receiveData = new byte[1024];
-            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-            datagramSocket.receive(receivePacket);
-            String rcv = new String( receivePacket.getData());
-            System.out.println("RECEIVED: " + rcv);
-            Message msg = Message.toMessage(rcv);
-            Future<Integer> computeScore = threadPool.submit(new ComputeScore(msg.sender, match, msg.data));
 
-            //Se tutti hanno inviato le parole, blocca il timer e restituisci true
-            computeScore.get();
-            System.out.println("All player sended?");
-            System.out.println(match.allPlayersSendedHisScore());
-            if(match.allPlayersSendedHisScore()){
-                System.out.println("TIMEOUT BLOCCATO, OK");
-                matchTimeout.cancel(true);
-               // datagramSocket.close();
-                return true;
-            }
+        receiveData = new byte[1024];
+        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+        datagramSocket.receive(receivePacket);
+        String rcv = new String( receivePacket.getData());
+        System.out.println("RECEIVED: " + rcv);
+        Message msg = Message.toMessage(rcv);
+        Future<Integer> computeScore = threadPool.submit(new ComputeScore(msg.sender, match, msg.data));
 
+        //Se tutti hanno inviato le parole, blocca il timer e restituisci true
+        computeScore.get();
+        System.out.println(match.matchCreator);
+        System.out.println(match.allPlayersSendedHisScore());
+        if(match.allPlayersSendedHisScore()){
+            System.out.println("TIMEOUT BLOCCATO, OK");
+           // match.setUndefinedScorePlayersToZero();
+
+            matchTimeout.cancel(true);
+            // datagramSocket.close();
+            return true;
         }
         return false;
     }

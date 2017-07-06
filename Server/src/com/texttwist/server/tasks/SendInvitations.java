@@ -17,7 +17,7 @@ import java.util.concurrent.Callable;
  */
 public class SendInvitations implements Callable<Boolean> {
     private final DefaultListModel<String> users;
-    private String sender;
+    private final String sender;
 
     public SendInvitations(String sender, DefaultListModel<String> users) {
         this.users = users;

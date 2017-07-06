@@ -33,8 +33,12 @@ public class WaitForScore extends SwingWorker<Void,Void> {
 
 
             byte[] buf = new byte[1024];
+            System.out.println("SONO QUIIIII");
             DatagramPacket recv = new DatagramPacket(buf, buf.length);
+            System.out.println("ANCORA QUII");
             App.game.multicastSocket.receive(recv);
+            System.out.println("SEMPRE QUII");
+
             String s = new String(recv.getData());
             System.out.println("HSHSHSHS");
             System.out.println(s);
@@ -47,8 +51,14 @@ public class WaitForScore extends SwingWorker<Void,Void> {
                 }
             }
             App.game.ranks = ranks;
+            App.game.multicastSocket.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServerURI));
+
             System.out.println(App.game.ranks);
             System.out.println("ENDDDDd");
+
+            App.game.multicastSocket.disconnect();
+            App.game.multicastSocket.close();
+
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -62,7 +72,7 @@ public class WaitForScore extends SwingWorker<Void,Void> {
     public void done(){
         System.out.println("Done ranks");
         App.game.ranks = ranks;
-            App.game.multicastSocket.close();
+           // App.game.multicastSocket.close();
             //App.game.clientSocket.close();
 
         try {

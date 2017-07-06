@@ -50,6 +50,7 @@ public class GameServer implements Runnable{
 
 
     public static List<Match> activeMatches =  Collections.synchronizedList(new ArrayList<>());
+    public static Integer multicastID = 4000;
 
     public GameServer(int port){
         this.serverPort = port;
@@ -104,6 +105,7 @@ public class GameServer implements Runnable{
                                     Message msg = Message.toMessage(line);
                                     proxy = new ThreadProxy(msg, client, datagramSocket);
                                     Future<Boolean> identifyMessage = threadPool.submit(proxy);
+                                    System.out.println(line);
                                 }
 
                                 if (line.startsWith("CLOSE")) {

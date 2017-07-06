@@ -54,7 +54,7 @@ public class SendWords extends SwingWorker<Void,Void> {
 
     @Override
     public void done(){
-        System.out.println("Done");
+        System.out.println("Done send SCOREEEEEE");
         try {
             this.callback.execute();
         } catch (Exception e) {
