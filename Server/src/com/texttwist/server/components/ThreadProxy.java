@@ -179,21 +179,23 @@ public class ThreadProxy implements Callable<Boolean> {
 
                             //match.setUndefinedScorePlayersToZero();
 
-                            Message msg = new Message("FINALSCORE","SERVER","", match.getMatchPlayersScoreAsStringList());
+                            while(true) {
+                                Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
 
-                            MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
-                            System.out.println(multicastSocket);
-                            System.out.println(match.multicastId);
-                            InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                            DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
-                            System.out.println(msg.toString());
-                            multicastSocket.send(hi);
-                            activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
-                            multicastSocket.disconnect();
-                            multicastSocket.close();
+                                MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
+                                System.out.println(multicastSocket);
+                                System.out.println(match.multicastId);
+                                InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
+                                DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
+                                System.out.println(msg.toString());
+                                multicastSocket.send(hi);
 
+                                activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
+                                //multicastSocket.disconnect();
+                                //multicastSocket.close();
+                            }
                             //RISPONDI CON LA CLASSIFICA
-                            break;
+                           // break;
                             //ULTIMO A JOINARE! INIZIA GIOCO
                         } else {
                             System.out.print("WAIT FRIENDS");

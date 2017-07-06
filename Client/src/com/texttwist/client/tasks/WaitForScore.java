@@ -31,18 +31,23 @@ public class WaitForScore extends SwingWorker<Void,Void> {
         InetAddress group = null;
         try {
 
+            Message msg;
+            while(true) {
+                byte[] buf = new byte[1024];
+                System.out.println("SONO QUIIIII");
+                DatagramPacket recv = new DatagramPacket(buf, buf.length);
+                System.out.println("ANCORA QUII");
+                App.game.multicastSocket.receive(recv);
 
-            byte[] buf = new byte[1024];
-            System.out.println("SONO QUIIIII");
-            DatagramPacket recv = new DatagramPacket(buf, buf.length);
-            System.out.println("ANCORA QUII");
-            App.game.multicastSocket.receive(recv);
-            System.out.println("SEMPRE QUII");
+                String s = new String(recv.getData());
+                System.out.println("HSHSHSHS");
+                System.out.println(s);
+                msg = Message.toMessage(s);
+                if(msg.message.equals("ASD")){
+                    break;
+                }
+            }
 
-            String s = new String(recv.getData());
-            System.out.println("HSHSHSHS");
-            System.out.println(s);
-            Message msg = Message.toMessage(s);
             if(msg.data != null) {
                 for (int i = 0; i < msg.data.size() - 1; i++) {
                     String[] splitted = msg.data.get(i).split(":");
