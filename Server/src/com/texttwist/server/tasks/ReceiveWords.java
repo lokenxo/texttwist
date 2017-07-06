@@ -73,7 +73,7 @@ public class ReceiveWords implements Callable<Boolean>{
 
         if(match.allPlayersSendedHisScore()){
             System.out.println("TIMEOUT BLOCCATO, OK");
-           // match.setUndefinedScorePlayersToZero();
+            match.setUndefinedScorePlayersToZero();
 
             matchTimeout.cancel(true);
             DatagramChannel.close();

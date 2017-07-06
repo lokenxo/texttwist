@@ -180,7 +180,7 @@ public class ThreadProxy implements Callable<Boolean> {
                                 System.out.println("TUTTI I GIOCATORI HANNO CONSEGNATO IN TEMPO");
                             }
 
-                            //match.setUndefinedScorePlayersToZero();
+                            match.setUndefinedScorePlayersToZero();
 
                             while(true) {
                                 Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
