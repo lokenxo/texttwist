@@ -27,6 +27,7 @@ public class ThreadProxy implements Callable<Boolean> {
     private final SocketChannel socketChannel;
     private final DatagramChannel datagramChannel;
     private ByteBuffer buffer;
+    boolean matchNotAvailable =false;
 
 
     ThreadProxy(Message request, SocketChannel socketChannel, DatagramChannel datagramChannel, ByteBuffer buffer){
@@ -86,6 +87,7 @@ public class ThreadProxy implements Callable<Boolean> {
                                                     new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
                                             Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
                                             if(!sendMessageJoinTimeoutRes){
+                                                System.out.println("RIMOSSO");
                                                 activeMatches.remove(Match.findMatchIndex(activeMatches,match.matchCreator));
                                                 return sendMessageJoinTimeoutRes;
                                             }
@@ -145,59 +147,76 @@ public class ThreadProxy implements Callable<Boolean> {
                             System.out.print("START THE GAME!!!!");
 
                             final Match match = Match.findMatch(activeMatches, request.data.get(0));
+                            System.out.println(match.matchCreator);
+                            if(match.joinTimeout == false) {
+                                Future<DefaultListModel<String>> generateLetters = threadPool.submit(new GenerateLetters());
+                                match.setLetters(generateLetters.get());
+                                match.letters.addElement(String.valueOf(match.multicastId));
 
-                            Future<DefaultListModel<String>> generateLetters = threadPool.submit(new GenerateLetters());
-                            match.setLetters(generateLetters.get());
-                            match.letters.addElement(String.valueOf(match.multicastId));
+                                for (int i = 0; i < match.playersSocket.size(); i++) {
+                                    System.out.println("INVIO");
+                                    SocketChannel socketClient = match.playersSocket.get(i).getValue();
+                                    if (socketClient != null) {
+                                        buffer.clear();
+                                        Message message = new Message("GAME_STARTED", "", "", match.letters);
+                                        match.startGame();
+                                        byteMessage = message.toString().getBytes();
 
-                            for (int i =0; i< match.playersSocket.size(); i++) {
-                                System.out.println("INVIO");
-                                SocketChannel socketClient = match.playersSocket.get(i).getValue();
-                                if(socketClient != null) {
-                                    buffer.clear();
-                                    Message message = new Message("GAME_STARTED", "", "", match.letters);
-                                    match.startGame();
-                                    byteMessage  = message.toString().getBytes();
-
-                                    buffer = ByteBuffer.wrap(byteMessage);
-                                    try {
-                                        socketClient.write(buffer);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                                        buffer = ByteBuffer.wrap(byteMessage);
+                                        try {
+                                            socketClient.write(buffer);
+                                        } catch (IOException e) {
+                                            System.out.println("GAME NOT EXIST");
+                                            buffer = ByteBuffer.allocate(1024);
+                                            if (socketChannel != null) {
+                                                Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
+                                                buffer.clear();
+                                                System.out.println("Il match richiesto non è più disponibile ");
+                                                byteMessage = msg.toString().getBytes();
+                                                buffer = ByteBuffer.wrap(byteMessage);
+                                                socketChannel.write(buffer);
+                                                e.printStackTrace();
+                                                matchNotAvailable = true;
+                                            }
+                                        }
+                                        //clientSocket.close();
                                     }
-                                    //clientSocket.close();
                                 }
+                                if (!matchNotAvailable) {
 
-                            }
+                                    //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
+                                    Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match, datagramChannel, buffer));
+                                    Boolean receiveWordsRes = receiveWords.get();
 
-                            //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
-                            Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match, datagramChannel, buffer));
-                            Boolean receiveWordsRes = receiveWords.get();
+                                    if (receiveWordsRes) {
+                                        System.out.println("ZERO PUNTI a chi non ha ancora inviato le lettere, TIMER SCADUTO");
+                                    } else {
+                                        System.out.println("TUTTI I GIOCATORI HANNO CONSEGNATO IN TEMPO");
+                                    }
 
-                            if(receiveWordsRes){
-                                System.out.println("ZERO PUNTI a chi non ha ancora inviato le lettere, TIMER SCADUTO");
-                            } else {
-                                System.out.println("TUTTI I GIOCATORI HANNO CONSEGNATO IN TEMPO");
-                            }
+                                    match.setUndefinedScorePlayersToZero();
 
-                            match.setUndefinedScorePlayersToZero();
+                                    while (true) {
+                                        Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
 
-                            while(true) {
-                                Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
+                                        MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
+                                        System.out.println(multicastSocket);
+                                        System.out.println(match.multicastId);
+                                        InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
+                                        DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
+                                        System.out.println(msg.toString());
+                                        multicastSocket.send(hi);
 
-                                MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
-                                System.out.println(multicastSocket);
-                                System.out.println(match.multicastId);
-                                InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                                DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
-                                System.out.println(msg.toString());
-                                multicastSocket.send(hi);
+                                        System.out.println(Match.findMatchIndex(activeMatches, match.matchCreator));
 
-                                System.out.println(Match.findMatchIndex(activeMatches, match.matchCreator));
+                                        activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
+                                        //multicastSocket.disconnect();
+                                        //multicastSocket.close();
+                                    }
 
-                                activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
-                                //multicastSocket.disconnect();
-                                //multicastSocket.close();
+                                } else {
+                                    return false;
+                                }
                             }
                             //RISPONDI CON LA CLASSIFICA
                            // break;

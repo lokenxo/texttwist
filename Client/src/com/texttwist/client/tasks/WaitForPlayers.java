@@ -6,6 +6,7 @@ import com.texttwist.client.pages.Page;
 import com.texttwist.client.ui.TTDialog;
 import constants.Config;
 import models.Message;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
     public SocketChannel socketChannel;
     public DefaultListModel<String> words;
     public DefaultListModel<String> letters;
-
+    boolean joinTimeout = false;
     ByteBuffer buffer = ByteBuffer.allocate(1024);
     SwingWorker callback;
 
@@ -48,16 +49,32 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
                     Message msg = Message.toMessage(line);
                     if (msg.message.equals("JOIN_TIMEOUT")) {
-                        socketChannel.close();
                         loading.dispose();
+                        joinTimeout = true;
                         new TTDialog("alert", "TIMEOUT!",
                             new Callable() {
                                 @Override
                                 public Object call() throws Exception {
+                                    //socketChannel.close();
                                     return new MenuPage(Page.window);
 
                                 }
                             }, null);
+                        return new DefaultListModel<String>();
+                    }
+
+                    if (msg.message.equals("MATCH_NOT_AVAILABLE")) {
+                        loading.dispose();
+                        joinTimeout = true;
+                        new TTDialog("alert", "THE GAME IS NOT MORE AVAILABLE!",
+                                new Callable() {
+                                    @Override
+                                    public Object call() throws Exception {
+                                        socketChannel.close();
+                                        return new MenuPage(Page.window);
+
+                                    }
+                                }, null);
                         return new DefaultListModel<String>();
                     }
 
@@ -88,6 +105,8 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                 }
             }
         } catch (IOException e) {
+            System.out.println("ECCEZIONE, GIOCO NON ESISTE. ELIMINALO");
+
             e.printStackTrace();
         }
         return new DefaultListModel<String>();
@@ -95,14 +114,18 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
     @Override
     public void done(){
-        System.out.println("Done wait for players");
-        try {
-            System.out.println(letters);
-            App.game.setLetters(letters);
-            System.out.println("PAROLE IN INVIO");
-            this.callback.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(!joinTimeout) {
+            System.out.println("Done wait for players");
+            try {
+                System.out.println(letters);
+                App.game.setLetters(letters);
+                System.out.println("PAROLE IN INVIO");
+                this.callback.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("TIMEOUT HAPPEN, GO TO MENU PAGE");
         }
     }
 }

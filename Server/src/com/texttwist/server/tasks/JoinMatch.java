@@ -1,10 +1,13 @@
 package com.texttwist.server.tasks;
 
+import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
 import com.texttwist.server.models.Match;
 import javafx.util.Pair;
+import models.Message;
 
 import javax.swing.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
 
@@ -63,6 +66,7 @@ public class JoinMatch implements Callable<Boolean> {
                 return false;
             }
         }
+        match.joinTimeout=false;
         return true;
     }
 }

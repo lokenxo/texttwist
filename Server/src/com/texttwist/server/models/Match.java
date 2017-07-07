@@ -21,6 +21,7 @@ public class Match {
     private boolean started = false;
     public final String matchCreator;
     public Integer multicastId;
+    public boolean joinTimeout =true;
     public DefaultListModel<String> letters;
     public final List<Pair<String,Integer>> playersScore =  Collections.synchronizedList(new ArrayList<>());
 
