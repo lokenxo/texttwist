@@ -30,7 +30,6 @@ public class StartGame extends SwingWorker<Void,Void> {
                 @Override
                 public Object call() throws Exception {
                     gamePage.showLetters();
-                    System.out.println(letters);
                     gamePage.timer.start();
                     return null;
                 }
@@ -40,6 +39,5 @@ public class StartGame extends SwingWorker<Void,Void> {
 
     @Override
     public void done(){
-        System.out.println("Done start gamePage");
     }
 }

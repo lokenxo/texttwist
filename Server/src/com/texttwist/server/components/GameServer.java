@@ -94,7 +94,6 @@ public class GameServer implements Runnable{
                                     ByteBuffer bufferWords = ByteBuffer.allocate(1024);
                                     proxy = new ThreadProxy(msg, client, datagramChannel, bufferWords);
                                     threadPool.submit(proxy);
-                                    System.out.println(line);
                                 }
 
                                 if (line.startsWith("CLOSE")) {

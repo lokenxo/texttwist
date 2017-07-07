@@ -40,12 +40,11 @@ public class JoinMatch implements Callable<Boolean> {
                         thisMatch.playersStatus.add(new Pair<>(name, 1));
                         thisMatch.playersSocket.remove(j);
                         thisMatch.playersSocket.add(new Pair<>(name, socketChannel));
-                        System.out.println(playerName + ": JOINED");
                         return allJoined(thisMatch);
                     }
                 }
             }
-            return allJoined(thisMatch);
+            return false;
     }
 
 

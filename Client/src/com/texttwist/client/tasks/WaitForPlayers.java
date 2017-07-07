@@ -70,7 +70,7 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                                 new Callable() {
                                     @Override
                                     public Object call() throws Exception {
-                                        socketChannel.close();
+                                        //socketChannel.close();
                                         return new MenuPage(Page.window);
 
                                     }
@@ -85,13 +85,10 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                         if(msg.data !=null ) {
                             data= msg.data;
 
-                            System.out.println("HERE");
                             Integer multicastId = Integer.valueOf(data.remove(data.size()-2));
-                            System.out.println(multicastId);
                             App.game.setMulticastId(multicastId);
 
                             App.game.multicastSocket = new MulticastSocket(App.game.multicastId);
-                            System.out.println(App.game.multicastSocket);
                             InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
                             App.game.multicastSocket.joinGroup(ia);
                             letters = msg.data;
@@ -105,7 +102,6 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                 }
             }
         } catch (IOException e) {
-            System.out.println("ECCEZIONE, GIOCO NON ESISTE. ELIMINALO");
 
             e.printStackTrace();
         }
@@ -115,17 +111,13 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
     @Override
     public void done(){
         if(!joinTimeout) {
-            System.out.println("Done wait for players");
             try {
-                System.out.println(letters);
                 App.game.setLetters(letters);
-                System.out.println("PAROLE IN INVIO");
                 this.callback.execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("TIMEOUT HAPPEN, GO TO MENU PAGE");
         }
     }
 }

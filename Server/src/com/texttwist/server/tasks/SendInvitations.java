@@ -26,7 +26,6 @@ public class SendInvitations implements Callable<Boolean> {
 
     @Override
     public Boolean call() throws Exception {
-        System.out.print("SendInvitations!");
         try {
             Server.notificationServer.sendInvitations(sender, users);
 

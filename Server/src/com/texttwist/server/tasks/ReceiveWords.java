@@ -40,7 +40,6 @@ public class ReceiveWords implements Callable<Boolean>{
 
     @Override
     public Boolean call() throws Exception {
-        System.out.print("READY TO Receive words !!!!");
 
         Future<Boolean> matchTimeout = threadPool.submit(new MatchTimeout());
 
@@ -49,14 +48,11 @@ public class ReceiveWords implements Callable<Boolean>{
         while(true) {
             DatagramChannel.receive(buffer);
             buffer.flip();
-            System.out.println(buffer.limit());
             int limits = buffer.limit();
             byte bytes[] = new byte[limits];
             buffer.get(bytes, 0, limits);
             String rcv = new String(bytes);
 
-
-            System.out.println("RECEIVED: " + rcv);
             buffer.rewind();
             msg = Message.toMessage(rcv);
             if(msg.message.equals("WORDS")){
@@ -67,12 +63,9 @@ public class ReceiveWords implements Callable<Boolean>{
 
         //Se tutti hanno inviato le parole, blocca il timer e restituisci true
         computeScore.get();
-        System.out.println(match.matchCreator);
-        System.out.println(match.allPlayersSendedHisScore());
 
 
         if(match.allPlayersSendedHisScore()){
-            System.out.println("TIMEOUT BLOCCATO, OK");
             match.setUndefinedScorePlayersToZero();
 
             matchTimeout.cancel(true);

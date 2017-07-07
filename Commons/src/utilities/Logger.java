@@ -29,7 +29,6 @@ public class Logger {
             fw = new FileWriter(logFile, true);
             bw = new BufferedWriter(fw);
             out = new PrintWriter(bw);
-            System.out.println(msg);
             Date d = new Date();
             out.append("LOGGER ("+name+"): " + d.toString() + " - " + msg + "\n");
         } catch (IOException e) {

@@ -11,7 +11,6 @@ public class JoinTimeout implements Callable<Boolean> {
 
     public JoinTimeout(Match match) {
         this.match = match;
-        System.out.println("Match started, countdown for join!");
 
     }
 
@@ -20,7 +19,6 @@ public class JoinTimeout implements Callable<Boolean> {
         try {
             Thread.currentThread().sleep(1*5*1000);
 
-            System.out.println("TIMEOUT - MANDA MESSAGGIO ERRORE A TUTTI GLI UTENTI DEL MATCH");
             if(match.joinTimeout) {
                 return false;
             }

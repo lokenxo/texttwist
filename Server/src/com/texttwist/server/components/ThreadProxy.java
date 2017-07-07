@@ -3,6 +3,7 @@ package com.texttwist.server.components;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
 import constants.Config;
+import javafx.util.Pair;
 import models.Message;
 
 import javax.swing.*;
@@ -46,7 +47,6 @@ public class ThreadProxy implements Callable<Boolean> {
     public Boolean call() {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         byte[] byteMessage = null;
-        System.out.println("Selecting right task for new thread");
         if(isValidToken(request.token)){
             switch(request.message){
                 case "START_GAME":
@@ -87,7 +87,6 @@ public class ThreadProxy implements Callable<Boolean> {
                                                     new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
                                             Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
                                             if(!sendMessageJoinTimeoutRes){
-                                                System.out.println("RIMOSSO");
                                                 activeMatches.remove(Match.findMatchIndex(activeMatches,match.matchCreator));
                                                 return sendMessageJoinTimeoutRes;
                                             }
@@ -142,19 +141,16 @@ public class ThreadProxy implements Callable<Boolean> {
                 case "JOIN_GAME":
                     Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, request.data, socketChannel));
                     try {
+                        Match match = Match.findMatch(activeMatches, request.data.get(0));;
                         Boolean joinMatchRes = joinMatch.get();
                         if(joinMatchRes){
-                            System.out.print("START THE GAME!!!!");
 
-                            final Match match = Match.findMatch(activeMatches, request.data.get(0));
-                            System.out.println(match.matchCreator);
                             if(match.joinTimeout == false) {
                                 Future<DefaultListModel<String>> generateLetters = threadPool.submit(new GenerateLetters());
                                 match.setLetters(generateLetters.get());
                                 match.letters.addElement(String.valueOf(match.multicastId));
 
                                 for (int i = 0; i < match.playersSocket.size(); i++) {
-                                    System.out.println("INVIO");
                                     SocketChannel socketClient = match.playersSocket.get(i).getValue();
                                     if (socketClient != null) {
                                         buffer.clear();
@@ -166,18 +162,7 @@ public class ThreadProxy implements Callable<Boolean> {
                                         try {
                                             socketClient.write(buffer);
                                         } catch (IOException e) {
-                                            System.out.println("GAME NOT EXIST");
-                                            buffer = ByteBuffer.allocate(1024);
-                                            if (socketChannel != null) {
-                                                Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
-                                                buffer.clear();
-                                                System.out.println("Il match richiesto non è più disponibile ");
-                                                byteMessage = msg.toString().getBytes();
-                                                buffer = ByteBuffer.wrap(byteMessage);
-                                                socketChannel.write(buffer);
-                                                e.printStackTrace();
-                                                matchNotAvailable = true;
-                                            }
+
                                         }
                                         //clientSocket.close();
                                     }
@@ -200,15 +185,9 @@ public class ThreadProxy implements Callable<Boolean> {
                                         Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
 
                                         MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
-                                        System.out.println(multicastSocket);
-                                        System.out.println(match.multicastId);
                                         InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
                                         DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
-                                        System.out.println(msg.toString());
                                         multicastSocket.send(hi);
-
-                                        System.out.println(Match.findMatchIndex(activeMatches, match.matchCreator));
-
                                         activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
                                         //multicastSocket.disconnect();
                                         //multicastSocket.close();
@@ -222,7 +201,19 @@ public class ThreadProxy implements Callable<Boolean> {
                            // break;
                             //ULTIMO A JOINARE! INIZIA GIOCO
                         } else {
-                            System.out.print("WAIT FRIENDS");
+                            if(match == null){
+                                buffer = ByteBuffer.allocate(1024);
+                                if (socketChannel != null) {
+                                    Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
+                                    buffer.clear();
+                                    byteMessage = msg.toString().getBytes();
+                                    buffer = ByteBuffer.wrap(byteMessage);
+                                    socketChannel.write(buffer);
+                                    matchNotAvailable = true;
+                                }
+                                //Match non disponibile
+
+                            }
                             //NON FARE NULLA, ASPETA GLI ALTRI
                         }
                     } catch (InterruptedException e) {

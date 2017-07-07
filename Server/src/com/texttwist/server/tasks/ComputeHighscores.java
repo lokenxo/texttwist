@@ -14,7 +14,6 @@ public class ComputeHighscores implements Callable<DefaultListModel<String>> {
 
     @Override
     public DefaultListModel<String> call() throws Exception {
-        System.out.println("COMPUTE HIGHSCORE");
         DefaultListModel<String> l = new DefaultListModel<>();
         for(int i =0; i< AccountsManager.getInstance().users.size(); i++){
             l.addElement(AccountsManager.getInstance().users.get(i).userName+":"+AccountsManager.getInstance().users.get(i).score);

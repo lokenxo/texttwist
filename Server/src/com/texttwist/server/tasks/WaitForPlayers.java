@@ -25,8 +25,6 @@ public class WaitForPlayers implements Callable<Boolean> {
 
     @Override
     public Boolean call() throws Exception {
-        System.out.print("Wait for players!");
-
         return true;
     }
 }

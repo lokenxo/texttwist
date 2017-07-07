@@ -29,16 +29,12 @@ public class SendMessageToAllPlayers  implements Callable<Boolean> {
 
         if(!match.isStarted()) {
             for (int i = 0; i < match.playersSocket.size(); i++) {
-                System.out.println(match.playersSocket.size());
                 socketChannel = match.playersSocket.get(i).getValue();
                 if (socketChannel != null) {
                     buffer.clear();
-                    System.out.println("INVIO MESSAGGIO TIMEOUT A " + match.playersSocket.get(i).getKey());
                     byte[] byteMessage = message.toString().getBytes();
                     buffer = ByteBuffer.wrap(byteMessage);
                     socketChannel.write(buffer);
-                    //clientSocket.close();
-                    System.out.println("SEND TO ALL" + message.toString());
                 }
 
             }

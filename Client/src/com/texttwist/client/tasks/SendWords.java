@@ -52,7 +52,6 @@ public class SendWords extends SwingWorker<Void,Void> {
             Message msg = new Message("WORDS", App.session.account.userName, "", words);
             String sentence = msg.toString();
             sendData = sentence.getBytes();
-            System.out.println("SENDIJIIDIIDIDIDIDDIDIDIDIDI");
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, Config.WordsReceiverServerPort);
             clientSocket.send(sendPacket);
             clientSocket.close();*/
@@ -70,7 +69,6 @@ public class SendWords extends SwingWorker<Void,Void> {
 
     @Override
     public void done(){
-        System.out.println("Done send SCOREEEEEE");
         try {
             this.callback.execute();
         } catch (Exception e) {

@@ -29,7 +29,6 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
     public Void doInBackground() {
         Message message = new Message("FETCH_HIGHSCORES", App.session.account.userName, App.session.token, new DefaultListModel<>());
         buffer = ByteBuffer.allocate(1024);
-        System.out.println("SENDDDDD MESSAGE");
         byte[] byteMessage = message.toString().getBytes();
         buffer = ByteBuffer.wrap(byteMessage);
         try {
@@ -49,7 +48,6 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
 
                 if (line.startsWith("MESSAGE")) {
                     Message msg = Message.toMessage(line);
-                    System.out.println(line);
                     if (msg.message.equals("HIGHSCORES") && msg.data != null) {
 
                         for(int i = 0; i< msg.data.size()-1; i++){
@@ -69,10 +67,8 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
     }
 
     public void done(){
-        System.out.println("Done Highscores");
         App.game.globalRanks = globalRanks;
         this.highscoresPage.showHighscoreList();
-        System.out.println("DODODO");
     }
 }
 

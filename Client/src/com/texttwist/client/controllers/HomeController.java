@@ -15,7 +15,6 @@ public class HomeController {
 
     public Response login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
         Response res = App.authService.login(userName,password);
-        System.out.println(res.data);
         if (res.code == 200){
             App.session = (new Session(new User(userName,password,0), res.data.get("token").toString()));
         }

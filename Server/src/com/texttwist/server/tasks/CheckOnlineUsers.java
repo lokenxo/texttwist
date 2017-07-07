@@ -17,7 +17,6 @@ public class CheckOnlineUsers implements Callable<Boolean> {
 
     @Override
     public Boolean call() throws Exception {
-        System.out.print("Check If users are online!");
         for(int i = 0; i < users.size(); i++){
             if(!(SessionsManager.getInstance().exists(users.get(i)))){
                 return false;

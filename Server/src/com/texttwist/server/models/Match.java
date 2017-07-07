@@ -89,11 +89,9 @@ public class Match {
         final Match m = findMatchByPlayer(player);
         m.printAll();
 
-            System.out.println("ENTRO");
             for (int i = 0; i < m.playersScore.size(); i++) {
                 if (m.playersScore.get(i).getKey().equals(player)) {
                     m.playersScore.set(i, new Pair<String, Integer>(player, score));
-                    System.out.println("SEtting score of " + m.playersScore.get(i).getKey() + " to " + score);
                 }
             }
     }
