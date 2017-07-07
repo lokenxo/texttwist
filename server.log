@@ -6857,3 +6857,11 @@ LOGGER (Server): Fri Jul 07 01:14:15 CEST 2017 - Invoked login with username=a A
 LOGGER (Server): Fri Jul 07 01:14:15 CEST 2017 - Login successfull
 LOGGER (Server): Fri Jul 07 01:14:20 CEST 2017 - Invoked login with username=b AND  password=b
 LOGGER (Server): Fri Jul 07 01:14:20 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 07 16:31:52 CEST 2017 - Server starting ...
+LOGGER (Server): Fri Jul 07 16:31:52 CEST 2017 - Auth Service running at 9999 port...
+LOGGER (Server): Fri Jul 07 16:31:52 CEST 2017 - Server started
+LOGGER (Server): Fri Jul 07 16:31:52 CEST 2017 - GamePage Service is running at 10000 port...
+LOGGER (Server): Fri Jul 07 16:31:58 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Fri Jul 07 16:31:58 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 07 16:32:01 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Fri Jul 07 16:32:01 CEST 2017 - Login successfull

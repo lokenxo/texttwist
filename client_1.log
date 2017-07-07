@@ -4721,3 +4721,11 @@ LOGGER (Client1): Fri Jul 07 01:18:04 CEST 2017 - b ti ha sfidato!
 LOGGER (Client1): Fri Jul 07 01:18:30 CEST 2017 - Invoked invitation with username=b|[a]
 LOGGER (Client1): Fri Jul 07 01:18:30 CEST 2017 - Invoked invitation with username=b|[a]
 LOGGER (Client1): Fri Jul 07 01:18:30 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Fri Jul 07 16:31:55 CEST 2017 - Client starting ...
+LOGGER (Client1): Fri Jul 07 16:31:56 CEST 2017 - Client starting ...
+LOGGER (Client1): Fri Jul 07 16:32:03 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Fri Jul 07 16:32:03 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Fri Jul 07 16:32:03 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Fri Jul 07 16:32:22 CEST 2017 - Invoked invitation with username=a|[b]
+LOGGER (Client1): Fri Jul 07 16:32:22 CEST 2017 - a ti ha sfidato!
+LOGGER (Client1): Fri Jul 07 16:32:22 CEST 2017 - Invoked invitation with username=a|[b]
