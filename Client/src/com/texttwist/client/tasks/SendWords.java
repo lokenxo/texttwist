@@ -29,32 +29,20 @@ public class SendWords extends SwingWorker<Void,Void> {
 
     @Override
     public Void doInBackground() {
-        DatagramSocket clientSocket = null;
         try {
-            InetAddress hostIP = InetAddress.getLocalHost();
-            InetSocketAddress myAddress =
-            new InetSocketAddress(hostIP, Config.WordsReceiverServerPort);
+            InetSocketAddress myAddress = new InetSocketAddress(Config.WordsReceiverServerURI, Config.WordsReceiverServerPort);
             DatagramChannel datagramChannel = DatagramChannel.open();
             datagramChannel.bind(null);
-
             ByteBuffer buffer = ByteBuffer.allocate(1024);
+            buffer.clear();
+            System.out.println("SENDER=" + App.session.account.userName);
             Message msg = new Message("WORDS", App.session.account.userName, "", words);
             String sentence = msg.toString();
             buffer.put(sentence.getBytes());
             buffer.flip();
             datagramChannel.send(buffer, myAddress);
-            buffer.clear();
-
-            /*clientSocket = new DatagramSocket();
-
-            InetAddress IPAddress = InetAddress.getByName(Config.WordsReceiverServerURI);
-            byte[] sendData = new byte[1024];
-            Message msg = new Message("WORDS", App.session.account.userName, "", words);
-            String sentence = msg.toString();
-            sendData = sentence.getBytes();
-            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, Config.WordsReceiverServerPort);
-            clientSocket.send(sendPacket);
-            clientSocket.close();*/
+            System.out.println("WORDS INVIATE");
+            System.out.println(sentence);
 
             return null;
         } catch (UnknownHostException e) {

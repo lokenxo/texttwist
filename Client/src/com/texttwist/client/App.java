@@ -12,8 +12,11 @@ import utilities.Logger;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -67,6 +70,23 @@ public class App extends JFrame {
         app = this;
 
         HomePage home = new HomePage(this);
+
+       /* app.addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent e)
+            {
+                try {
+                    authService.logout(App.session.account.userName);
+                    System.out.println("LOGOUT BECAUSE WINDOW CLOSED");
+                } catch (RemoteException e1) {
+                    e1.printStackTrace();
+                } catch (NotBoundException e1) {
+                    e1.printStackTrace();
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });*/
     }
 
     public static Point getWindowsPosition(){

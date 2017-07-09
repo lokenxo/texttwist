@@ -1,6 +1,7 @@
 package com.texttwist.server.models;
 
 import com.texttwist.server.components.GameServer;
+import com.texttwist.server.tasks.MatchTimeout;
 import constants.Config;
 import javafx.util.Pair;
 
@@ -9,6 +10,10 @@ import java.net.DatagramSocket;
 import java.net.Socket;
 import java.nio.channels.SocketChannel;
 import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static com.texttwist.server.components.GameServer.activeMatches;
 
@@ -21,8 +26,12 @@ public class Match {
     private boolean started = false;
     public final String matchCreator;
     public Integer multicastId;
+    public Future<Boolean> timeout;
+    public Future<Boolean> matchTimeout;
     public boolean joinTimeout =true;
     public DefaultListModel<String> letters;
+    protected ExecutorService threadPool = Executors.newSingleThreadExecutor();
+
     public final List<Pair<String,Integer>> playersScore =  Collections.synchronizedList(new ArrayList<>());
 
     public Match(String matchCreator, DefaultListModel<String> players){
@@ -38,15 +47,16 @@ public class Match {
     }
 
     public static Match findMatch(List<Match> matches, String matchName){
-        for (int i = 0; i < matches.size(); i++) {
-            if (matches.get(i).matchCreator.equals(matchName)) {
-                return matches.get(i);
+        synchronized (matches) {
+            for (int i = 0; i < matches.size(); i++) {
+                if (matches.get(i).matchCreator.equals(matchName)) {
+                    return matches.get(i);
+                }
             }
+            return null;
         }
-        return null;
 
     }
-
 
     public void printAll(){
         for (int i = 0; i < playersScore.size(); i++) {
@@ -67,9 +77,9 @@ public class Match {
         return started;
     }
 
-    public Match findMatchByPlayer(String player){
+    public static Match findMatchByPlayer(String player){
         for (int i = 0; i < activeMatches.size(); i++) {
-            for (int j = 0; j < playersStatus.size(); j++) {
+            for (int j = 0; j < activeMatches.get(i).playersStatus.size(); j++) {
                 if (activeMatches.get(i).playersStatus.get(j).getKey().equals(player)) {
                     return activeMatches.get(i);
                 }
@@ -83,20 +93,25 @@ public class Match {
 
     public void startGame(){
         this.started=true;
+        this.matchTimeout = threadPool.submit(new MatchTimeout());
+
     }
 
     public void setScore(String player, Integer score){
-        final Match m = findMatchByPlayer(player);
-        m.printAll();
+        Match m = findMatchByPlayer(player);
+        synchronized (m) {
+            m.printAll();
 
             for (int i = 0; i < m.playersScore.size(); i++) {
                 if (m.playersScore.get(i).getKey().equals(player)) {
                     m.playersScore.set(i, new Pair<String, Integer>(player, score));
                 }
             }
+        }
     }
 
     public Boolean allPlayersSendedHisScore(){
+        System.out.println(matchCreator);
         printAll();
             for (int i = 0; i < playersScore.size(); i++) {
                 if (playersScore.get(i).getValue() == -1) {

@@ -2,6 +2,7 @@
 package com.texttwist.server.components;
 import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
+import com.texttwist.server.tasks.ReceiveWords;
 import constants.Config;
 import models.Message;
 import utilities.Logger;
@@ -25,12 +26,14 @@ public class GameServer implements Runnable{
 
     private int serverPort;
     private ThreadProxy proxy;
+    private ReceiveWords wordsReceiver;
 
     private DatagramChannel datagramChannel;
     private Selector selector = null;
     private ExecutorService threadPool = Executors.newCachedThreadPool();
     private String dictionaryPath = "./Server/resources/dictionary";
     public static Dictionary dict;
+    ByteBuffer bufferWords = ByteBuffer.allocate(1024);
 
 
     public static List<Match> activeMatches =  Collections.synchronizedList(new ArrayList<>());
@@ -50,10 +53,13 @@ public class GameServer implements Runnable{
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.socket().bind(new InetSocketAddress(serverPort));
             serverSocketChannel.register(selector, OP_ACCEPT);
-            InetSocketAddress address = new InetSocketAddress(Config.WordsReceiverServerPort);
+            InetSocketAddress address = new InetSocketAddress(Config.WordsReceiverServerURI,Config.WordsReceiverServerPort);
             datagramChannel = DatagramChannel.open();
-            DatagramSocket datagramSocket = datagramChannel.socket();
-            datagramSocket.bind(address);
+            datagramChannel.configureBlocking(true);
+            datagramChannel.connect(address);
+
+            wordsReceiver = new ReceiveWords(datagramChannel, bufferWords);
+            threadPool.submit(wordsReceiver);
 
             Logger.write("GamePage Service is running at "+this.serverPort+" port...");
         } catch (IOException e) {
@@ -91,8 +97,7 @@ public class GameServer implements Runnable{
                                 if (line.startsWith("MESSAGE")) {
                                     SessionsManager.getInstance().printAll();
                                     Message msg = Message.toMessage(line);
-                                    ByteBuffer bufferWords = ByteBuffer.allocate(1024);
-                                    proxy = new ThreadProxy(msg, client, datagramChannel, bufferWords);
+                                    proxy = new ThreadProxy(msg, client, bufferMessages);
                                     threadPool.submit(proxy);
                                 }
 

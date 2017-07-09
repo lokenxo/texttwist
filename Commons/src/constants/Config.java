@@ -23,7 +23,7 @@ public class Config {
     public static String NotificationServerName ="notification";
 
 
-    public static int timeoutGame = 10;
+    public static int timeoutGame = 5;
 
 
     public static String getNotificationServerURI(){

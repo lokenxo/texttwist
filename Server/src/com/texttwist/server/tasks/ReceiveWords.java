@@ -8,16 +8,19 @@ import models.Message;
 
 import javax.swing.*;
 import javax.xml.crypto.Data;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import static com.texttwist.server.components.GameServer.activeMatches;
 
 /**
  * Created by loke on 27/06/2017.
@@ -26,53 +29,42 @@ public class ReceiveWords implements Callable<Boolean>{
 
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
 
-    public DatagramChannel DatagramChannel;
-    public final Match match;
-    byte[] receiveData = new byte[1024];
+    public DatagramChannel channel;
     ByteBuffer buffer;
 
 
-    public ReceiveWords(Match match, DatagramChannel DatagramChannel, ByteBuffer buffer) {
-        this.match = match;
+    public ReceiveWords(DatagramChannel channel, ByteBuffer buffer) {
         this.buffer = buffer;
-        this.DatagramChannel = DatagramChannel;
+        this.channel = channel;
     }
 
     @Override
     public Boolean call() throws Exception {
 
-        Future<Boolean> matchTimeout = threadPool.submit(new MatchTimeout());
 
-        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
         Message msg;
+        DatagramSocket s = new DatagramSocket(Config.WordsReceiverServerPort);
+
+
         while(true) {
-            DatagramChannel.receive(buffer);
-            buffer.flip();
-            int limits = buffer.limit();
-            byte bytes[] = new byte[limits];
-            buffer.get(bytes, 0, limits);
-            String rcv = new String(bytes);
+            byte[] buf = new byte[1024];
+            System.out.println("RECEIVIN WORDS");
 
-            buffer.rewind();
-            msg = Message.toMessage(rcv);
-            if(msg.message.equals("WORDS")){
-                break;
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            s.receive(packet);
+
+            System.out.println("WORDS RECEIVED");
+            String rcv = new String(packet.getData());
+            System.out.println(rcv);
+            if (rcv.startsWith("MESSAGE")) {
+                msg = Message.toMessage(rcv);
+                System.out.println(msg.sender);
+                Match match = Match.findMatchByPlayer(msg.sender);
+                threadPool.submit(new ComputeScore(msg.sender, msg.data, match));
             }
+
         }
-        Future<Integer> computeScore = threadPool.submit(new ComputeScore(msg.sender, match, msg.data));
 
-        //Se tutti hanno inviato le parole, blocca il timer e restituisci true
-        computeScore.get();
-
-
-        if(match.allPlayersSendedHisScore()){
-            match.setUndefinedScorePlayersToZero();
-
-            matchTimeout.cancel(true);
-            DatagramChannel.close();
-            return true;
-        }
-        return false;
 
     }
 

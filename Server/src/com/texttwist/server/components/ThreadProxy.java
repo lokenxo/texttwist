@@ -1,5 +1,6 @@
 package com.texttwist.server.components;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
 import constants.Config;
@@ -26,16 +27,15 @@ public class ThreadProxy implements Callable<Boolean> {
     protected final ExecutorService threadPool = Executors.newCachedThreadPool();
     private final Message request;
     private final SocketChannel socketChannel;
-    private final DatagramChannel datagramChannel;
-    private ByteBuffer buffer;
+    private ByteBuffer bufferMessage;
     boolean matchNotAvailable =false;
 
 
-    ThreadProxy(Message request, SocketChannel socketChannel, DatagramChannel datagramChannel, ByteBuffer buffer){
+    ThreadProxy(Message request, SocketChannel socketChannel, ByteBuffer bufferMessage) {
         this.request = request;
         this.socketChannel = socketChannel;
-        this.datagramChannel = datagramChannel;
-        this.buffer = buffer;
+        this.bufferMessage = bufferMessage;
+
     }
 
 
@@ -45,7 +45,7 @@ public class ThreadProxy implements Callable<Boolean> {
 
     @Override
     public Boolean call() {
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        bufferMessage = ByteBuffer.allocate(1024);
         byte[] byteMessage = null;
         if(isValidToken(request.token)){
             switch(request.message){
@@ -76,13 +76,14 @@ public class ThreadProxy implements Callable<Boolean> {
                                         //NON FARE NULLA, ASPETTA GLI ALTRI
                                         Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<String>());
                                         byteMessage = message.toString().getBytes();
-                                        buffer = ByteBuffer.wrap(byteMessage);
-                                        socketChannel.write(buffer);
+                                        bufferMessage = ByteBuffer.wrap(byteMessage);
+                                        socketChannel.write(bufferMessage);
 
 
                                         Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
-                                        Boolean joinTimeoutRes = joinTimeout.get();
-                                        if(!joinTimeoutRes){
+                                        match.timeout = joinTimeout;
+                                        joinTimeout.get();
+                                        if(match.joinTimeout){
                                             Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
                                                     new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
                                             Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
@@ -90,6 +91,8 @@ public class ThreadProxy implements Callable<Boolean> {
                                                 activeMatches.remove(Match.findMatchIndex(activeMatches,match.matchCreator));
                                                 return sendMessageJoinTimeoutRes;
                                             }
+                                        } else {
+                                            System.out.println("TIMEOUT FINITO SENZA EFFETTI");
                                         }
                                     }
 
@@ -105,9 +108,9 @@ public class ThreadProxy implements Callable<Boolean> {
 
                             Message message = new Message("USER_NOT_ONLINE", "", "", new DefaultListModel<String>());
                             byteMessage = new String(message.toString()).getBytes();
-                            buffer.clear();
-                            buffer = ByteBuffer.wrap(byteMessage);
-                            this.socketChannel.write(buffer);
+                            bufferMessage.clear();
+                            bufferMessage = ByteBuffer.wrap(byteMessage);
+                            this.socketChannel.write(bufferMessage);
                             break;
                         }
                     } catch (InterruptedException e) {
@@ -125,9 +128,9 @@ public class ThreadProxy implements Callable<Boolean> {
                         Message message = new Message("HIGHSCORES", "", "", computeHighscoresRes);
                         byteMessage  = message.toString().getBytes();
 
-                        buffer = ByteBuffer.wrap(byteMessage);
+                        bufferMessage = ByteBuffer.wrap(byteMessage);
                         try {
-                            socketChannel.write(buffer);
+                            socketChannel.write(bufferMessage);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -145,7 +148,7 @@ public class ThreadProxy implements Callable<Boolean> {
                         Boolean joinMatchRes = joinMatch.get();
                         if(joinMatchRes){
 
-                            if(match.joinTimeout == false) {
+                            if(!match.joinTimeout) {
                                 Future<DefaultListModel<String>> generateLetters = threadPool.submit(new GenerateLetters());
                                 match.setLetters(generateLetters.get());
                                 match.letters.addElement(String.valueOf(match.multicastId));
@@ -153,47 +156,24 @@ public class ThreadProxy implements Callable<Boolean> {
                                 for (int i = 0; i < match.playersSocket.size(); i++) {
                                     SocketChannel socketClient = match.playersSocket.get(i).getValue();
                                     if (socketClient != null) {
-                                        buffer.clear();
+                                        bufferMessage.clear();
                                         Message message = new Message("GAME_STARTED", "", "", match.letters);
                                         match.startGame();
+
+                                        match.timeout.cancel(true);
+                                        System.out.println("TIMEOUT CANCELLEd");
                                         byteMessage = message.toString().getBytes();
 
-                                        buffer = ByteBuffer.wrap(byteMessage);
+                                        bufferMessage = ByteBuffer.wrap(byteMessage);
                                         try {
-                                            socketClient.write(buffer);
+                                            socketClient.write(bufferMessage);
                                         } catch (IOException e) {
 
                                         }
                                         //clientSocket.close();
                                     }
                                 }
-                                if (!matchNotAvailable) {
-
-                                    //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
-                                    Future<Boolean> receiveWords = threadPool.submit(new ReceiveWords(match, datagramChannel, buffer));
-                                    Boolean receiveWordsRes = receiveWords.get();
-
-                                    if (receiveWordsRes) {
-                                        System.out.println("ZERO PUNTI a chi non ha ancora inviato le lettere, TIMER SCADUTO");
-                                    } else {
-                                        System.out.println("TUTTI I GIOCATORI HANNO CONSEGNATO IN TEMPO");
-                                    }
-
-                                    match.setUndefinedScorePlayersToZero();
-
-                                    while (true) {
-                                        Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
-
-                                        MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
-                                        InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                                        DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
-                                        multicastSocket.send(hi);
-                                        activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
-                                        //multicastSocket.disconnect();
-                                        //multicastSocket.close();
-                                    }
-
-                                } else {
+                                if (matchNotAvailable) {
                                     return false;
                                 }
                             }
@@ -202,13 +182,13 @@ public class ThreadProxy implements Callable<Boolean> {
                             //ULTIMO A JOINARE! INIZIA GIOCO
                         } else {
                             if(match == null){
-                                buffer = ByteBuffer.allocate(1024);
+                                bufferMessage = ByteBuffer.allocate(1024);
                                 if (socketChannel != null) {
                                     Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
-                                    buffer.clear();
+                                    bufferMessage.clear();
                                     byteMessage = msg.toString().getBytes();
-                                    buffer = ByteBuffer.wrap(byteMessage);
-                                    socketChannel.write(buffer);
+                                    bufferMessage = ByteBuffer.wrap(byteMessage);
+                                    socketChannel.write(bufferMessage);
                                     matchNotAvailable = true;
                                 }
                                 //Match non disponibile
