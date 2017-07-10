@@ -39,7 +39,6 @@ public class AccountsManager {
     }
 
     public boolean exists(String userName) {
-        synchronized(users) {
             Iterator<User> i = users.iterator();
             while (i.hasNext()) {
                 if (i.next().userName.equals(userName)) {
@@ -47,11 +46,10 @@ public class AccountsManager {
                 }
             }
             return false;
-        }
+
     }
 
     public boolean checkPassword(String userName, String password) {
-        synchronized(users) {
             Iterator<User> i = users.iterator();
             while (i.hasNext()) {
                 User account = i.next();
@@ -60,11 +58,10 @@ public class AccountsManager {
                 }
             }
             return false;
-        }
+
     }
 
     public User findUser(String userName){
-        synchronized(users) {
             Iterator<User> i = users.iterator();
             while (i.hasNext()) {
                 User u = i.next();
@@ -73,7 +70,7 @@ public class AccountsManager {
                 }
             }
             return null;
-        }
+
     }
 
     public int size(){

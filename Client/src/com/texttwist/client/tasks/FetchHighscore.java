@@ -42,23 +42,25 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
 
             while (socketChannel.read(buffer) != -1) {
 
-                buffer.clear();
-
                 String line = new String(buffer.array(), buffer.position(), buffer.remaining());
 
                 if (line.startsWith("MESSAGE")) {
                     Message msg = Message.toMessage(line);
+                    //MODIFICARE QUI. IL BUG SI VERIFICA ANCHE CON 2 CLIENT, INVIANDO IL GIOCO A UN CLIENT CHE STA SULLA PAGNA DI HIGHSCORES
                     if (msg.message.equals("HIGHSCORES") && msg.data != null) {
 
                         for(int i = 0; i< msg.data.size()-1; i++){
                             String[] splitted = msg.data.get(i).split(":");
                             globalRanks.addElement(new Pair<>(splitted[0],new Integer(splitted[1])));
                         }
+                        buffer.clear();
 
                         return null;
 
                     }
                 }
+                buffer.clear();
+
             }
         } catch (IOException e) {
             e.printStackTrace();

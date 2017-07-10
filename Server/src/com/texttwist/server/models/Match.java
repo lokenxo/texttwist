@@ -4,10 +4,11 @@ import com.texttwist.server.components.GameServer;
 import com.texttwist.server.tasks.MatchTimeout;
 import constants.Config;
 import javafx.util.Pair;
+import models.Message;
 
 import javax.swing.*;
-import java.net.DatagramSocket;
-import java.net.Socket;
+import java.io.IOException;
+import java.net.*;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -27,7 +28,7 @@ public class Match {
     public final String matchCreator;
     public Integer multicastId;
     public Future<Boolean> timeout;
-    public Future<Boolean> matchTimeout;
+    public boolean matchTimeout = true;
     public boolean joinTimeout =true;
     public DefaultListModel<String> letters;
     protected ExecutorService threadPool = Executors.newSingleThreadExecutor();
@@ -46,15 +47,31 @@ public class Match {
 
     }
 
-    public static Match findMatch(List<Match> matches, String matchName){
-        synchronized (matches) {
-            for (int i = 0; i < matches.size(); i++) {
-                if (matches.get(i).matchCreator.equals(matchName)) {
-                    return matches.get(i);
-                }
+    public Void sendScores(){
+        while (true) {
+            System.out.println("SENDING");
+            Message msg = new Message("FINALSCORE", "SERVER", "", this.getMatchPlayersScoreAsStringList());
+
+            MulticastSocket multicastSocket = null;
+            try {
+                multicastSocket = new MulticastSocket(this.multicastId);
+                InetAddress ia = null;
+                ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
+                DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, this.multicastId);
+                multicastSocket.send(hi);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            return null;
+            activeMatches.remove(Match.findMatchIndex(activeMatches, this.matchCreator));
         }
+    }
+    public static Match findMatch(List<Match> matches, String matchName){
+        for (int i = 0; i < matches.size(); i++) {
+            if (matches.get(i).matchCreator.equals(matchName)) {
+                return matches.get(i);
+            }
+        }
+        return null;
 
     }
 
@@ -93,19 +110,17 @@ public class Match {
 
     public void startGame(){
         this.started=true;
-        this.matchTimeout = threadPool.submit(new MatchTimeout());
+        threadPool.submit(new MatchTimeout(this));
 
     }
 
     public void setScore(String player, Integer score){
         Match m = findMatchByPlayer(player);
-        synchronized (m) {
-            m.printAll();
+        m.printAll();
 
-            for (int i = 0; i < m.playersScore.size(); i++) {
-                if (m.playersScore.get(i).getKey().equals(player)) {
-                    m.playersScore.set(i, new Pair<String, Integer>(player, score));
-                }
+        for (int i = 0; i < m.playersScore.size(); i++) {
+            if (m.playersScore.get(i).getKey().equals(player)) {
+                m.playersScore.set(i, new Pair<String, Integer>(player, score));
             }
         }
     }

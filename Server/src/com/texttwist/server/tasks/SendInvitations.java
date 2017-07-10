@@ -16,8 +16,8 @@ import java.util.concurrent.Callable;
  * Created by loke on 19/06/2017.
  */
 public class SendInvitations implements Callable<Boolean> {
-    private final DefaultListModel<String> users;
-    private final String sender;
+    private DefaultListModel<String> users;
+    private String sender;
 
     public SendInvitations(String sender, DefaultListModel<String> users) {
         this.users = users;
@@ -27,10 +27,13 @@ public class SendInvitations implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         try {
+            System.out.println("INVIA INVITO A" + users);
+
             Server.notificationServer.sendInvitations(sender, users);
 
         } catch (Exception e) {
             System.out.println("Eccezione" + e);
+            e.printStackTrace();
         }
 
         return true;

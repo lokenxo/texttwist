@@ -36,7 +36,6 @@ public class ComputeScore implements Callable<Integer> {
             System.out.println(match);
         System.out.println("COMPUTE SCORE STAsssssRTED");
 
-        synchronized (match) {
             System.out.print("CALCOLO LO SCORE PER " + match.matchCreator);
             Integer score = 0;
 
@@ -54,29 +53,19 @@ public class ComputeScore implements Callable<Integer> {
 
             if(match.allPlayersSendedHisScore()) {
 
-                match.matchTimeout.cancel(true);
+                match.matchTimeout = false;
+                System.out.println("MATCH TIMEOUT CANCELLATO");
                 //channel.close();
                 //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
 
                 match.setUndefinedScorePlayersToZero();
 
                 System.out.println("SEND BROADCAST");
-                while (true) {
-                    System.out.println("SENDING");
-                    Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
+                match.sendScores();
 
-                    MulticastSocket multicastSocket = new MulticastSocket(match.multicastId);
-                    InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                    DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
-                    multicastSocket.send(hi);
-                    activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
-                    //multicastSocket.disconnect();
-                    //multicastSocket.close();
-                }
             }
             return score;
 
-        }
 
     }
 

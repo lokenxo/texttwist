@@ -29,11 +29,12 @@ public class NotificationServer implements INotificationServer {
     }
 
     public synchronized void unregisterForCallback(INotificationClient client) throws RemoteException {
-        if(clients.remove(client)) {
+        if (clients.remove(client)) {
             System.out.println("Client unregistered");
         } else {
             System.out.println("Unable to unregister client");
         }
+
     }
 
     public synchronized void sendInvitations(String username, DefaultListModel<String> users){
@@ -43,14 +44,14 @@ public class NotificationServer implements INotificationServer {
         while (i.hasNext()) {
             client = (INotificationClient) i.next();
             try {
+
+                System.out.println("SENDING INVITE TO "+users);
                 client.sendInvite(username, users);
             } catch (RemoteException e) {
-                try {
-                    unregisterForCallback(client);
-                } catch (RemoteException e1) {
-                    e1.printStackTrace();
-                }
+                    System.out.println("Sembra down");
+                    //unregisterForCallback(client);
             }
         }
+
     }
 }

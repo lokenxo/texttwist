@@ -28,6 +28,7 @@ public class InvitePlayers extends SwingWorker<Boolean,Void> {
     }
     @Override
     public Boolean doInBackground() {
+        buffer = ByteBuffer.allocate(1024);
         Message message = new Message("START_GAME", App.session.account.userName, App.session.token, userNames);
 
         byte[] byteMessage = new String(message.toString()).getBytes();
@@ -40,7 +41,6 @@ public class InvitePlayers extends SwingWorker<Boolean,Void> {
 
         try {
             while (socketChannel.read(buffer) != -1) {
-                buffer.clear();
 
                 String line = new String(buffer.array(), buffer.position(), buffer.remaining());
 
@@ -51,9 +51,11 @@ public class InvitePlayers extends SwingWorker<Boolean,Void> {
                                 new Callable() {
                                     @Override
                                     public Object call() throws Exception {
+                                        buffer.clear();
                                         return null;
                                     }
                                 }, null);
+                        buffer.clear();
                         return null;
 
                     }
@@ -66,13 +68,16 @@ public class InvitePlayers extends SwingWorker<Boolean,Void> {
                                     public Object call() throws Exception {
                                         //In attesa dei giocatori
                                         new GamePage(Page.window);
+                                        buffer.clear();
                                         return null;
                                     }
                                 }, null);
+                        buffer.clear();
                         return null;
 
                     }
                 }
+                buffer.clear();
             }
         } catch (IOException e) {
             e.printStackTrace();

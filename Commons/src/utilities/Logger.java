@@ -31,6 +31,7 @@ public class Logger {
             out = new PrintWriter(bw);
             Date d = new Date();
             out.append("LOGGER ("+name+"): " + d.toString() + " - " + msg + "\n");
+            System.out.println("LOGGER ("+name+"): " + d.toString() + " - " + msg + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -37,20 +37,29 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
     @Override
     public DefaultListModel<String> doInBackground() {
         try {
+            buffer = ByteBuffer.allocate(1024);
+            String line1 = new String(buffer.array(), buffer.position(), buffer.remaining());
+            System.out.println("Questo è il buffer prima: " + line1);
             TTDialog loading = new TTDialog("alert", "Waiting for users joins",null,null);
             buffer.flip();
-            while (this.socketChannel.read(this.buffer) != -1) {
 
-                String line = new String(this.buffer.array(), this.buffer.position(), this.buffer.remaining());
+            while (this.socketChannel.read(buffer) != -1) {
+
+                String line = new String(buffer.array(), buffer.position(), buffer.remaining());
+               // String line = new String()
                 buffer.clear();
 
                 if (line.startsWith("MESSAGE")) {
                     buffer.clear();
+                    System.out.println("Mi arriva questo dal server " +  line);
 
                     Message msg = Message.toMessage(line);
+                    System.out.println(msg.message);
                     if (msg.message.equals("JOIN_TIMEOUT")) {
                         loading.dispose();
                         joinTimeout = true;
+                        System.out.println("JOIN TIMEOUT ENTERED");
+
                         new TTDialog("alert", "TIMEOUT!",
                             new Callable() {
                                 @Override
@@ -65,6 +74,8 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
                     if (msg.message.equals("MATCH_NOT_AVAILABLE")) {
                         loading.dispose();
+                        System.out.println("MATCH NOT AVAILABLE ENTERED");
+
                         joinTimeout = true;
                         new TTDialog("alert", "THE GAME IS NOT MORE AVAILABLE!",
                                 new Callable() {
@@ -80,6 +91,7 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
                     if (msg.message.equals("GAME_STARTED")) {
                         loading.dispose();
+                        System.out.println("GAME STARTED ENTERED");
 
                         DefaultListModel<String> data;
                         if(msg.data !=null ) {
@@ -96,9 +108,15 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
                             //socketChannel.close();
                             return words;
+                        } else {
+                            System.out.println("USCITO CON");
+                            System.out.println(line);
+                            return new DefaultListModel<>();
                         }
 
                     }
+                    buffer = ByteBuffer.allocate(1024);
+
                 }
             }
         } catch (IOException e) {

@@ -71,7 +71,7 @@ public class App extends JFrame {
 
         HomePage home = new HomePage(this);
 
-       /* app.addWindowListener(new WindowAdapter()
+        /*app.addWindowListener(new WindowAdapter()
         {
             public void windowClosing(WindowEvent e)
             {

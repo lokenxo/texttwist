@@ -73,27 +73,28 @@ public class ThreadProxy implements Callable<Boolean> {
                                     Boolean joinMatchRes = joinMatch.get();
 
                                     if(!joinMatchRes){
+                                        bufferMessage = ByteBuffer.allocate(1024);
+
                                         //NON FARE NULLA, ASPETTA GLI ALTRI
-                                        Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<String>());
+                                        Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<>());
                                         byteMessage = message.toString().getBytes();
                                         bufferMessage = ByteBuffer.wrap(byteMessage);
                                         socketChannel.write(bufferMessage);
+                                    }
 
-
-                                        Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
-                                        match.timeout = joinTimeout;
-                                        joinTimeout.get();
-                                        if(match.joinTimeout){
-                                            Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
-                                                    new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
-                                            Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
-                                            if(!sendMessageJoinTimeoutRes){
-                                                activeMatches.remove(Match.findMatchIndex(activeMatches,match.matchCreator));
-                                                return sendMessageJoinTimeoutRes;
-                                            }
-                                        } else {
-                                            System.out.println("TIMEOUT FINITO SENZA EFFETTI");
+                                    Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
+                                    joinTimeout.get();
+                                    if(match.joinTimeout){
+                                        Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
+                                                new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
+                                        Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
+                                        if(!sendMessageJoinTimeoutRes){
+                                            activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
+                                            return sendMessageJoinTimeoutRes;
                                         }
+                                    } else {
+                                        System.out.println("TIMEOUT FINITO SENZA EFFETTI");
+                                        return true;
                                     }
 
                                 } else {
@@ -106,12 +107,12 @@ public class ThreadProxy implements Callable<Boolean> {
                             }
                         } else {
 
-                            Message message = new Message("USER_NOT_ONLINE", "", "", new DefaultListModel<String>());
+                            Message message = new Message("USER_NOT_ONLINE", "", "", new DefaultListModel<>());
                             byteMessage = new String(message.toString()).getBytes();
                             bufferMessage.clear();
                             bufferMessage = ByteBuffer.wrap(byteMessage);
                             this.socketChannel.write(bufferMessage);
-                            break;
+                            return false;
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -125,16 +126,22 @@ public class ThreadProxy implements Callable<Boolean> {
                     Future<DefaultListModel<String>> computeHighscores = threadPool.submit(new ComputeHighscores());
                     try {
                         DefaultListModel<String> computeHighscoresRes = computeHighscores.get();
-                        Message message = new Message("HIGHSCORES", "", "", computeHighscoresRes);
-                        byteMessage  = message.toString().getBytes();
+                            bufferMessage.clear();
+                            bufferMessage = ByteBuffer.allocate(1024);
 
-                        bufferMessage = ByteBuffer.wrap(byteMessage);
-                        try {
-                            socketChannel.write(bufferMessage);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        break;
+                            Message message = new Message("HIGHSCORES", "", "", computeHighscoresRes);
+                            byteMessage = message.toString().getBytes();
+
+                            bufferMessage = ByteBuffer.wrap(byteMessage);
+                            try {
+                                String s = new String(bufferMessage.array(), bufferMessage.position(), bufferMessage.remaining());
+                                System.out.println("INVIO HIGHSCORES "+ s);
+                                socketChannel.write(bufferMessage);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        return false;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -157,33 +164,35 @@ public class ThreadProxy implements Callable<Boolean> {
                                     SocketChannel socketClient = match.playersSocket.get(i).getValue();
                                     if (socketClient != null) {
                                         bufferMessage.clear();
+                                        bufferMessage = ByteBuffer.allocate(1024);
+
                                         Message message = new Message("GAME_STARTED", "", "", match.letters);
                                         match.startGame();
 
-                                        match.timeout.cancel(true);
                                         System.out.println("TIMEOUT CANCELLEd");
                                         byteMessage = message.toString().getBytes();
 
                                         bufferMessage = ByteBuffer.wrap(byteMessage);
                                         try {
+                                            String s = new String(bufferMessage.array(), bufferMessage.position(), bufferMessage.remaining());
+                                            System.out.println("INVIO GAME_STARTED "+ s);
                                             socketClient.write(bufferMessage);
                                         } catch (IOException e) {
 
                                         }
-                                        //clientSocket.close();
                                     }
+
                                 }
                                 if (matchNotAvailable) {
                                     return false;
                                 }
                             }
-                            //RISPONDI CON LA CLASSIFICA
-                           // break;
-                            //ULTIMO A JOINARE! INIZIA GIOCO
                         } else {
                             if(match == null){
                                 bufferMessage = ByteBuffer.allocate(1024);
                                 if (socketChannel != null) {
+                                    bufferMessage = ByteBuffer.allocate(1024);
+
                                     Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
                                     bufferMessage.clear();
                                     byteMessage = msg.toString().getBytes();

@@ -1,18 +1,11 @@
 package com.texttwist.server.tasks;
 
-import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
 import com.texttwist.server.models.Match;
 import javafx.util.Pair;
-import models.Message;
-
 import javax.swing.*;
-import java.net.Socket;
-import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
-
 import static com.texttwist.server.components.GameServer.activeMatches;
-import static com.texttwist.server.models.Match.findMatch;
 
 /**
  * Created by loke on 23/06/2017.
@@ -27,7 +20,6 @@ public class JoinMatch implements Callable<Boolean> {
         this.matchName = matchName.get(0);
         this.socketChannel = socketChannel;
     }
-
 
     @Override
     public Boolean call() throws Exception {

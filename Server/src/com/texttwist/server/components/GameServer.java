@@ -17,7 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import static java.nio.channels.SelectionKey.OP_ACCEPT;
 import static java.nio.channels.SelectionKey.OP_READ;
@@ -57,16 +56,17 @@ public class GameServer implements Runnable{
             datagramChannel = DatagramChannel.open();
             datagramChannel.configureBlocking(true);
             datagramChannel.connect(address);
+            Logger.write("GamePage Service is running at "+this.serverPort+" port...");
 
             wordsReceiver = new ReceiveWords(datagramChannel, bufferWords);
             threadPool.submit(wordsReceiver);
 
-            Logger.write("GamePage Service is running at "+this.serverPort+" port...");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         while (true) {
+            System.out.println("WAITING FOR MSG");
             try {
                 selector.select();
             } catch (IOException e) {
@@ -76,6 +76,7 @@ public class GameServer implements Runnable{
             Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
             while (iter.hasNext()) {
                 ByteBuffer bufferMessages = ByteBuffer.allocate(1024);
+                bufferMessages.clear();
                 SocketChannel client = null;
                 SelectionKey key = iter.next();
                 iter.remove();
@@ -93,7 +94,7 @@ public class GameServer implements Runnable{
                             if (client.read(bufferMessages) != -1) {
                                 bufferMessages.flip();
                                 String line = new String(bufferMessages.array(), bufferMessages.position(), bufferMessages.remaining());
-
+                                System.out.println(line);
                                 if (line.startsWith("MESSAGE")) {
                                     SessionsManager.getInstance().printAll();
                                     Message msg = Message.toMessage(line);

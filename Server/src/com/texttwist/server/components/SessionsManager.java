@@ -30,13 +30,12 @@ public class SessionsManager {
     }
 
     public void printAll(){
-        synchronized(sessions) {
             Iterator<Session> i = sessions.iterator();
             while (i.hasNext()) {
                 Session elem = i.next();
                 System.out.println(elem.account.userName + " | " + elem.token);
             }
-        }
+
     }
 
     public boolean remove(String userName){
@@ -51,7 +50,6 @@ public class SessionsManager {
     }
 
     public Session getSession(String userName) {
-        synchronized(sessions) {
             Iterator<Session> i = sessions.iterator();
             while (i.hasNext()) {
                 Session elem = i.next();
@@ -60,11 +58,10 @@ public class SessionsManager {
                 }
             }
             return null;
-        }
+
     }
 
     public boolean exists(String userName) {
-        synchronized(sessions) {
             Iterator<Session> i = sessions.iterator();
             while (i.hasNext()) {
                 Session elem = i.next();
@@ -73,12 +70,11 @@ public class SessionsManager {
                 }
             }
             return false;
-        }
+
     }
 
 
     public boolean isValidToken(String token) {
-        synchronized(sessions) {
             Iterator<Session> i = sessions.iterator();
             while (i.hasNext()) {
                 if (i.next().token.equals(token)) {
@@ -86,7 +82,7 @@ public class SessionsManager {
                 }
             }
             return false;
-        }
+
     }
 
 }
