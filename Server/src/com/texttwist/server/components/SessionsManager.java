@@ -1,4 +1,5 @@
 package com.texttwist.server.components;
+import interfaces.INotificationClient;
 import models.Session;
 import models.User;
 
@@ -13,7 +14,6 @@ import java.util.List;
 public class SessionsManager {
 
     private List<Session> sessions = Collections.synchronizedList(new ArrayList<Session>());
-
     private static class Holder {
         static final SessionsManager INSTANCE = new SessionsManager();
     }

@@ -51,8 +51,6 @@ public class WaitForScore extends SwingWorker<Void,Void> {
                 }
             }
             App.game.ranks = ranks;
-            App.game.multicastSocket.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServerURI));
-            App.game.multicastSocket.close();
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -65,6 +63,12 @@ public class WaitForScore extends SwingWorker<Void,Void> {
     @Override
     public void done(){
         App.game.ranks = ranks;
+        try {
+            App.game.multicastSocket.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServerURI));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        App.game.multicastSocket.close();
 
         try {
             this.callback.execute();

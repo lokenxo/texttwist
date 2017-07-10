@@ -10,6 +10,6 @@ import java.rmi.RemoteException;
 public interface IAuth extends Remote {
     Response login(String userName, String password) throws RemoteException;
     Response register(String userName, String password) throws RemoteException;
-    Response logout(String userName, String token) throws RemoteException;
+    Response logout(String userName, String token, INotificationClient stub) throws RemoteException;
 
 }

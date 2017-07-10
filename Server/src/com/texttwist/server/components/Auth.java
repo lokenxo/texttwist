@@ -1,5 +1,7 @@
 package com.texttwist.server.components;
+import com.texttwist.client.App;
 import interfaces.IAuth;
+import interfaces.INotificationClient;
 import models.Response;
 import org.json.simple.JsonObject;
 import utilities.Logger;
@@ -8,6 +10,8 @@ import java.math.BigInteger;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.SecureRandom;
+
+import static com.texttwist.server.Server.notificationServer;
 
 /**
  * Created by loke on 15/06/2017.
@@ -56,8 +60,10 @@ public class Auth extends UnicastRemoteObject implements IAuth {
     }
 
     @Override
-    public Response logout(String userName, String token) throws RemoteException {
+    public Response logout(String userName, String token, INotificationClient stub) throws RemoteException {
         Logger.write("Invoked logout with username=" + userName + " AND " + " token=" + token);
+        notificationServer.unregisterForCallback(stub);
+
         if ((userName != null && !userName.isEmpty()) && (token != null && !token.isEmpty())) {
             boolean res = SessionsManager.getInstance().remove(userName);
             if(res) {

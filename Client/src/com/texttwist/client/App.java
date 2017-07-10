@@ -45,21 +45,6 @@ public class App extends JFrame {
         Logger logger = new Logger(new File("./client_"+id+".log"), "Client"+id);
 
         Logger.write("Client starting ...");
-        try {
-            Registry registry = LocateRegistry.getRegistry(Config.NotificationServerStubPort);
-            INotificationServer server = (INotificationServer) registry.lookup(Config.NotificationServerName);
-
-            /* si registra per la callback */
-            System.out.println("Registering for callback");
-            INotificationClient callbackObj = new NotificationClient();
-            INotificationClient stub = (INotificationClient) UnicastRemoteObject.exportObject(callbackObj, 0);
-
-            server.registerForCallback(stub);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        }
 
         //Init models
         game = new Game();

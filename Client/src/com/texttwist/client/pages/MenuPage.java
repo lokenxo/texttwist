@@ -100,7 +100,7 @@ public class MenuPage extends Page{
             new Callable<Object>() {
                 @Override
                 public Object call() throws Exception {
-                    menuController.logout(App.session.account.userName);
+                    menuController.logout(App.session.account.userName, App.game.stub);
                     return new HomePage(Page.window);
                 }
             },

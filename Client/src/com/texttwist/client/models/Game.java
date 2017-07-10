@@ -4,9 +4,12 @@ import com.texttwist.client.App;
 import com.texttwist.client.pages.GamePage;
 import com.texttwist.client.pages.MenuPage;
 import com.texttwist.client.pages.Page;
+import com.texttwist.client.services.NotificationClient;
 import com.texttwist.client.tasks.InvitePlayers;
 import com.texttwist.client.ui.TTDialog;
 import constants.Config;
+import interfaces.INotificationClient;
+import interfaces.INotificationServer;
 import javafx.util.Pair;
 import models.Message;
 
@@ -17,6 +20,11 @@ import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.*;
 
 /**
@@ -30,12 +38,26 @@ public class Game {
     public DefaultListModel<String> words = new DefaultListModel<String>();
     public DefaultListModel<String> letters = new DefaultListModel<String>();
     public DefaultListModel<Pair<String,Integer>> ranks = new DefaultListModel<>();
+    public INotificationClient stub;
     public DefaultListModel<Pair<String,Integer>> globalRanks = new DefaultListModel<>();
     public MulticastSocket multicastSocket;
+    public INotificationServer server;
 
     public SocketChannel clientSocket = null;
 
     public Game(){
+
+        Registry registry = null;
+        try {
+            registry = LocateRegistry.getRegistry(Config.NotificationServerStubPort);
+            server = (INotificationServer) registry.lookup(Config.NotificationServerName);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        }
+
         InetSocketAddress socketAddress = new InetSocketAddress(Config.GameServerURI, Config.GameServerPort);
         try {
             clientSocket = SocketChannel.open(socketAddress);

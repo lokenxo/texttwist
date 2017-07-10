@@ -20,9 +20,13 @@ public class NotificationClient implements INotificationClient {
     public Response sendInvite(String userName, DefaultListModel<String> users) throws RemoteException {
         Logger.write("Invoked invitation with username=" + userName + "|" + users.toString() );
 
-        if(users.contains(App.session.account.userName)){
-            Logger.write(userName+" ti ha sfidato!");
-            App.game.newMatch(userName);
+        if(App.session != null) {
+            if (users.contains(App.session.account.userName)) {
+                Logger.write(userName + " ti ha sfidato!");
+                App.game.newMatch(userName);
+            } else {
+                Logger.write("L'utente è sloggato");
+            }
         }
         return null;
     }
