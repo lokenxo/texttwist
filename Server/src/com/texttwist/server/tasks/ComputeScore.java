@@ -23,6 +23,7 @@ public class ComputeScore implements Callable<Integer> {
     public DefaultListModel<String> words;
     public final String sender;
     public Match match;
+    public DefaultListModel<String> wordsValid;
 
     public ComputeScore(String sender, DefaultListModel<String> words, Match match){
         this.words = words;
@@ -32,21 +33,20 @@ public class ComputeScore implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println("COMPUTE SCORE STARTED");
-            System.out.println(match);
-        System.out.println("COMPUTE SCORE STAsssssRTED");
-
-            System.out.print("CALCOLO LO SCORE PER " + match.matchCreator);
+            wordsValid = new DefaultListModel<>();
             Integer score = 0;
 
             for (int i = 0; i < words.size(); i++) {
                 if (isValid(words.get(i), match.letters)) {
                     score += words.get(i).length();
+                    System.out.println(words.get(i) + " is valid!" + " : " + score );
+                    wordsValid.addElement(words.get(i));
                 }
             }
 
-            System.out.println("SOODDISDIS");
+            System.out.println(sender +" totalize SCORE = " + score);
             match.setScore(sender, score);
+            System.out.println(score);
 
             User u = AccountsManager.getInstance().findUser(sender);
             u.addScore(score);
@@ -55,12 +55,8 @@ public class ComputeScore implements Callable<Integer> {
 
                 match.matchTimeout = false;
                 System.out.println("MATCH TIMEOUT CANCELLATO");
-                //channel.close();
-                //Start receive words: tempo masimo 5 minuti per completare l'invio delle lettere.
 
                 match.setUndefinedScorePlayersToZero();
-
-                System.out.println("SEND BROADCAST");
                 match.sendScores();
 
             }
@@ -82,7 +78,7 @@ public class ComputeScore implements Callable<Integer> {
                 return true;
             }
 
-            if(!isCharacterPresent){
+            if(!isCharacterPresent || wordsValid.indexOf(word)!=-1){
                 return false;
             }
         }

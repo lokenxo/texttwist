@@ -13,7 +13,7 @@ public class TTLetter extends TTLabel{
         super(position,
                 new Dimension(50,50),
                 caption,
-                new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 40),
+                new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 20),
                 Palette.fontColor,
                 parent);
         parent.add(this);

@@ -69,7 +69,7 @@ public class WaitForScore extends SwingWorker<Void,Void> {
             e.printStackTrace();
         }
         App.game.multicastSocket.close();
-
+        App.game.isStarted=false;
         try {
             this.callback.execute();
         } catch (Exception e) {

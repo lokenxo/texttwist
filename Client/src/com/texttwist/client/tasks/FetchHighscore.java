@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.*;
 
 /**
  * Job: FetchHighscore
@@ -46,14 +47,11 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
 
                 if (line.startsWith("MESSAGE")) {
                     Message msg = Message.toMessage(line);
-                    //MODIFICARE QUI. IL BUG SI VERIFICA ANCHE CON 2 CLIENT, INVIANDO IL GIOCO A UN CLIENT CHE STA SULLA PAGNA DI HIGHSCORES
                     if (msg.message.equals("HIGHSCORES") && msg.data != null) {
-
                         for(int i = 0; i< msg.data.size()-1; i++){
                             String[] splitted = msg.data.get(i).split(":");
                             globalRanks.addElement(new Pair<>(splitted[0],new Integer(splitted[1])));
                         }
-                        buffer.clear();
 
                         return null;
 

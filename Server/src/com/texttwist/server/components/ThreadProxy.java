@@ -140,7 +140,6 @@ public class ThreadProxy implements Callable<Boolean> {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
                         return false;
                     } catch (InterruptedException e) {
                         e.printStackTrace();

@@ -4,13 +4,11 @@ import interfaces.INotificationClient;
 import interfaces.INotificationServer;
 
 import javax.swing.*;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.texttwist.client.App.session;
 
 /**
  * Created by loke on 19/06/2017.

@@ -90,7 +90,7 @@ public class GamePage extends Page {
     public void showLetters(){
 
         /* Place letters in a available random spawning point */
-        for(int i = 0; i < gameController.getLetters().size(); i++){
+        for(int i = 0; i < gameController.getLetters().size()-1; i++){
             new TTLetter(
                 occupyRandomPosition(),
                 gameController.getLetters().get(i),

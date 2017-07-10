@@ -39,7 +39,6 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
         try {
             buffer = ByteBuffer.allocate(1024);
             String line1 = new String(buffer.array(), buffer.position(), buffer.remaining());
-            System.out.println("Questo è il buffer prima: " + line1);
             TTDialog loading = new TTDialog("alert", "Waiting for users joins",null,null);
             buffer.flip();
 

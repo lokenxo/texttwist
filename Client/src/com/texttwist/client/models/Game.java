@@ -42,7 +42,7 @@ public class Game {
     public DefaultListModel<Pair<String,Integer>> globalRanks = new DefaultListModel<>();
     public MulticastSocket multicastSocket;
     public INotificationServer server;
-
+    public Boolean isStarted = false;
     public SocketChannel clientSocket = null;
 
     public Game(){
@@ -78,21 +78,23 @@ public class Game {
             e.printStackTrace();
         }
 
-        //Visualizza popup
-        new TTDialog("success", "New invitation from: " + userName + "!",
-            new Callable() {
-                @Override
-                public Object call() throws Exception {
-                    App.game.joinMatch(userName);
-                    return null;
-                }
-            },
-            new Callable() {
-                @Override
-                public Object call() throws Exception {
-                    return new MenuPage(Page.window);
-                }
-            });
+        if(!App.game.isStarted) {
+            //Visualizza popup
+            new TTDialog("success", "New invitation from: " + userName + "!",
+                    new Callable() {
+                        @Override
+                        public Object call() throws Exception {
+                            App.game.joinMatch(userName);
+                            return null;
+                        }
+                    },
+                    new Callable() {
+                        @Override
+                        public Object call() throws Exception {
+                            return new MenuPage(Page.window);
+                        }
+                    });
+        }
     }
 
 
@@ -100,29 +102,29 @@ public class Game {
         this.words = words;
     }
 
-
-
     public void setLetters(DefaultListModel<String> letters){
         this.letters = letters;
     }
 
     public void joinMatch(String matchName) {
         //Svuota la lista dei game pendenti e joina il game selezionato
-        this.pendingList.clear();
-        try {
-            //Invia tcp req a server per dirgli che sto joinando
-            DefaultListModel<String> matchNames = new DefaultListModel<String>();
-            matchNames.addElement(matchName);
-            Message message = new Message("JOIN_GAME", App.session.account.userName, App.session.token, matchNames);
+        if(!isStarted) {
+            this.pendingList.clear();
+            try {
+                //Invia tcp req a server per dirgli che sto joinando
+                DefaultListModel<String> matchNames = new DefaultListModel<String>();
+                matchNames.addElement(matchName);
+                Message message = new Message("JOIN_GAME", App.session.account.userName, App.session.token, matchNames);
 
-            byte[] byteMessage = new String(message.toString()).getBytes();
-            buffer = ByteBuffer.wrap(byteMessage);
-            clientSocket.write(buffer);
+                byte[] byteMessage = new String(message.toString()).getBytes();
+                buffer = ByteBuffer.wrap(byteMessage);
+                clientSocket.write(buffer);
 
-            new GamePage(Page.window);
+                new GamePage(Page.window);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

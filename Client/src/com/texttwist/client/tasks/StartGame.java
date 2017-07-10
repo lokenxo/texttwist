@@ -1,5 +1,6 @@
 package com.texttwist.client.tasks;
 
+import com.texttwist.client.App;
 import com.texttwist.client.pages.GamePage;
 import com.texttwist.client.ui.TTDialog;
 
@@ -19,11 +20,12 @@ public class StartGame extends SwingWorker<Void,Void> {
     public StartGame(DefaultListModel<String> letters, GamePage game){
         this.letters = letters;
         this.gamePage = game;
+
     }
 
     @Override
     public Void doInBackground(){
-
+        App.game.isStarted=true;
         //Mostra pannello di conferma che le lettere sono tutte arrivate
         new TTDialog("success", "GamePage is ready. Press OK to start!",
             new Callable() {
