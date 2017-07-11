@@ -57,12 +57,12 @@ public class Page {
 
     public void addBack(TTContainer parent, Callable<Object> clickHandler) {
         try {
-            TTImageBtn back = new TTImageBtn(
-                    new Point(0, 0),
-                    new Dimension(50, 50),
-                    new ImageIcon(new File("./Client/resources/images/back.png").getCanonicalPath()),
-                    clickHandler,
-                    parent);
+            new TTImageBtn(
+                new Point(0, 0),
+                new Dimension(50, 50),
+                new ImageIcon(new File("./Client/resources/images/back.png").getCanonicalPath()),
+                clickHandler,
+                parent);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,11 +70,11 @@ public class Page {
 
     public void addFooter(TTContainer root) {
         footer = new TTContainer(
-                null,
-                new Dimension(1150, 60),
-                Palette.root_backgroundColor,
-                -1,
-                root);
+            null,
+            new Dimension(1150, 60),
+            Palette.root_backgroundColor,
+            -1,
+            root);
     }
 
     public void addNext(TTContainer parent, String caption, Callable<Object> clickHandler) {

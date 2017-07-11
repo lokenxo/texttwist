@@ -8,24 +8,24 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.*;
 
+import static com.texttwist.client.App.game;
+
 /**
  * GamePage Page
  */
 public class GamePage extends Page {
 
     private TTContainer gameContainer;
-    private TTGameBox gameBox;
     private GameController gameController;
     public Timer timer;
 
-    /*Spawnig points fixed and not modifiable*/
+    /*Spawning points fixed and not modifiable*/
     private final DefaultListModel<Point> letterSpawningPoints = setLetterSpawningPoint();
 
     /*Available spawning points*/
     private DefaultListModel<Point> availableLetterSpawningPoint = new DefaultListModel<>();
 
     public GamePage(JFrame window) throws IOException {
-
         super(window);
         gameController = new GameController(this);
         availableLetterSpawningPoint.clear();
@@ -89,11 +89,12 @@ public class GamePage extends Page {
 
     public void showLetters(){
 
-        /* Place letters in a available random spawning point */
-        for(int i = 0; i < gameController.getLetters().size()-1; i++){
+        /* Place letters in an available random spawning point */
+        DefaultListModel<String> letters = game.getLetters();
+        for(int i = 0; i < letters.size()-1; i++){
             new TTLetter(
                 occupyRandomPosition(),
-                gameController.getLetters().get(i),
+                letters.get(i),
                 gameContainer
             );
         }
@@ -115,11 +116,11 @@ public class GamePage extends Page {
             root
         );
 
-        gameBox = new TTGameBox(
+        new TTGameBox(
             new Point(150, 90),
             new Dimension(250, 40),
             "Insert word and Press ENTER!",
-            gameController.getWords(),
+            game.getWords(),
             gameContainer
         );
 

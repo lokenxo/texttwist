@@ -1,11 +1,9 @@
 package com.texttwist.server.components;
 
 import models.User;
+import java.io.Serializable;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by loke on 18/06/2017.
@@ -28,49 +26,55 @@ public class AccountsManager {
         users.add(new User("c","c",0));
         users.add(new User("d","d",0));
 
+        List<Serializable> l = JedisService.get("users");
+        for(int i=0; i<l.size(); i++) {
+            users.add((User) l.get(i));
+        }
     }
 
     public boolean register(String userName, String password) {
        if(!exists(userName)){
-            return users.add(new User(userName, password,0));
+           User newUser = new User(userName, password,0);
+           Boolean res = users.add(newUser);
+           JedisService.add("users", newUser);
+           return res;
         } else {
            return false;
        }
     }
 
     public boolean exists(String userName) {
-            Iterator<User> i = users.iterator();
-            while (i.hasNext()) {
-                if (i.next().userName.equals(userName)) {
-                    return true;
-                }
+        Iterator<User> i = users.iterator();
+        while (i.hasNext()) {
+            if (i.next().userName.equals(userName)) {
+                return true;
             }
-            return false;
+        }
+        return false;
 
     }
 
     public boolean checkPassword(String userName, String password) {
-            Iterator<User> i = users.iterator();
-            while (i.hasNext()) {
-                User account = i.next();
-                if (account.userName.equals(userName) && account.password.equals(password)) {
-                    return true;
-                }
+        Iterator<User> i = users.iterator();
+        while (i.hasNext()) {
+            User account = i.next();
+            if (account.userName.equals(userName) && account.password.equals(password)) {
+                return true;
             }
-            return false;
+        }
+        return false;
 
     }
 
     public User findUser(String userName){
-            Iterator<User> i = users.iterator();
-            while (i.hasNext()) {
-                User u = i.next();
-                if (u.userName.equals(userName)) {
-                    return u;
-                }
+        Iterator<User> i = users.iterator();
+        while (i.hasNext()) {
+            User u = i.next();
+            if (u.userName.equals(userName)) {
+                return u;
             }
-            return null;
-
+        }
+        return null;
     }
 
     public int size(){

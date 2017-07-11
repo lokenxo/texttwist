@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
 public class MenuController {
 
     public Response logout(String userName, INotificationClient stub) throws RemoteException, NotBoundException, MalformedURLException {
-        Response res =  App.authService.logout(userName, stub);
+        Response res = App.authService.logout(userName, stub);
         if (res.code == 200){
             App.session = null;
         }

@@ -50,7 +50,7 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
 
                 if (line.startsWith("MESSAGE")) {
                     buffer.clear();
-                    System.out.println("Mi arriva questo dal server " +  line);
+                    System.out.println("Mi arriva questo dal notificationServer " +  line);
 
                     Message msg = Message.toMessage(line);
                     System.out.println(msg.message);

@@ -5,6 +5,9 @@ import com.texttwist.server.components.GameServer;
 import com.texttwist.server.components.NotificationServer;
 import constants.Config;
 import interfaces.INotificationServer;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 import utilities.Logger;
 
 import java.io.File;
@@ -19,9 +22,11 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class Server {
     public static NotificationServer notificationServer;
+    public static JedisPool jedisPool;
+
     public Server() throws IOException {
         //Start services
-        Logger logger = new Logger(new File("./server.log"), "Server");
+        Logger logger = new Logger(new File("./notificationServer.log"), "Server");
 
         Logger.write("Server starting ...");
         try {
@@ -29,6 +34,9 @@ public class Server {
             Auth auth = new Auth(Config.AuthServerPort);
             Registry authRegistry = LocateRegistry.createRegistry(auth.serverPort);
             authRegistry.bind("auth", auth);
+
+            //Connecting to Redis server on localhost
+            jedisPool = new JedisPool(new JedisPoolConfig(), "localhost");
 
             GameServer gameServer = new GameServer(Config.GameServerPort);
             new Thread(gameServer).start();

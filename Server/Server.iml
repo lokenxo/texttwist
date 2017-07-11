@@ -11,5 +11,7 @@
     <orderEntry type="library" name="com.github.cliftonlabs:json-simple:2.1.2" level="project" />
     <orderEntry type="module" module-name="Commons" />
     <orderEntry type="module" module-name="Client" />
+    <orderEntry type="library" name="jedis-2.1.0-sources" level="application" />
+    <orderEntry type="library" name="redis.clients:jedis:2.9.0" level="project" />
   </component>
 </module>

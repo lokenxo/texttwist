@@ -25,9 +25,9 @@ public class StartGame extends SwingWorker<Void,Void> {
 
     @Override
     public Void doInBackground(){
-        App.game.isStarted=true;
+        App.game.gameIsStarted =true;
         //Mostra pannello di conferma che le lettere sono tutte arrivate
-        new TTDialog("success", "GamePage is ready. Press OK to start!",
+        new TTDialog("success", "Game is ready. Press OK to start!",
             new Callable() {
                 @Override
                 public Object call() throws Exception {

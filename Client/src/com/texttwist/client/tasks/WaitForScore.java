@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
-import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
 /**
@@ -69,7 +68,7 @@ public class WaitForScore extends SwingWorker<Void,Void> {
             e.printStackTrace();
         }
         App.game.multicastSocket.close();
-        App.game.isStarted=false;
+        App.game.gameIsStarted =false;
         try {
             this.callback.execute();
         } catch (Exception e) {

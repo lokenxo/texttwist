@@ -22,7 +22,6 @@ public class MatchRequestsPage extends Page{
         window.setVisible(true);
     }
 
-
     @Override
     public void createUIComponents() throws IOException {
         addLogo(root);
@@ -56,7 +55,6 @@ public class MatchRequestsPage extends Page{
                 super.mouseClicked(evt);
                 JList thisList = (JList)evt.getSource();
                 if (evt.getClickCount() == 2) {
-                    // Double-click detected
                     int index = thisList.locationToIndex(evt.getPoint());
                     App.game.joinMatch(App.game.pendingList.get(index));
                 }

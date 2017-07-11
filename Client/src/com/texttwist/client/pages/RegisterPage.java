@@ -36,7 +36,7 @@ public class RegisterPage extends Page {
         TTLabel registerText = new TTLabel(
             new Point(70,35),
             new Dimension(400,40),
-            "<html><h2>Insert your datas and press RegisterPage!</h2></html>",
+            "Insert your datas and press Register!",
             new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 12),
             null,
             registerDataContainer
@@ -58,11 +58,10 @@ public class RegisterPage extends Page {
         TTButton register = new TTButton(
             new Point(70,150),
             new Dimension(430,50),
-            "RegisterPage!",
+            "Register!",
             new Callable<Object>() {
                 @Override
                 public Object call() throws Exception {
-                    //TODO CHIAMA API PER LOGIN E SE TUTTO OKEY MANDA A PAGINA DEL MENU
                     Response res = registerController.register(usernameField.getText(), String.valueOf(passwordField.getPassword()));
                     if (res.code == 200){
                         return new TTDialog("success", res.message,

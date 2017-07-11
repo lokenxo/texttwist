@@ -81,7 +81,7 @@ public class HomePage extends Page {
         new TTLabelBtn(
             new Point(360, 200),
             new Dimension(210, 50),
-            "RegisterPage!",
+            "Register!",
             new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 34),
             null,
             new Callable<Object>() {

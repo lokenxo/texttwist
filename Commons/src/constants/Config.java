@@ -11,7 +11,6 @@ public class Config {
     public static String GameServerURI = "localhost";
     public static Integer GameServerPort = 10000;
 
-
     public static String WordsReceiverServerURI = "localhost";
     public static Integer WordsReceiverServerPort = 10001;
 

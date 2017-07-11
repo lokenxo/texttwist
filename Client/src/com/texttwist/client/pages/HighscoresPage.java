@@ -15,7 +15,6 @@ public class HighscoresPage extends Page{
 
     private TTContainer highscoreContainer;
     private Boolean isPartialScore;
-    private TTScrollList highscoreList;
     public JFrame window;
     private HighscoresController highscoreController;
 
@@ -30,7 +29,7 @@ public class HighscoresPage extends Page{
     }
 
     public void showHighscoreList(){
-        highscoreList = new TTScrollList(
+        new TTScrollList(
             new Point(20, 60),
             new Dimension(515, 142),
             highscoreController.getRanks(isPartialScore),

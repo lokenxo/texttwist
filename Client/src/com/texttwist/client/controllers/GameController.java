@@ -6,7 +6,6 @@ import com.texttwist.client.tasks.StartGame;
 import com.texttwist.client.tasks.WaitForPlayers;
 import com.texttwist.client.tasks.WaitForScore;
 import javax.swing.*;
-import java.nio.ByteBuffer;
 
 /**
  * GamePage Controller
@@ -17,14 +16,6 @@ public class GameController {
 
     public GameController(GamePage game){
         this.game = game;
-    }
-
-    public DefaultListModel<String> getLetters(){
-        return App.game.letters;
-    }
-
-    public DefaultListModel<String> getWords() {
-        return App.game.words;
     }
 
     public SwingWorker waitForPlayers(SwingWorker callback) {

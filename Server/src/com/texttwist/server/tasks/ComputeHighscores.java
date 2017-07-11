@@ -1,6 +1,7 @@
 package com.texttwist.server.tasks;
 
 import com.texttwist.server.components.AccountsManager;
+import com.texttwist.server.components.JedisService;
 import models.User;
 
 import javax.swing.*;
@@ -26,8 +27,10 @@ public class ComputeHighscores implements Callable<DefaultListModel<String>> {
                 return o2.score.compareTo(o1.score);
             }
         });
+        JedisService.removeAll("users");
         for(int i =0; i< AccountsManager.getInstance().users.size(); i++){
             l.addElement(AccountsManager.getInstance().users.get(i).userName+":"+AccountsManager.getInstance().users.get(i).score);
+            JedisService.add("users",AccountsManager.getInstance().users.get(i));
         }
         return l;
     }
