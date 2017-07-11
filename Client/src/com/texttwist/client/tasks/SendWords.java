@@ -36,7 +36,7 @@ public class SendWords extends SwingWorker<Void,Void> {
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             buffer.clear();
             System.out.println("SENDER=" + App.session.account.userName);
-            Message msg = new Message("WORDS", App.session.account.userName, "", words);
+            Message msg = new Message("WORDS", App.session.account.userName, App.session.token, words);
             String sentence = msg.toString();
             buffer.put(sentence.getBytes());
             buffer.flip();

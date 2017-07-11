@@ -8630,3 +8630,71 @@ LOGGER (Client1): Tue Jul 11 01:24:02 CEST 2017 - Invoked invitation with userna
 LOGGER (Client1): Tue Jul 11 01:24:02 CEST 2017 - L'utente è sloggato
 LOGGER (Client1): Tue Jul 11 01:24:02 CEST 2017 - Invoked invitation with username=c|[a]
 LOGGER (Client1): Tue Jul 11 01:24:02 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 10:45:24 CEST 2017 - Client starting ...
+LOGGER (Client1): Tue Jul 11 10:45:26 CEST 2017 - Client starting ...
+LOGGER (Client1): Tue Jul 11 10:45:31 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Tue Jul 11 10:45:31 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 10:45:31 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Tue Jul 11 10:45:31 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:03 CEST 2017 - Client starting ...
+LOGGER (Client1): Tue Jul 11 11:07:05 CEST 2017 - Client starting ...
+LOGGER (Client1): Tue Jul 11 11:07:14 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Tue Jul 11 11:07:14 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:07:14 CEST 2017 - Invoked invitation with username=b|[a]
+LOGGER (Client1): Tue Jul 11 11:07:14 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:18 CEST 2017 - Client starting ...
+LOGGER (Client1): Tue Jul 11 11:07:28 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Tue Jul 11 11:07:28 CEST 2017 - c ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:07:28 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Tue Jul 11 11:07:28 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:28 CEST 2017 - Invoked invitation with username=c|[a]
+LOGGER (Client1): Tue Jul 11 11:07:28 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:36 CEST 2017 - Client starting ...
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - Invoked invitation with username=b|[d]
+LOGGER (Client1): Tue Jul 11 11:07:44 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - Invoked invitation with username=aa|[c]
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - Invoked invitation with username=aa|[c]
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - aa ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - Invoked invitation with username=aa|[c]
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - Invoked invitation with username=aa|[c]
+LOGGER (Client1): Tue Jul 11 11:07:58 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - Invoked invitation with username=d|[c]
+LOGGER (Client1): Tue Jul 11 11:08:16 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - Invoked invitation with username=b|[aa]
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - Invoked invitation with username=b|[aa]
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - Invoked invitation with username=b|[aa]
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - Invoked invitation with username=b|[aa]
+LOGGER (Client1): Tue Jul 11 11:08:22 CEST 2017 - b ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - Invoked invitation with username=d|[b, aa]
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - Invoked invitation with username=d|[b, aa]
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - Invoked invitation with username=d|[b, aa]
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - Invoked invitation with username=d|[b, aa]
+LOGGER (Client1): Tue Jul 11 11:08:52 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - d ti ha sfidato!
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - L'utente è sloggato
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - Invoked invitation with username=d|[b]
+LOGGER (Client1): Tue Jul 11 11:13:13 CEST 2017 - L'utente è sloggato

@@ -1,6 +1,7 @@
 package com.texttwist.server.components;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.texttwist.client.App;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
 import constants.Config;
@@ -38,16 +39,11 @@ public class ThreadProxy implements Callable<Boolean> {
 
     }
 
-
-    private Boolean isValidToken(String token){
-        return SessionsManager.getInstance().isValidToken(token);
-    }
-
     @Override
     public Boolean call() {
         bufferMessage = ByteBuffer.allocate(1024);
         byte[] byteMessage = null;
-        if(isValidToken(request.token)){
+        if(SessionsManager.getInstance().isValidToken(request.token)){
             switch(request.message){
                 case "START_GAME":
                     Future<Boolean> onlineUsers = threadPool.submit(new CheckOnlineUsers(request.data));
@@ -177,7 +173,7 @@ public class ThreadProxy implements Callable<Boolean> {
                                             System.out.println("INVIO GAME_STARTED "+ s);
                                             socketClient.write(bufferMessage);
                                         } catch (IOException e) {
-
+                                            e.printStackTrace();
                                         }
                                     }
 
@@ -199,10 +195,8 @@ public class ThreadProxy implements Callable<Boolean> {
                                     socketChannel.write(bufferMessage);
                                     matchNotAvailable = true;
                                 }
-                                //Match non disponibile
 
                             }
-                            //NON FARE NULLA, ASPETA GLI ALTRI
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -218,7 +212,7 @@ public class ThreadProxy implements Callable<Boolean> {
             }
 
         } else {
-            System.out.print("TOKEN NON VALIDO");
+            threadPool.submit(new TokenInvalid(request.sender, socketChannel, bufferMessage));
             return false;
         }
 

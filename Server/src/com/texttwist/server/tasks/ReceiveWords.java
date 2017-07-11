@@ -1,26 +1,17 @@
 package com.texttwist.server.tasks;
 
-import com.texttwist.server.Server;
-import com.texttwist.server.components.GameServer;
+import com.texttwist.server.components.SessionsManager;
 import com.texttwist.server.models.Match;
 import constants.Config;
 import models.Message;
 
-import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import static com.texttwist.server.components.GameServer.activeMatches;
 
 /**
  * Created by loke on 27/06/2017.
@@ -30,12 +21,16 @@ public class ReceiveWords implements Callable<Boolean>{
     protected ExecutorService threadPool = Executors.newCachedThreadPool();
 
     public DatagramChannel channel;
-    ByteBuffer buffer;
+    ByteBuffer bufferWords;
+    ByteBuffer bufferMessages;
+    public SocketChannel socketChannel;
 
 
-    public ReceiveWords(DatagramChannel channel, ByteBuffer buffer) {
-        this.buffer = buffer;
+    public ReceiveWords(DatagramChannel channel, ByteBuffer buffer, ByteBuffer bufferMessages, SocketChannel socketChannel) {
+        this.bufferWords = buffer;
         this.channel = channel;
+        this.bufferMessages = bufferMessages;
+        this.socketChannel = socketChannel;
     }
 
     @Override
@@ -58,9 +53,14 @@ public class ReceiveWords implements Callable<Boolean>{
             System.out.println(rcv);
             if (rcv.startsWith("MESSAGE")) {
                 msg = Message.toMessage(rcv);
-                System.out.println(msg.sender);
-                Match match = Match.findMatchByPlayer(msg.sender);
-                threadPool.submit(new ComputeScore(msg.sender, msg.data, match));
+                if(SessionsManager.getInstance().isValidToken(msg.token)) {
+                    System.out.println(msg.sender);
+                    Match match = Match.findMatchByPlayer(msg.sender);
+                    threadPool.submit(new ComputeScore(msg.sender, msg.data, match));
+                } else {
+                    threadPool.submit(new TokenInvalid(msg.sender, socketChannel, bufferMessages));
+                    return false;
+                }
             }
 
         }

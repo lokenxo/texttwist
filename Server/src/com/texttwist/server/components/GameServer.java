@@ -32,7 +32,10 @@ public class GameServer implements Runnable{
     private ExecutorService threadPool = Executors.newCachedThreadPool();
     private String dictionaryPath = "./Server/resources/dictionary";
     public static Dictionary dict;
+    SocketChannel client;
     ByteBuffer bufferWords = ByteBuffer.allocate(1024);
+    ByteBuffer bufferMessages = ByteBuffer.allocate(1024);
+
 
 
     public static List<Match> activeMatches =  Collections.synchronizedList(new ArrayList<>());
@@ -58,7 +61,7 @@ public class GameServer implements Runnable{
             datagramChannel.connect(address);
             Logger.write("GamePage Service is running at "+this.serverPort+" port...");
 
-            wordsReceiver = new ReceiveWords(datagramChannel, bufferWords);
+            wordsReceiver = new ReceiveWords(datagramChannel, bufferWords, bufferMessages, client);
             threadPool.submit(wordsReceiver);
 
         } catch (IOException e) {
@@ -75,9 +78,9 @@ public class GameServer implements Runnable{
 
             Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
             while (iter.hasNext()) {
-                ByteBuffer bufferMessages = ByteBuffer.allocate(1024);
+                bufferMessages = ByteBuffer.allocate(1024);
                 bufferMessages.clear();
-                SocketChannel client = null;
+                client = null;
                 SelectionKey key = iter.next();
                 iter.remove();
 
