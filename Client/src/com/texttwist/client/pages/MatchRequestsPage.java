@@ -45,7 +45,7 @@ public class MatchRequestsPage extends Page{
         TTScrollList pendingMatches = new TTScrollList(
             new Point(20, 60),
             new Dimension(520, 142),
-            App.game.pendingList,
+            App.gameService.pendingList,
             matchsContainer
         );
 
@@ -56,7 +56,7 @@ public class MatchRequestsPage extends Page{
                 JList thisList = (JList)evt.getSource();
                 if (evt.getClickCount() == 2) {
                     int index = thisList.locationToIndex(evt.getPoint());
-                    App.game.joinMatch(App.game.pendingList.get(index));
+                    App.gameService.joinMatch(App.gameService.pendingList.get(index));
                 }
             }
         });

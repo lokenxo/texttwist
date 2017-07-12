@@ -20,8 +20,8 @@ public class AuthService {
     public Response login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
         try {
             INotificationClient callbackObj = new NotificationClient();
-            App.game.notificationStub = (INotificationClient) UnicastRemoteObject.exportObject(callbackObj, 0);
-            App.game.notificationServer.registerForCallback(App.game.notificationStub);
+            App.gameService.notificationStub = (INotificationClient) UnicastRemoteObject.exportObject(callbackObj, 0);
+            App.gameService.notificationServer.registerForCallback(App.gameService.notificationStub);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

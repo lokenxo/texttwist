@@ -1,4 +1,4 @@
-package com.texttwist.client.models;
+package com.texttwist.client.services;
 
 import com.texttwist.client.App;
 import com.texttwist.client.pages.GamePage;
@@ -27,7 +27,7 @@ import java.util.concurrent.*;
 /**
  * Created by loke on 18/06/2017.
  */
-public class Game {
+public class GameService {
 
     public Integer multicastId = 0 ;
     public DefaultListModel<String> pendingList = new DefaultListModel<String>();
@@ -43,7 +43,7 @@ public class Game {
 
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
 
-    public Game(){
+    public GameService(){
 
         Registry registry = null;
         try {
@@ -74,13 +74,13 @@ public class Game {
             e.printStackTrace();
         }
 
-        if(!App.game.gameIsStarted) {
+        if(!App.gameService.gameIsStarted) {
             //Show invitation popup
             new TTDialog("success", "New invitation from: " + userName + "!",
                 new Callable() {
                     @Override
                     public Object call() throws Exception {
-                        App.game.joinMatch(userName);
+                        App.gameService.joinMatch(userName);
                         return null;
                     }
                 },
@@ -95,11 +95,11 @@ public class Game {
 
 
     public DefaultListModel<String> getLetters(){
-        return App.game.letters;
+        return App.gameService.letters;
     }
 
     public DefaultListModel<String> getWords() {
-        return App.game.words;
+        return App.gameService.words;
     }
 
     public void setLetters(DefaultListModel<String> letters){
@@ -133,12 +133,12 @@ public class Game {
     }
 
     public Void start(){
-        App.game.gameIsStarted = true;
+        App.gameService.gameIsStarted = true;
         return null;
     }
 
     public Void stop(){
-        App.game.gameIsStarted = false;
+        App.gameService.gameIsStarted = false;
         return null;
     }
 

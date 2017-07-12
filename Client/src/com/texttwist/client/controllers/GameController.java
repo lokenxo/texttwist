@@ -1,4 +1,5 @@
 package com.texttwist.client.controllers;
+
 import com.texttwist.client.App;
 import com.texttwist.client.pages.GamePage;
 import com.texttwist.client.tasks.SendWords;
@@ -8,7 +9,8 @@ import com.texttwist.client.tasks.WaitForScore;
 import javax.swing.*;
 
 /**
- * GamePage Controller
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: Controller of the Game Page
  */
 public class GameController {
 
@@ -27,11 +29,11 @@ public class GameController {
     }
 
     public SwingWorker sendWords(SwingWorker callback){
-        return new SendWords(App.game.words, waitForScore(callback));
+        return new SendWords(App.gameService.words, waitForScore(callback));
     }
 
     public SwingWorker startGame() {
-        return new StartGame(App.game.letters, game);
+        return new StartGame(App.gameService.letters, game);
     }
 
 }

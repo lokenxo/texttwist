@@ -48,7 +48,7 @@ public class MenuPage extends Page{
         TTButton newMatch = new TTButton(
             new Point(25,70),
             new Dimension(250,75),
-            "New Game!",
+            "New GameService!",
             new Callable<Object>() {
                 @Override
                 public Object call() throws Exception {
@@ -100,7 +100,7 @@ public class MenuPage extends Page{
             new Callable<Object>() {
                 @Override
                 public Object call() throws Exception {
-                    menuController.logout(App.session.account.userName, App.game.notificationStub);
+                    menuController.logout(App.session.account.userName, App.gameService.notificationStub);
                     return new HomePage(Page.window);
                 }
             },

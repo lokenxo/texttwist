@@ -1,13 +1,14 @@
 package com.texttwist.client.controllers;
+
 import com.texttwist.client.App;
 import com.texttwist.client.pages.HighscoresPage;
 import com.texttwist.client.tasks.FetchHighscore;
 import javafx.util.Pair;
-
 import javax.swing.*;
 
 /**
- * Highscores Controller
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: Controller of the Highscore Page
  */
 public class HighscoresController {
 
@@ -22,7 +23,7 @@ public class HighscoresController {
     }
 
     public DefaultListModel<Pair<String,Integer>> getRanks(Boolean isPartialRank) {
-        return isPartialRank ? App.game.ranks : App.game.globalRanks;
+        return isPartialRank ? App.gameService.ranks : App.gameService.globalRanks;
     }
 
 }

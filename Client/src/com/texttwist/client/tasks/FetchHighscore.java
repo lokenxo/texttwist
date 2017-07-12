@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.util.*;
 
 /**
  * Job: FetchHighscore
@@ -22,7 +21,7 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
     HighscoresPage highscoresPage;
 
     public FetchHighscore(HighscoresPage highscoresPage){
-        this.socketChannel = App.game.clientSocket;
+        this.socketChannel = App.gameService.clientSocket;
         this.highscoresPage = highscoresPage;
     }
 
@@ -67,7 +66,7 @@ public class FetchHighscore extends SwingWorker<Void,Void> {
     }
 
     public void done(){
-        App.game.globalRanks = globalRanks;
+        App.gameService.globalRanks = globalRanks;
         this.highscoresPage.showHighscoreList();
     }
 }

@@ -2,7 +2,6 @@ package com.texttwist.client.services;
 import com.texttwist.client.App;
 import interfaces.INotificationClient;
 import models.Response;
-import utilities.Logger;
 
 import javax.swing.*;
 import java.rmi.RemoteException;
@@ -23,7 +22,7 @@ public class NotificationClient implements INotificationClient {
         if(App.session != null) {
             if (users.contains(App.session.account.userName)) {
                 App.logger.write(userName + " send a invitation!");
-                App.game.newMatch(userName);
+                App.gameService.newMatch(userName);
             } else {
                 App.logger.write("User " + userName + " is slogged");
             }

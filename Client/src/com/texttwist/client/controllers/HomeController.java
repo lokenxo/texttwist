@@ -1,15 +1,16 @@
 package com.texttwist.client.controllers;
+
 import com.texttwist.client.App;
 import models.Response;
 import models.Session;
 import models.User;
-
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 /**
- * Created by loke on 15/06/2017.
+ * Author:      Lorenzo Iovino on 20/06/2017.
+ * Description: Controller of the Home Page
  */
 public class HomeController {
 

@@ -61,7 +61,7 @@ public class GameServer implements Runnable{
             datagramChannel = DatagramChannel.open();
             datagramChannel.configureBlocking(true);
             datagramChannel.connect(address);
-            Server.logger.write("Game Service is running at "+this.serverPort+" port...");
+            Server.logger.write("GameService Service is running at "+this.serverPort+" port...");
 
             wordsReceiver = new ReceiveWords(datagramChannel, bufferWords, bufferMessages, client);
             threadPool.submit(wordsReceiver);

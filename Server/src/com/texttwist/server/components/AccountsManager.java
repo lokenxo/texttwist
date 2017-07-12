@@ -21,11 +21,6 @@ public class AccountsManager {
     }
 
     private AccountsManager(){
-        users.add(new User("a","a",0));
-        users.add(new User("b","b",0));
-        users.add(new User("c","c",0));
-        users.add(new User("d","d",0));
-
         List<Serializable> l = JedisService.get("users");
         for(int i=0; i<l.size(); i++) {
             users.add((User) l.get(i));

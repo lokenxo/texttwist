@@ -8,7 +8,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.*;
 
-import static com.texttwist.client.App.game;
+import static com.texttwist.client.App.gameService;
 
 /**
  * GamePage Page
@@ -90,7 +90,7 @@ public class GamePage extends Page {
     public void showLetters(){
 
         /* Place letters in an available random spawning point */
-        DefaultListModel<String> letters = game.getLetters();
+        DefaultListModel<String> letters = gameService.getLetters();
         for(int i = 0; i < letters.size()-1; i++){
             new TTLetter(
                 occupyRandomPosition(),
@@ -120,7 +120,7 @@ public class GamePage extends Page {
             new Point(150, 90),
             new Dimension(250, 40),
             "Insert word and Press ENTER!",
-            game.getWords(),
+            gameService.getWords(),
             gameContainer
         );
 

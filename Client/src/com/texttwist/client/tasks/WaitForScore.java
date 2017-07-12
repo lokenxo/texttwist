@@ -29,7 +29,7 @@ public class WaitForScore extends SwingWorker<Void,Void> {
             while(true) {
                 byte[] buf = new byte[1024];
                 DatagramPacket receivedDatagram = new DatagramPacket(buf, buf.length);
-                App.game.multicastSocket.receive(receivedDatagram);
+                App.gameService.multicastSocket.receive(receivedDatagram);
 
                 String s = new String(receivedDatagram.getData());
                 Message msg = Message.toMessage(s);
@@ -37,8 +37,8 @@ public class WaitForScore extends SwingWorker<Void,Void> {
                 //When arrive a message with message=FINALSCORE popolate ranks
                 if(msg.message.equals("FINALSCORE")){
                     if(msg.data != null) {
-                        App.game.ranks.clear();
-                        App.game.ranks = utilities.Parse.score(msg.data);
+                        App.gameService.ranks.clear();
+                        App.gameService.ranks = utilities.Parse.score(msg.data);
                     }
                     break;
                 }
@@ -55,11 +55,11 @@ public class WaitForScore extends SwingWorker<Void,Void> {
     public void done(){
         try {
             //Leave group and close multicast socket
-            App.game.multicastSocket.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServerURI));
-            App.game.multicastSocket.close();
+            App.gameService.multicastSocket.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServerURI));
+            App.gameService.multicastSocket.close();
 
-            //Stop game
-            App.game.stop();
+            //Stop gameService
+            App.gameService.stop();
 
             //Call callback
             this.callback.execute();

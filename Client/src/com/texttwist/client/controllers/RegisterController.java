@@ -2,13 +2,13 @@ package com.texttwist.client.controllers;
 
 import com.texttwist.client.App;
 import models.Response;
-
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 /**
- * Created by loke on 17/06/2017.
+ * Author:      Lorenzo Iovino on 17/06/2017.
+ * Description: Controller of the Register Page
  */
 public class RegisterController {
 

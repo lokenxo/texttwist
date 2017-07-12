@@ -6,7 +6,6 @@ import com.texttwist.client.pages.Page;
 import com.texttwist.client.ui.TTDialog;
 import constants.Config;
 import models.Message;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -31,7 +30,7 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
     public WaitForPlayers(SwingWorker callback) {
         this.callback = callback;
         this.words = words;
-        this.socketChannel = App.game.clientSocket;
+        this.socketChannel = App.gameService.clientSocket;
     }
 
     @Override
@@ -97,11 +96,11 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
                             data= msg.data;
 
                             Integer multicastId = Integer.valueOf(data.remove(data.size()-2));
-                            App.game.setMulticastId(multicastId);
+                            App.gameService.setMulticastId(multicastId);
 
-                            App.game.multicastSocket = new MulticastSocket(App.game.multicastId);
+                            App.gameService.multicastSocket = new MulticastSocket(App.gameService.multicastId);
                             InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                            App.game.multicastSocket.joinGroup(ia);
+                            App.gameService.multicastSocket.joinGroup(ia);
                             letters = msg.data;
 
 
@@ -129,7 +128,7 @@ public class WaitForPlayers extends SwingWorker<DefaultListModel<String>,Default
     public void done(){
         if(!joinTimeout) {
             try {
-                App.game.setLetters(letters);
+                App.gameService.setLetters(letters);
                 this.callback.execute();
             } catch (Exception e) {
                 e.printStackTrace();
