@@ -1,11 +1,10 @@
 package com.texttwist.server.components;
-import com.texttwist.client.App;
+
+import com.texttwist.server.Server;
 import interfaces.IAuth;
 import interfaces.INotificationClient;
 import models.Response;
 import org.json.simple.JsonObject;
-import utilities.Logger;
-
 import java.math.BigInteger;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -24,18 +23,18 @@ public class Auth extends UnicastRemoteObject implements IAuth {
 
     public Auth(int serverPort) throws RemoteException{
         this.serverPort=serverPort;
-        Logger.write("Auth Service running at "+serverPort+" port...");
+        Server.logger.write("Auth Service running at "+serverPort+" port...");
     }
 
     @Override
     public Response register(String userName, String password) throws RemoteException {
-        Logger.write("Invoked register with username=" + userName + " AND " + " password=" + password);
+        Server.logger.write("Invoked register with username=" + userName + " AND " + " password=" + password);
         if ((userName != null && !userName.isEmpty()) && (password != null && !password.equals(""))) {
             if(AccountsManager.getInstance().register(userName, password)){
-                Logger.write("Registration successfull");
+                Server.logger.write("Registration successfull");
                 return new Response("Registration successfull", 200, null);
             } else {
-                Logger.write("Registration unsuccessfull");
+                Server.logger.write("Registration unsuccessfull");
                 return new Response("Registration unsuccessfull: Username exist!", 400, null);
             }
         }
@@ -44,36 +43,36 @@ public class Auth extends UnicastRemoteObject implements IAuth {
 
     @Override
     public Response login(String userName, String password) throws RemoteException {
-        Logger.write("Invoked login with username=" + userName + " AND " + " password=" + password);
+        Server.logger.write("Invoked login with username=" + userName + " AND " + " password=" + password);
         if ((userName != null && !userName.isEmpty()) && (password != null && !password.equals(""))) {
             if(AccountsManager.getInstance().exists(userName) && AccountsManager.getInstance().checkPassword(userName, password)) {
                 JsonObject data = new JsonObject();
                 String token = nextSessionId();
                 data.put("token", token);
                 SessionsManager.getInstance().add(userName,token);
-                Logger.write("Login successfull");
+                Server.logger.write("Login successfull");
                 return new Response("Login successfull", 200, data);
             }
         }
-        Logger.write("Login unsuccessfull");
+        Server.logger.write("Login unsuccessfull");
         return new Response("Login unsuccessfull", 400, null);
     }
 
     @Override
     public Response logout(String userName, String token, INotificationClient stub) throws RemoteException {
-        Logger.write("Invoked logout with username=" + userName + " AND " + " token=" + token);
+        Server.logger.write("Invoked logout with username=" + userName + " AND " + " token=" + token);
         notificationServer.unregisterForCallback(stub);
 
         if ((userName != null && !userName.isEmpty()) && (token != null && !token.isEmpty())) {
             boolean res = SessionsManager.getInstance().remove(userName);
             if(res) {
-                Logger.write("Logout successfull");
+                Server.logger.write("Logout successfull");
 
             }
         }
 
         SessionsManager.getInstance().remove(userName);
-        Logger.write("Logout successfull (but something gone wrong)");
+        Server.logger.write("Logout successfull (but something gone wrong)");
         return new Response("Logout successfull (but something gone wrong)", 200, null);
     }
 

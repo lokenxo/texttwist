@@ -39,8 +39,8 @@ public class Game {
     public MulticastSocket multicastSocket;
     public SocketChannel clientSocket;
     public INotificationServer notificationServer;
-
     public Boolean gameIsStarted = false;
+
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
 
     public Game(){
@@ -111,7 +111,7 @@ public class Game {
         if(!gameIsStarted) {
             this.pendingList.clear();
             try {
-                DefaultListModel<String> matchNames = new DefaultListModel<String>();
+                DefaultListModel<String> matchNames = new DefaultListModel<>();
                 matchNames.addElement(matchName);
                 Message message = new Message("JOIN_GAME", App.session.account.userName, App.session.token, matchNames);
 
@@ -129,6 +129,16 @@ public class Game {
     public Object play(DefaultListModel<String> userNames) throws IOException {
         SwingWorker worker = new InvitePlayers(userNames,clientSocket);
         worker.execute();
+        return null;
+    }
+
+    public Void start(){
+        App.game.gameIsStarted = true;
+        return null;
+    }
+
+    public Void stop(){
+        App.game.gameIsStarted = false;
         return null;
     }
 

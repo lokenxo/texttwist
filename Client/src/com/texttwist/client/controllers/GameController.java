@@ -33,4 +33,5 @@ public class GameController {
     public SwingWorker startGame() {
         return new StartGame(App.game.letters, game);
     }
+
 }

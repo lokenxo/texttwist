@@ -1,48 +1,45 @@
 package utilities;
 
 import java.io.*;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Date;
 
 /**
- * Created by loke on 15/06/2017.
+ * Author:      Lorenzo Iovino on 15/06/2017.
+ * Description: This is a module for logging the System output in files
  */
 public class Logger {
 
 
-    private static File logFile;
-    private static String name;
+    private final File logFile;
+    private final String name;
     private static PrintWriter out;
     private static BufferedWriter bw;
     private static FileWriter fw;
+    private Boolean debug;
 
-    public Logger(File logFile, String name) throws IOException {
+    public Logger(File logFile, String name, Boolean debug) throws IOException {
         this.logFile = logFile;
         this.name = name;
+        this.debug = debug;
     }
 
-    public synchronized static void write(String msg){
+    public synchronized void write(String msg){
         try {
             fw = new FileWriter(logFile, true);
             bw = new BufferedWriter(fw);
             out = new PrintWriter(bw);
             Date d = new Date();
             out.append("LOGGER ("+name+"): " + d.toString() + " - " + msg + "\n");
-            System.out.println("LOGGER ("+name+"): " + d.toString() + " - " + msg + "\n");
+            if(debug) {
+                System.out.println("LOGGER (" + name + "): " + d.toString() + " - " + msg + "\n");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         finally {
-            out.close();
             try {
+                out.close();
                 bw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
                 fw.close();
             } catch (IOException e) {
                 e.printStackTrace();

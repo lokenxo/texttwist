@@ -1,5 +1,7 @@
 
 package com.texttwist.server.components;
+import com.texttwist.client.App;
+import com.texttwist.server.Server;
 import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.ReceiveWords;
@@ -59,7 +61,7 @@ public class GameServer implements Runnable{
             datagramChannel = DatagramChannel.open();
             datagramChannel.configureBlocking(true);
             datagramChannel.connect(address);
-            Logger.write("Game Service is running at "+this.serverPort+" port...");
+            Server.logger.write("Game Service is running at "+this.serverPort+" port...");
 
             wordsReceiver = new ReceiveWords(datagramChannel, bufferWords, bufferMessages, client);
             threadPool.submit(wordsReceiver);

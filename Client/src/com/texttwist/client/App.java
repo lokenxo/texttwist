@@ -32,7 +32,7 @@ public class App extends JFrame {
     public static Session session;
     public static Game game;
     public static JFrame app;
-
+    public static Logger logger;
     public App() throws IOException {
         setPreferredSize( new Dimension( 640, 480 ));
         setSize(new Dimension(640,480));
@@ -40,11 +40,9 @@ public class App extends JFrame {
         setResizable( false );
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Definitions of registry for auth
         long id = Thread.currentThread().getId();
-        Logger logger = new Logger(new File("./client_"+id+".log"), "Client"+id);
-
-        Logger.write("Client starting ...");
+        logger = new Logger(new File("./client_"+id+".log"), "Client"+id, true);
+        logger.write("Client starting ...");
 
         //Init models
         game = new Game();
@@ -54,28 +52,10 @@ public class App extends JFrame {
 
         app = this;
 
-        HomePage home = new HomePage(this);
-
-        /*app.addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent e)
-            {
-                try {
-                    authService.logout(App.session.account.userName);
-                    System.out.println("LOGOUT BECAUSE WINDOW CLOSED");
-                } catch (RemoteException e1) {
-                    e1.printStackTrace();
-                } catch (NotBoundException e1) {
-                    e1.printStackTrace();
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });*/
+        new HomePage(this);
     }
 
     public static Point getWindowsPosition(){
         return new Point(app.getX(), app.getY());
     }
-
 }

@@ -21,7 +21,6 @@ public class SendWords extends SwingWorker<Void,Void> {
     SwingWorker callback;
     DefaultListModel<String> words = new DefaultListModel<>();
 
-    //TODO PASSARE LA CALLBACK ALLO SWING WORKER ED ESEGUIRLA AL DONE
     public SendWords(DefaultListModel<String> words, SwingWorker callback){
         this.callback = callback;
         this.words = words;
@@ -30,6 +29,7 @@ public class SendWords extends SwingWorker<Void,Void> {
     @Override
     public Void doInBackground() {
         try {
+            System.out.println(words);
             InetSocketAddress myAddress = new InetSocketAddress(Config.WordsReceiverServerURI, Config.WordsReceiverServerPort);
             DatagramChannel datagramChannel = DatagramChannel.open();
             datagramChannel.bind(null);

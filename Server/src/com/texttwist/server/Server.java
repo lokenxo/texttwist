@@ -23,12 +23,14 @@ import java.rmi.server.UnicastRemoteObject;
 public class Server {
     public static NotificationServer notificationServer;
     public static JedisPool jedisPool;
+    public static Logger logger;
 
     public Server() throws IOException {
-        //Start services
-        Logger logger = new Logger(new File("./notificationServer.log"), "Server");
+        logger = new Logger(new File("./notificationServer.log"), "Server", true);
+        Server.logger.write("Server starting ...");
 
-        Logger.write("Server starting ...");
+        //Start services
+
         try {
             //Definitions of registry for auth
             Auth auth = new Auth(Config.AuthServerPort);
@@ -53,7 +55,7 @@ public class Server {
             } catch (Exception e) {
                 System.out.println("Eccezione" + e);
             }
-            Logger.write("Server started");
+            Server.logger.write("Server started");
         } catch (AlreadyBoundException e) {
             e.printStackTrace();
         }

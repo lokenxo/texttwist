@@ -18,14 +18,14 @@ public class NotificationClient implements INotificationClient {
 
     @Override
     public Response sendInvite(String userName, DefaultListModel<String> users) throws RemoteException {
-        Logger.write("Invoked invitation with username =" + userName + "|" + users.toString() );
+        App.logger.write("Invoked invitation with username =" + userName + "|" + users.toString() );
 
         if(App.session != null) {
             if (users.contains(App.session.account.userName)) {
-                Logger.write(userName + " send a invitation!");
+                App.logger.write(userName + " send a invitation!");
                 App.game.newMatch(userName);
             } else {
-                Logger.write("User " + userName + " is slogged");
+                App.logger.write("User " + userName + " is slogged");
             }
         }
         return null;

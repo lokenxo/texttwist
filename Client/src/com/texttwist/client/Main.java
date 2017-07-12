@@ -11,12 +11,12 @@ public class Main {
 
         //Load fonts
         try {
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(
+            GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            graphicsEnvironment.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(
                     new File("./Client/resources/fonts/DK Trained Monkey.otf").getCanonicalPath())));
 
         } catch (IOException|FontFormatException e) {
-            System.out.println("Font non caricato correttamente");
+            System.out.println("ERROR: Font not found!");
         }
 
         App entrypoint = new App();

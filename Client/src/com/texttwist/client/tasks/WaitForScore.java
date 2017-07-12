@@ -2,9 +2,7 @@ package com.texttwist.client.tasks;
 
 import com.texttwist.client.App;
 import constants.Config;
-import javafx.util.Pair;
 import models.Message;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -12,68 +10,61 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * Created by loke on 27/06/2017.
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: This job will waits for the score of the match sent by server, at end it will execute a callback
+ *              function that show the highscore pages.
  */
 public class WaitForScore extends SwingWorker<Void,Void> {
 
-    DefaultListModel<Pair<String,Integer>> ranks = new DefaultListModel<Pair<String,Integer>>();
-
-    SwingWorker callback;
-
-    //TODO PASSARE LA CALLBACK ALLO SWING WORKER ED ESEGUIRLA AL DONE
+    private SwingWorker callback;
     public WaitForScore(SwingWorker callback){
         this.callback = callback;
     }
 
     @Override
     public Void doInBackground() {
-        InetAddress group = null;
-        try {
 
-            Message msg;
+        try {
+            //Wait for the final scores of the match
             while(true) {
                 byte[] buf = new byte[1024];
-                DatagramPacket recv = new DatagramPacket(buf, buf.length);
-                App.game.multicastSocket.receive(recv);
+                DatagramPacket receivedDatagram = new DatagramPacket(buf, buf.length);
+                App.game.multicastSocket.receive(receivedDatagram);
 
-                String s = new String(recv.getData());
-                msg = Message.toMessage(s);
+                String s = new String(receivedDatagram.getData());
+                Message msg = Message.toMessage(s);
+
+                //When arrive a message with message=FINALSCORE popolate ranks
                 if(msg.message.equals("FINALSCORE")){
+                    if(msg.data != null) {
+                        App.game.ranks.clear();
+                        App.game.ranks = utilities.Parse.score(msg.data);
+                    }
                     break;
                 }
             }
-
-            if(msg.data != null) {
-                for (int i = 0; i < msg.data.size() - 1; i++) {
-                    String[] splitted = msg.data.get(i).split(":");
-                    ranks.addElement(new Pair<String, Integer>(splitted[0], new Integer(splitted[1])));
-                }
-            }
-            App.game.ranks = ranks;
-
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            App.logger.write("WAIT FOR SCORE: Host unknown");
         } catch (IOException e) {
-            e.printStackTrace();
+            App.logger.write("WAIT FOR SCORE: Can't read from multicast Socket");
         }
         return null;
     }
 
     @Override
     public void done(){
-        App.game.ranks = ranks;
         try {
+            //Leave group and close multicast socket
             App.game.multicastSocket.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServerURI));
+            App.game.multicastSocket.close();
+
+            //Stop game
+            App.game.stop();
+
+            //Call callback
+            this.callback.execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        App.game.multicastSocket.close();
-        App.game.gameIsStarted =false;
-        try {
-            this.callback.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
-
 }

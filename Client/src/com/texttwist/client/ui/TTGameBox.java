@@ -24,6 +24,7 @@ public class TTGameBox extends TTInputField{
         setBounds(position.x, position.y, dimension.width, dimension.height);
         setPreferredSize(dimension);
         setForeground(Palette.fontColor);
+        list.clear();
 
         addKeyListener(new KeyAdapter() {
             @Override
