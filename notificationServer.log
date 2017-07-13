@@ -1761,3 +1761,126 @@ LOGGER (Server): Thu Jul 13 23:29:53 CEST 2017 - Invoked login with username=a A
 LOGGER (Server): Thu Jul 13 23:29:53 CEST 2017 - Login successfull
 LOGGER (Server): Thu Jul 13 23:29:57 CEST 2017 - Invoked login with username=b AND  password=b
 LOGGER (Server): Thu Jul 13 23:29:57 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:32:24 CEST 2017 - Services starting ...
+LOGGER (Server): Thu Jul 13 23:32:25 CEST 2017 - AuthService Service running at 9999 port...
+LOGGER (Server): Thu Jul 13 23:32:25 CEST 2017 - GameService Service is running at 10000 port...
+LOGGER (Server): Thu Jul 13 23:32:25 CEST 2017 - Services started correctly ...
+LOGGER (Server): Thu Jul 13 23:32:37 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:32:37 CEST 2017 - Login unsuccessfull
+LOGGER (Server): Thu Jul 13 23:32:40 CEST 2017 - Invoked register with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:32:40 CEST 2017 - Registration successfull
+LOGGER (Server): Thu Jul 13 23:32:42 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:32:42 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:32:49 CEST 2017 - Invoked register with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:32:49 CEST 2017 - Registration successfull
+LOGGER (Server): Thu Jul 13 23:32:51 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:32:51 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:32:59 CEST 2017 - Invoked register with username=c AND  password=c
+LOGGER (Server): Thu Jul 13 23:32:59 CEST 2017 - Registration successfull
+LOGGER (Server): Thu Jul 13 23:33:01 CEST 2017 - Invoked login with username=c AND  password=c
+LOGGER (Server): Thu Jul 13 23:33:01 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:33:05 CEST 2017 - Invoked register with username=d AND  password=d
+LOGGER (Server): Thu Jul 13 23:33:05 CEST 2017 - Registration successfull
+LOGGER (Server): Thu Jul 13 23:33:07 CEST 2017 - Invoked login with username=d AND  password=d
+LOGGER (Server): Thu Jul 13 23:33:07 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:36:00 CEST 2017 - Invoked register with username=e AND  password=e
+LOGGER (Server): Thu Jul 13 23:36:00 CEST 2017 - Registration successfull
+LOGGER (Server): Thu Jul 13 23:36:01 CEST 2017 - Invoked login with username=e AND  password=e
+LOGGER (Server): Thu Jul 13 23:36:01 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:36:06 CEST 2017 - Invoked register with username=f AND  password=f
+LOGGER (Server): Thu Jul 13 23:36:06 CEST 2017 - Registration successfull
+LOGGER (Server): Thu Jul 13 23:36:07 CEST 2017 - Invoked login with username=f AND  password=f
+LOGGER (Server): Thu Jul 13 23:36:07 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:36:55 CEST 2017 - Invoked logout with username=e AND  token=4fhehlcg3dhur4c4fm32gjeglm
+LOGGER (Server): Thu Jul 13 23:36:55 CEST 2017 - Logout successfull
+LOGGER (Server): Thu Jul 13 23:36:55 CEST 2017 - Logout successfull (but something gone wrong)
+LOGGER (Server): Thu Jul 13 23:36:57 CEST 2017 - Invoked login with username=e AND  password=dd
+LOGGER (Server): Thu Jul 13 23:36:57 CEST 2017 - Login unsuccessfull
+LOGGER (Server): Thu Jul 13 23:37:00 CEST 2017 - Invoked login with username=e AND  password=e
+LOGGER (Server): Thu Jul 13 23:37:00 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:37:09 CEST 2017 - Invoked logout with username=e AND  token=o8eehhsq8og3ct9b6g5lo9k3v9
+LOGGER (Server): Thu Jul 13 23:37:09 CEST 2017 - Logout successfull
+LOGGER (Server): Thu Jul 13 23:37:09 CEST 2017 - Logout successfull (but something gone wrong)
+LOGGER (Server): Thu Jul 13 23:37:13 CEST 2017 - Invoked login with username=e AND  password=fdf
+LOGGER (Server): Thu Jul 13 23:37:13 CEST 2017 - Login unsuccessfull
+LOGGER (Server): Thu Jul 13 23:37:20 CEST 2017 - Invoked login with username=e AND  password=dd
+LOGGER (Server): Thu Jul 13 23:37:20 CEST 2017 - Login unsuccessfull
+LOGGER (Server): Thu Jul 13 23:37:22 CEST 2017 - Invoked login with username=e AND  password=e
+LOGGER (Server): Thu Jul 13 23:37:22 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:37:30 CEST 2017 - Invoked logout with username=e AND  token=rjtq0cis3fqhdb2c5pipui8nmd
+LOGGER (Server): Thu Jul 13 23:37:30 CEST 2017 - Logout successfull
+LOGGER (Server): Thu Jul 13 23:37:30 CEST 2017 - Logout successfull (but something gone wrong)
+LOGGER (Server): Thu Jul 13 23:37:33 CEST 2017 - Invoked login with username=e AND  password=e
+LOGGER (Server): Thu Jul 13 23:37:33 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:40:08 CEST 2017 - Services starting ...
+LOGGER (Server): Thu Jul 13 23:40:08 CEST 2017 - AuthService Service running at 9999 port...
+LOGGER (Server): Thu Jul 13 23:40:09 CEST 2017 - Services started correctly ...
+LOGGER (Server): Thu Jul 13 23:40:09 CEST 2017 - GameService Service is running at 10000 port...
+LOGGER (Server): Thu Jul 13 23:40:14 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:40:14 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:40:19 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:40:19 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:40:37 CEST 2017 - Invoked logout with username=b AND  token=68b5nnp61fsopvg2s1826kismv
+LOGGER (Server): Thu Jul 13 23:40:37 CEST 2017 - Logout successfull
+LOGGER (Server): Thu Jul 13 23:40:37 CEST 2017 - Logout successfull (but something gone wrong)
+LOGGER (Server): Thu Jul 13 23:40:39 CEST 2017 - Invoked login with username=b AND  password=fd
+LOGGER (Server): Thu Jul 13 23:40:39 CEST 2017 - Login unsuccessfull
+LOGGER (Server): Thu Jul 13 23:40:41 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:40:41 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:41:17 CEST 2017 - Services starting ...
+LOGGER (Server): Thu Jul 13 23:41:17 CEST 2017 - AuthService Service running at 9999 port...
+LOGGER (Server): Thu Jul 13 23:41:17 CEST 2017 - GameService Service is running at 10000 port...
+LOGGER (Server): Thu Jul 13 23:41:17 CEST 2017 - Services started correctly ...
+LOGGER (Server): Thu Jul 13 23:41:24 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:41:24 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:41:27 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:41:27 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:41:45 CEST 2017 - Invoked logout with username=b AND  token=vs8ti17hhbdjfsg48elebpa3ld
+LOGGER (Server): Thu Jul 13 23:41:45 CEST 2017 - Logout successfull
+LOGGER (Server): Thu Jul 13 23:41:45 CEST 2017 - Logout successfull (but something gone wrong)
+LOGGER (Server): Thu Jul 13 23:41:47 CEST 2017 - Invoked login with username=b AND  password=ds
+LOGGER (Server): Thu Jul 13 23:41:47 CEST 2017 - Login unsuccessfull
+LOGGER (Server): Thu Jul 13 23:41:49 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:41:49 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:43:16 CEST 2017 - Services starting ...
+LOGGER (Server): Thu Jul 13 23:43:16 CEST 2017 - AuthService Service running at 9999 port...
+LOGGER (Server): Thu Jul 13 23:43:16 CEST 2017 - Services started correctly ...
+LOGGER (Server): Thu Jul 13 23:43:16 CEST 2017 - GameService Service is running at 10000 port...
+LOGGER (Server): Thu Jul 13 23:43:20 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:43:20 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:44:11 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:44:11 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:44:22 CEST 2017 - Services starting ...
+LOGGER (Server): Thu Jul 13 23:44:22 CEST 2017 - AuthService Service running at 9999 port...
+LOGGER (Server): Thu Jul 13 23:44:22 CEST 2017 - Services started correctly ...
+LOGGER (Server): Thu Jul 13 23:44:22 CEST 2017 - GameService Service is running at 10000 port...
+LOGGER (Server): Thu Jul 13 23:44:29 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:44:29 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:44:33 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:44:33 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:59:14 CEST 2017 - Services starting ...
+LOGGER (Server): Thu Jul 13 23:59:14 CEST 2017 - AuthService Service running at 9999 port...
+LOGGER (Server): Thu Jul 13 23:59:14 CEST 2017 - GameService Service is running at 10000 port...
+LOGGER (Server): Thu Jul 13 23:59:14 CEST 2017 - Services started correctly ...
+LOGGER (Server): Thu Jul 13 23:59:20 CEST 2017 - Invoked login with username=a AND  password=aa
+LOGGER (Server): Thu Jul 13 23:59:20 CEST 2017 - Login unsuccessfull
+LOGGER (Server): Thu Jul 13 23:59:21 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Thu Jul 13 23:59:21 CEST 2017 - Login successfull
+LOGGER (Server): Thu Jul 13 23:59:26 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Thu Jul 13 23:59:26 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 14 00:00:11 CEST 2017 - Invoked login with username=c AND  password=c
+LOGGER (Server): Fri Jul 14 00:00:11 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 14 00:00:17 CEST 2017 - Invoked login with username=d AND  password=d
+LOGGER (Server): Fri Jul 14 00:00:17 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 14 00:04:50 CEST 2017 - Services starting ...
+LOGGER (Server): Fri Jul 14 00:04:50 CEST 2017 - AuthService Service running at 9999 port...
+LOGGER (Server): Fri Jul 14 00:04:50 CEST 2017 - GameService Service is running at 10000 port...
+LOGGER (Server): Fri Jul 14 00:04:50 CEST 2017 - Services started correctly ...
+LOGGER (Server): Fri Jul 14 00:04:57 CEST 2017 - Invoked login with username=a AND  password=a
+LOGGER (Server): Fri Jul 14 00:04:57 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 14 00:05:00 CEST 2017 - Invoked login with username=b AND  password=b
+LOGGER (Server): Fri Jul 14 00:05:00 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 14 00:05:27 CEST 2017 - Invoked login with username=c AND  password=c
+LOGGER (Server): Fri Jul 14 00:05:27 CEST 2017 - Login successfull
+LOGGER (Server): Fri Jul 14 00:05:31 CEST 2017 - Invoked login with username=d AND  password=d
+LOGGER (Server): Fri Jul 14 00:05:31 CEST 2017 - Login successfull

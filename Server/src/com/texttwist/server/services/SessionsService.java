@@ -40,12 +40,6 @@ public class SessionsService {
         return sessions.add(new Session(new User(userName,"",0), token));
     }
 
-    public void printAll(){
-        for (Session elem : sessions) {
-            System.out.println(elem.account.userName + " | " + elem.token);
-        }
-    }
-
     public boolean remove(String userName){
         if(exists(userName)) {
             Session s = getSession(userName);

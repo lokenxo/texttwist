@@ -18,6 +18,11 @@ public class HomeController {
     public Response login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
         Response res = authService.login(userName,password);
         if (res.code == 200){
+            try {
+                App.registerForNotifications();
+            } catch (RemoteException e) {
+                App.logger.write("AUTH SERVICE: Can't register for notification");
+            }
             App.session = (new Session(new User(userName,password,0), res.data.get("token").toString()));
         }
         return res;

@@ -35,8 +35,6 @@ public class WaitForPlayers extends SwingWorker<Void,Void> {
             while (App.clientTCP.read(buffer) != -1) {
                 String line = new String(buffer.array(), buffer.position(), buffer.remaining());
                 buffer.clear();
-                System.out.println("ASPETTO GAM_STARTED");
-                System.out.println(line);
 
                 if (line.startsWith("MESSAGE")) {
                     buffer.clear();

@@ -59,7 +59,7 @@ public class Server {
 
     private void startMessageService(){
         //Starting the Message service based on TCP
-        new Thread(new MessageService(Config.GameServerPort)).start();
+        new Thread(new MessageService()).start();
     }
 
     private void startWordsReceiverService(){

@@ -20,11 +20,6 @@ public class AuthService {
     private String baseUrl = Config.getAuthServerURI().concat("/auth");
 
     public Response login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
-        try {
-            App.registerForNotifications();
-        } catch (RemoteException e) {
-            App.logger.write("AUTH SERVICE: Can't register for notification");
-        }
         IAuth auth = (IAuth) Naming.lookup(baseUrl);
         return auth.login(userName, password);
     }

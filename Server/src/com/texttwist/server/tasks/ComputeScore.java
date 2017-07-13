@@ -14,10 +14,10 @@ import java.util.concurrent.Callable;
  */
 public class ComputeScore implements Callable<Integer> {
 
-    public DefaultListModel<String> words;
-    public final String sender;
+    private DefaultListModel<String> words;
+    private final String sender;
     public Match match;
-    public DefaultListModel<String> wordsValid;
+    private DefaultListModel<String> wordsValid;
 
     public ComputeScore(String sender, DefaultListModel<String> words, Match match){
         this.words = words;
@@ -33,31 +33,18 @@ public class ComputeScore implements Callable<Integer> {
             for (int i = 0; i < words.size(); i++) {
                 if (isValid(words.get(i), match.letters)) {
                     score += words.get(i).length();
-                    System.out.println(words.get(i) + " is valid!" + " : " + score );
                     wordsValid.addElement(words.get(i));
                 }
             }
-
-
-            System.out.println(sender +" totalize SCORE = " + score);
             match.setScore(sender, score);
-        for (Pair<String, Integer> player : match.playersScore) {
-            System.out.println(player.getValue());
-
-        }
-            System.out.println(score);
 
             User u = AccountsService.getInstance().findUser(sender);
             u.addScore(score);
 
             if(match.allPlayersSendedHisScore()) {
-
                 match.matchTimeout = false;
-                System.out.println("MATCH TIMEOUT CANCELLATO");
-
                 match.setUndefinedScorePlayersToZero();
                 new SendScores(match).call();
-
             }
             return score;
     }
@@ -74,7 +61,6 @@ public class ComputeScore implements Callable<Integer> {
             if(word.equals("")){
                 return true;
             }
-
             if(!isCharacterPresent || wordsValid.indexOf(word)!=-1){
                 return false;
             }

@@ -1,4 +1,4 @@
-package com.texttwist.server.servers;
+package com.texttwist.server.proxies;
 
 import com.texttwist.server.services.SessionsService;
 import com.texttwist.server.models.Match;
@@ -10,25 +10,22 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.*;
 
-import static com.texttwist.server.services.MessageService.activeMatches;
 
 /**
  * Author:      Lorenzo Iovino on 18/06/2017.
  * Description: Proxy Dispatcher
  * */
-public class ProxyDispatcher implements Callable<Boolean> {
-    protected final ExecutorService threadPool = Executors.newCachedThreadPool();
+public class MessageDispatcher implements Callable<Boolean> {
+    private final ExecutorService threadPool = Executors.newCachedThreadPool();
     private final Message request;
     private final SocketChannel socketChannel;
     private ByteBuffer bufferMessage;
-    boolean matchNotAvailable =false;
+    private boolean matchNotAvailable = false;
 
-
-    public ProxyDispatcher(Message request, SocketChannel socketChannel, ByteBuffer bufferMessage) {
+    public MessageDispatcher(Message request, SocketChannel socketChannel, ByteBuffer bufferMessage) {
         this.request = request;
         this.socketChannel = socketChannel;
         this.bufferMessage = bufferMessage;
-
     }
 
     @Override
@@ -47,12 +44,10 @@ public class ProxyDispatcher implements Callable<Boolean> {
                                 Boolean invitationSended = sendInvitations.get();
                                 if (invitationSended) {
 
-                                    //Crea nuova partita e attendi i giocatori
+                                    //Create new match and wait users joins
                                     request.data.addElement(request.sender);
                                     final Match match = new Match(request.sender, request.data);
-                                    match.printAll();
-
-                                    activeMatches.add(match);
+                                    Match.activeMatches.add(match);
 
                                     DefaultListModel<String> matchName = new DefaultListModel<>();
                                     matchName.addElement(request.sender);
@@ -62,28 +57,24 @@ public class ProxyDispatcher implements Callable<Boolean> {
 
                                     if(!joinMatchRes){
                                         bufferMessage = ByteBuffer.allocate(1024);
-
-                                        //NON FARE NULLA, ASPETTA GLI ALTRI
                                         Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<>());
                                         byteMessage = message.toString().getBytes();
                                         bufferMessage = ByteBuffer.wrap(byteMessage);
                                         socketChannel.write(bufferMessage);
                                     }
 
-
                                     Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
                                     Boolean joinTimeoutRes = joinTimeout.get();
                                     if(joinTimeoutRes){
                                         Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
-                                                new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
-
+                                                new SendMessageToAllPlayers(match,
+                                                        new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
                                         Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
                                         if(!sendMessageJoinTimeoutRes){
-                                            activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
+                                            Match.activeMatches.remove(Match.findMatchIndex(Match.activeMatches, match.matchCreator));
                                             return sendMessageJoinTimeoutRes;
                                         }
                                     } else {
-                                        System.out.println("TIMEOUT FINITO SENZA EFFETTI");
                                         return true;
                                     }
 
@@ -124,7 +115,6 @@ public class ProxyDispatcher implements Callable<Boolean> {
 
                             bufferMessage = ByteBuffer.wrap(byteMessage);
                             try {
-                                String s = new String(bufferMessage.array(), bufferMessage.position(), bufferMessage.remaining());
                                 socketChannel.write(bufferMessage);
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -139,7 +129,7 @@ public class ProxyDispatcher implements Callable<Boolean> {
                 case "JOIN_GAME":
                     Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, request.data, socketChannel));
                     try {
-                        Match match = Match.findMatch(activeMatches, request.data.get(0));;
+                        Match match = Match.findMatch(Match.activeMatches, request.data.get(0));;
                         Boolean joinMatchRes = joinMatch.get();
                         if(joinMatchRes){
 
@@ -153,23 +143,17 @@ public class ProxyDispatcher implements Callable<Boolean> {
                                     if (socketClient != null) {
                                         bufferMessage.clear();
                                         bufferMessage = ByteBuffer.allocate(1024);
-
                                         Message message = new Message("GAME_STARTED", "", "", match.letters);
                                         match.startGame();
-
-                                        System.out.println("TIMEOUT CANCELLEd");
                                         byteMessage = message.toString().getBytes();
-
                                         bufferMessage = ByteBuffer.wrap(byteMessage);
                                         try {
                                             String s = new String(bufferMessage.array(), bufferMessage.position(), bufferMessage.remaining());
-                                            System.out.println("INVIO GAME_STARTED "+ s);
                                             socketClient.write(bufferMessage);
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
                                     }
-
                                 }
                                 if (matchNotAvailable) {
                                     return false;
@@ -180,7 +164,6 @@ public class ProxyDispatcher implements Callable<Boolean> {
                                 bufferMessage = ByteBuffer.allocate(1024);
                                 if (socketChannel != null) {
                                     bufferMessage = ByteBuffer.allocate(1024);
-
                                     Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
                                     bufferMessage.clear();
                                     byteMessage = msg.toString().getBytes();
@@ -188,7 +171,6 @@ public class ProxyDispatcher implements Callable<Boolean> {
                                     socketChannel.write(bufferMessage);
                                     matchNotAvailable = true;
                                 }
-
                             }
                         }
                     } catch (InterruptedException e) {
@@ -198,17 +180,13 @@ public class ProxyDispatcher implements Callable<Boolean> {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 default:
-
                     break;
             }
-
         } else {
             threadPool.submit(new TokenInvalid(request.sender, socketChannel, bufferMessage));
             return false;
         }
-
         return false;
     }
 }

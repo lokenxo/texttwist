@@ -5,7 +5,6 @@ import javafx.util.Pair;
 import javax.swing.*;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
-import static com.texttwist.server.services.MessageService.activeMatches;
 
 /**
  * Author:      Lorenzo Iovino on 23/06/2017.
@@ -24,7 +23,7 @@ public class JoinMatch implements Callable<Boolean> {
 
     @Override
     public Boolean call() throws Exception {
-        final Match thisMatch = Match.findMatch(activeMatches, this.matchName);
+        final Match thisMatch = Match.findMatch(Match.activeMatches, this.matchName);
             if (thisMatch != null) {
                 for (int j = 0; j < thisMatch.playersStatus.size(); j++) {
                     String name = thisMatch.playersStatus.get(j).getKey();
@@ -40,25 +39,12 @@ public class JoinMatch implements Callable<Boolean> {
             return false;
     }
 
-
-    private void printAll(Match match){
-        for (int i = 0; i < match.playersStatus.size(); i++) {
-
-            System.out.println(match.playersStatus.get(i).getKey());
-            System.out.println(match.playersStatus.get(i).getValue());
-            System.out.println(match.playersSocket.get(i).getKey());
-            System.out.println(match.playersSocket.get(i).getValue());
-
-        }
-    }
-
     private Boolean allJoined(Match match) {
         for (int i = 0; i < match.playersStatus.size(); i++) {
             if (match.playersStatus.get(i).getValue() == 0) {
                 return false;
             }
         }
-        match.printAll();
         match.joinTimeout = false;
         return true;
     }

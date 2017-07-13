@@ -10,8 +10,6 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.util.concurrent.Callable;
 
-import static com.texttwist.server.services.MessageService.activeMatches;
-
 /**
  * Created by loke on 13/07/2017.
  */
@@ -27,9 +25,7 @@ public class SendScores implements Callable<Void> {
     public Void call() throws Exception {
 
         while (true) {
-            System.out.println("SENDING");
             Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
-
             MulticastSocket multicastSocket = null;
             try {
                 multicastSocket = new MulticastSocket(match.multicastId);
@@ -39,7 +35,7 @@ public class SendScores implements Callable<Void> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
+            Match.activeMatches.remove(Match.findMatchIndex(Match.activeMatches, match.matchCreator));
             return null;
         }
     }

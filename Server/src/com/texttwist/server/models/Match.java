@@ -10,8 +10,6 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static com.texttwist.server.services.MessageService.activeMatches;
-
 
 /**
  * Author:      Lorenzo Iovino on 23/06/2017.
@@ -32,6 +30,9 @@ public class Match {
     //Players score: A list of pair where elements are <playerName, score>.
     public final List<Pair<String,Integer>> playersScore =  Collections.synchronizedList(new ArrayList<>());
 
+    //Players score: A list of active matches.
+    public static List<Match> activeMatches =  Collections.synchronizedList(new ArrayList<>());
+
 
     /****SINGLE INSTANCE OF MATCH****/
     //If match is started
@@ -50,7 +51,7 @@ public class Match {
     //Letters of the match
     public DefaultListModel<String> letters;
 
-    protected ExecutorService matchTimeoutThread = Executors.newSingleThreadExecutor();
+    private ExecutorService matchTimeoutThread = Executors.newSingleThreadExecutor();
 
     public Match(String matchCreator, DefaultListModel<String> players){
         for (int i =0; i < players.size(); i++){
@@ -61,7 +62,6 @@ public class Match {
 
         this.multicastId = this.generateMulticastId();
         this.matchCreator = matchCreator;
-
     }
 
     public static Match findMatch(List<Match> matches, String matchName){
@@ -71,12 +71,6 @@ public class Match {
             }
         }
         return null;
-    }
-
-    public void printAll(){
-        for (Pair<String, Integer> aPlayersScore : playersScore) {
-            System.out.println(aPlayersScore.getKey() + " : " + aPlayersScore.getValue());
-        }
     }
 
     public static int findMatchIndex(List<Match> matches, String matchName){

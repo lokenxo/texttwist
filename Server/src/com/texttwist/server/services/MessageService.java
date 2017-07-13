@@ -1,76 +1,53 @@
-
 package com.texttwist.server.services;
+
 import com.texttwist.server.Server;
-import com.texttwist.server.servers.ProxyDispatcher;
+import com.texttwist.server.proxies.MessageDispatcher;
 import com.texttwist.server.models.Dictionary;
-import com.texttwist.server.models.Match;
 import constants.Config;
 import models.Message;
 import java.net.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import static java.nio.channels.SelectionKey.OP_ACCEPT;
 import static java.nio.channels.SelectionKey.OP_READ;
 
 
 /**
  * Author:      Lorenzo Iovino on 17/06/2017.
- * Description: Game Server
+ * Description: Message Service
  */
 public class MessageService implements Runnable{
 
-    private int serverPort;
-    private ProxyDispatcher proxy;
-    private ReceiveWordsService wordsReceiver;
-
-    private DatagramChannel datagramChannel;
     private Selector selector = null;
-    private ExecutorService threadPool = Executors.newCachedThreadPool();
+    private ExecutorService dispatcherPool = Executors.newCachedThreadPool();
     private String dictionaryPath = "./Server/resources/dictionary";
     public static Dictionary dict;
-    SocketChannel client;
-    ByteBuffer bufferWords = ByteBuffer.allocate(1024);
-    ByteBuffer bufferMessages = ByteBuffer.allocate(1024);
 
-
-
-    public static List<Match> activeMatches =  Collections.synchronizedList(new ArrayList<>());
     public static Integer multicastId = 4000;
 
-    public MessageService(int port){
-        this.serverPort = port;
-    }
-
-    public void run(){
-
+    public MessageService()
+    {
         dict = new Dictionary(dictionaryPath);
         try {
             selector = Selector.open();
 
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
-            serverSocketChannel.socket().bind(new InetSocketAddress(serverPort));
+            serverSocketChannel.socket().bind(new InetSocketAddress(Config.GameServerPort));
             serverSocketChannel.register(selector, OP_ACCEPT);
-
-
-
-            Server.logger.write("GameService Service is running at "+this.serverPort+" port...");
-
+            Server.logger.write("GameService Service is running at "+Config.GameServerPort+" port...");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void run(){
         while (true) {
-            System.out.println("WAITING FOR MSG");
             try {
                 selector.select();
             } catch (IOException e) {
@@ -79,9 +56,9 @@ public class MessageService implements Runnable{
 
             Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
             while (iter.hasNext()) {
-                bufferMessages = ByteBuffer.allocate(1024);
+                ByteBuffer bufferMessages = ByteBuffer.allocate(1024);
                 bufferMessages.clear();
-                client = null;
+                SocketChannel client = null;
                 SelectionKey key = iter.next();
                 iter.remove();
 
@@ -99,10 +76,9 @@ public class MessageService implements Runnable{
                                 bufferMessages.flip();
                                 String line = new String(bufferMessages.array(), bufferMessages.position(), bufferMessages.remaining());
                                 if (line.startsWith("MESSAGE")) {
-                                    SessionsService.getInstance().printAll();
                                     Message msg = Message.toMessage(line);
-                                    proxy = new ProxyDispatcher(msg, client, bufferMessages);
-                                    threadPool.submit(proxy);
+                                    MessageDispatcher proxy = new MessageDispatcher(msg, client, bufferMessages);
+                                    dispatcherPool.submit(proxy);
                                 }
 
                                 if (line.startsWith("CLOSE")) {

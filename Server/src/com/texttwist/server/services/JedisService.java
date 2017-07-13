@@ -16,10 +16,6 @@ import static com.texttwist.server.Server.jedisPool;
  */
 public class JedisService {
 
-    public JedisService(){
-
-    }
-
     /** Read the object from Base64 string. */
     public static Object fromString(String s) throws IOException, ClassNotFoundException {
         byte [] data = Base64.getDecoder().decode(s);
@@ -57,11 +53,8 @@ public class JedisService {
         Jedis jedis = null;
         List<Serializable> l = new ArrayList<>();
         try {
-            System.out.println("USER ss");
-
             jedis = jedisPool.getResource();
             String usersString = jedis.get(key);
-            System.out.println("USER "+usersString);
             if(usersString!=null) {
                 String[] lines = usersString.split("\n");
                 for (int i = 0; i < lines.length; i++) {
