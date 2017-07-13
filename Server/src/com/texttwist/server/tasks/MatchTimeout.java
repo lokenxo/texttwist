@@ -21,10 +21,9 @@ public class MatchTimeout implements Callable<Boolean> {
     public Boolean call() throws Exception {
         try {
             Thread.currentThread().sleep(Config.sendWordsTimeout);
-            match.setUndefinedScorePlayersToZero();
 
             if(match.matchTimeout) {
-                System.out.println("SEND BROADCAST BECAUSE TIMEOUT");
+                match.setUndefinedScorePlayersToZero();
                 new SendScores(match).call();
                 return true;
             }

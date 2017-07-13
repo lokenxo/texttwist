@@ -36,8 +36,7 @@ public class SendWords extends SwingWorker<Void,Void> {
             buffer.flip();
 
             App.clientUDP.send(buffer, App.clientUDPSocketAddress);
-
-            return null;
+            System.out.println("SENDED" + sentence);
         } catch (UnknownHostException e) {
             App.logger.write("SEND WORDS: Host address not correct");
         } catch (IOException e) {

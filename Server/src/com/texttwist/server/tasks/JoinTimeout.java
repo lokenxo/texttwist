@@ -17,15 +17,16 @@ public class JoinTimeout implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         try {
-            Thread.currentThread().sleep(1*60*1000);
-            System.out.println("TIMEOUTTTT");
+            match.joinTimeout=true;
+            Thread.currentThread().sleep(5000);
 
             if(match.joinTimeout) {
                 match.joinTimeout = false;
-                return false;
+                return true;
             }
             else {
-                return true;
+                match.joinTimeout = false;
+                return false;
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

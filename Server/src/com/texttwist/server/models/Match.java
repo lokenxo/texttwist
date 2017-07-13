@@ -44,8 +44,8 @@ public class Match {
     public Integer multicastId;
 
     //True if happen timeout, false otherwise
-    public boolean matchTimeout;
-    public boolean joinTimeout;
+    public boolean matchTimeout = false;
+    public boolean joinTimeout = false;
 
     //Letters of the match
     public DefaultListModel<String> letters;
@@ -109,6 +109,7 @@ public class Match {
     }
 
     public void setScore(String player, Integer score){
+
         Match m = findMatchByPlayerName(player);
         if(m!=null) {
             for (int i = 0; i < m.playersScore.size(); i++) {
@@ -121,6 +122,7 @@ public class Match {
 
     public Boolean allPlayersSendedHisScore(){
         for (Pair<String, Integer> player : playersScore) {
+            System.out.println(player.getValue());
             if (player.getValue() == -1) {
                 return false;
             }
@@ -129,6 +131,7 @@ public class Match {
     }
 
     public void setUndefinedScorePlayersToZero(){
+
         for (int i = 0; i < playersScore.size(); i++) {
             if (playersScore.get(i).getValue() == -1) {
                 playersScore.set(i, new Pair<>(playersScore.get(i).getKey(), 0));

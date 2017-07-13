@@ -2,6 +2,7 @@ package com.texttwist.server.tasks;
 import com.texttwist.server.services.AccountsService;
 import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
+import javafx.util.Pair;
 import models.User;
 
 import javax.swing.*;
@@ -37,8 +38,13 @@ public class ComputeScore implements Callable<Integer> {
                 }
             }
 
+
             System.out.println(sender +" totalize SCORE = " + score);
             match.setScore(sender, score);
+        for (Pair<String, Integer> player : match.playersScore) {
+            System.out.println(player.getValue());
+
+        }
             System.out.println(score);
 
             User u = AccountsService.getInstance().findUser(sender);
@@ -54,8 +60,6 @@ public class ComputeScore implements Callable<Integer> {
 
             }
             return score;
-
-
     }
 
     private Boolean isValid(String word, DefaultListModel<String> letters) {

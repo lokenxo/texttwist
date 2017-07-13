@@ -3,6 +3,7 @@ package com.texttwist.server.tasks;
 import com.texttwist.server.services.SessionsService;
 import com.texttwist.server.models.Match;
 import constants.Config;
+import javafx.util.Pair;
 import models.Message;
 
 import java.net.*;
@@ -40,16 +41,18 @@ public class ReceiveWords implements Callable<Boolean>{
 
         Message msg;
         DatagramSocket s = new DatagramSocket(Config.WordsReceiverServerPort);
-
+        DatagramPacket packet;
 
         while(true) {
+
             byte[] buf = new byte[1024];
             System.out.println("RECEIVIN WORDS");
 
-            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            packet = new DatagramPacket(buf, buf.length);
             s.receive(packet);
 
             System.out.println("WORDS RECEIVED");
+
             String rcv = new String(packet.getData());
             System.out.println(rcv);
             if (rcv.startsWith("MESSAGE")) {
@@ -60,13 +63,8 @@ public class ReceiveWords implements Callable<Boolean>{
                     threadPool.submit(new ComputeScore(msg.sender, msg.data, match));
                 } else {
                     threadPool.submit(new TokenInvalid(msg.sender, socketChannel, bufferMessages));
-                    return false;
                 }
             }
-
         }
-
-
     }
-
 }

@@ -58,7 +58,8 @@ public class JoinMatch implements Callable<Boolean> {
                 return false;
             }
         }
-        match.joinTimeout=false;
+        match.printAll();
+        match.joinTimeout = false;
         return true;
     }
 }

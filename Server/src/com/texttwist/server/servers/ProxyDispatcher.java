@@ -1,8 +1,10 @@
 package com.texttwist.server.servers;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.texttwist.server.services.SessionsService;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
+import javafx.util.Pair;
 import models.Message;
 
 import javax.swing.*;
@@ -71,11 +73,13 @@ public class ProxyDispatcher implements Callable<Boolean> {
                                         socketChannel.write(bufferMessage);
                                     }
 
+
                                     Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
-                                    joinTimeout.get();
-                                    if(match.joinTimeout){
+                                    Boolean joinTimeoutRes = joinTimeout.get();
+                                    if(joinTimeoutRes){
                                         Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
                                                 new SendMessageToAllPlayers(match, new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
+
                                         Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
                                         if(!sendMessageJoinTimeoutRes){
                                             activeMatches.remove(Match.findMatchIndex(activeMatches, match.matchCreator));
