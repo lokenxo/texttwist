@@ -109,7 +109,6 @@ public class Match {
     }
 
     public void setScore(String player, Integer score){
-
         Match m = findMatchByPlayerName(player);
         if(m!=null) {
             for (int i = 0; i < m.playersScore.size(); i++) {
@@ -122,7 +121,6 @@ public class Match {
 
     public Boolean allPlayersSendedHisScore(){
         for (Pair<String, Integer> player : playersScore) {
-            System.out.println(player.getValue());
             if (player.getValue() == -1) {
                 return false;
             }
@@ -131,7 +129,6 @@ public class Match {
     }
 
     public void setUndefinedScorePlayersToZero(){
-
         for (int i = 0; i < playersScore.size(); i++) {
             if (playersScore.get(i).getValue() == -1) {
                 playersScore.set(i, new Pair<>(playersScore.get(i).getKey(), 0));
@@ -148,7 +145,7 @@ public class Match {
     }
 
     private int generateMulticastId(){
-         return MessageService.multicastID++;
+         return MessageService.multicastId++;
     }
 
     public void setLetters(DefaultListModel<String> letters){

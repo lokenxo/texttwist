@@ -3,6 +3,7 @@ package com.texttwist.server;
 import com.texttwist.server.services.AuthService;
 import com.texttwist.server.services.MessageService;
 import com.texttwist.server.services.NotificationService;
+import com.texttwist.server.services.ReceiveWordsService;
 import constants.Config;
 import interfaces.INotificationServer;
 import redis.clients.jedis.JedisPool;
@@ -33,6 +34,7 @@ public class Server {
         startAuthService();
         startJedisService();
         startMessageService();
+        startWordsReceiverService();
         startNotificationService();
         Server.logger.write("Services started correctly ...");
     }
@@ -58,6 +60,11 @@ public class Server {
     private void startMessageService(){
         //Starting the Message service based on TCP
         new Thread(new MessageService(Config.GameServerPort)).start();
+    }
+
+    private void startWordsReceiverService(){
+        //Starting the Receive Words service based on UDP
+        new Thread(new ReceiveWordsService()).start();
     }
 
     private void startNotificationService(){

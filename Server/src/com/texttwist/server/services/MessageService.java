@@ -4,7 +4,6 @@ import com.texttwist.server.Server;
 import com.texttwist.server.servers.ProxyDispatcher;
 import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
-import com.texttwist.server.tasks.ReceiveWords;
 import constants.Config;
 import models.Message;
 import java.net.*;
@@ -30,7 +29,7 @@ public class MessageService implements Runnable{
 
     private int serverPort;
     private ProxyDispatcher proxy;
-    private ReceiveWords wordsReceiver;
+    private ReceiveWordsService wordsReceiver;
 
     private DatagramChannel datagramChannel;
     private Selector selector = null;
@@ -44,7 +43,7 @@ public class MessageService implements Runnable{
 
 
     public static List<Match> activeMatches =  Collections.synchronizedList(new ArrayList<>());
-    public static Integer multicastID = 4000;
+    public static Integer multicastId = 4000;
 
     public MessageService(int port){
         this.serverPort = port;
@@ -60,14 +59,11 @@ public class MessageService implements Runnable{
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.socket().bind(new InetSocketAddress(serverPort));
             serverSocketChannel.register(selector, OP_ACCEPT);
-            InetSocketAddress address = new InetSocketAddress(Config.WordsReceiverServerURI,Config.WordsReceiverServerPort);
-            datagramChannel = DatagramChannel.open();
-            datagramChannel.configureBlocking(true);
-            datagramChannel.connect(address);
+
+
+
             Server.logger.write("GameService Service is running at "+this.serverPort+" port...");
 
-            wordsReceiver = new ReceiveWords(datagramChannel, bufferWords, bufferMessages, client);
-            threadPool.submit(wordsReceiver);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,7 +98,6 @@ public class MessageService implements Runnable{
                             if (client.read(bufferMessages) != -1) {
                                 bufferMessages.flip();
                                 String line = new String(bufferMessages.array(), bufferMessages.position(), bufferMessages.remaining());
-                                System.out.println(line);
                                 if (line.startsWith("MESSAGE")) {
                                     SessionsService.getInstance().printAll();
                                     Message msg = Message.toMessage(line);
@@ -124,7 +119,6 @@ public class MessageService implements Runnable{
                                 key.cancel();
                             }
                             break;
-
                         default:
                             break;
                     }

@@ -1,7 +1,6 @@
 package com.texttwist.server.models;
 
 import com.texttwist.server.Server;
-
 import javax.swing.*;
 import java.io.*;
 import java.util.Random;

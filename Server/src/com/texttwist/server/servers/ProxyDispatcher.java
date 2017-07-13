@@ -1,12 +1,9 @@
 package com.texttwist.server.servers;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.texttwist.server.services.SessionsService;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
-import javafx.util.Pair;
 import models.Message;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -17,8 +14,8 @@ import static com.texttwist.server.services.MessageService.activeMatches;
 
 /**
  * Author:      Lorenzo Iovino on 18/06/2017.
- * Description: Jedis Service
- */
+ * Description: Proxy Dispatcher
+ * */
 public class ProxyDispatcher implements Callable<Boolean> {
     protected final ExecutorService threadPool = Executors.newCachedThreadPool();
     private final Message request;
@@ -128,7 +125,6 @@ public class ProxyDispatcher implements Callable<Boolean> {
                             bufferMessage = ByteBuffer.wrap(byteMessage);
                             try {
                                 String s = new String(bufferMessage.array(), bufferMessage.position(), bufferMessage.remaining());
-                                System.out.println("INVIO HIGHSCORES "+ s);
                                 socketChannel.write(bufferMessage);
                             } catch (IOException e) {
                                 e.printStackTrace();
