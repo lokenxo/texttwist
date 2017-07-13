@@ -21,10 +21,10 @@ public class JoinTimeout implements Callable<Boolean> {
             System.out.println("TIMEOUTTTT");
 
             if(match.joinTimeout) {
+                match.joinTimeout = false;
                 return false;
             }
             else {
-                match.joinTimeout=true;
                 return true;
             }
         } catch (InterruptedException e) {
