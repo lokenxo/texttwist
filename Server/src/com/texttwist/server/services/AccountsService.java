@@ -72,9 +72,4 @@ public class AccountsService {
         }
         return null;
     }
-
-    public int size(){
-        return users.size();
-    }
-
 }

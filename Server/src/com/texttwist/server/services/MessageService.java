@@ -27,7 +27,7 @@ public class MessageService implements Runnable{
     private String dictionaryPath = "./Server/resources/dictionary";
     public static Dictionary dict;
 
-    public static Integer multicastId = 4000;
+    public static Integer multicastId = Config.NotificationServerStubPort;
 
     public MessageService()
     {

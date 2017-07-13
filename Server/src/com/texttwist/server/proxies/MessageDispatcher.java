@@ -1,5 +1,6 @@
 package com.texttwist.server.proxies;
 
+import com.texttwist.server.Server;
 import com.texttwist.server.services.SessionsService;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
@@ -34,76 +35,75 @@ public class MessageDispatcher implements Callable<Boolean> {
         byte[] byteMessage = null;
         if(SessionsService.getInstance().isValidToken(request.token)){
             switch(request.message){
+
                 case "START_GAME":
                     Future<Boolean> onlineUsers = threadPool.submit(new CheckOnlineUsers(request.data));
                     try {
+                        //Check if invited users are online
                         Boolean usersOnline = onlineUsers.get();
                         if(usersOnline){
                             Future<Boolean> sendInvitations = threadPool.submit(new SendInvitations(request.sender, request.data));
-                            try {
-                                Boolean invitationSended = sendInvitations.get();
-                                if (invitationSended) {
+                            Boolean invitationSended = sendInvitations.get();
+                            if (invitationSended) {
 
-                                    //Create new match and wait users joins
-                                    request.data.addElement(request.sender);
-                                    final Match match = new Match(request.sender, request.data);
-                                    Match.activeMatches.add(match);
+                                //Server create new match
+                                request.data.addElement(request.sender);
+                                final Match match = new Match(request.sender, request.data);
+                                Match.activeMatches.add(match);
 
-                                    DefaultListModel<String> matchName = new DefaultListModel<>();
-                                    matchName.addElement(request.sender);
+                                DefaultListModel<String> matchName = new DefaultListModel<>();
+                                matchName.addElement(request.sender);
 
-                                    Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, matchName, socketChannel));
-                                    Boolean joinMatchRes = joinMatch.get();
+                                //Match creator join match
+                                Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, matchName, socketChannel));
+                                Boolean joinMatchRes = joinMatch.get();
 
-                                    if(!joinMatchRes){
-                                        bufferMessage = ByteBuffer.allocate(1024);
-                                        Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<>());
-                                        byteMessage = message.toString().getBytes();
-                                        bufferMessage = ByteBuffer.wrap(byteMessage);
-                                        socketChannel.write(bufferMessage);
-                                    }
-
-                                    Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
-                                    Boolean joinTimeoutRes = joinTimeout.get();
-                                    if(joinTimeoutRes){
-                                        Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
-                                                new SendMessageToAllPlayers(match,
-                                                        new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
-                                        Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
-                                        if(!sendMessageJoinTimeoutRes){
-                                            Match.activeMatches.remove(Match.findMatchIndex(Match.activeMatches, match.matchCreator));
-                                            return sendMessageJoinTimeoutRes;
-                                        }
-                                    } else {
-                                        return true;
-                                    }
-
-                                } else {
-                                    return false;
+                                //Notify to the client that invites was sents correctly
+                                if(!joinMatchRes){
+                                    bufferMessage = ByteBuffer.allocate(1024);
+                                    Message message = new Message("INVITES_ALL_SENDED", "", "", new DefaultListModel<>());
+                                    byteMessage = message.toString().getBytes();
+                                    bufferMessage = ByteBuffer.wrap(byteMessage);
+                                    socketChannel.write(bufferMessage);
                                 }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
-                                e.printStackTrace();
+
+                                //Starts to wait until all player joins
+                                Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
+                                Boolean joinTimeoutRes = joinTimeout.get();
+                                //If joinTimeoutRes==true timeout happen, need to notify to all waiting clients
+                                if(joinTimeoutRes){
+                                    Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
+                                            new SendMessageToAllPlayers(match,
+                                                    new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
+                                    Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
+                                    if(!sendMessageJoinTimeoutRes){
+                                        Match.activeMatches.remove(Match.findMatchIndex(Match.activeMatches, match.matchCreator));
+                                        return sendMessageJoinTimeoutRes;
+                                    }
+                                } else {
+                                    //All done, all player joined
+                                    return true;
+                                }
                             }
                         } else {
-
+                            //Some user in the list is not online
                             Message message = new Message("USER_NOT_ONLINE", "", "", new DefaultListModel<>());
-                            byteMessage = new String(message.toString()).getBytes();
+                            byteMessage = message.toString().getBytes();
                             bufferMessage.clear();
                             bufferMessage = ByteBuffer.wrap(byteMessage);
                             this.socketChannel.write(bufferMessage);
                             return false;
                         }
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - START GAME: InterruptedException");
                     } catch (ExecutionException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - START GAME: ExecutionException");
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - START GAME: IOException");
                     }
 
                 case "FETCH_HIGHSCORES":
+                    //Fetch hisghscore and send back to client
                     Future<DefaultListModel<String>> computeHighscores = threadPool.submit(new ComputeHighscores());
                     try {
                         DefaultListModel<String> computeHighscoresRes = computeHighscores.get();
@@ -121,19 +121,25 @@ public class MessageDispatcher implements Callable<Boolean> {
                             }
                         return false;
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - FETCH HIGHSCORES: InterruptedException");
                     } catch (ExecutionException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - FETCH HIGHSCORES: ExecutionException");
                     }
 
                 case "JOIN_GAME":
+                    //An user joined the game
                     Future<Boolean> joinMatch = threadPool.submit(new JoinMatch(request.sender, request.data, socketChannel));
                     try {
                         Match match = Match.findMatch(Match.activeMatches, request.data.get(0));;
                         Boolean joinMatchRes = joinMatch.get();
+
+                        //If joinMatchRes=true start the game! Because all player joined
                         if(joinMatchRes){
 
+                            //If match not fired join timeout, notify all player that game is started
                             if(!match.joinTimeout) {
+
+                                //Generate letters to send to clients
                                 Future<DefaultListModel<String>> generateLetters = threadPool.submit(new GenerateLetters());
                                 match.setLetters(generateLetters.get());
                                 match.letters.addElement(String.valueOf(match.multicastId));
@@ -143,6 +149,7 @@ public class MessageDispatcher implements Callable<Boolean> {
                                     if (socketClient != null) {
                                         bufferMessage.clear();
                                         bufferMessage = ByteBuffer.allocate(1024);
+
                                         Message message = new Message("GAME_STARTED", "", "", match.letters);
                                         match.startGame();
                                         byteMessage = message.toString().getBytes();
@@ -156,12 +163,15 @@ public class MessageDispatcher implements Callable<Boolean> {
                                     }
                                 }
                                 if (matchNotAvailable) {
+                                    matchNotAvailable = false;
                                     return false;
                                 }
                             }
                         } else {
+                            //Match doesn't exist more because a timeout happen
                             if(match == null){
                                 bufferMessage = ByteBuffer.allocate(1024);
+
                                 if (socketChannel != null) {
                                     bufferMessage = ByteBuffer.allocate(1024);
                                     Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
@@ -174,16 +184,17 @@ public class MessageDispatcher implements Callable<Boolean> {
                             }
                         }
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - JOIN GAME: InterruptedException");
                     } catch (ExecutionException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - JOIN GAME: ExecutionException");
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Server.logger.write("MESSAGE DISPATCHER - JOIN GAME: IOException");
                     }
                 default:
                     break;
             }
         } else {
+            //If token is invalid, return error message to client
             threadPool.submit(new TokenInvalid(request.sender, socketChannel, bufferMessage));
             return false;
         }
