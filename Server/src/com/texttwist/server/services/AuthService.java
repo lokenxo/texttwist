@@ -1,6 +1,7 @@
 package com.texttwist.server.services;
 
 import com.texttwist.server.Server;
+import constants.Config;
 import interfaces.IAuth;
 import interfaces.INotificationClient;
 import models.Response;
@@ -19,12 +20,9 @@ import static com.texttwist.server.Server.notificationServer;
 public class AuthService extends UnicastRemoteObject implements IAuth {
 
     private SecureRandom random = new SecureRandom();
-    public int serverPort = 9999;
 
-
-    public AuthService(int serverPort) throws RemoteException{
-        this.serverPort=serverPort;
-        Server.logger.write("AuthService Service running at "+serverPort+" port...");
+    public AuthService() throws RemoteException{
+        Server.logger.write("AuthService Service running at "+ Config.AuthServerPort+" port...");
     }
 
     @Override

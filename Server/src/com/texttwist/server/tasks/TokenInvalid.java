@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 
 /**
  * Author:      Lorenzo Iovino on 11/07/2017.
- * Description: Task: Token Invalid Service
+ * Description: Task: Token Invalid
  */
 public class TokenInvalid implements Callable<Boolean> {
     private String sender;

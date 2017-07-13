@@ -10,11 +10,9 @@ import java.util.concurrent.Callable;
 
 /**
  * Author:      Lorenzo Iovino on 28/06/2017.
- * Description: Jedis Service
+ * Description: Task: Compute Highscores
  */
 public class ComputeHighscores implements Callable<DefaultListModel<String>> {
-
-    public ComputeHighscores(){}
 
     @Override
     public DefaultListModel<String> call() throws Exception {

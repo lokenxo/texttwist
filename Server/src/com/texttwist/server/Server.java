@@ -42,8 +42,8 @@ public class Server {
     private void startAuthService(){
         //Starting Auth service based on RMI
         try {
-            auth = new AuthService(Config.AuthServerPort);
-            Registry authRegistry = LocateRegistry.createRegistry(auth.serverPort);
+            auth = new AuthService();
+            Registry authRegistry = LocateRegistry.createRegistry(Config.AuthServerPort);
             authRegistry.bind("auth", auth);
         } catch (RemoteException e) {
             Server.logger.write("SERVER: RMI authentication service error (Remote exception)");

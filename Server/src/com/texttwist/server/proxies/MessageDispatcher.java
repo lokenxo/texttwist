@@ -13,7 +13,7 @@ import java.util.concurrent.*;
 
 /**
  * Author:      Lorenzo Iovino on 18/06/2017.
- * Description: Proxy Dispatcher
+ * Description: Message Dispatcher
  * */
 public class MessageDispatcher implements Callable<Boolean> {
     private final ExecutorService threadPool = Executors.newCachedThreadPool();

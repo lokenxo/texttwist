@@ -23,9 +23,9 @@ public class Config {
 
     public static String RedisServerURI = "localhost";
 
-    public static int gameTimeout = 10; //2 minuti in sec
-    public static int joinMatchTimeout = 5000; //7 minuti in millisec
-    public static int sendWordsTimeout = 3000; //5 minuti in millisec
+    public static int gameTimeout = 120; //2 minuti in sec
+    public static int joinMatchTimeout = 7*1000*60; //7 minuti in millisec
+    public static int sendWordsTimeout = 5*1000*60; //5 minuti in millisec
 
     public static String getAuthServerURI(){
         return "rmi://".concat(AuthServerURI).concat(":").concat(AuthServerPort.toString());

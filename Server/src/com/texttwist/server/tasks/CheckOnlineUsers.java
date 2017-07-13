@@ -1,13 +1,12 @@
 package com.texttwist.server.tasks;
 
 import com.texttwist.server.services.SessionsService;
-
 import javax.swing.*;
 import java.util.concurrent.Callable;
 
 /**
  * Author:      Lorenzo Iovino on 19/06/2017.
- * Description: Jedis Service
+ * Description: Task: Check Online Users
  */
 public class CheckOnlineUsers implements Callable<Boolean> {
     private final DefaultListModel<String> users;

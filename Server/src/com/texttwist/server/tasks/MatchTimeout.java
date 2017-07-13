@@ -2,12 +2,11 @@ package com.texttwist.server.tasks;
 
 import com.texttwist.server.models.Match;
 import constants.Config;
-
 import java.util.concurrent.Callable;
 
 /**
  * Author:      Lorenzo Iovino on 27/06/2017.
- * Description: Jedis Service
+ * Description: Task: Match Timeout
  */
 public class MatchTimeout implements Callable<Boolean> {
 

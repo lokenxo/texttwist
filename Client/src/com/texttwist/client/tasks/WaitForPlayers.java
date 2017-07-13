@@ -28,6 +28,7 @@ public class WaitForPlayers extends SwingWorker<Void,Void> {
     @Override
     public Void doInBackground() {
         try {
+            App.gameService.isWaiting = true;
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             TTDialog loading = new TTDialog("alert", "Waiting for users joins",null,null);
             buffer.flip();
@@ -42,6 +43,7 @@ public class WaitForPlayers extends SwingWorker<Void,Void> {
                     Message msg = Message.toMessage(line);
                     if (msg.message.equals("JOIN_TIMEOUT")) {
                         loading.dispose();
+                        App.gameService.isWaiting = false;
                         joinTimeout = true;
 
                         new TTDialog("alert", "TIMEOUT!",
@@ -58,6 +60,7 @@ public class WaitForPlayers extends SwingWorker<Void,Void> {
                     if (msg.message.equals("MATCH_NOT_AVAILABLE")) {
                         loading.dispose();
                         joinTimeout = true;
+                        App.gameService.isWaiting = false;
 
                         new TTDialog("alert", "THE GAME IS NOT MORE AVAILABLE!",
                             new Callable() {
@@ -72,6 +75,7 @@ public class WaitForPlayers extends SwingWorker<Void,Void> {
 
                     if (msg.message.equals("GAME_STARTED")) {
                         loading.dispose();
+                        App.gameService.isWaiting = false;
 
                         if(msg.data !=null ) {
                             DefaultListModel<String> data = msg.data;

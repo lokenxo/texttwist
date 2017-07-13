@@ -1,5 +1,6 @@
 package com.texttwist.server.services;
 
+import com.texttwist.server.Server;
 import models.User;
 import redis.clients.jedis.Jedis;
 
@@ -15,6 +16,11 @@ import static com.texttwist.server.Server.jedisPool;
  * Description: Jedis Service
  */
 public class JedisService {
+
+
+    JedisService(){
+        Server.logger.write("Jedis Service running on localhost...");
+    }
 
     /** Read the object from Base64 string. */
     public static Object fromString(String s) throws IOException, ClassNotFoundException {

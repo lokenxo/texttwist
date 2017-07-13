@@ -33,8 +33,6 @@ public class SessionsService {
         return null;
     }
 
-    public SessionsService(){}
-
     public boolean add(String userName, String token) {
         remove(userName);
         return sessions.add(new Session(new User(userName,"",0), token));

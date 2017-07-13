@@ -1,13 +1,12 @@
 package com.texttwist.server.tasks;
 
 import com.texttwist.server.Server;
-
 import javax.swing.*;
 import java.util.concurrent.Callable;
 
 /**
  * Author:      Lorenzo Iovino on 19/06/2017.
- * Description: Jedis Service
+ * Description: Task: Send Invitations
  */
 public class SendInvitations implements Callable<Boolean> {
     private DefaultListModel<String> users;
@@ -22,11 +21,9 @@ public class SendInvitations implements Callable<Boolean> {
     public Boolean call() throws Exception {
         try {
             Server.notificationServer.sendInvitations(sender, users);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return true;
     }
 }

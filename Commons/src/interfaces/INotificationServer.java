@@ -9,5 +9,5 @@ import java.rmi.RemoteException;
  */
 public interface INotificationServer extends Remote {
     void registerForCallback (INotificationClient ClientInterface) throws RemoteException;
-    void  unregisterForCallback (INotificationClient ClientInterface) throws RemoteException;
+    void unregisterForCallback (INotificationClient ClientInterface) throws RemoteException;
 }

@@ -1,34 +1,29 @@
 package com.texttwist.server.services;
 
+import com.texttwist.server.Server;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.ComputeScore;
-import com.texttwist.server.tasks.TokenInvalid;
 import constants.Config;
 import models.Message;
-
 import java.io.IOException;
 import java.net.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
  * Author:      Lorenzo Iovino on 27/06/2017.
- * Description: Jedis Service
+ * Description: Receive Words Service
  */
 public class ReceiveWordsService implements Runnable {
 
     private ExecutorService threadPool = Executors.newCachedThreadPool();
 
     public ReceiveWordsService() {
-
+        Server.logger.write("ReceiveWords Service running at "+Config.WordsReceiverServerPort+" port...");
     }
 
     @Override
     public void run(){
-
-
         Message msg;
         DatagramSocket s = null;
 
@@ -40,7 +35,6 @@ public class ReceiveWordsService implements Runnable {
         DatagramPacket packet;
 
         while(true) {
-
             byte[] buf = new byte[1024];
 
             packet = new DatagramPacket(buf, buf.length);

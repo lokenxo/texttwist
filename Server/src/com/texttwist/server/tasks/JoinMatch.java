@@ -8,12 +8,12 @@ import java.util.concurrent.Callable;
 
 /**
  * Author:      Lorenzo Iovino on 23/06/2017.
- * Description: Jedis Service
+ * Description: Task: Join Match
  */
 public class JoinMatch implements Callable<Boolean> {
-    public final String matchName;
-    public final String playerName;
-    public final SocketChannel socketChannel;
+    private final String matchName;
+    private final String playerName;
+    private final SocketChannel socketChannel;
 
     public JoinMatch(String playerName, DefaultListModel<String> matchName, SocketChannel socketChannel) {
         this.playerName = playerName;
@@ -24,19 +24,19 @@ public class JoinMatch implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         final Match thisMatch = Match.findMatch(Match.activeMatches, this.matchName);
-            if (thisMatch != null) {
-                for (int j = 0; j < thisMatch.playersStatus.size(); j++) {
-                    String name = thisMatch.playersStatus.get(j).getKey();
-                    if (name.equals(playerName)) {
-                        thisMatch.playersStatus.remove(j);
-                        thisMatch.playersStatus.add(new Pair<>(name, 1));
-                        thisMatch.playersSocket.remove(j);
-                        thisMatch.playersSocket.add(new Pair<>(name, socketChannel));
-                        return allJoined(thisMatch);
-                    }
+        if (thisMatch != null) {
+            for (int j = 0; j < thisMatch.playersStatus.size(); j++) {
+                String name = thisMatch.playersStatus.get(j).getKey();
+                if (name.equals(playerName)) {
+                    thisMatch.playersStatus.remove(j);
+                    thisMatch.playersStatus.add(new Pair<>(name, 1));
+                    thisMatch.playersSocket.remove(j);
+                    thisMatch.playersSocket.add(new Pair<>(name, socketChannel));
+                    return allJoined(thisMatch);
                 }
             }
-            return false;
+        }
+        return false;
     }
 
     private Boolean allJoined(Match match) {

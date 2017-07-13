@@ -11,7 +11,8 @@ import java.net.MulticastSocket;
 import java.util.concurrent.Callable;
 
 /**
- * Created by loke on 13/07/2017.
+ * Author:      Lorenzo Iovino on 13/07/2017.
+ * Description: Task: Send Scores
  */
 public class SendScores implements Callable<Void> {
 
@@ -24,19 +25,17 @@ public class SendScores implements Callable<Void> {
     @Override
     public Void call() throws Exception {
 
-        while (true) {
-            Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
-            MulticastSocket multicastSocket = null;
-            try {
-                multicastSocket = new MulticastSocket(match.multicastId);
-                InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
-                multicastSocket.send(hi);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Match.activeMatches.remove(Match.findMatchIndex(Match.activeMatches, match.matchCreator));
-            return null;
+        Message msg = new Message("FINALSCORE", "SERVER", "", match.getMatchPlayersScoreAsStringList());
+        MulticastSocket multicastSocket = null;
+        try {
+            multicastSocket = new MulticastSocket(match.multicastId);
+            InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
+            DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
+            multicastSocket.send(hi);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        Match.activeMatches.remove(Match.findMatchIndex(Match.activeMatches, match.matchCreator));
+        return null;
     }
 }

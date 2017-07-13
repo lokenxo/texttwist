@@ -27,6 +27,7 @@ public class GameService {
     public DefaultListModel<Pair<String,Integer>> globalRanks = new DefaultListModel<>();
     public DefaultListModel<Pair<String,Integer>> ranks = new DefaultListModel<>();
     private Boolean gameIsStarted = false;
+    public Boolean isWaiting = false;
 
     private void addToPendingList(String username) throws IOException {
         pendingList.addElement(username);
@@ -44,7 +45,7 @@ public class GameService {
             e.printStackTrace();
         }
 
-        if(!App.gameService.gameIsStarted) {
+        if(!App.gameService.gameIsStarted && !App.gameService.isWaiting) {
             //Show invite popup
             new TTDialog("success", "New invite from: " + userName + "!",
                 new Callable() {
