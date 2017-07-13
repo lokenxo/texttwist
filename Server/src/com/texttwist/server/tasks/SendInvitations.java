@@ -1,15 +1,8 @@
 package com.texttwist.server.tasks;
 
 import com.texttwist.server.Server;
-import com.texttwist.server.components.NotificationServer;
-import com.texttwist.server.components.SessionsManager;
-import constants.Config;
-import interfaces.INotificationServer;
 
 import javax.swing.*;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.Callable;
 
 /**

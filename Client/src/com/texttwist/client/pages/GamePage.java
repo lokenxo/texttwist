@@ -141,7 +141,7 @@ public class GamePage extends Page {
                 return null;
                 }
             }),
-            Config.timeoutGame
+            Config.gameTimeout
         );
     }
 }

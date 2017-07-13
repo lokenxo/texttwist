@@ -5,7 +5,7 @@ import javafx.util.Pair;
 import javax.swing.*;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
-import static com.texttwist.server.components.GameServer.activeMatches;
+import static com.texttwist.server.services.MessageService.activeMatches;
 
 /**
  * Created by loke on 23/06/2017.

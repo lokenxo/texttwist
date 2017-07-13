@@ -1,6 +1,6 @@
 package com.texttwist.server.models;
 
-import com.texttwist.server.components.GameServer;
+import com.texttwist.server.services.MessageService;
 import com.texttwist.server.tasks.MatchTimeout;
 import constants.Config;
 import javafx.util.Pair;
@@ -11,12 +11,11 @@ import java.io.IOException;
 import java.net.*;
 import java.nio.channels.SocketChannel;
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import static com.texttwist.server.components.GameServer.activeMatches;
+import static com.texttwist.server.services.MessageService.activeMatches;
 
 /**
  * Created by loke on 23/06/2017.
@@ -155,7 +154,7 @@ public class Match {
 
 
     private int generateMulticastId(){
-         return GameServer.multicastID++;
+         return MessageService.multicastID++;
     }
     public void setLetters(DefaultListModel<String> letters){
         this.letters = letters;

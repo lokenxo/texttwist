@@ -1,10 +1,9 @@
-package com.texttwist.server.components;
+package com.texttwist.server.services;
 
 import models.User;
 import redis.clients.jedis.Jedis;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;

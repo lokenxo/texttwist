@@ -1,6 +1,6 @@
 package com.texttwist.server.tasks;
 
-import com.texttwist.server.components.SessionsManager;
+import com.texttwist.server.services.SessionsService;
 import com.texttwist.server.models.Match;
 import constants.Config;
 import models.Message;
@@ -53,7 +53,7 @@ public class ReceiveWords implements Callable<Boolean>{
             System.out.println(rcv);
             if (rcv.startsWith("MESSAGE")) {
                 msg = Message.toMessage(rcv);
-                if(SessionsManager.getInstance().isValidToken(msg.token)) {
+                if(SessionsService.getInstance().isValidToken(msg.token)) {
                     System.out.println(msg.sender);
                     Match match = Match.findMatchByPlayer(msg.sender);
                     threadPool.submit(new ComputeScore(msg.sender, msg.data, match));

@@ -1,23 +1,11 @@
 package com.texttwist.server.tasks;
-import com.texttwist.client.App;
-import com.texttwist.server.components.AccountsManager;
-import com.texttwist.server.components.JedisService;
+import com.texttwist.server.services.AccountsService;
 import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
-import constants.Config;
-import models.Message;
 import models.User;
-import redis.clients.jedis.Jedis;
 
 import javax.swing.*;
-import java.io.Serializable;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
-import java.util.List;
 import java.util.concurrent.Callable;
-
-import static com.texttwist.server.components.GameServer.activeMatches;
 
 /**
  * Created by loke on 27/06/2017.
@@ -52,7 +40,7 @@ public class ComputeScore implements Callable<Integer> {
             match.setScore(sender, score);
             System.out.println(score);
 
-            User u = AccountsManager.getInstance().findUser(sender);
+            User u = AccountsService.getInstance().findUser(sender);
             u.addScore(score);
 
             if(match.allPlayersSendedHisScore()) {

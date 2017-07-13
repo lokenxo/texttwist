@@ -1,6 +1,6 @@
 package com.texttwist.server.tasks;
 
-import com.texttwist.server.components.SessionsManager;
+import com.texttwist.server.services.SessionsService;
 
 import javax.swing.*;
 import java.util.concurrent.Callable;
@@ -18,7 +18,7 @@ public class CheckOnlineUsers implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         for(int i = 0; i < users.size(); i++){
-            if(!(SessionsManager.getInstance().exists(users.get(i)))){
+            if(!(SessionsService.getInstance().exists(users.get(i)))){
                 return false;
             }
         }
