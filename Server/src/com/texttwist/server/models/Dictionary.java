@@ -1,23 +1,20 @@
 package com.texttwist.server.models;
 
+import com.texttwist.server.Server;
+
 import javax.swing.*;
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Random;
-import java.util.stream.Stream;
+
 
 /**
- * Created by loke on 26/06/2017.
+ * Author:      Lorenzo Iovino on 26/06/2017.
+ * Description: Dictionary Model. Provides the dictionary and methods for manage it
  */
+
 public class Dictionary {
 
-    static DefaultListModel<String> wordList = new DefaultListModel<>();
-    private Random randomGenerator;
+    private static DefaultListModel<String> wordList = new DefaultListModel<>();
 
     public Dictionary(String dictionaryPath) {
         try (BufferedReader br = new BufferedReader(new FileReader(new File(dictionaryPath)))) {
@@ -25,15 +22,16 @@ public class Dictionary {
                 wordList.addElement(line);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Server.logger.write("DICTIONARY: Dictionary file not found!");
         } catch (IOException e) {
-            e.printStackTrace();
+            Server.logger.write("DICTIONARY: Can't read dictionary file!");
         }
     }
 
+    //Get a random word in wordsList with minimumWordSize < size < maximumWordSize
     public String getRandomWord(int minimumWordSize, int maximumWordSize){
 
-        randomGenerator = new Random();
+        Random randomGenerator = new Random();
         int index = randomGenerator.nextInt(wordList.size());
         String word = wordList.get(index);
         if(word.length() >= minimumWordSize && word.length() <= maximumWordSize) {
@@ -55,6 +53,7 @@ public class Dictionary {
         }
     }
 
+    //Check if a word is contained in dictionary
     public static Boolean isContainedInDictionary(String word){
         if(word.equals("")){
             return true;
@@ -66,5 +65,4 @@ public class Dictionary {
         }
         return false;
     }
-
 }

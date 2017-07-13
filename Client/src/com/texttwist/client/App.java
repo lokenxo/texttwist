@@ -68,7 +68,7 @@ public class App extends JFrame {
             logger.write("APP: Font not found!");
         }
 
-        /*Services*/
+        /*services*/
         gameService = new GameService();
         authService = new AuthService();
 

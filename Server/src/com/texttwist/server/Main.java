@@ -1,13 +1,12 @@
 package com.texttwist.server;
-
-import utilities.Logger;
-
-import java.io.File;
 import java.io.IOException;
 
+/**
+ * Author:      Lorenzo Iovino on 14/06/2017.
+ * Description: Main
+ */
 public class Main {
-
     public static void main(String[] args) throws IOException {
-        Server ttServer = new Server();
+        new Server();
     }
 }

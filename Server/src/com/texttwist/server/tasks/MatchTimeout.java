@@ -1,19 +1,13 @@
 package com.texttwist.server.tasks;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.texttwist.server.models.Match;
 import constants.Config;
-import models.Message;
 
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
 import java.util.concurrent.Callable;
 
-import static com.texttwist.server.components.GameServer.activeMatches;
-
 /**
- * Created by loke on 27/06/2017.
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: Jedis Service
  */
 public class MatchTimeout implements Callable<Boolean> {
 
@@ -26,12 +20,12 @@ public class MatchTimeout implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         try {
-            Thread.currentThread().sleep(5*60*1000); //TODO 5*60*1000
+            Thread.currentThread().sleep(Config.sendWordsTimeout);
             match.setUndefinedScorePlayersToZero();
 
             if(match.matchTimeout) {
                 System.out.println("SEND BROADCAST BECAUSE TIMEOUT");
-                match.sendScores();
+                new SendScores(match).call();
                 return true;
             }
             return false;

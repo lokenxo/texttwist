@@ -9,7 +9,8 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
 
 /**
- * Created by loke on 27/06/2017.
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: Jedis Service
  */
 public class SendMessageToAllPlayers  implements Callable<Boolean> {
 

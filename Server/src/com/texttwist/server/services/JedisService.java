@@ -1,10 +1,9 @@
-package com.texttwist.server.components;
+package com.texttwist.server.services;
 
 import models.User;
 import redis.clients.jedis.Jedis;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -12,7 +11,8 @@ import java.util.List;
 import static com.texttwist.server.Server.jedisPool;
 
 /**
- * Created by loke on 11/07/2017.
+ * Author:      Lorenzo Iovino on 11/07/2017.
+ * Description: Jedis Service
  */
 public class JedisService {
 

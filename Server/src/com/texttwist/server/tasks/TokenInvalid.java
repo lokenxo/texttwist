@@ -5,12 +5,12 @@ import models.Message;
 
 import javax.swing.*;
 import java.nio.ByteBuffer;
-import java.nio.channels.Channel;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
 
 /**
- * Created by loke on 11/07/2017.
+ * Author:      Lorenzo Iovino on 11/07/2017.
+ * Description: Task: Token Invalid Service
  */
 public class TokenInvalid implements Callable<Boolean> {
     private String sender;
@@ -25,9 +25,8 @@ public class TokenInvalid implements Callable<Boolean> {
 
     @Override
     public Boolean call()throws Exception {
-        System.out.print("TOKEN NON VALIDO");
-        buffer = ByteBuffer.allocate(1024);
-        Message msg = new Message("MATCH_NOT_AVAILABLE", "", null, new DefaultListModel<>());
+        Server.logger.write("TOKEN INVALID: TOKEN USED BY "+ sender+ " IS NOT VALID");
+        Message msg = new Message("TOKEN_NOT_VALID", "", null, new DefaultListModel<>());
         buffer.clear();
         byte[] byteMessage = msg.toString().getBytes();
         buffer = ByteBuffer.wrap(byteMessage);

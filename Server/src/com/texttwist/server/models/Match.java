@@ -1,39 +1,56 @@
 package com.texttwist.server.models;
 
-import com.texttwist.server.components.GameServer;
+import com.texttwist.server.services.MessageService;
 import com.texttwist.server.tasks.MatchTimeout;
-import constants.Config;
 import javafx.util.Pair;
-import models.Message;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.net.*;
 import java.nio.channels.SocketChannel;
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
-import static com.texttwist.server.components.GameServer.activeMatches;
+import static com.texttwist.server.services.MessageService.activeMatches;
+
 
 /**
- * Created by loke on 23/06/2017.
+ * Author:      Lorenzo Iovino on 23/06/2017.
+ * Description: Match Model. Methods for manage the matches and model of single match.
+ *              Single point of concurrent access.
  */
 public class Match {
-    public final List<Pair<String,Integer>> playersStatus =  Collections.synchronizedList(new ArrayList<>()); //Usare Liste!!!!!!!
-    public final List<Pair<String,SocketChannel>> playersSocket =  Collections.synchronizedList(new ArrayList<>());
-    private boolean started = false;
-    public final String matchCreator;
-    public Integer multicastId;
-    public Future<Boolean> timeout;
-    public boolean matchTimeout = true;
-    public boolean joinTimeout =true;
-    public DefaultListModel<String> letters;
-    protected ExecutorService threadPool = Executors.newSingleThreadExecutor();
 
+    /****GLOBAL AREA OF ALL MATCHES****/
+    //Players status: A list of pair where elements are <playerName, status>.
+    //               status is 0 if user is not currently in a match, and 1 otherwise
+    public final List<Pair<String,Integer>> playersStatus =  Collections.synchronizedList(new ArrayList<>());
+
+    //Players socket: A list of pair where elements are <playerName, socketChannel>.
+    //               socketChannel is the TCP socket associated with client for messages exchange
+    public final List<Pair<String,SocketChannel>> playersSocket =  Collections.synchronizedList(new ArrayList<>());
+
+    //Players score: A list of pair where elements are <playerName, score>.
     public final List<Pair<String,Integer>> playersScore =  Collections.synchronizedList(new ArrayList<>());
+
+
+    /****SINGLE INSTANCE OF MATCH****/
+    //If match is started
+    private boolean started = false;
+
+    //Name of the creator of the match
+    public final String matchCreator;
+
+    //MulticastID associated with this match
+    public Integer multicastId;
+
+    //True if happen timeout, false otherwise
+    public boolean matchTimeout;
+    public boolean joinTimeout;
+
+    //Letters of the match
+    public DefaultListModel<String> letters;
+
+    protected ExecutorService matchTimeoutThread = Executors.newSingleThreadExecutor();
 
     public Match(String matchCreator, DefaultListModel<String> players){
         for (int i =0; i < players.size(); i++){
@@ -47,116 +64,90 @@ public class Match {
 
     }
 
-    public Void sendScores(){
-        while (true) {
-            System.out.println("SENDING");
-            Message msg = new Message("FINALSCORE", "SERVER", "", this.getMatchPlayersScoreAsStringList());
-
-            MulticastSocket multicastSocket = null;
-            try {
-                multicastSocket = new MulticastSocket(this.multicastId);
-                InetAddress ia = null;
-                ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
-                DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, this.multicastId);
-                multicastSocket.send(hi);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            activeMatches.remove(Match.findMatchIndex(activeMatches, this.matchCreator));
-        }
-    }
     public static Match findMatch(List<Match> matches, String matchName){
-        for (int i = 0; i < matches.size(); i++) {
-            if (matches.get(i).matchCreator.equals(matchName)) {
-                return matches.get(i);
+        for (Match match : matches) {
+            if (match.matchCreator.equals(matchName)) {
+                return match;
             }
         }
         return null;
-
     }
 
     public void printAll(){
-        for (int i = 0; i < playersScore.size(); i++) {
-                System.out.println(playersScore.get(i).getKey() + " : " +playersScore.get(i).getValue());
-
+        for (Pair<String, Integer> aPlayersScore : playersScore) {
+            System.out.println(aPlayersScore.getKey() + " : " + aPlayersScore.getValue());
         }
     }
+
     public static int findMatchIndex(List<Match> matches, String matchName){
-            for (int i = 0; i < matches.size(); i++) {
-                if (matches.get(i).matchCreator.equals(matchName)) {
-                    return i;
-                }
+        for (int i = 0; i < matches.size(); i++) {
+            if (matches.get(i).matchCreator.equals(matchName)) {
+                return i;
             }
-            return -1;
+        }
+        return -1;
     }
 
     public boolean isStarted(){
         return started;
     }
 
-    public static Match findMatchByPlayer(String player){
-        for (int i = 0; i < activeMatches.size(); i++) {
-            for (int j = 0; j < activeMatches.get(i).playersStatus.size(); j++) {
-                if (activeMatches.get(i).playersStatus.get(j).getKey().equals(player)) {
-                    return activeMatches.get(i);
+    public static Match findMatchByPlayerName(String player){
+        for (Match activeMatch : activeMatches) {
+            for (int j = 0; j < activeMatch.playersStatus.size(); j++) {
+                if (activeMatch.playersStatus.get(j).getKey().equals(player)) {
+                    return activeMatch;
                 }
             }
-           /* if (matches.get(i).matchCreator.equals(matchName)) {
-                return i;
-            }*/
         }
         return null;
     }
 
     public void startGame(){
-        this.started=true;
-        threadPool.submit(new MatchTimeout(this));
-
+        this.started = true;
+        matchTimeoutThread.submit(new MatchTimeout(this));
     }
 
     public void setScore(String player, Integer score){
-        Match m = findMatchByPlayer(player);
-        m.printAll();
-
-        for (int i = 0; i < m.playersScore.size(); i++) {
-            if (m.playersScore.get(i).getKey().equals(player)) {
-                m.playersScore.set(i, new Pair<String, Integer>(player, score));
+        Match m = findMatchByPlayerName(player);
+        if(m!=null) {
+            for (int i = 0; i < m.playersScore.size(); i++) {
+                if (m.playersScore.get(i).getKey().equals(player)) {
+                    m.playersScore.set(i, new Pair<>(player, score));
+                }
             }
         }
     }
 
     public Boolean allPlayersSendedHisScore(){
-        System.out.println(matchCreator);
-        printAll();
-            for (int i = 0; i < playersScore.size(); i++) {
-                if (playersScore.get(i).getValue() == -1) {
-                    return false;
-                }
+        for (Pair<String, Integer> player : playersScore) {
+            if (player.getValue() == -1) {
+                return false;
             }
-            return true;
+        }
+        return true;
     }
 
     public void setUndefinedScorePlayersToZero(){
-            for (int i = 0; i < playersScore.size(); i++) {
-                if (playersScore.get(i).getValue() == -1) {
-                    playersScore.set(i, new Pair<String, Integer>(playersScore.get(i).getKey(), 0));
-                }
+        for (int i = 0; i < playersScore.size(); i++) {
+            if (playersScore.get(i).getValue() == -1) {
+                playersScore.set(i, new Pair<>(playersScore.get(i).getKey(), 0));
             }
+        }
     }
 
     public DefaultListModel<String> getMatchPlayersScoreAsStringList(){
-            DefaultListModel<String> l = new DefaultListModel<>();
-            for (int i = 0; i < playersScore.size(); i++) {
-                l.addElement(playersScore.get(i).getKey() + ":" + playersScore.get(i).getValue());
-            }
-            return l;
-
+        DefaultListModel<String> l = new DefaultListModel<>();
+        for (Pair<String, Integer> player : playersScore) {
+            l.addElement(player.getKey() + ":" + player.getValue());
+        }
+        return l;
     }
-
 
     private int generateMulticastId(){
-         return GameServer.multicastID++;
+         return MessageService.multicastID++;
     }
+
     public void setLetters(DefaultListModel<String> letters){
         this.letters = letters;
     }

@@ -1,6 +1,6 @@
 package com.texttwist.server.tasks;
 
-import com.texttwist.server.components.SessionsManager;
+import com.texttwist.server.services.SessionsService;
 import com.texttwist.server.models.Match;
 import constants.Config;
 import models.Message;
@@ -14,7 +14,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by loke on 27/06/2017.
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: Jedis Service
  */
 public class ReceiveWords implements Callable<Boolean>{
 
@@ -53,9 +54,9 @@ public class ReceiveWords implements Callable<Boolean>{
             System.out.println(rcv);
             if (rcv.startsWith("MESSAGE")) {
                 msg = Message.toMessage(rcv);
-                if(SessionsManager.getInstance().isValidToken(msg.token)) {
+                if(SessionsService.getInstance().isValidToken(msg.token)) {
                     System.out.println(msg.sender);
-                    Match match = Match.findMatchByPlayer(msg.sender);
+                    Match match = Match.findMatchByPlayerName(msg.sender);
                     threadPool.submit(new ComputeScore(msg.sender, msg.data, match));
                 } else {
                     threadPool.submit(new TokenInvalid(msg.sender, socketChannel, bufferMessages));

@@ -18,9 +18,14 @@ public class Config {
     public static String ScoreMulticastServerURI = "226.226.226.226";
 
     public static Integer NotificationServerPort = 20000;
-    public static Integer NotificationServerStubPort = 5000;
+    public static Integer NotificationServerStubPort = 30000;
     public static String NotificationServerName ="notification";
-    public static int timeoutGame = 120;
+
+    public static String RedisServerURI = "localhost";
+
+    public static int gameTimeout = 10; //2 minuti in sec
+    public static int joinMatchTimeout = 5000; //7 minuti in millisec
+    public static int sendWordsTimeout = 3000; //5 minuti in millisec
 
     public static String getAuthServerURI(){
         return "rmi://".concat(AuthServerURI).concat(":").concat(AuthServerPort.toString());
