@@ -1,12 +1,12 @@
 package com.texttwist.client.ui;
 
 import constants.Palette;
-
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by loke on 14/06/2017.
+ * Author:      Lorenzo Iovino on 14/06/2017.
+ * Description: TTScrollList component
  */
 public class TTScrollList extends JList {
 

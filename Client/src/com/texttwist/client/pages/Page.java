@@ -1,4 +1,5 @@
 package com.texttwist.client.pages;
+
 import constants.Palette;
 import com.texttwist.client.ui.*;
 import javax.swing.*;
@@ -10,7 +11,8 @@ import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**
- * Base Page
+ * Author:      Lorenzo Iovino on 14/06/2017.
+ * Description: Controller of the Home Page
  */
 public class Page {
 
@@ -38,18 +40,18 @@ public class Page {
 
     public void addLogo(TTContainer parent) {
         TTContainer container = new TTContainer(
-                null,
-                new Dimension(1150, 150),
-                Palette.root_backgroundColor,
-                -1,
-                parent);
+            null,
+            new Dimension(1150, 150),
+            Palette.root_backgroundColor,
+            -1,
+            parent);
 
         try {
-            TTImage logoImg = new TTImage(
-                    new Point(0, 10),
-                    new Dimension(1150, 150),
-                    new ImageIcon(new File("./Client/resources/images/logo.png").getCanonicalPath()),
-                    container);
+            new TTImage(
+                new Point(0, 10),
+                new Dimension(1150, 150),
+                new ImageIcon(new File("./Client/resources/images/logo.png").getCanonicalPath()),
+                container);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,14 +80,14 @@ public class Page {
     }
 
     public void addNext(TTContainer parent, String caption, Callable<Object> clickHandler) {
-        TTLabelBtn next = new TTLabelBtn(
-                new Point(500, 0),
-                new Dimension(150, 50),
-                caption,
-                null,
-                null,
-                clickHandler,
-                parent);
+        new TTLabelBtn(
+            new Point(500, 0),
+            new Dimension(150, 50),
+            caption,
+            null,
+            null,
+            clickHandler,
+            parent);
     }
 
     public Timer addTimer(TTContainer parent, Font font, SwingWorker timerEndHandler, Integer value) {

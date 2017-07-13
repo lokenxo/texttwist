@@ -1,22 +1,18 @@
 package com.texttwist.client.services;
+
 import com.texttwist.client.App;
 import interfaces.INotificationClient;
-import models.Response;
-
 import javax.swing.*;
 import java.rmi.RemoteException;
 
 /**
- * Created by loke on 15/06/2017.
+ * Author:      Lorenzo Iovino on 15/06/2017.
+ * Description: Provide the interface for the notifications.
  */
-public class NotificationClient implements INotificationClient {
-
-
-    public NotificationClient() throws RemoteException {
-    }
+public class NotificationClientService implements INotificationClient {
 
     @Override
-    public Response sendInvite(String userName, DefaultListModel<String> users) throws RemoteException {
+    public void sendInvite(String userName, DefaultListModel<String> users) throws RemoteException {
         App.logger.write("Invoked invitation with username =" + userName + "|" + users.toString() );
 
         if(App.session != null) {
@@ -27,6 +23,5 @@ public class NotificationClient implements INotificationClient {
                 App.logger.write("User " + userName + " is slogged");
             }
         }
-        return null;
     }
 }

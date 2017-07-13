@@ -4,19 +4,19 @@ import com.texttwist.client.controllers.RegisterController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 import models.Response;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.Callable;
 
 /**
- * Created by loke on 13/06/2017.
+ * Author:      Lorenzo Iovino on 16/06/2017.
+ * Description: Register Page
  */
 public class RegisterPage extends Page {
 
-    private TTContainer registerDataContainer;
     private RegisterController registerController;
-    public RegisterPage(JFrame window) {
+
+    RegisterPage(JFrame window) {
         super(window);
         createUIComponents();
         registerController = new RegisterController();
@@ -26,14 +26,14 @@ public class RegisterPage extends Page {
     @Override
     public void createUIComponents() {
         addLogo(root);
-        registerDataContainer = new TTContainer(
+        TTContainer registerDataContainer = new TTContainer(
             null,
-            new Dimension(1150,220),
+            new Dimension(1150, 220),
             Palette.root_backgroundColor,
             -1,
             root
         );
-        TTLabel registerText = new TTLabel(
+        new TTLabel(
             new Point(70,35),
             new Dimension(400,40),
             "Insert your datas and press Register!",
@@ -55,7 +55,7 @@ public class RegisterPage extends Page {
             registerDataContainer
         );
 
-        TTButton register = new TTButton(
+        new TTButton(
             new Point(70,150),
             new Dimension(430,50),
             "Register!",
@@ -95,6 +95,5 @@ public class RegisterPage extends Page {
                 }
             }
         );
-
     }
 }

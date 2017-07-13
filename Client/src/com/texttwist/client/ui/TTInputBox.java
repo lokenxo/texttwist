@@ -3,13 +3,14 @@ package com.texttwist.client.ui;
 import javax.swing.*;
 import java.awt.*;
 
+
 /**
- * Created by loke on 13/06/2017.
+ * Author:      Lorenzo Iovino on 13/06/2017.
+ * Description: TTInputBox component
  */
 public class TTInputBox extends JTextField {
 
     public String placeholder;
-
     public void setPlaceholder(final String s) {
         placeholder = s;
     }
@@ -29,6 +30,5 @@ public class TTInputBox extends JTextField {
             g.setColor(getDisabledTextColor());
             g.drawString(placeholder, getInsets().left, pG.getFontMetrics()
             .getMaxAscent() + getInsets().top);
-        }
-
+    }
 }

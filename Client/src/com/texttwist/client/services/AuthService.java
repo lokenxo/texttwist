@@ -1,4 +1,5 @@
 package com.texttwist.client.services;
+
 import com.texttwist.client.App;
 import constants.Config;
 import interfaces.IAuth;
@@ -8,10 +9,11 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 /**
- * Authentication Service
+ * Author:      Lorenzo Iovino on 17/06/2017.
+ * Description: Auth Service.
+ *              Provide the interface for authentication
  */
 public class AuthService {
 
@@ -19,11 +21,9 @@ public class AuthService {
 
     public Response login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
         try {
-            INotificationClient callbackObj = new NotificationClient();
-            App.gameService.notificationStub = (INotificationClient) UnicastRemoteObject.exportObject(callbackObj, 0);
-            App.gameService.notificationServer.registerForCallback(App.gameService.notificationStub);
+            App.registerForNotifications();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            App.logger.write("AUTH SERVICE: Can't register for notification");
         }
         IAuth auth = (IAuth) Naming.lookup(baseUrl);
         return auth.login(userName, password);

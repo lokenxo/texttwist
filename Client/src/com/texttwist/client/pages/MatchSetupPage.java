@@ -8,7 +8,8 @@ import java.awt.*;
 import java.util.concurrent.Callable;
 
 /**
- * MatchSetup Page
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: MatchSetup Page
  */
 public class MatchSetupPage extends Page{
 
@@ -56,9 +57,10 @@ public class MatchSetupPage extends Page{
             "Play!",
             new Callable<Object>() {
                 @Override
-                public Object call() throws Exception {
-                    //If notificationServer response ok, start play, else error
-                   return matchSetupController.play(searchUserBar.list);
+                public Void call() throws Exception {
+                    //If notificationServer response ok, start beginMatch, else error
+                    matchSetupController.play(searchUserBar.list);
+                    return null;
                 }
             }
         );

@@ -1,8 +1,7 @@
 package com.texttwist.client.controllers;
 
-import com.texttwist.client.App;
 import javax.swing.*;
-import java.io.IOException;
+import static com.texttwist.client.App.gameService;
 
 /**
  * Author:      Lorenzo Iovino on 18/06/2017.
@@ -10,12 +9,7 @@ import java.io.IOException;
  */
 public class MatchSetupController {
 
-    public Object play(DefaultListModel<String> userNames) {
-        try {
-            return App.gameService.play(userNames);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void play(DefaultListModel<String> userNames) {
+        gameService.beginMatch(userNames);
     }
 }

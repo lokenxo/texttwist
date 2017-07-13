@@ -1,12 +1,13 @@
 package com.texttwist.client.ui;
 
 import constants.Palette;
-
 import javax.swing.*;
 import java.awt.*;
 
+
 /**
- * Created by loke on 13/06/2017.
+ * Author:      Lorenzo Iovino on 13/06/2017.
+ * Description: TTPasswordField component
  */
 public class TTPasswordField extends JPasswordField{
 
@@ -21,8 +22,6 @@ public class TTPasswordField extends JPasswordField{
         setPreferredSize(dimension);
         setForeground(Palette.fontColor);
         setText(placeholder);
-
         parent.add(this);
     }
-
 }

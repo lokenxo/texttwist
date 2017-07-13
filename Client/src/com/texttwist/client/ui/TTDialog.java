@@ -2,14 +2,15 @@ package com.texttwist.client.ui;
 
 import com.texttwist.client.App;
 import constants.Palette;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.concurrent.Callable;
 
+
 /**
- * Created by loke on 17/06/2017.
+ * Author:      Lorenzo Iovino on 17/06/2017.
+ * Description: TTDialog component
  */
 public class TTDialog extends JFrame {
 
@@ -41,17 +42,60 @@ public class TTDialog extends JFrame {
         }
         add(root);
 
-        TTLabel msg = new TTLabel(
-                new Point(60,20),
-                new Dimension(350,50),
-                message,
-                new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 38),
-                null,
-                root);
+       new TTLabel(
+            new Point(60,20),
+            new Dimension(350,50),
+            message,
+            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 38),
+            null,
+            root);
 
-        if(okHandler != null && cancelHandler != null){
-            TTButton okBtn = new TTButton(
-                    new Point(60,100),
+       if(okHandler != null && cancelHandler != null){
+           new TTButton(
+                new Point(60,100),
+                new Dimension(150,50),
+                "Ok",
+                new Callable<Object>() {
+                    @Override
+                    public Object call() throws Exception {
+                        okHandler.call();
+                        dispose();
+                        return null;
+                    }
+                },
+                root);
+           new TTButton(
+                new Point(250,100),
+                new Dimension(150,50),
+                "Cancel",
+                new Callable<Object>() {
+                    @Override
+                    public Object call() throws Exception {
+                        cancelHandler.call();
+                        dispose();
+                        return null;
+                    }
+                },
+                root);
+       } else {
+            if(cancelHandler != null) {
+                new TTButton(
+                    new Point(150, 100),
+                    new Dimension(150, 50),
+                    "Cancel",
+                    new Callable<Object>() {
+                        @Override
+                        public Object call() throws Exception {
+                            cancelHandler.call();
+                            dispose();
+                            return null;
+                        }
+                    },
+                    root);
+            }
+            if(okHandler != null) {
+                new TTButton(
+                    new Point(150,100),
                     new Dimension(150,50),
                     "Ok",
                     new Callable<Object>() {
@@ -63,51 +107,8 @@ public class TTDialog extends JFrame {
                         }
                     },
                     root);
-            TTButton cancelBtn = new TTButton(
-                    new Point(250,100),
-                    new Dimension(150,50),
-                    "Cancel",
-                    new Callable<Object>() {
-                        @Override
-                        public Object call() throws Exception {
-                            cancelHandler.call();
-                            dispose();
-                            return null;
-                        }
-                    },
-                    root);
-        } else {
-            if(cancelHandler != null) {
-                TTButton cancelBtn = new TTButton(
-                        new Point(150, 100),
-                        new Dimension(150, 50),
-                        "Cancel",
-                        new Callable<Object>() {
-                            @Override
-                            public Object call() throws Exception {
-                                cancelHandler.call();
-                                dispose();
-                                return null;
-                            }
-                        },
-                        root);
             }
-            if(okHandler != null) {
-                TTButton okBtn = new TTButton(
-                        new Point(150,100),
-                        new Dimension(150,50),
-                        "Ok",
-                        new Callable<Object>() {
-                            @Override
-                            public Object call() throws Exception {
-                                okHandler.call();
-                                dispose();
-                                return null;
-                            }
-                        },
-                        root);
-            }
-        }
+       }
 
         setVisible(true);
     }
@@ -135,5 +136,4 @@ public class TTDialog extends JFrame {
             g2d.dispose();
         }
     }
-
 }

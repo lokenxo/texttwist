@@ -1,4 +1,5 @@
 package com.texttwist.client.pages;
+
 import com.texttwist.client.controllers.HomeController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
@@ -8,6 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.Callable;
 
+/**
+ * Author:      Lorenzo Iovino on 23/06/2017.
+ * Description: Home Page
+ */
 public class HomePage extends Page {
 
     private HomeController homeController;

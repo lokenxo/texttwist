@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+
 /**
- * Created by loke on 13/06/2017.
+ * Author:      Lorenzo Iovino on 13/06/2017.
+ * Description: TTImage component
  */
 public class TTImage extends JLabel{
 
@@ -16,6 +18,5 @@ public class TTImage extends JLabel{
         setIcon(image);
 
         parent.add(this);
-
     }
 }

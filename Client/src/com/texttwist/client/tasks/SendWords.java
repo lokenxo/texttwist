@@ -1,25 +1,21 @@
 package com.texttwist.client.tasks;
 
 import com.texttwist.client.App;
-import constants.Config;
-import javafx.util.Pair;
 import models.Message;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 
 /**
- * Created by loke on 29/06/2017.
+ * Author:      Lorenzo Iovino on 29/06/2017.
+ * Description: Task: SendWords.
+ *              Send words to server and when done it wait for score.
  */
 public class SendWords extends SwingWorker<Void,Void> {
 
-    DefaultListModel<Pair<String,Integer>> ranks = new DefaultListModel<Pair<String,Integer>>();
-
-    SwingWorker callback;
-    DefaultListModel<String> words = new DefaultListModel<>();
+    private SwingWorker callback;
+    private DefaultListModel<String> words = new DefaultListModel<>();
 
     public SendWords(DefaultListModel<String> words, SwingWorker callback){
         this.callback = callback;
@@ -29,28 +25,23 @@ public class SendWords extends SwingWorker<Void,Void> {
     @Override
     public Void doInBackground() {
         try {
-            System.out.println(words);
-            InetSocketAddress myAddress = new InetSocketAddress(Config.WordsReceiverServerURI, Config.WordsReceiverServerPort);
-            DatagramChannel datagramChannel = DatagramChannel.open();
-            datagramChannel.bind(null);
+            App.openClientUDPSocket();
+
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             buffer.clear();
-            System.out.println("SENDER=" + App.session.account.userName);
+
             Message msg = new Message("WORDS", App.session.account.userName, App.session.token, words);
             String sentence = msg.toString();
             buffer.put(sentence.getBytes());
             buffer.flip();
-            datagramChannel.send(buffer, myAddress);
-            System.out.println("WORDS INVIATE");
-            System.out.println(sentence);
+
+            App.clientUDP.send(buffer, App.clientUDPSocketAddress);
 
             return null;
         } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (SocketException e) {
-            e.printStackTrace();
+            App.logger.write("SEND WORDS: Host address not correct");
         } catch (IOException e) {
-            e.printStackTrace();
+            App.logger.write("SEND WORDS: Can't write on socket");
         }
         return null;
     }
@@ -63,5 +54,4 @@ public class SendWords extends SwingWorker<Void,Void> {
             e.printStackTrace();
         }
     }
-
 }

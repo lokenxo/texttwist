@@ -1,12 +1,12 @@
 package com.texttwist.client.ui;
 
 import constants.Palette;
-
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by loke on 13/06/2017.
+ * Author:      Lorenzo Iovino on 13/06/2017.
+ * Description: TTInputField component
  */
 public class TTInputField extends TTInputBox{
 
@@ -19,10 +19,6 @@ public class TTInputField extends TTInputBox{
         setPreferredSize(dimension);
         setForeground(Palette.fontColor);
         setPlaceholder(placeholder);
-
         parent.add(this);
-
     }
-
-
 }

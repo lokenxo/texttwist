@@ -6,8 +6,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+
 /**
- * Created by loke on 13/06/2017.
+ * Author:      Lorenzo Iovino on 13/06/2017.
+ * Description: TTButton component
  */
 public class TTContainer extends JPanel{
 

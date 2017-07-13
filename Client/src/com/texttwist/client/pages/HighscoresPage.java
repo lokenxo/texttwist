@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**
- * Highscores Page
+ * Author:      Lorenzo Iovino on 22/06/2017.
+ * Description: Highscores Page
  */
 public class HighscoresPage extends Page{
 
@@ -18,26 +19,31 @@ public class HighscoresPage extends Page{
     public JFrame window;
     private HighscoresController highscoreController;
 
-    public HighscoresPage(JFrame window, Boolean isPartialScore) throws IOException {
+    HighscoresPage(JFrame window, Boolean isPartialScore) throws IOException {
         super(window);
         this.window = window;
         this.isPartialScore = isPartialScore;
-        highscoreController = new HighscoresController(this);
-        highscoreController.fetchHighscores().execute();
+
+        highscoreController = new HighscoresController();
+        highscoreController.fetchHighscores(showHighscoreList).execute();
         createUIComponents();
         window.setVisible(true);
     }
 
-    public void showHighscoreList(){
-        new TTScrollList(
-            new Point(20, 60),
-            new Dimension(515, 142),
-            highscoreController.getRanks(isPartialScore),
-            highscoreContainer
-        );
-        window.revalidate();
-        window.repaint();
-    }
+    public Callable<Void> showHighscoreList = new Callable<Void>() {
+        @Override
+        public Void call() throws Exception {
+            new TTScrollList(
+                    new Point(20, 60),
+                    new Dimension(515, 142),
+                    highscoreController.getRanks(isPartialScore),
+                    highscoreContainer
+            );
+            window.revalidate();
+            window.repaint();
+            return null;
+        }
+    };
 
     @Override
     public void createUIComponents() throws IOException {
@@ -51,7 +57,7 @@ public class HighscoresPage extends Page{
             root
         );
 
-        TTLabel title = new TTLabel(
+        new TTLabel(
             this.isPartialScore ? new Point(150,0) : new Point(200,0),
             new Dimension(350,50),
             this.isPartialScore ? "Scores of the match" : "Highscores",

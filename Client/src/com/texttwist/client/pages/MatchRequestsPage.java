@@ -1,6 +1,6 @@
 package com.texttwist.client.pages;
 
-import com.texttwist.client.App;
+import com.texttwist.client.controllers.MatchRequestController;
 import constants.Palette;
 import com.texttwist.client.ui.*;
 import javax.swing.*;
@@ -11,13 +11,16 @@ import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**
- * MatchRequest Page
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: MatchRequest Page
  */
 public class MatchRequestsPage extends Page{
 
-    public TTContainer matchsContainer;
+    private MatchRequestController matchRequestController;
+
     MatchRequestsPage(JFrame window) throws IOException {
         super(window);
+        matchRequestController = new MatchRequestController();
         createUIComponents();
         window.setVisible(true);
     }
@@ -25,9 +28,9 @@ public class MatchRequestsPage extends Page{
     @Override
     public void createUIComponents() throws IOException {
         addLogo(root);
-        matchsContainer = new TTContainer(
+        TTContainer matchsContainer = new TTContainer(
             null,
-            new Dimension(1150,220),
+            new Dimension(1150, 220),
             Palette.root_backgroundColor,
             -1,
             root
@@ -45,7 +48,7 @@ public class MatchRequestsPage extends Page{
         TTScrollList pendingMatches = new TTScrollList(
             new Point(20, 60),
             new Dimension(520, 142),
-            App.gameService.pendingList,
+            matchRequestController.getPendingList(),
             matchsContainer
         );
 
@@ -56,7 +59,7 @@ public class MatchRequestsPage extends Page{
                 JList thisList = (JList)evt.getSource();
                 if (evt.getClickCount() == 2) {
                     int index = thisList.locationToIndex(evt.getPoint());
-                    App.gameService.joinMatch(App.gameService.pendingList.get(index));
+                    matchRequestController.joinMatch(matchRequestController.getPendingList().get(index));
                 }
             }
         });

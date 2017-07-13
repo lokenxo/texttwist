@@ -1,4 +1,5 @@
 package com.texttwist.client.pages;
+
 import com.texttwist.client.controllers.GameController;
 import constants.Config;
 import constants.Palette;
@@ -8,10 +9,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.*;
 
-import static com.texttwist.client.App.gameService;
-
 /**
- * GamePage Page
+ * Author:      Lorenzo Iovino on 27/06/2017.
+ * Description: Game Page
  */
 public class GamePage extends Page {
 
@@ -19,24 +19,28 @@ public class GamePage extends Page {
     private GameController gameController;
     public Timer timer;
 
-    /*Spawning points fixed and not modifiable*/
+    //All the spawning points
     private final DefaultListModel<Point> letterSpawningPoints = setLetterSpawningPoint();
-
-    /*Available spawning points*/
+    //Available spawning points
     private DefaultListModel<Point> availableLetterSpawningPoint = new DefaultListModel<>();
 
     public GamePage(JFrame window) throws IOException {
         super(window);
         gameController = new GameController(this);
+
+        //Reset and set spawning point for letters
         availableLetterSpawningPoint.clear();
         availableLetterSpawningPoint = letterSpawningPoints;
-        gameController.waitForPlayers(gameController.startGame()).execute();
+
+        //Wait for players, then when all players joined start the game
+        gameController.waitForPlayers(gameController.startGame).execute();
+
         createUIComponents();
         window.setVisible(true);
     }
 
+    /*Occupy a random position of the available spawning points, if positions ends (can't happen) use position (0,0)*/
     private Point occupyRandomPosition(){
-
         if(availableLetterSpawningPoint.size() > 1) {
             int index = ThreadLocalRandom.current().nextInt(0, letterSpawningPoints.size() - 1);
             Point placeholder = letterSpawningPoints.get(index);
@@ -45,18 +49,6 @@ public class GamePage extends Page {
         }
 
         return new Point(0,0);
-    }
-
-
-    private SwingWorker timeIsOver() {
-        return gameController.sendWords(new SwingWorker() {
-            @Override
-            protected Object doInBackground() throws Exception {
-                new HighscoresPage(window,true);
-                return null;
-                    }
-            }
-        );
     }
 
     private DefaultListModel<Point> setLetterSpawningPoint(){
@@ -90,7 +82,7 @@ public class GamePage extends Page {
     public void showLetters(){
 
         /* Place letters in an available random spawning point */
-        DefaultListModel<String> letters = gameService.getLetters();
+        DefaultListModel<String> letters = gameController.getLetters();
         for(int i = 0; i < letters.size()-1; i++){
             new TTLetter(
                 occupyRandomPosition(),
@@ -101,6 +93,19 @@ public class GamePage extends Page {
 
         window.repaint();
         window.revalidate();
+    }
+
+    public void showGameIsReadyAlert(){
+        //Mostra pannello di conferma che le lettere sono tutte arrivate
+        new TTDialog("success", "GameService is ready. Press OK to start!",
+            new Callable() {
+                @Override
+                public Object call() throws Exception {
+                    showLetters();
+                    timer.start();
+                    return null;
+                }
+            }, null);
     }
 
     @Override
@@ -120,7 +125,7 @@ public class GamePage extends Page {
             new Point(150, 90),
             new Dimension(250, 40),
             "Insert word and Press ENTER!",
-            gameService.getWords(),
+            gameController.getWords(),
             gameContainer
         );
 
@@ -129,7 +134,13 @@ public class GamePage extends Page {
         timer = addTimer(
             footer,
             new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 40),
-            timeIsOver(),
+            gameController.timeIsOver(new SwingWorker() {
+                @Override
+                protected Object doInBackground() throws Exception {
+                    new HighscoresPage(window,true);
+                    return null;
+                }
+            }),
             Config.timeoutGame
         );
     }
