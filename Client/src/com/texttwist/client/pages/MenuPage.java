@@ -39,7 +39,7 @@ public class MenuPage extends Page{
             new Point(25,15),
             new Dimension(350,20),
             "Welcome back, " + menuController.getSession().account.userName + "!",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 24),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 24),
             null,
             menuBar
         );
@@ -47,7 +47,7 @@ public class MenuPage extends Page{
         new TTButton(
             new Point(25,70),
             new Dimension(250,75),
-            "New GameService!",
+            "New Game!",
             new Callable<Object>() {
                 @Override
                 public Object call() throws Exception {

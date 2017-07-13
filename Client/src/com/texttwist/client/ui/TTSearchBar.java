@@ -40,7 +40,7 @@ public class TTSearchBar extends TTContainer{
 
         super(position, dimension, Palette.inputBox_backgroundColor, -1, parent);
         setBackground(Palette.scrollPanel_backgroundColor);
-        setFont(Palette.inputBox_font);
+        setFont(Palette.textFont);
         setBounds(position.x, position.y, dimension.width, dimension.height);
         setPreferredSize(dimension);
         setForeground(Palette.fontColor);
@@ -49,7 +49,7 @@ public class TTSearchBar extends TTContainer{
             new Point(20,40),
             new Dimension(350,50),
             "Add player",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 18),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 18),
             null,
             parent);
 
@@ -70,7 +70,7 @@ public class TTSearchBar extends TTContainer{
             new Point(305,40),
             new Dimension(350,50),
             "Double-Click on item for remove",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 18),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 18),
             null,
             parent);
 

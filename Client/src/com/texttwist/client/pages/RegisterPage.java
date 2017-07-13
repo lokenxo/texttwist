@@ -37,7 +37,7 @@ public class RegisterPage extends Page {
             new Point(70,35),
             new Dimension(400,40),
             "Insert your datas and press Register!",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 12),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 20),
             null,
             registerDataContainer
         );

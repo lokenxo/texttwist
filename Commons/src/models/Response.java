@@ -1,9 +1,11 @@
 package models;
+
 import org.json.simple.JsonObject;
 import java.io.Serializable;
 
 /**
- * Created by loke on 15/06/2017.
+ * Author:      Lorenzo Iovino on 15/06/2017.
+ * Description: Response
  */
 public class Response implements Serializable{
     public String message;

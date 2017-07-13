@@ -97,7 +97,7 @@ public class GamePage extends Page {
 
     public void showGameIsReadyAlert(){
         //Mostra pannello di conferma che le lettere sono tutte arrivate
-        new TTDialog("success", "GameService is ready. Press OK to start!",
+        new TTDialog("success", "<html>Game is ready. <br/>Press OK to start!</html>",
             new Callable() {
                 @Override
                 public Object call() throws Exception {
@@ -133,12 +133,12 @@ public class GamePage extends Page {
 
         timer = addTimer(
             footer,
-            new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 40),
+            new Font(Palette.numberFont.getFontName(), Font.BOLD, 35),
             gameController.timeIsOver(new SwingWorker() {
                 @Override
                 protected Object doInBackground() throws Exception {
-                    new HighscoresPage(window,true);
-                    return null;
+                new HighscoresPage(window,true);
+                return null;
                 }
             }),
             Config.timeoutGame

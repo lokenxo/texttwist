@@ -4,13 +4,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- * Created by loke on 19/06/2017.
+ * Author:      Lorenzo Iovino on 19/06/2017.
+ * Description: Main
  */
 public interface INotificationServer extends Remote {
-    /* registrazione per la callback */
-    public void registerForCallback (INotificationClient ClientInterface) throws RemoteException;
-
-    /* cancella registrazione per la callback */
-    public void  unregisterForCallback (INotificationClient ClientInterface) throws RemoteException;
-
+    void registerForCallback (INotificationClient ClientInterface) throws RemoteException;
+    void  unregisterForCallback (INotificationClient ClientInterface) throws RemoteException;
 }

@@ -21,7 +21,7 @@ public class TTGameBox extends TTInputField{
 
         super(position, dimension, placeholder, parent);
         setBackground(Palette.scrollPanel_backgroundColor);
-        setFont(Palette.inputBox_font);
+        setFont(Palette.inputboxFont);
         setBounds(position.x, position.y, dimension.width, dimension.height);
         setPreferredSize(dimension);
         setForeground(Palette.fontColor);
@@ -39,7 +39,6 @@ public class TTGameBox extends TTInputField{
                     e1.printStackTrace();
                 }
             }
-            //Every time i press a key, execute a search of users
             }
         });
 

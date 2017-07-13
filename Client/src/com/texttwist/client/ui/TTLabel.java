@@ -16,7 +16,7 @@ public class TTLabel extends JLabel{
         setBackground(Palette.inputBox_backgroundColor);
 
         if(font == null) {
-            setFont(Palette.inputBox_font);
+            setFont(Palette.textFont);
         } else {
             setFont(font);
         }

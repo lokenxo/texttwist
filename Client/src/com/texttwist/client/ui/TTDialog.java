@@ -34,7 +34,6 @@ public class TTDialog extends JFrame {
         switch (type){
             case "alert":{
                 root.setBorder(BorderFactory.createLineBorder(Palette.dialog_alert));
-
             }
             case "success": {
                 root.setBorder(BorderFactory.createLineBorder(Palette.dialog_success));
@@ -46,7 +45,7 @@ public class TTDialog extends JFrame {
             new Point(60,20),
             new Dimension(350,50),
             message,
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 38),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 24),
             null,
             root);
 

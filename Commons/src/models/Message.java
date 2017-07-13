@@ -2,11 +2,11 @@ package models;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**
- * Created by loke on 18/06/2017.
+ * Author:      Lorenzo Iovino on 18/06/2017.
+ * Description: Main
  */
 public class Message implements Serializable {
     public String sender;

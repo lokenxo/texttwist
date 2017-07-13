@@ -1,7 +1,8 @@
 package models;
 
 /**
- * Created by loke on 17/06/2017.
+ * Author:      Lorenzo Iovino on 17/06/2017.
+ * Description: Main
  */
 public class Session {
 
@@ -12,5 +13,4 @@ public class Session {
         this.token = token;
         this.account = account;
     }
-
 }

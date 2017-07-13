@@ -35,10 +35,10 @@ public class MatchSetupPage extends Page{
         );
 
         new TTLabel(
-            new Point(170,0),
+            new Point(160,0),
             new Dimension(350,50),
             "Invite players",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 38),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 38),
             null,
             matchSetupContainer
         );

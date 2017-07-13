@@ -13,7 +13,7 @@ public class TTScrollList extends JList {
     public TTScrollList(Point position, Dimension dimension, ListModel listModel, JPanel parent){
         super(listModel);
         setBackground(Palette.scrollPanel_backgroundColor);
-        setFont(Palette.inputBox_font);
+        setFont(Palette.numberFont);
         setBounds(position.x, position.y, dimension.width, dimension.height);
         setForeground(Palette.fontColor);
 

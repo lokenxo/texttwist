@@ -78,7 +78,7 @@ public class HomePage extends Page {
             new Point(70,200),
             new Dimension(350,50),
             "Don't have an account?",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 24),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 26),
             null,
             loginDataContainer
         );
@@ -87,7 +87,7 @@ public class HomePage extends Page {
             new Point(360, 200),
             new Dimension(210, 50),
             "Register!",
-            new Font(Palette.inputBox_font.getFontName(), Font.BOLD, 34),
+            new Font(Palette.textFont.getFontName(), Font.BOLD, 30),
             null,
             new Callable<Object>() {
                 @Override

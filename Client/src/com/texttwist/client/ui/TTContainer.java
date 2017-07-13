@@ -22,7 +22,7 @@ public class TTContainer extends JPanel{
         }
 
         setBackground(backgroundColor != null ? backgroundColor : new Color(0,0,0,0));
-        setFont(Palette.inputBox_font);
+        setFont(Palette.textFont);
         setMaximumSize(dimension);
         if(innerPadding != null) {
             setLocation(innerPadding);

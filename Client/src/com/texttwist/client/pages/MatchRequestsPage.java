@@ -40,7 +40,7 @@ public class MatchRequestsPage extends Page{
             new Point(150,0),
             new Dimension(350,50),
             "Pending matches",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 38),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 34),
             null,
             matchsContainer
         );

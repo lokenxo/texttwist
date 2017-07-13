@@ -83,8 +83,7 @@ public class Page {
         new TTLabelBtn(
             new Point(500, 0),
             new Dimension(150, 50),
-            caption,
-            null,
+            caption, new Font(Palette.textFont.getFontName(), Font.ITALIC, 34),
             null,
             clickHandler,
             parent);

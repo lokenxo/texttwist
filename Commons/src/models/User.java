@@ -3,7 +3,8 @@ package models;
 import java.io.Serializable;
 
 /**
- * Created by loke on 18/06/2017.
+ * Author:      Lorenzo Iovino on 18/06/2017.
+ * Description: Main
  */
 public class User implements Serializable{
 
@@ -20,6 +21,4 @@ public class User implements Serializable{
     public void addScore(Integer score){
         this.score += score;
     }
-
-
 }

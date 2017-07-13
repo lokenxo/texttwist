@@ -17,7 +17,7 @@ public class JoinTimeout implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         try {
-            Thread.currentThread().sleep(1*20*1000);
+            Thread.currentThread().sleep(7*60*1000);
             System.out.println("TIMEOUTTTT");
 
             if(match.joinTimeout) {

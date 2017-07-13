@@ -17,7 +17,7 @@ public class TTPasswordField extends JPasswordField{
         super();
 
         setBackground(Palette.inputBox_backgroundColor);
-        setFont(Palette.inputBox_font);
+        setFont(Palette.textFont);
         setBounds(position.x, position.y, dimension.width, dimension.height);
         setPreferredSize(dimension);
         setForeground(Palette.fontColor);

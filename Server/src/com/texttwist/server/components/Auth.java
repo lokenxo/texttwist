@@ -35,10 +35,10 @@ public class Auth extends UnicastRemoteObject implements IAuth {
                 return new Response("Registration successfull", 200, null);
             } else {
                 Server.logger.write("Registration unsuccessfull");
-                return new Response("Registration unsuccessfull: Username exist!", 400, null);
+                return new Response("<html><center>Registration unsuccessfull: <br/> Username exist!</center></html>", 400, null);
             }
         }
-        return new Response("Registration unsuccessfull! All fields are mandatories", 400, null);
+        return new Response("<html><center>Registration unsuccessfull! <br/> All fields are mandatories</center></html>", 400, null);
     }
 
     @Override

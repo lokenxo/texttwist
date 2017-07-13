@@ -58,10 +58,10 @@ public class HighscoresPage extends Page{
         );
 
         new TTLabel(
-            this.isPartialScore ? new Point(150,0) : new Point(200,0),
+            this.isPartialScore ? new Point(120,0) : new Point(200,0),
             new Dimension(350,50),
             this.isPartialScore ? "Scores of the match" : "Highscores",
-            new Font(Palette.inputBox_font.getFontName(), Font.ITALIC, 38),
+            new Font(Palette.textFont.getFontName(), Font.ITALIC, 34),
             null,
             highscoreContainer
         );
