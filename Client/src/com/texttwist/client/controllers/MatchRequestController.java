@@ -1,6 +1,8 @@
 package com.texttwist.client.controllers;
 
 import com.texttwist.client.App;
+import com.texttwist.client.tasks.JoinMatch;
+
 import javax.swing.*;
 
 /**
@@ -14,6 +16,6 @@ public class MatchRequestController {
     }
 
     public void joinMatch(String matchName){
-        App.gameService.joinMatch(matchName);
+        new JoinMatch(matchName).execute();
     }
 }

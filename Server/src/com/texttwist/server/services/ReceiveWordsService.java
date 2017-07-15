@@ -1,6 +1,7 @@
 package com.texttwist.server.services;
 
 import com.texttwist.server.Server;
+import com.texttwist.server.managers.SessionsManager;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.ComputeScore;
 import constants.Config;
@@ -47,7 +48,7 @@ public class ReceiveWordsService implements Runnable {
             String rcv = new String(packet.getData());
             if (rcv.startsWith("MESSAGE")) {
                 msg = Message.toMessage(rcv);
-                if(SessionsService.getInstance().isValidToken(msg.token)) {
+                if(SessionsManager.getInstance().isValidToken(msg.token)) {
                     Match match = Match.findMatchByPlayerName(msg.sender);
                     threadPool.submit(new ComputeScore(msg.sender, msg.data, match));
                 }

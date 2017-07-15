@@ -79,6 +79,7 @@ public class WaitForPlayers extends SwingWorker<Void,Void> {
 
                         if(msg.data !=null ) {
                             DefaultListModel<String> data = msg.data;
+
                             App.openClientMulticastSocket(Integer.valueOf(data.remove(data.size()-2)));
                             App.gameService.setLetters(msg.data);
                             break;

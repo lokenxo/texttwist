@@ -1,5 +1,7 @@
 package com.texttwist.client.controllers;
 
+import com.texttwist.client.tasks.InvitePlayers;
+
 import javax.swing.*;
 import static com.texttwist.client.App.gameService;
 
@@ -10,6 +12,7 @@ import static com.texttwist.client.App.gameService;
 public class MatchSetupController {
 
     public void play(DefaultListModel<String> userNames) {
-        gameService.beginMatch(userNames);
+        new InvitePlayers(userNames).execute();
+
     }
 }

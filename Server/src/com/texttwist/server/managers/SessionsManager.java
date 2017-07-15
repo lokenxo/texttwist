@@ -1,26 +1,25 @@
-package com.texttwist.server.services;
+package com.texttwist.server.managers;
 import models.Session;
 import models.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 
 /**
  * Author:      Lorenzo Iovino on 17/06/2017.
- * Description: SessionsService. It is a singleton that provides the model and methods for manage sessions
+ * Description: SessionsManager. It is a singleton that provides the model and methods for manage sessions
  */
-public class SessionsService {
+public class SessionsManager {
 
     private List<Session> sessions = Collections.synchronizedList(new ArrayList<Session>());
 
     private static class Holder {
-        static final SessionsService INSTANCE = new SessionsService();
+        static final SessionsManager INSTANCE = new SessionsManager();
     }
 
-    public static SessionsService getInstance() {
+    public static SessionsManager getInstance() {
         return Holder.INSTANCE;
     }
 

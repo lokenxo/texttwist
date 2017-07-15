@@ -1,7 +1,7 @@
 package com.texttwist.server.models;
 
 import com.texttwist.server.services.MessageService;
-import com.texttwist.server.tasks.MatchTimeout;
+import com.texttwist.server.tasks.TimeoutMatch;
 import javafx.util.Pair;
 
 import javax.swing.*;
@@ -99,7 +99,7 @@ public class Match {
 
     public void startGame(){
         this.started = true;
-        matchTimeoutThread.submit(new MatchTimeout(this));
+        matchTimeoutThread.submit(new TimeoutMatch(this));
     }
 
     public void setScore(String player, Integer score){

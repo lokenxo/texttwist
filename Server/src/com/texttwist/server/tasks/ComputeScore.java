@@ -1,6 +1,6 @@
 package com.texttwist.server.tasks;
 
-import com.texttwist.server.services.AccountsService;
+import com.texttwist.server.managers.AccountsManager;
 import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.models.Match;
 import models.User;
@@ -35,7 +35,7 @@ public class ComputeScore implements Callable<Integer> {
         }
         match.setScore(sender, score);
 
-        User u = AccountsService.getInstance().findUser(sender);
+        User u = AccountsManager.getInstance().findUser(sender);
         u.addScore(score);
 
         if(match.allPlayersSendedHisScore()) {

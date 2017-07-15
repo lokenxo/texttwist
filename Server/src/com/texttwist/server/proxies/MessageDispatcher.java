@@ -1,7 +1,7 @@
 package com.texttwist.server.proxies;
 
 import com.texttwist.server.Server;
-import com.texttwist.server.services.SessionsService;
+import com.texttwist.server.managers.SessionsManager;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
 import models.Message;
@@ -33,7 +33,7 @@ public class MessageDispatcher implements Callable<Boolean> {
     public Boolean call() {
         bufferMessage = ByteBuffer.allocate(1024);
         byte[] byteMessage = null;
-        if(SessionsService.getInstance().isValidToken(request.token)){
+        if(SessionsManager.getInstance().isValidToken(request.token)){
             switch(request.message){
 
                 case "START_GAME":
@@ -68,7 +68,7 @@ public class MessageDispatcher implements Callable<Boolean> {
                                 }
 
                                 //Starts to wait until all player joins
-                                Future<Boolean> joinTimeout = threadPool.submit(new JoinTimeout(match));
+                                Future<Boolean> joinTimeout = threadPool.submit(new TimeoutJoin(match));
                                 Boolean joinTimeoutRes = joinTimeout.get();
                                 //If joinTimeoutRes==true timeout happen, need to notify to all waiting clients
                                 if(joinTimeoutRes){

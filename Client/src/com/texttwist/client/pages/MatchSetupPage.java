@@ -58,7 +58,7 @@ public class MatchSetupPage extends Page{
             new Callable<Object>() {
                 @Override
                 public Void call() throws Exception {
-                    //If notificationServer response ok, start beginMatch, else error
+                    //If notificationServer response ok, start newMatch, else error
                     matchSetupController.play(searchUserBar.list);
                     return null;
                 }

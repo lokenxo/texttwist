@@ -8,11 +8,11 @@ import java.util.concurrent.*;
  * Author:      Lorenzo Iovino on 23/06/2017.
  * Description: Task: Join Timeout
  */
-public class JoinTimeout implements Callable<Boolean> {
+public class TimeoutJoin implements Callable<Boolean> {
 
     public final Match match;
 
-    public JoinTimeout(Match match) {
+    public TimeoutJoin(Match match) {
         this.match = match;
     }
 

@@ -8,10 +8,10 @@ import java.util.concurrent.Callable;
  * Author:      Lorenzo Iovino on 27/06/2017.
  * Description: Task: Match Timeout
  */
-public class MatchTimeout implements Callable<Boolean> {
+public class TimeoutMatch implements Callable<Boolean> {
 
     private Match match;
-    public MatchTimeout(Match match) {
+    public TimeoutMatch(Match match) {
         this.match = match;
 
     }
