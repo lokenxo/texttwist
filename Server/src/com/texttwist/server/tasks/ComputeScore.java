@@ -26,6 +26,8 @@ public class ComputeScore implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
+
+        //Compute the score depending on the size of the words
         Integer score = 0;
         for (int i = 0; i < words.size(); i++) {
             if (isValid(words.get(i), match.letters)) {
@@ -41,7 +43,7 @@ public class ComputeScore implements Callable<Integer> {
         if(match.allPlayersSendedHisScore()) {
             match.matchTimeout = false;
             match.setUndefinedScorePlayersToZero();
-            new SendScores(match).call();
+            new SendFinalScores(match).call();
         }
         return score;
     }

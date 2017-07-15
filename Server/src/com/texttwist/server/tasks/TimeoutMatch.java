@@ -23,7 +23,7 @@ public class TimeoutMatch implements Callable<Boolean> {
 
             if(match.matchTimeout) {
                 match.setUndefinedScorePlayersToZero();
-                new SendScores(match).call();
+                new SendFinalScores(match).call();
                 return true;
             }
             return false;

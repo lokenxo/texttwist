@@ -1,5 +1,6 @@
 package com.texttwist.server;
 
+import com.texttwist.server.models.Dictionary;
 import com.texttwist.server.services.AuthService;
 import com.texttwist.server.services.MessageService;
 import com.texttwist.server.services.NotificationService;
@@ -27,6 +28,9 @@ public class Server {
     public static JedisPool jedisPool;
     public static Logger logger;
     public static AuthService auth;
+    private String dictionaryPath = "./Server/resources/dictionary";
+    public static Dictionary dict;
+    public static Integer multicastId = Config.NotificationServiceStubPort;
 
     public Server() throws IOException {
         logger = new Logger(new File("./notificationServer.log"), "Server", true);
@@ -36,6 +40,9 @@ public class Server {
         startMessageService();
         startWordsReceiverService();
         startNotificationService();
+
+        dict = new Dictionary(dictionaryPath);
+
         Server.logger.write("Services started correctly ...");
     }
 

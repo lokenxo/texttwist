@@ -1,5 +1,6 @@
 package com.texttwist.server.models;
 
+import com.texttwist.server.Server;
 import com.texttwist.server.services.MessageService;
 import com.texttwist.server.tasks.TimeoutMatch;
 import javafx.util.Pair;
@@ -139,7 +140,7 @@ public class Match {
     }
 
     private int generateMulticastId(){
-         return MessageService.multicastId++;
+         return Server.multicastId++;
     }
 
     public void setLetters(DefaultListModel<String> letters){

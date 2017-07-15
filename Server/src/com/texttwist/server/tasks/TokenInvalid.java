@@ -12,7 +12,7 @@ import java.util.concurrent.Callable;
  * Author:      Lorenzo Iovino on 11/07/2017.
  * Description: Task: Token Invalid
  */
-public class TokenInvalid implements Callable<Boolean> {
+public class TokenInvalid implements Callable<Void> {
     private String sender;
     private ByteBuffer buffer;
     private SocketChannel channel;
@@ -24,14 +24,14 @@ public class TokenInvalid implements Callable<Boolean> {
     }
 
     @Override
-    public Boolean call()throws Exception {
+    public Void call()throws Exception {
         Server.logger.write("TOKEN INVALID: TOKEN USED BY "+ sender+ " IS NOT VALID");
         Message msg = new Message("TOKEN_NOT_VALID", "", null, new DefaultListModel<>());
         buffer.clear();
         byte[] byteMessage = msg.toString().getBytes();
         buffer = ByteBuffer.wrap(byteMessage);
         channel.write(buffer);
-        return false;
+        return null;
     }
 
 }

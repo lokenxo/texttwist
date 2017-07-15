@@ -1,4 +1,4 @@
-package com.texttwist.server.dispatchers;
+package com.texttwist.server.tasks;
 
 import com.texttwist.server.Server;
 import com.texttwist.server.models.Sessions;
@@ -72,13 +72,13 @@ public class MessageDispatcher implements Callable<Boolean> {
                                 Boolean joinTimeoutRes = joinTimeout.get();
                                 //If joinTimeoutRes==true timeout happen, need to notify to all waiting clients
                                 if(joinTimeoutRes){
-                                    Future<Boolean> sendMessageJoinTimeout = threadPool.submit(
+                                    Future<Boolean> sendMessageToAllPlayers = threadPool.submit(
                                             new SendMessageToAllPlayers(match,
                                                     new Message("JOIN_TIMEOUT", "", "", new DefaultListModel<>()), socketChannel));
-                                    Boolean sendMessageJoinTimeoutRes = sendMessageJoinTimeout.get();
-                                    if(!sendMessageJoinTimeoutRes){
+                                    Boolean sendMessageToAllPlayersRes = sendMessageToAllPlayers.get();
+                                    if(!sendMessageToAllPlayersRes){
                                         Match.activeMatches.remove(Match.findMatchIndex(Match.activeMatches, match.matchCreator));
-                                        return sendMessageJoinTimeoutRes;
+                                        return sendMessageToAllPlayersRes;
                                     }
                                 } else {
                                     //All done, all player joined

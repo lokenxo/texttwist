@@ -12,13 +12,13 @@ import java.util.concurrent.Callable;
 
 /**
  * Author:      Lorenzo Iovino on 13/07/2017.
- * Description: Task: Send Scores
+ * Description: Task: Send Final Scores
  */
-public class SendScores implements Callable<Void> {
+public class SendFinalScores implements Callable<Void> {
 
     private Match match;
 
-    public SendScores(Match match){
+    public SendFinalScores(Match match){
         this.match = match;
     }
 
