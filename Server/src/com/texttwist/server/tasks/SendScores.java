@@ -29,7 +29,7 @@ public class SendScores implements Callable<Void> {
         MulticastSocket multicastSocket = null;
         try {
             multicastSocket = new MulticastSocket(match.multicastId);
-            InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServerURI);
+            InetAddress ia = InetAddress.getByName(Config.ScoreMulticastServiceURI);
             DatagramPacket hi = new DatagramPacket(msg.toString().getBytes(), msg.toString().length(), ia, match.multicastId);
             multicastSocket.send(hi);
         } catch (IOException e) {

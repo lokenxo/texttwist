@@ -17,7 +17,7 @@ import java.rmi.RemoteException;
  */
 public class AuthService {
 
-    private String baseUrl = Config.getAuthServerURI().concat("/auth");
+    private String baseUrl = Config.getAuthServiceURI().concat("/auth");
 
     public Response login(String userName, String password) throws RemoteException, NotBoundException, MalformedURLException {
         IAuth auth = (IAuth) Naming.lookup(baseUrl);

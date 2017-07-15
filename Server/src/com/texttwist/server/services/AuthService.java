@@ -1,8 +1,8 @@
 package com.texttwist.server.services;
 
 import com.texttwist.server.Server;
-import com.texttwist.server.managers.AccountsManager;
-import com.texttwist.server.managers.SessionsManager;
+import com.texttwist.server.models.Accounts;
+import com.texttwist.server.models.Sessions;
 import constants.Config;
 import interfaces.IAuth;
 import interfaces.INotificationClient;
@@ -24,14 +24,14 @@ public class AuthService extends UnicastRemoteObject implements IAuth {
     private SecureRandom random = new SecureRandom();
 
     public AuthService() throws RemoteException{
-        Server.logger.write("AuthService Service running at "+ Config.AuthServerPort+" port...");
+        Server.logger.write("AuthService Service running at "+ Config.AuthServicePort +" port...");
     }
 
     @Override
     public Response register(String userName, String password) throws RemoteException {
         Server.logger.write("Invoked register with username=" + userName + " AND " + " password=" + password);
         if ((userName != null && !userName.isEmpty()) && (password != null && !password.equals(""))) {
-            if(AccountsManager.getInstance().register(userName, password)){
+            if(Accounts.getInstance().register(userName, password)){
                 Server.logger.write("Registration successfull");
                 return new Response("Registration successfull", 200, null);
             } else {
@@ -46,11 +46,11 @@ public class AuthService extends UnicastRemoteObject implements IAuth {
     public Response login(String userName, String password) throws RemoteException {
         Server.logger.write("Invoked login with username=" + userName + " AND " + " password=" + password);
         if ((userName != null && !userName.isEmpty()) && (password != null && !password.equals(""))) {
-            if(AccountsManager.getInstance().exists(userName) && AccountsManager.getInstance().checkPassword(userName, password)) {
+            if(Accounts.getInstance().exists(userName) && Accounts.getInstance().checkPassword(userName, password)) {
                 JsonObject data = new JsonObject();
                 String token = nextSessionId();
                 data.put("token", token);
-                SessionsManager.getInstance().add(userName,token);
+                Sessions.getInstance().add(userName,token);
                 Server.logger.write("Login successfull");
                 return new Response("Login successfull", 200, data);
             }
@@ -65,14 +65,14 @@ public class AuthService extends UnicastRemoteObject implements IAuth {
         notificationServer.unregisterForCallback(stub);
 
         if ((userName != null && !userName.isEmpty()) && (token != null && !token.isEmpty())) {
-            boolean res = SessionsManager.getInstance().remove(userName);
+            boolean res = Sessions.getInstance().remove(userName);
             if(res) {
                 Server.logger.write("Logout successfull");
 
             }
         }
 
-        SessionsManager.getInstance().remove(userName);
+        Sessions.getInstance().remove(userName);
         Server.logger.write("Logout successfull (but something gone wrong)");
         return new Response("Logout successfull (but something gone wrong)", 200, null);
     }

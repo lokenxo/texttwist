@@ -1,4 +1,4 @@
-package com.texttwist.server.managers;
+package com.texttwist.server.models;
 import models.Session;
 import models.User;
 
@@ -9,17 +9,17 @@ import java.util.List;
 
 /**
  * Author:      Lorenzo Iovino on 17/06/2017.
- * Description: SessionsManager. It is a singleton that provides the model and methods for manage sessions
+ * Description: Sessions. It is a singleton that provides the model and methods for manage sessions
  */
-public class SessionsManager {
+public class Sessions {
 
     private List<Session> sessions = Collections.synchronizedList(new ArrayList<Session>());
 
     private static class Holder {
-        static final SessionsManager INSTANCE = new SessionsManager();
+        static final Sessions INSTANCE = new Sessions();
     }
 
-    public static SessionsManager getInstance() {
+    public static Sessions getInstance() {
         return Holder.INSTANCE;
     }
 

@@ -32,8 +32,8 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class App extends JFrame {
 
-    private static InetSocketAddress clientTCPSocketAddress = new InetSocketAddress(Config.GameServerURI, Config.GameServerPort);
-    public static InetSocketAddress clientUDPSocketAddress = new InetSocketAddress(Config.WordsReceiverServerURI, Config.WordsReceiverServerPort);
+    private static InetSocketAddress clientTCPSocketAddress = new InetSocketAddress(Config.MessageServiceURI, Config.MessageServicePort);
+    public static InetSocketAddress clientUDPSocketAddress = new InetSocketAddress(Config.WordsReceiverServiceURI, Config.WordsReceiverServicePort);
     private static InetAddress clientMulticastSocketAddress;
 
     public static AuthService authService;
@@ -79,10 +79,10 @@ public class App extends JFrame {
 
     public static void registerForNotifications() throws RemoteException, NotBoundException {
 
-        Registry registry = LocateRegistry.getRegistry(Config.NotificationServerStubPort);
+        Registry registry = LocateRegistry.getRegistry(Config.NotificationServiceStubPort);
         INotificationClient callbackObj = new NotificationClientService();
         notificationStub = (INotificationClient) UnicastRemoteObject.exportObject(callbackObj, 0);
-        INotificationServer notificationServer = (INotificationServer) registry.lookup(Config.NotificationServerName);
+        INotificationServer notificationServer = (INotificationServer) registry.lookup(Config.NotificationServiceName);
         notificationServer.registerForCallback(notificationStub);
     }
 
@@ -98,7 +98,7 @@ public class App extends JFrame {
     public static void openClientMulticastSocket(Integer multicastId){
         try {
             App.gameService.setMulticastId(multicastId);
-            clientMulticastSocketAddress = InetAddress.getByName(Config.ScoreMulticastServerURI);
+            clientMulticastSocketAddress = InetAddress.getByName(Config.ScoreMulticastServiceURI);
             clientMulticast = new MulticastSocket(gameService.multicastId);
             clientMulticast.joinGroup(clientMulticastSocketAddress);
         } catch (IOException e) {
@@ -109,7 +109,7 @@ public class App extends JFrame {
     public static void closeClientMulticastSocket(){
         //Leave group and close multicast socket
         try {
-            App.clientMulticast.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServerURI));
+            App.clientMulticast.leaveGroup(InetAddress.getByName(Config.ScoreMulticastServiceURI));
             App.clientMulticast.close();
         } catch (IOException e) {
             e.printStackTrace();

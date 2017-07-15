@@ -21,7 +21,7 @@ public class NotificationService implements INotificationServer {
     private List<INotificationClient> clients;
     public NotificationService() throws RemoteException {
         super();
-        Server.logger.write("Notification Service running at "+ Config.NotificationServerPort+" port...");
+        Server.logger.write("Notification Service running at "+ Config.NotificationServicePort +" port...");
         clients = new ArrayList<>();
     }
 

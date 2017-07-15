@@ -1,7 +1,7 @@
-package com.texttwist.server.proxies;
+package com.texttwist.server.dispatchers;
 
 import com.texttwist.server.Server;
-import com.texttwist.server.managers.SessionsManager;
+import com.texttwist.server.models.Sessions;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.*;
 import models.Message;
@@ -33,7 +33,7 @@ public class MessageDispatcher implements Callable<Boolean> {
     public Boolean call() {
         bufferMessage = ByteBuffer.allocate(1024);
         byte[] byteMessage = null;
-        if(SessionsManager.getInstance().isValidToken(request.token)){
+        if(Sessions.getInstance().isValidToken(request.token)){
             switch(request.message){
 
                 case "START_GAME":

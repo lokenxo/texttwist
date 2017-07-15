@@ -1,4 +1,4 @@
-package com.texttwist.server.managers;
+package com.texttwist.server.models;
 
 import com.texttwist.server.services.JedisService;
 import models.User;
@@ -8,21 +8,21 @@ import java.util.*;
 
 /**
  * Author:      Lorenzo Iovino on 18/06/2017.
- * Description: AccountsManager
+ * Description: Accounts
  */
-public class AccountsManager {
+public class Accounts {
 
     public List<User> users = Collections.synchronizedList(new ArrayList<User>());
 
     private static class Holder {
-        static final AccountsManager INSTANCE = new AccountsManager();
+        static final Accounts INSTANCE = new Accounts();
     }
 
-    public static AccountsManager getInstance() {
-        return AccountsManager.Holder.INSTANCE;
+    public static Accounts getInstance() {
+        return Accounts.Holder.INSTANCE;
     }
 
-    private AccountsManager(){
+    private Accounts(){
         List<Serializable> l = JedisService.get("users");
         for(int i=0; i<l.size(); i++) {
             users.add((User) l.get(i));

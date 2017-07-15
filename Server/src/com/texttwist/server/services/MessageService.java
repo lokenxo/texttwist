@@ -1,7 +1,7 @@
 package com.texttwist.server.services;
 
 import com.texttwist.server.Server;
-import com.texttwist.server.proxies.MessageDispatcher;
+import com.texttwist.server.dispatchers.MessageDispatcher;
 import com.texttwist.server.models.Dictionary;
 import constants.Config;
 import models.Message;
@@ -27,7 +27,7 @@ public class MessageService implements Runnable{
     private String dictionaryPath = "./Server/resources/dictionary";
     public static Dictionary dict;
 
-    public static Integer multicastId = Config.NotificationServerStubPort;
+    public static Integer multicastId = Config.NotificationServiceStubPort;
 
     public MessageService()
     {
@@ -37,9 +37,9 @@ public class MessageService implements Runnable{
 
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
-            serverSocketChannel.socket().bind(new InetSocketAddress(Config.GameServerPort));
+            serverSocketChannel.socket().bind(new InetSocketAddress(Config.MessageServicePort));
             serverSocketChannel.register(selector, OP_ACCEPT);
-            Server.logger.write("GameService Service is running at "+Config.GameServerPort+" port...");
+            Server.logger.write("GameService Service is running at "+Config.MessageServicePort +" port...");
 
         } catch (IOException e) {
             e.printStackTrace();

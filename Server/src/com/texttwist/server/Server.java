@@ -43,7 +43,7 @@ public class Server {
         //Starting Auth service based on RMI
         try {
             auth = new AuthService();
-            Registry authRegistry = LocateRegistry.createRegistry(Config.AuthServerPort);
+            Registry authRegistry = LocateRegistry.createRegistry(Config.AuthServicePort);
             authRegistry.bind("auth", auth);
         } catch (RemoteException e) {
             Server.logger.write("SERVER: RMI authentication service error (Remote exception)");
@@ -54,7 +54,7 @@ public class Server {
 
     private void startJedisService(){
         //Starting Jedis pool for Redis connection
-        jedisPool = new JedisPool(new JedisPoolConfig(), Config.RedisServerURI);
+        jedisPool = new JedisPool(new JedisPoolConfig(), Config.RedisServiceURI);
     }
 
     private void startMessageService(){
@@ -71,11 +71,11 @@ public class Server {
         //Starting Notification service based on RMI
         try {
             notificationServer = new NotificationService();
-            INotificationServer stub = (INotificationServer) UnicastRemoteObject.exportObject(notificationServer, Config.NotificationServerPort);
-            LocateRegistry.createRegistry(Config.NotificationServerStubPort);
+            INotificationServer stub = (INotificationServer) UnicastRemoteObject.exportObject(notificationServer, Config.NotificationServicePort);
+            LocateRegistry.createRegistry(Config.NotificationServiceStubPort);
 
-            Registry notificationRegistry = LocateRegistry.getRegistry(Config.NotificationServerStubPort);
-            notificationRegistry.bind(Config.NotificationServerName, stub);
+            Registry notificationRegistry = LocateRegistry.getRegistry(Config.NotificationServiceStubPort);
+            notificationRegistry.bind(Config.NotificationServiceName, stub);
         } catch (RemoteException e) {
             Server.logger.write("SERVER: RMI notification service error (Remote exception)");
         } catch (AlreadyBoundException e) {

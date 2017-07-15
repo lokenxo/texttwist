@@ -1,7 +1,7 @@
 package com.texttwist.server.services;
 
 import com.texttwist.server.Server;
-import com.texttwist.server.managers.SessionsManager;
+import com.texttwist.server.models.Sessions;
 import com.texttwist.server.models.Match;
 import com.texttwist.server.tasks.ComputeScore;
 import constants.Config;
@@ -20,7 +20,7 @@ public class ReceiveWordsService implements Runnable {
     private ExecutorService threadPool = Executors.newCachedThreadPool();
 
     public ReceiveWordsService() {
-        Server.logger.write("ReceiveWords Service running at "+Config.WordsReceiverServerPort+" port...");
+        Server.logger.write("ReceiveWords Service running at "+Config.WordsReceiverServicePort +" port...");
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ReceiveWordsService implements Runnable {
         DatagramSocket s = null;
 
         try {
-            s = new DatagramSocket(Config.WordsReceiverServerPort);
+            s = new DatagramSocket(Config.WordsReceiverServicePort);
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -48,7 +48,7 @@ public class ReceiveWordsService implements Runnable {
             String rcv = new String(packet.getData());
             if (rcv.startsWith("MESSAGE")) {
                 msg = Message.toMessage(rcv);
-                if(SessionsManager.getInstance().isValidToken(msg.token)) {
+                if(Sessions.getInstance().isValidToken(msg.token)) {
                     Match match = Match.findMatchByPlayerName(msg.sender);
                     threadPool.submit(new ComputeScore(msg.sender, msg.data, match));
                 }
