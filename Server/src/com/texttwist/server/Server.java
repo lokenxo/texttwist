@@ -33,7 +33,7 @@ public class Server {
     public static Integer multicastId = Config.NotificationServiceStubPort;
 
     public Server() throws IOException {
-        logger = new Logger(new File("./notificationServer.log"), "Server", true);
+        logger = new Logger(new File("./server.log"), "Server", true);
         Server.logger.write("Services starting ...");
         startAuthService();
         startJedisService();
